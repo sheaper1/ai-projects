@@ -1,7 +1,9 @@
-// Деплой проекта на staging БЕЗ SFTP: блочная тема rosenberger (блоки внутри неё).
-// Модель «копия в проект»: блоки живут в теме, отдельного плагина нет.
-// Code Snippets — одноразовый установщик: пишет файлы темы, активирует тему,
-// сносит старый плагin library-blocks, затем обезвреживается.
+// Деплой проекта на staging БЕЗ SFTP: блочная тема rosenberger (вид, блоки внутри)
+// + плагин проекта rosenberger-core (данные/логика: настройки, CPT).
+// Модель «копия в проект»: всё per-project и изолировано.
+//
+// Code Snippets — одноразовый установщик: пишет файлы темы и плагина, активирует
+// тему и плагин, сносит старый общий плагин library-blocks, затем обезвреживается.
 //
 // Запуск: node scripts/deploy-stack.mjs
 
@@ -34,31 +36,42 @@ const walk = ( dir ) => readdirSync( dir ).flatMap( ( name ) => {
 	return statSync( p ).isDirectory() ? walk( p ) : [ p ];
 } );
 
-// --- файлы темы (включая blocks/ с build/ и assets/, без src/) ---
-const themeDir = resolve( root, 'projects/rosenberger' );
-const themeFiles = {};
-for ( const abs of walk( themeDir ) ) {
-	const rel = relative( themeDir, abs ).split( '\\' ).join( '/' );
-	if ( rel.includes( '/src/' ) ) continue; // исходники на сервер не нужны
-	themeFiles[ rel ] = readFileSync( abs ).toString( 'base64' );
-}
+// собрать файлы каталога в { относительный_путь: base64 }, пропуская src/
+const collect = ( dir ) => {
+	const out = {};
+	for ( const abs of walk( dir ) ) {
+		const rel = relative( dir, abs ).split( '\\' ).join( '/' );
+		if ( rel.includes( '/src/' ) ) continue;
+		out[ rel ] = readFileSync( abs ).toString( 'base64' );
+	}
+	return out;
+};
+
+const themeFiles  = collect( resolve( root, 'projects/rosenberger/theme' ) );
+const pluginFiles = collect( resolve( root, 'projects/rosenberger/plugin/rosenberger-core' ) );
 
 const phpArray = ( obj ) => Object.entries( obj ).map( ( [ k, v ] ) => `\t'${ k }' => '${ v }',` ).join( '\n' );
 
-const snippetCode = `$theme_dir = get_theme_root() . '/rosenberger';
+const snippetCode = `$theme_dir  = get_theme_root() . '/rosenberger';
+$plugin_dir = WP_PLUGIN_DIR . '/rosenberger-core';
 $theme_files = array(
 ${ phpArray( themeFiles ) }
 );
+$plugin_files = array(
+${ phpArray( pluginFiles ) }
+);
 foreach ( $theme_files as $rel => $b64 ) { $d = $theme_dir . '/' . $rel; wp_mkdir_p( dirname( $d ) ); file_put_contents( $d, base64_decode( $b64 ) ); }
+foreach ( $plugin_files as $rel => $b64 ) { $d = $plugin_dir . '/' . $rel; wp_mkdir_p( dirname( $d ) ); file_put_contents( $d, base64_decode( $b64 ) ); }
 if ( get_option( 'stylesheet' ) !== 'rosenberger' ) { switch_theme( 'rosenberger' ); }
-// Сносим старый общий плагин (модель сменилась на «блоки в теме»).
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
+if ( ! is_plugin_active( 'rosenberger-core/rosenberger-core.php' ) ) { activate_plugin( 'rosenberger-core/rosenberger-core.php' ); }
+// сносим старый общий плагин (модель сменилась на «всё в проекте»)
 if ( is_plugin_active( 'library-blocks/library-blocks.php' ) ) { deactivate_plugins( 'library-blocks/library-blocks.php' ); }
-$pd = WP_PLUGIN_DIR . '/library-blocks';
-if ( is_dir( $pd ) ) {
-	$it = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $pd, FilesystemIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
+$old = WP_PLUGIN_DIR . '/library-blocks';
+if ( is_dir( $old ) ) {
+	$it = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $old, FilesystemIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
 	foreach ( $it as $f ) { $f->isDir() ? @rmdir( $f->getPathname() ) : @unlink( $f->getPathname() ); }
-	@rmdir( $pd );
+	@rmdir( $old );
 }`;
 
 const INSTALLER = 'Library: STACK installer (temporary)';
@@ -78,14 +91,14 @@ const neutralizeLibrarySnippets = async () => {
 };
 
 const main = async () => {
-	console.log( `Файлов темы: ${ Object.keys( themeFiles ).length }` );
+	console.log( `Файлов темы: ${ Object.keys( themeFiles ).length }, файлов плагина: ${ Object.keys( pluginFiles ).length }` );
 	await neutralizeLibrarySnippets();
 
 	const created = await api( '/wp-json/code-snippets/v1/snippets', {
 		method: 'POST',
 		body: JSON.stringify( {
 			name: INSTALLER,
-			desc: 'Одноразовый установщик темы. Обезвреживается автоматически.',
+			desc: 'Одноразовый установщик темы и плагина проекта. Обезвреживается автоматически.',
 			code: snippetCode,
 			scope: 'global',
 			active: true,
@@ -101,18 +114,19 @@ const main = async () => {
 	const themes = await api( '/wp-json/wp/v2/themes?status=active' );
 	const themeActive = Array.isArray( themes.body ) && themes.body.some( ( t ) => t.stylesheet === 'rosenberger' );
 	const plugins = await api( '/wp-json/wp/v2/plugins' );
-	const pluginGone = Array.isArray( plugins.body ) && ! plugins.body.some(
-		( p ) => p.plugin === 'library-blocks/library-blocks' && p.status === 'active'
+	const coreActive = Array.isArray( plugins.body ) && plugins.body.some(
+		( p ) => p.plugin === 'rosenberger-core/rosenberger-core' && p.status === 'active'
 	);
 
 	console.log( 'Тема rosenberger активна:', themeActive ? '✅' : '❌' );
-	console.log( 'Плагин library-blocks убран:', pluginGone ? '✅' : '❌' );
+	console.log( 'Плагин rosenberger-core активен:', coreActive ? '✅' : '❌' );
 
 	await neutralizeLibrarySnippets();
 
-	if ( ! themeActive ) { console.log( '\n⚠️  Тема не активна — проверь вручную.' ); process.exit( 1 ); }
-	console.log( '\n✅ Проект развёрнут: блоки внутри темы rosenberger. Плагин и сниппеты убраны.' );
-	console.log( 'Тест-страница:', BASE + '/hero-cover-test/' );
+	if ( ! themeActive || ! coreActive ) { console.log( '\n⚠️  Что-то не активировалось — проверь вручную.' ); process.exit( 1 ); }
+	console.log( '\n✅ Проект развёрнут: тема rosenberger + плагин rosenberger-core. Сниппеты обезврежены.' );
+	console.log( 'Настройки сайта: ' + BASE + '/wp-admin/admin.php?page=rosenberger-settings' );
+	console.log( 'Тест-страница:   ' + BASE + '/hero-cover-test/' );
 };
 
 main().catch( ( e ) => { console.error( e ); process.exit( 1 ); } );

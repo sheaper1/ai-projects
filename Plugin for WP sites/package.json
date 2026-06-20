@@ -4,7 +4,7 @@
 	"private": true,
 	"description": "Эталонная библиотека динамических блоков Gutenberg для веб-агентства.",
 	"scripts": {
-		"build": "node scripts/build-blocks.mjs projects/rosenberger",
+		"build": "node scripts/build-blocks.mjs projects/rosenberger/theme",
 		"build:library": "node scripts/build-blocks.mjs library"
 	},
 	"devDependencies": {

@@ -9,7 +9,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve( dirname( fileURLToPath( import.meta.url ) ), '..' );
-const rel = process.argv[ 2 ] || 'projects/rosenberger';
+const rel = process.argv[ 2 ] || 'projects/rosenberger/theme';
 const blocksDir = resolve( root, rel, 'blocks' );
 
 if ( ! existsSync( blocksDir ) ) {
