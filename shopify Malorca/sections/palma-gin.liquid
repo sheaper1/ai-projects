@@ -1,0 +1,545 @@
+{%- liquid
+  assign product_url = section.settings.product_url | default: '/products/palma-gin-70cl'
+-%}
+
+{% comment %}theme-check-disable RemoteAsset{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} .palma-gin {
+    --ink: #162F53;
+    --ink-2: #5B6976;
+    --subtle: #9AA3AD;
+    --line: #E6E3DC;
+    --bg: #FFFFFF;
+    --bg-soft: #F4F2ED;
+    --mint: #E7ECE6;
+    --gold: #FAD380;
+    --gold-deep: #B68C39;
+    --ital: 'Libre Caslon Text', Georgia, serif;
+    --max: 80rem;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #shopify-section-{{ section.id }} .palma-gin *,
+  #shopify-section-{{ section.id }} .palma-gin *::before,
+  #shopify-section-{{ section.id }} .palma-gin *::after { box-sizing: border-box; }
+  #shopify-section-{{ section.id }} .palma-gin img { display: block; max-width: 100%; }
+  #shopify-section-{{ section.id }} .palma-gin a { color: inherit; text-decoration: none; }
+  #shopify-section-{{ section.id }} .palma-gin button,
+  #shopify-section-{{ section.id }} .palma-gin input { font: inherit; }
+
+  #shopify-section-{{ section.id }} .pg-wrap { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+  #shopify-section-{{ section.id }} .pg-section { padding: 6rem 0; }
+  #shopify-section-{{ section.id }} .pg-eyebrow {
+    color: var(--subtle);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  #shopify-section-{{ section.id }} .pg-ital { font-family: var(--ital); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  #shopify-section-{{ section.id }} .palma-gin h1,
+  #shopify-section-{{ section.id }} .palma-gin h2,
+  #shopify-section-{{ section.id }} .palma-gin h3 {
+    margin: 0;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+  }
+  #shopify-section-{{ section.id }} .palma-gin h1 { font-size: clamp(2.6rem, 5vw, 4rem); }
+  #shopify-section-{{ section.id }} .palma-gin h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
+  #shopify-section-{{ section.id }} .pg-lead { color: var(--ink-2); font-size: 1.06rem; line-height: 1.65; }
+  #shopify-section-{{ section.id }} .pg-divider { height: 1px; border: 0; background: var(--line); }
+
+  #shopify-section-{{ section.id }} .pg-showcase { padding-top: 2.5rem; }
+  #shopify-section-{{ section.id }} .pg-product-layout { display: flex; gap: 4rem; align-items: flex-start; justify-content: space-between; }
+  #shopify-section-{{ section.id }} .pg-product-info {
+    position: sticky;
+    top: 92px;
+    flex: none;
+    width: 100%;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  #shopify-section-{{ section.id }} .pg-product-head { display: flex; flex-direction: column; gap: 0.7rem; }
+  #shopify-section-{{ section.id }} .pg-title { font-size: clamp(2.6rem, 4vw, 3.6rem); }
+  #shopify-section-{{ section.id }} .pg-price { display: flex; gap: 1rem; align-items: baseline; margin-top: 0.2rem; }
+  #shopify-section-{{ section.id }} .pg-now { font-size: 1.5rem; font-weight: 600; }
+  #shopify-section-{{ section.id }} .pg-meta { color: var(--subtle); font-size: 0.82rem; letter-spacing: 0.02em; }
+  #shopify-section-{{ section.id }} .pg-desc { color: var(--ink-2); font-size: 1rem; line-height: 1.7; }
+  #shopify-section-{{ section.id }} .pg-atc { margin-top: 0.3rem; }
+  #shopify-section-{{ section.id }} .pg-atc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 56px;
+    border: 1px solid var(--ink);
+    border-radius: 0.5rem;
+    background: var(--ink);
+    color: #fff !important;
+    padding: 0.95rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none !important;
+    white-space: nowrap;
+    box-shadow: 0 10px 24px rgba(22, 47, 83, 0.12);
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+  #shopify-section-{{ section.id }} .pg-atc-btn:visited { color: #fff !important; }
+  #shopify-section-{{ section.id }} .pg-atc-btn:hover,
+  #shopify-section-{{ section.id }} .pg-atc-btn:focus-visible {
+    border-color: var(--gold-deep);
+    background: var(--gold);
+    color: var(--ink) !important;
+    box-shadow: 0 14px 30px rgba(182, 140, 57, 0.24);
+    transform: translateY(-2px);
+  }
+  #shopify-section-{{ section.id }} .pg-atc-note { color: var(--subtle); font-size: 0.76rem; letter-spacing: 0.02em; }
+
+  #shopify-section-{{ section.id }} .pg-accordions { display: flex; flex-direction: column; margin-top: 0.5rem; }
+  #shopify-section-{{ section.id }} .pg-accordion { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+  #shopify-section-{{ section.id }} .pg-accordion:last-child { border-bottom: 1px solid var(--line); }
+  #shopify-section-{{ section.id }} .pg-accordion-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    cursor: pointer;
+  }
+  #shopify-section-{{ section.id }} .pg-accordion-heading h3 { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; }
+  #shopify-section-{{ section.id }} .pg-accordion-icon {
+    position: relative;
+    flex: none;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+  }
+  #shopify-section-{{ section.id }} .pg-line-horizontal { width: 0.66rem; height: 2px; border-radius: 2px; background: #fff; }
+  #shopify-section-{{ section.id }} .pg-line-vertical {
+    position: absolute;
+    width: 2px;
+    height: 0.66rem;
+    border-radius: 2px;
+    background: #fff;
+    transition: transform 0.3s ease;
+  }
+  #shopify-section-{{ section.id }} .pg-accordion.is-open .pg-line-vertical { transform: scaleY(0); }
+  #shopify-section-{{ section.id }} .pg-accordion-text { overflow: hidden; max-height: 0; transition: max-height 0.4s ease; }
+  #shopify-section-{{ section.id }} .pg-accordion-inner { padding: 0 0 1.2rem; color: var(--ink-2); font-size: 0.88rem; line-height: 1.7; }
+  #shopify-section-{{ section.id }} .pg-accordion-inner a { text-decoration: underline; text-underline-offset: 2px; }
+
+  #shopify-section-{{ section.id }} .pg-product-gallery { flex: none; display: flex; gap: 1rem; width: 100%; max-width: 38rem; }
+  #shopify-section-{{ section.id }} .pg-thumbs { flex: none; display: flex; flex-direction: column; gap: 0.8rem; width: 5rem; }
+  #shopify-section-{{ section.id }} .pg-thumb {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--mint);
+    padding-top: 120%;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  #shopify-section-{{ section.id }} .pg-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #shopify-section-{{ section.id }} .pg-thumb.is-active { border-color: var(--ink); }
+  #shopify-section-{{ section.id }} .pg-main-image { position: relative; flex: 1; overflow: hidden; width: 100%; padding-top: 122%; background: var(--mint); }
+  #shopify-section-{{ section.id }} .pg-main-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease; }
+  #shopify-section-{{ section.id }} .pg-main-image img.is-active { opacity: 1; }
+
+  #shopify-section-{{ section.id }} .pg-band {
+    position: relative;
+    min-height: clamp(340px, 52vh, 580px);
+    display: flex;
+    align-items: flex-end;
+    background-image: url('https://mallorcadistillery.com/cdn/shop/files/Frame_260.jpg?width=1600');
+    background-size: cover;
+    background-position: center;
+  }
+  #shopify-section-{{ section.id }} .pg-band::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15,33,56,0.1), rgba(15,33,56,0.66));
+  }
+  #shopify-section-{{ section.id }} .pg-band-cap { position: relative; z-index: 1; width: 100%; max-width: var(--max); margin: 0 auto; padding: 3rem 2.5rem; color: #fff; }
+  #shopify-section-{{ section.id }} .pg-band-cap h2 { max-width: 24rem; color: #fff; }
+  #shopify-section-{{ section.id }} .pg-band-cap .pg-ital { color: var(--gold); }
+  #shopify-section-{{ section.id }} .pg-band-cap p { max-width: 30rem; margin: 0.6rem 0 0; color: rgba(255,255,255,0.82); }
+
+  #shopify-section-{{ section.id }} .pg-split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  #shopify-section-{{ section.id }} .pg-split-img { position: relative; overflow: hidden; padding-top: 78%; background: var(--mint); }
+  #shopify-section-{{ section.id }} .pg-split-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #shopify-section-{{ section.id }} .pg-bgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 1.6rem; border: 1px solid var(--line); background: var(--line); }
+  #shopify-section-{{ section.id }} .pg-bcell { background: var(--bg); padding: 1.2rem; }
+  #shopify-section-{{ section.id }} .pg-bn { margin-bottom: 0.1rem; font-family: var(--ital); font-size: 1.15rem; font-style: italic; }
+  #shopify-section-{{ section.id }} .pg-bsrc { margin-bottom: 0.35rem; color: var(--gold-deep); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+  #shopify-section-{{ section.id }} .pg-bno { color: var(--ink-2); font-size: 0.78rem; line-height: 1.5; }
+
+  #shopify-section-{{ section.id }} .pg-collection { background: var(--bg-soft); }
+  #shopify-section-{{ section.id }} .pg-col-head { max-width: 42rem; margin: 0 auto 3rem; text-align: center; }
+  #shopify-section-{{ section.id }} .pg-col-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+  #shopify-section-{{ section.id }} .pg-col-card { display: flex; flex-direction: column; }
+  #shopify-section-{{ section.id }} .pg-cc-img { position: relative; overflow: hidden; padding-top: 118%; background: var(--mint); }
+  #shopify-section-{{ section.id }} .pg-cc-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 1.6rem; transition: transform 0.4s ease; }
+  #shopify-section-{{ section.id }} .pg-col-card:hover .pg-cc-img img { transform: scale(1.05); }
+  #shopify-section-{{ section.id }} .pg-cc-name { margin: 1rem 0 0.15rem; font-size: 1.15rem; font-weight: 600; }
+  #shopify-section-{{ section.id }} .pg-cc-meta { color: var(--subtle); font-size: 0.78rem; }
+  #shopify-section-{{ section.id }} .pg-cc-price { margin-top: 0.5rem; font-size: 0.88rem; font-weight: 600; }
+  #shopify-section-{{ section.id }} .pg-cc-link { align-self: flex-start; margin-top: 0.75rem; border-bottom: 1px solid var(--ink); padding-bottom: 2px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s, border-color 0.2s; }
+  #shopify-section-{{ section.id }} .pg-cc-link:hover { border-color: var(--gold-deep); color: var(--gold-deep); }
+
+  #shopify-section-{{ section.id }} .pg-awards { background: #fff; text-align: center; }
+  #shopify-section-{{ section.id }} .pg-awards-logos { width: min(100%, 760px); margin: 2rem auto 1.6rem; padding: 1.5rem 2rem; background: #fff; }
+  #shopify-section-{{ section.id }} .pg-awards-logos img { width: 100%; height: auto; object-fit: contain; }
+  #shopify-section-{{ section.id }} .pg-google-reviews {
+    max-width: 1120px;
+    min-height: 360px;
+    margin: 0 auto;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .pg-newsletter { background: var(--ink); color: #fff; text-align: center; }
+  #shopify-section-{{ section.id }} .pg-newsletter h2 { color: #fff; }
+  #shopify-section-{{ section.id }} .pg-newsletter .pg-ital { color: var(--gold); }
+  #shopify-section-{{ section.id }} .pg-newsletter p { max-width: 30rem; margin: 0.8rem auto 0; color: rgba(255,255,255,0.66); font-size: 0.95rem; }
+  #shopify-section-{{ section.id }} .pg-newsletter-form { display: flex; gap: 0.5rem; max-width: 27rem; margin: 1.6rem auto 0; }
+  #shopify-section-{{ section.id }} .pg-newsletter-form input { flex: 1; border: 0; border-radius: 0.5rem; outline: 0; padding: 0.85rem 1.1rem; font-size: 0.9rem; }
+  #shopify-section-{{ section.id }} .pg-newsletter-form button { border: 0; border-radius: 0.5rem; background: var(--gold); color: var(--ink); padding: 0.85rem 1.5rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background-color 0.3s; }
+  #shopify-section-{{ section.id }} .pg-newsletter-form button:hover { background: #F2C25A; }
+
+  #shopify-section-{{ section.id }} [data-pg-reveal],
+  #shopify-section-{{ section.id }} [data-pg-split] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--pg-delay, 0ms);
+  }
+  #shopify-section-{{ section.id }} .is-visible[data-pg-reveal],
+  #shopify-section-{{ section.id }} .is-visible[data-pg-split] { opacity: 1; transform: translateY(0); }
+  #shopify-section-{{ section.id }} .palma-gin a:focus-visible,
+  #shopify-section-{{ section.id }} .palma-gin button:focus-visible,
+  #shopify-section-{{ section.id }} .palma-gin input:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} [data-pg-reveal],
+    #shopify-section-{{ section.id }} [data-pg-split] { opacity: 1 !important; transform: none !important; transition-duration: 0.001ms !important; }
+  }
+
+  @media (max-width: 991px) {
+    #shopify-section-{{ section.id }} .pg-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+    #shopify-section-{{ section.id }} .pg-section { padding: 4rem 0; }
+    #shopify-section-{{ section.id }} .pg-product-layout { flex-direction: column; gap: 2.5rem; }
+    #shopify-section-{{ section.id }} .pg-product-info { position: static; max-width: none; order: 2; }
+    #shopify-section-{{ section.id }} .pg-product-gallery { order: 1; max-width: none; }
+    #shopify-section-{{ section.id }} .pg-split { grid-template-columns: 1fr; gap: 2.5rem; }
+    #shopify-section-{{ section.id }} .pg-col-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  }
+
+  @media (max-width: 600px) {
+    #shopify-section-{{ section.id }} .palma-gin { font-size: 15px; }
+    #shopify-section-{{ section.id }} .pg-product-gallery { flex-direction: column-reverse; }
+    #shopify-section-{{ section.id }} .pg-thumbs { flex-direction: row; width: 100%; }
+    #shopify-section-{{ section.id }} .pg-thumb { flex: 1; height: 4.5rem; padding-top: 0; }
+    #shopify-section-{{ section.id }} .pg-bgrid,
+    #shopify-section-{{ section.id }} .pg-col-grid { grid-template-columns: 1fr; }
+    #shopify-section-{{ section.id }} .pg-newsletter-form { flex-direction: column; }
+    #shopify-section-{{ section.id }} .pg-showcase { padding-top: 1.25rem; }
+  }
+</style>
+
+<div class="palma-gin">
+  <section class="pg-section pg-showcase">
+    <div class="pg-wrap">
+      <div class="pg-product-layout">
+        <div class="pg-product-info">
+          <div class="pg-product-head" data-pg-reveal>
+            <span class="pg-eyebrow">Organic Craft Gin · Mallorca</span>
+            <h1 class="pg-title">Palma <span class="pg-ital">Gin</span></h1>
+            <div class="pg-price">
+              <span class="pg-now">€45,00</span>
+              <span class="pg-meta">70cl · 46.6% ABV</span>
+            </div>
+          </div>
+
+          <p class="pg-desc" data-pg-split>Fifteen locally foraged botanicals — wild almond flowers, Mallorcan juniper and fresh mountain citrus — distilled at the island's first organic craft distillery. Fresh, dry and unmistakably Mallorcan.</p>
+
+          <div class="pg-atc" data-pg-reveal>
+            <a href="{{ product_url }}" class="pg-atc-btn">Add to Cart — €45</a>
+          </div>
+          <span class="pg-atc-note" data-pg-reveal>Free shipping over €60 · Ships across Europe from Palma</span>
+
+          <div class="pg-accordions" data-pg-reveal>
+            <div class="pg-accordion" data-pg-accordion>
+              <div class="pg-accordion-heading" data-pg-accordion-toggle>
+                <h3>Tasting notes</h3>
+                <div class="pg-accordion-icon"><div class="pg-line-horizontal"></div><div class="pg-line-vertical"></div></div>
+              </div>
+              <div class="pg-accordion-text"><div class="pg-accordion-inner">A fresh, dry gin with bright citrus, delicate floral sweetness from wild almond blossom, and an earthy, terroir-driven finish true to the island.</div></div>
+            </div>
+            <div class="pg-accordion" data-pg-accordion>
+              <div class="pg-accordion-heading" data-pg-accordion-toggle>
+                <h3>Shipping</h3>
+                <div class="pg-accordion-icon"><div class="pg-line-horizontal"></div><div class="pg-line-vertical"></div></div>
+              </div>
+              <div class="pg-accordion-text"><div class="pg-accordion-inner">Free shipping on orders over €/£60. Dispatched from Palma de Mallorca, shipping across Europe. See <a href="/policies/refund-policy">shipping details</a>.</div></div>
+            </div>
+            <div class="pg-accordion" data-pg-accordion>
+              <div class="pg-accordion-heading" data-pg-accordion-toggle>
+                <h3>Returns</h3>
+                <div class="pg-accordion-icon"><div class="pg-line-horizontal"></div><div class="pg-line-vertical"></div></div>
+              </div>
+              <div class="pg-accordion-text"><div class="pg-accordion-inner">Unopened bottles can be returned within 14 days of delivery. Full terms in our <a href="/policies/refund-policy">return policy</a>.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pg-product-gallery" data-pg-reveal>
+          <div class="pg-thumbs" role="tablist" aria-label="Product images">
+            <button class="pg-thumb is-active" data-pg-thumb="0" type="button" role="tab" aria-selected="true" aria-label="Palma Gin bottle"><img src="https://mallorcadistillery.com/cdn/shop/files/freepik__talk__347731_1024x1024.png?v=1765369030&width=300" alt="" width="300" height="300" loading="eager" decoding="async"></button>
+            <button class="pg-thumb" data-pg-thumb="1" type="button" role="tab" aria-selected="false" aria-label="Palma Gin bottle with citrus"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-081copy1_1200x.png?v=1765369031&width=300" alt="" width="300" height="225" loading="lazy" decoding="async"></button>
+            <button class="pg-thumb" data-pg-thumb="2" type="button" role="tab" aria-selected="false" aria-label="Palma Gin serve"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-081copy2_1200x.png?v=1765369031&width=300" alt="" width="300" height="225" loading="lazy" decoding="async"></button>
+            <button class="pg-thumb" data-pg-thumb="3" type="button" role="tab" aria-selected="false" aria-label="Palma Gin cocktail"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-081copy4_1024x1024.png?v=1765369031&width=300" alt="" width="300" height="225" loading="lazy" decoding="async"></button>
+            <button class="pg-thumb" data-pg-thumb="4" type="button" role="tab" aria-selected="false" aria-label="Palma Gin lifestyle"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-088copy1_1024x1024.png?v=1765369031&width=300" alt="" width="300" height="225" loading="lazy" decoding="async"></button>
+          </div>
+
+          <div class="pg-main-image">
+            <img class="is-active" data-pg-main="0" src="https://mallorcadistillery.com/cdn/shop/files/freepik__talk__347731_1000x.png?v=1765369030" alt="Palma Gin 70cl bottle" width="1000" height="1000" loading="eager" fetchpriority="high" decoding="async">
+            <img data-pg-main="1" src="https://mallorcadistillery.com/cdn/shop/files/LowRes-081copy1_1200x.png?v=1765369031&width=1000" alt="Palma Gin bottle with citrus" width="1000" height="750" loading="lazy" decoding="async">
+            <img data-pg-main="2" src="https://mallorcadistillery.com/cdn/shop/files/LowRes-081copy2_1200x.png?v=1765369031&width=1000" alt="Palma Gin serve" width="1000" height="750" loading="lazy" decoding="async">
+            <img data-pg-main="3" src="https://mallorcadistillery.com/cdn/shop/files/LowRes-081copy4_1024x1024.png?v=1765369031&width=1000" alt="Palma Gin cocktail" width="1000" height="750" loading="lazy" decoding="async">
+            <img data-pg-main="4" src="https://mallorcadistillery.com/cdn/shop/files/LowRes-088copy1_1024x1024.png?v=1765369031&width=1000" alt="Palma Gin lifestyle" width="1000" height="750" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-section" id="botanicals">
+    <div class="pg-wrap">
+      <div class="pg-split">
+        <div>
+          <span class="pg-eyebrow" data-pg-reveal>The island in every drop</span>
+          <h2 style="margin:.8rem 0 1.2rem" data-pg-reveal>Carefully sourced <span class="pg-ital">Mallorcan botanicals</span></h2>
+          <p class="pg-lead" data-pg-split>Every botanical captures the scent and spirit of the island. Almond flowers are foraged before spring; juniper is picked from Mallorcan terroir. Nothing artificial — ever.</p>
+          <div class="pg-bgrid" data-pg-reveal>
+            <div class="pg-bcell"><div class="pg-bn">Mallorcan juniper</div><div class="pg-bsrc">Serra de Tramuntana</div><div class="pg-bno">A soft, terroir-driven backbone.</div></div>
+            <div class="pg-bcell"><div class="pg-bn">Wild almond flower</div><div class="pg-bsrc">Foraged pre-spring</div><div class="pg-bno">Rare delicate sweetness and floral lift.</div></div>
+            <div class="pg-bcell"><div class="pg-bn">Fresh citrus peel</div><div class="pg-bsrc">Rural orchards</div><div class="pg-bno">Lemon, orange and lime — bright and clean.</div></div>
+            <div class="pg-bcell"><div class="pg-bn">+ 12 more</div><div class="pg-bsrc">Organic certified</div><div class="pg-bno">Lavender, tomato branch, coriander, orris and more.</div></div>
+          </div>
+        </div>
+        <div class="pg-split-img" data-pg-reveal><img src="https://mallorcadistillery.com/cdn/shop/files/DSC03227_1_e3678fb2-a996-4529-a2ae-6b6d4a21aabc.jpg?width=1000" alt="Almond blossom against a blue Mallorcan sky" width="1000" height="750" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-band">
+    <div class="pg-band-cap">
+      <span class="pg-eyebrow" style="color:rgba(255,255,255,.7)" data-pg-reveal>Take Mallorca home</span>
+      <h2 data-pg-reveal>From our distillery <span class="pg-ital">to your glass</span></h2>
+      <p data-pg-reveal>Poured under the almond blossom in Palma — the same organic spirit we ship across Europe.</p>
+    </div>
+  </section>
+
+  <section class="pg-section" id="story">
+    <div class="pg-wrap">
+      <div class="pg-split">
+        <div class="pg-split-img" data-pg-reveal><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_261.jpg?width=1000" alt="A Mallorcan village in the Serra de Tramuntana" width="1000" height="667" loading="lazy" decoding="async"></div>
+        <div>
+          <span class="pg-eyebrow" data-pg-reveal>Our story</span>
+          <h2 style="margin:.8rem 0 1.2rem" data-pg-reveal>Proudly made <span class="pg-ital">in Mallorca</span></h2>
+          <p class="pg-lead" data-pg-split>In 2018, Byron and Amber Holland set out to capture the true essence of Mallorca. In the heart of Palma, their distillery became the island's first organic craft distillery — every bottle made in small batches on a bespoke 500-litre copper pot still.</p>
+          <div class="pg-bgrid" data-pg-reveal>
+            <div class="pg-bcell"><div class="pg-bn">500L</div><div class="pg-bsrc">Copper pot still</div></div>
+            <div class="pg-bcell"><div class="pg-bn">100%</div><div class="pg-bsrc">Organic certified</div></div>
+            <div class="pg-bcell"><div class="pg-bn">2018</div><div class="pg-bsrc">Founded in Palma</div></div>
+            <div class="pg-bcell"><div class="pg-bn">15</div><div class="pg-bsrc">Botanicals</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-section pg-collection" id="collection">
+    <div class="pg-wrap">
+      <div class="pg-col-head">
+        <span class="pg-eyebrow" data-pg-reveal>The collection</span>
+        <h2 style="margin-top:.8rem" data-pg-reveal>Our Palma <span class="pg-ital">Gin Range</span></h2>
+        <p class="pg-lead" data-pg-reveal style="margin-top:.8rem">Four expressions of Mallorca, each crafted with the same organic botanical precision that defines the Palma collection.</p>
+      </div>
+      <div class="pg-col-grid" data-pg-reveal>
+        <article class="pg-col-card">
+          <div class="pg-cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_148_f44972fb-193a-455a-87ef-140621abb5cb.png?v=1770157163&width=500" alt="Palma Gin" width="500" height="890" loading="lazy" decoding="async"></div>
+          <div class="pg-cc-name">Palma Gin</div><div class="pg-cc-meta">Organic · 15 botanicals · 46.6%</div><div class="pg-cc-price">€45,00</div><a class="pg-cc-link" href="/products/palma-gin-70cl">Shop</a>
+        </article>
+        <article class="pg-col-card">
+          <div class="pg-cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_148_a176364e-a22e-49e8-b5e7-e06b09c27fd9.png?v=1769786557&width=500" alt="Palma Citrus Gin" width="500" height="890" loading="lazy" decoding="async"></div>
+          <div class="pg-cc-name">Citrus Gin</div><div class="pg-cc-meta">Lemon, orange and lime · zesty</div><div class="pg-cc-price">€45,00</div><a class="pg-cc-link" href="/products/palma-citrus-gin-70cl">Shop</a>
+        </article>
+        <article class="pg-col-card">
+          <div class="pg-cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_149_ae6dad33-35da-4463-81b1-ce3c5376d617.png?v=1769786618&width=500" alt="Palma Rose Gin" width="500" height="890" loading="lazy" decoding="async"></div>
+          <div class="pg-cc-name">Rosé Gin</div><div class="pg-cc-meta">Floral and citrus · pink gin</div><div class="pg-cc-price">€45,00</div><a class="pg-cc-link" href="/products/palma-rose-gin">Shop</a>
+        </article>
+        <article class="pg-col-card">
+          <div class="pg-cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_147_a0dc56fa-f73e-4127-ab73-08793c091668.png?v=1769786683&width=500" alt="Palma Spiced Gin" width="500" height="890" loading="lazy" decoding="async"></div>
+          <div class="pg-cc-name">Spiced Gin</div><div class="pg-cc-meta">Oak-aged · cinnamon and vanilla</div><div class="pg-cc-price">€45,00</div><a class="pg-cc-link" href="/products/palma-gin-spiced-70cl">Shop</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-section pg-awards" id="awards">
+    <div class="pg-wrap">
+      <span class="pg-eyebrow" data-pg-reveal>Awards &amp; recognition</span>
+      <h2 style="margin-top:.8rem" data-pg-reveal>Palma Gin <span class="pg-ital">Awards</span></h2>
+      <div class="pg-awards-logos" data-pg-reveal>
+        <img src="https://mallorcadistillery.com/cdn/shop/files/mallorca-distillery-palma-gin-awards_1024x1024.png?v=1668518641" alt="Palma Gin award logos" width="1024" height="360" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <hr class="pg-divider">
+
+  <section class="pg-section" id="reviews">
+    <div class="pg-wrap">
+      <div class="pg-google-reviews">
+        <div class="elfsight-sapp-cff8a79b-9ce9-4e16-9940-5f54ea0cffda"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-section pg-newsletter">
+    <div class="pg-wrap">
+      <h2 data-pg-reveal>Ready to taste <span class="pg-ital">Mallorca?</span></h2>
+      <p data-pg-reveal>Subscribe for exclusive offers, recipes and news from our Mediterranean paradise — and get 10% off your first order.</p>
+      <form class="pg-newsletter-form" data-pg-reveal onsubmit="return false">
+        <input type="email" placeholder="Your email address" aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const section = document.getElementById('shopify-section-{{ section.id }}');
+  if (!section || section.dataset.palmaGinReady === 'true') return;
+  section.dataset.palmaGinReady = 'true';
+
+  if (section.querySelector('.elfsight-sapp-cff8a79b-9ce9-4e16-9940-5f54ea0cffda') && !document.querySelector('script[data-palma-elfsight]')) {
+    const elfsightScript = document.createElement('script');
+    elfsightScript.src = 'https://shy.elfsight.com/p/platform.js?shop=mallorcadistillerypalmagin.myshopify.com';
+    elfsightScript.async = true;
+    elfsightScript.dataset.palmaElfsight = 'true';
+    document.head.appendChild(elfsightScript);
+  }
+
+  section.querySelectorAll('[data-pg-accordion]').forEach((accordion) => {
+    const heading = accordion.querySelector('[data-pg-accordion-toggle]');
+    const text = accordion.querySelector('.pg-accordion-text');
+    if (!heading) return;
+    heading.setAttribute('role', 'button');
+    heading.setAttribute('tabindex', '0');
+    heading.setAttribute('aria-expanded', String(accordion.classList.contains('is-open')));
+
+    const open = () => {
+      heading.setAttribute('aria-expanded', 'true');
+      accordion.classList.add('is-open');
+      if (!text) return;
+      text.style.maxHeight = `${text.scrollHeight}px`;
+      const done = (event) => {
+        if (event.propertyName !== 'max-height') return;
+        text.style.maxHeight = 'none';
+        text.removeEventListener('transitionend', done);
+      };
+      text.addEventListener('transitionend', done);
+    };
+    const close = () => {
+      heading.setAttribute('aria-expanded', 'false');
+      if (text) {
+        text.style.maxHeight = `${text.scrollHeight}px`;
+        void text.offsetHeight;
+        text.style.maxHeight = '0px';
+      }
+      accordion.classList.remove('is-open');
+    };
+    const toggle = () => accordion.classList.contains('is-open') ? close() : open();
+    heading.addEventListener('click', toggle);
+    heading.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      toggle();
+    });
+  });
+
+  const thumbs = Array.from(section.querySelectorAll('[data-pg-thumb]'));
+  const mains = Array.from(section.querySelectorAll('[data-pg-main]'));
+  const activateImage = (index) => {
+    thumbs.forEach((thumb) => {
+      const active = Number(thumb.dataset.pgThumb) === index;
+      thumb.classList.toggle('is-active', active);
+      thumb.setAttribute('aria-selected', String(active));
+    });
+    mains.forEach((image) => image.classList.toggle('is-active', Number(image.dataset.pgMain) === index));
+  };
+  thumbs.forEach((thumb) => thumb.addEventListener('click', () => activateImage(Number(thumb.dataset.pgThumb))));
+
+  const revealItems = Array.from(section.querySelectorAll('[data-pg-reveal], [data-pg-split]'));
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+    return;
+  }
+  revealItems.forEach((item, index) => item.style.setProperty('--pg-delay', `${(index % 4) * 70}ms`));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  requestAnimationFrame(() => revealItems.forEach((item) => observer.observe(item)));
+})();
+</script>
+
+{% comment %}theme-check-enable RemoteAsset{% endcomment %}
+
+{% schema %}
+{
+  "name": "Palma Gin",
+  "tag": "section",
+  "class": "palma-gin-section",
+  "settings": [
+    {
+      "type": "url",
+      "id": "product_url",
+      "label": "Product URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Palma Gin"
+    }
+  ]
+}
+{% endschema %}

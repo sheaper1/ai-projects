@@ -1,0 +1,972 @@
+{%- liquid
+  assign product_url = section.settings.product_url | default: '/products/palma-vodka-70cl'
+-%}
+
+{% comment %}theme-check-disable RemoteAsset{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} .palma-vodka {
+    --ink: #162F53;
+    --ink-2: #5B6976;
+    --subtle: #9AA3AD;
+    --line: #E6E3DC;
+    --bg: #FFFFFF;
+    --bg-soft: #F4F2ED;
+    --mint: #E7ECE6;
+    --gold: #FAD380;
+    --gold-deep: #B68C39;
+    --ital: 'Libre Caslon Text', Georgia, serif;
+    --max: 80rem;
+
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #shopify-section-{{ section.id }} .palma-vodka *,
+  #shopify-section-{{ section.id }} .palma-vodka *::before,
+  #shopify-section-{{ section.id }} .palma-vodka *::after {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .palma-vodka img {
+    display: block;
+    max-width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .palma-vodka a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .palma-vodka button,
+  #shopify-section-{{ section.id }} .palma-vodka input {
+    font: inherit;
+  }
+
+  #shopify-section-{{ section.id }} .pv-wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-section {
+    padding: 6rem 0;
+  }
+
+  #shopify-section-{{ section.id }} .pv-eyebrow {
+    color: var(--subtle);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .pv-ital {
+    font-family: var(--ital);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  #shopify-section-{{ section.id }} .palma-vodka h1,
+  #shopify-section-{{ section.id }} .palma-vodka h2,
+  #shopify-section-{{ section.id }} .palma-vodka h3 {
+    margin: 0;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+  }
+
+  #shopify-section-{{ section.id }} .palma-vodka h1 {
+    font-size: clamp(2.6rem, 5vw, 4rem);
+  }
+
+  #shopify-section-{{ section.id }} .palma-vodka h2 {
+    font-size: clamp(2rem, 3.6vw, 3rem);
+  }
+
+  #shopify-section-{{ section.id }} .pv-lead {
+    color: var(--ink-2);
+    font-size: 1.06rem;
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  #shopify-section-{{ section.id }} .pv-divider {
+    height: 1px;
+    border: 0;
+    background: var(--line);
+  }
+
+  #shopify-section-{{ section.id }} .pv-showcase {
+    padding-top: 2.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-product-layout {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  #shopify-section-{{ section.id }} .pv-product-info {
+    position: sticky;
+    top: 92px;
+    flex: none;
+    width: 100%;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-product-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-title {
+    font-size: clamp(2.6rem, 4vw, 3.6rem);
+  }
+
+  #shopify-section-{{ section.id }} .pv-price {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    margin-top: 0.2rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-now {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ section.id }} .pv-meta {
+    color: var(--subtle);
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+  }
+
+  #shopify-section-{{ section.id }} .pv-desc {
+    color: var(--ink-2);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  #shopify-section-{{ section.id }} .pv-atc {
+    margin-top: 0.3rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-atc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: 56px;
+    border: 1px solid var(--ink);
+    border-radius: 0.5rem;
+    background: var(--ink);
+    color: #fff !important;
+    padding: 0.95rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none !important;
+    white-space: nowrap;
+    box-shadow: 0 10px 24px rgba(22, 47, 83, 0.12);
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+
+  #shopify-section-{{ section.id }} .pv-atc-btn:visited {
+    color: #fff !important;
+  }
+
+  #shopify-section-{{ section.id }} .pv-atc-btn:hover,
+  #shopify-section-{{ section.id }} .pv-atc-btn:focus-visible {
+    border-color: var(--gold-deep);
+    background: var(--gold);
+    color: var(--ink) !important;
+    box-shadow: 0 14px 30px rgba(182, 140, 57, 0.24);
+    transform: translateY(-2px);
+  }
+
+  #shopify-section-{{ section.id }} .pv-atc-note {
+    color: var(--subtle);
+    font-size: 0.76rem;
+    letter-spacing: 0.02em;
+  }
+
+  #shopify-section-{{ section.id }} .pv-accordions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-accordion {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--line);
+  }
+
+  #shopify-section-{{ section.id }} .pv-accordion:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  #shopify-section-{{ section.id }} .pv-accordion-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .pv-accordion-heading h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  #shopify-section-{{ section.id }} .pv-accordion-icon {
+    position: relative;
+    flex: none;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+  }
+
+  #shopify-section-{{ section.id }} .pv-line-horizontal {
+    width: 0.66rem;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .pv-line-vertical {
+    position: absolute;
+    width: 2px;
+    height: 0.66rem;
+    border-radius: 2px;
+    background: #fff;
+    transition: transform 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .pv-accordion.is-open .pv-line-vertical {
+    transform: scaleY(0);
+  }
+
+  #shopify-section-{{ section.id }} .pv-accordion-text {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+  }
+
+  #shopify-section-{{ section.id }} .pv-accordion-inner {
+    padding: 0 0 1.2rem;
+    color: var(--ink-2);
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  #shopify-section-{{ section.id }} .pv-accordion-inner a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  #shopify-section-{{ section.id }} .pv-product-gallery {
+    flex: none;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 38rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-thumbs {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 5rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-thumb {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--mint);
+    padding-top: 120%;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  #shopify-section-{{ section.id }} .pv-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .pv-thumb.is-render img {
+    object-fit: contain;
+    padding: 0.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-thumb.is-active {
+    border-color: var(--ink);
+  }
+
+  #shopify-section-{{ section.id }} .pv-main-image {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 122%;
+    background: var(--mint);
+  }
+
+  #shopify-section-{{ section.id }} .pv-main-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  #shopify-section-{{ section.id }} .pv-main-image img.is-active {
+    opacity: 1;
+  }
+
+  #shopify-section-{{ section.id }} .pv-main-image img.is-render {
+    object-fit: contain;
+    padding: 2.6rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-band {
+    position: relative;
+    min-height: clamp(340px, 52vh, 580px);
+    display: flex;
+    align-items: flex-end;
+    background-image: url('https://mallorcadistillery.com/cdn/shop/files/Frame_257.jpg?width=1600');
+    background-size: cover;
+    background-position: center;
+  }
+
+  #shopify-section-{{ section.id }} .pv-band::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15,33,56,0.1), rgba(15,33,56,0.66));
+  }
+
+  #shopify-section-{{ section.id }} .pv-band-cap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 3rem 2.5rem;
+    color: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .pv-band-cap h2 {
+    max-width: 24rem;
+    color: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .pv-band-cap .pv-ital {
+    color: var(--gold);
+  }
+
+  #shopify-section-{{ section.id }} .pv-band-cap p {
+    max-width: 30rem;
+    margin: 0.6rem 0 0;
+    color: rgba(255,255,255,0.82);
+  }
+
+  #shopify-section-{{ section.id }} .pv-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .pv-split-img {
+    position: relative;
+    overflow: hidden;
+    padding-top: 78%;
+    background: var(--mint);
+  }
+
+  #shopify-section-{{ section.id }} .pv-split-img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .pv-ingredients {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.4rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-ir {
+    display: flex;
+    gap: 1.1rem;
+    align-items: flex-start;
+    border-top: 1px solid var(--line);
+    padding: 1rem 0;
+  }
+
+  #shopify-section-{{ section.id }} .pv-irn {
+    flex: none;
+    width: 1.6rem;
+    color: var(--gold-deep);
+    font-family: var(--ital);
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ section.id }} .pv-irname {
+    margin-bottom: 0.15rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ section.id }} .pv-irnote {
+    color: var(--ink-2);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  #shopify-section-{{ section.id }} .pv-notes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+    text-align: left;
+  }
+
+  #shopify-section-{{ section.id }} .pv-note {
+    border-top: 2px solid var(--ink);
+    padding-top: 1.2rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-note-stage {
+    margin-bottom: 0.7rem;
+    color: var(--subtle);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .pv-note-desc {
+    color: var(--ink);
+    font-family: var(--ital);
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ section.id }} .pv-serve {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-serve-item {
+    border-top: 1px solid var(--line);
+    padding-top: 1.2rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-serve-num {
+    margin-bottom: 0.6rem;
+    color: var(--gold-deep);
+    font-family: var(--ital);
+    font-size: 2rem;
+    font-style: italic;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .pv-serve-name {
+    margin-bottom: 0.4rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ section.id }} .pv-serve-desc {
+    color: var(--ink-2);
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+
+  #shopify-section-{{ section.id }} .pv-awards {
+    background: #fff;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .pv-awards-logos {
+    width: min(100%, 760px);
+    margin: 2rem auto 1.6rem;
+    padding: 1.5rem 2rem;
+    background: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .pv-awards-logos img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .pv-google-reviews {
+    max-width: 1120px;
+    margin: 0 auto;
+    min-height: 360px;
+  }
+
+  #shopify-section-{{ section.id }} .pv-newsletter {
+    background: var(--ink);
+    color: #fff;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .pv-newsletter h2 {
+    color: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .pv-newsletter .pv-ital {
+    color: var(--gold);
+  }
+
+  #shopify-section-{{ section.id }} .pv-newsletter p {
+    max-width: 30rem;
+    margin: 0.8rem auto 0;
+    color: rgba(255,255,255,0.66);
+    font-size: 0.95rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 27rem;
+    margin: 1.6rem auto 0;
+  }
+
+  #shopify-section-{{ section.id }} .pv-newsletter-form input {
+    flex: 1;
+    border: 0;
+    border-radius: 0.5rem;
+    outline: 0;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  #shopify-section-{{ section.id }} .pv-newsletter-form button {
+    border: 0;
+    border-radius: 0.5rem;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.85rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  #shopify-section-{{ section.id }} .pv-newsletter-form button:hover {
+    background: #F2C25A;
+  }
+
+  #shopify-section-{{ section.id }} [data-reveal],
+  #shopify-section-{{ section.id }} [data-split] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--pv-delay, 0ms);
+  }
+
+  #shopify-section-{{ section.id }} .is-visible[data-reveal],
+  #shopify-section-{{ section.id }} .is-visible[data-split] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #shopify-section-{{ section.id }} .palma-vodka a:focus-visible,
+  #shopify-section-{{ section.id }} .palma-vodka button:focus-visible,
+  #shopify-section-{{ section.id }} .palma-vodka input:focus-visible {
+    outline: 2px solid var(--gold-deep);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .palma-vodka {
+      scroll-behavior: auto;
+    }
+
+    #shopify-section-{{ section.id }} [data-reveal],
+    #shopify-section-{{ section.id }} [data-split] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  @media (max-width: 991px) {
+    #shopify-section-{{ section.id }} .pv-wrap {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    #shopify-section-{{ section.id }} .pv-section {
+      padding: 4rem 0;
+    }
+
+    #shopify-section-{{ section.id }} .pv-product-layout {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    #shopify-section-{{ section.id }} .pv-product-info {
+      position: static;
+      max-width: none;
+      order: 2;
+    }
+
+    #shopify-section-{{ section.id }} .pv-product-gallery {
+      order: 1;
+      max-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .pv-split,
+    #shopify-section-{{ section.id }} .pv-notes,
+    #shopify-section-{{ section.id }} .pv-serve {
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #shopify-section-{{ section.id }} .palma-vodka {
+      font-size: 15px;
+    }
+
+    #shopify-section-{{ section.id }} .pv-product-gallery {
+      flex-direction: column-reverse;
+    }
+
+    #shopify-section-{{ section.id }} .pv-thumbs {
+      flex-direction: row;
+      width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .pv-thumb {
+      flex: 1;
+      height: 4.5rem;
+      padding-top: 0;
+    }
+
+    #shopify-section-{{ section.id }} .pv-newsletter-form {
+      flex-direction: column;
+    }
+
+    #shopify-section-{{ section.id }} .pv-showcase {
+      padding-top: 1.25rem;
+    }
+  }
+</style>
+
+<div class="palma-vodka">
+  <section class="pv-section pv-showcase">
+    <div class="pv-wrap">
+      <div class="pv-product-layout">
+        <div class="pv-product-info">
+          <div class="pv-product-head" data-reveal>
+            <span class="pv-eyebrow">Organic Sea Salt Vodka · Mallorca</span>
+            <h1 class="pv-title">Palma <span class="pv-ital">Vodka</span></h1>
+            <div class="pv-price">
+              <span class="pv-now">€40,00</span>
+              <span class="pv-meta">70cl · 40% ABV</span>
+            </div>
+          </div>
+
+          <p class="pv-desc" data-split>Organic wheat spirit, soft Mallorcan water and a whisper of Flor de Sal — the island's prized sea salt, hand-harvested at Es Trenc. Three ingredients, distilled to their essence. Clean, silken and unmistakably Mallorcan.</p>
+
+          <div class="pv-atc" data-reveal>
+            <a href="{{ product_url }}" class="pv-atc-btn">Add to Cart — €40</a>
+          </div>
+          <span class="pv-atc-note" data-reveal>Free shipping over €60 · Ships across Europe from Palma</span>
+
+          <div class="pv-accordions" data-reveal>
+            <div class="pv-accordion" data-accordion>
+              <div class="pv-accordion-heading" data-accordion-toggle>
+                <h3>Ingredients</h3>
+                <div class="pv-accordion-icon"><div class="pv-line-horizontal"></div><div class="pv-line-vertical"></div></div>
+              </div>
+              <div class="pv-accordion-text"><div class="pv-accordion-inner">Organic wheat spirit · soft Mallorcan water · Flor de Sal hand-harvested at the Es Trenc salt pans. Distilled in small batches on a 500-litre copper pot still. No artificial additives.</div></div>
+            </div>
+
+            <div class="pv-accordion" data-accordion>
+              <div class="pv-accordion-heading" data-accordion-toggle>
+                <h3>Shipping</h3>
+                <div class="pv-accordion-icon"><div class="pv-line-horizontal"></div><div class="pv-line-vertical"></div></div>
+              </div>
+              <div class="pv-accordion-text"><div class="pv-accordion-inner">Free shipping on orders over €/£60. Dispatched from Palma de Mallorca, shipping across Europe. See <a href="/policies/refund-policy">shipping details</a>.</div></div>
+            </div>
+
+            <div class="pv-accordion" data-accordion>
+              <div class="pv-accordion-heading" data-accordion-toggle>
+                <h3>Returns</h3>
+                <div class="pv-accordion-icon"><div class="pv-line-horizontal"></div><div class="pv-line-vertical"></div></div>
+              </div>
+              <div class="pv-accordion-text"><div class="pv-accordion-inner">Unopened bottles can be returned within 14 days of delivery. Full terms in our <a href="/policies/refund-policy">return policy</a>.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pv-product-gallery" data-reveal>
+          <div class="pv-thumbs" role="tablist" aria-label="Product images">
+            <button class="pv-thumb is-active" data-gthumb="0" type="button" role="tab" aria-selected="true" aria-label="Palma Vodka with lemon and Flor de Sal"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-064copy5_1200x.png?v=1765368906&width=300" alt="" width="300" height="400" loading="eager" decoding="async"></button>
+            <button class="pv-thumb" data-gthumb="1" type="button" role="tab" aria-selected="false" aria-label="Palma Vodka cocktail on a wooden board"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-064copy1_1200x.png?v=1765368906&width=300" alt="" width="300" height="225" loading="lazy" decoding="async"></button>
+            <button class="pv-thumb" data-gthumb="2" type="button" role="tab" aria-selected="false" aria-label="Palma Vodka bottle with citrus garnish"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-064copy3_1200x.png?v=1765368906&width=300" alt="" width="300" height="225" loading="lazy" decoding="async"></button>
+            <button class="pv-thumb" data-gthumb="3" type="button" role="tab" aria-selected="false" aria-label="Palma Vodka martini cocktail"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-064copy4_1200x.png?v=1765368906&width=300" alt="" width="300" height="225" loading="lazy" decoding="async"></button>
+            <button class="pv-thumb" data-gthumb="4" type="button" role="tab" aria-selected="false" aria-label="Palma Vodka cocktail with cucumber"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-137copy1_1200x.png?v=1765368893&width=300" alt="" width="300" height="225" loading="lazy" decoding="async"></button>
+          </div>
+
+          <div class="pv-main-image">
+            <img class="is-active" data-gmain="0" src="https://mallorcadistillery.com/cdn/shop/files/LowRes-064copy5_1200x.png?v=1765368906&width=1000" alt="Palma Vodka with lemon and Flor de Sal" width="1000" height="1333" loading="eager" fetchpriority="high" decoding="async">
+            <img data-gmain="1" src="https://mallorcadistillery.com/cdn/shop/files/LowRes-064copy1_1200x.png?v=1765368906&width=1000" alt="Palma Vodka cocktail on a wooden board" width="1000" height="750" loading="lazy" decoding="async">
+            <img data-gmain="2" src="https://mallorcadistillery.com/cdn/shop/files/LowRes-064copy3_1200x.png?v=1765368906&width=1000" alt="Palma Vodka bottle with citrus garnish" width="1000" height="750" loading="lazy" decoding="async">
+            <img data-gmain="3" src="https://mallorcadistillery.com/cdn/shop/files/LowRes-064copy4_1200x.png?v=1765368906&width=1000" alt="Palma Vodka martini cocktail" width="1000" height="750" loading="lazy" decoding="async">
+            <img data-gmain="4" src="https://mallorcadistillery.com/cdn/shop/files/LowRes-137copy1_1200x.png?v=1765368893&width=1000" alt="Palma Vodka cocktail with cucumber" width="1000" height="750" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pv-band">
+    <div class="pv-band-cap">
+      <span class="pv-eyebrow" style="color:rgba(255,255,255,.7)" data-reveal>Born in Palma</span>
+      <h2 data-reveal>The Mediterranean <span class="pv-ital">in a glass</span></h2>
+      <p data-reveal>Distilled in the heart of Palma de Mallorca — three ingredients, one island.</p>
+    </div>
+  </section>
+
+  <section class="pv-section" id="story">
+    <div class="pv-wrap">
+      <div class="pv-split">
+        <div>
+          <span class="pv-eyebrow" data-reveal>What makes it different</span>
+          <h2 style="margin:.8rem 0 1.2rem" data-reveal>Three ingredients. <span class="pv-ital">One island.</span></h2>
+          <p class="pv-lead" data-split>Most vodkas hide behind flavourings and excessive filtration. Palma Vodka does the opposite — three exceptional ingredients, handled with precision, to let purity speak for itself.</p>
+          <div class="pv-ingredients" data-reveal>
+            <div class="pv-ir"><div class="pv-irn">I</div><div><div class="pv-irname">Organic wheat spirit</div><div class="pv-irnote">A clean, neutral base with natural grain sweetness — no additives.</div></div></div>
+            <div class="pv-ir"><div class="pv-irn">II</div><div><div class="pv-irname">Mallorcan water</div><div class="pv-irnote">Soft, mineral-balanced island water that shapes the texture.</div></div></div>
+            <div class="pv-ir"><div class="pv-irn">III</div><div><div class="pv-irname">Flor de Sal · Es Trenc</div><div class="pv-irnote">Hand-harvested Mallorcan sea salt — the defining signature.</div></div></div>
+          </div>
+        </div>
+        <div class="pv-split-img" data-reveal><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-096copy2_1024x1024.png?width=1000" alt="Palma Vodka on a wooden board with lemon and Flor de Sal" width="1000" height="1000" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pv-section" id="tasting" style="background:var(--bg-soft)">
+    <div class="pv-wrap" style="text-align:center">
+      <span class="pv-eyebrow" data-reveal>Tasting notes</span>
+      <h2 style="margin-top:.8rem" data-reveal>Clean. Precise. <span class="pv-ital">Unmistakably Mallorcan.</span></h2>
+      <div class="pv-notes" data-reveal>
+        <div class="pv-note"><div class="pv-note-stage">Nose</div><div class="pv-note-desc">Fresh and soft — vanilla with a gentle lift of black peppercorn.</div></div>
+        <div class="pv-note"><div class="pv-note-stage">Palate</div><div class="pv-note-desc">Pleasantly sweet, silken and round, with hints of lemon peel.</div></div>
+        <div class="pv-note"><div class="pv-note-stage">Finish</div><div class="pv-note-desc">Mineral and slightly salty — turning warmly peppery with time.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pv-section" id="serve">
+    <div class="pv-wrap">
+      <div style="text-align:center;max-width:40rem;margin:0 auto">
+        <span class="pv-eyebrow" data-reveal>How to enjoy it</span>
+        <h2 style="margin-top:.8rem" data-reveal>Three ways to <span class="pv-ital">taste the island</span></h2>
+      </div>
+      <div class="pv-serve" data-reveal>
+        <div class="pv-serve-item"><div class="pv-serve-num">01</div><div class="pv-serve-name">Neat, chilled</div><div class="pv-serve-desc">Straight from the freezer in a chilled glass. The cleanest way to taste the Flor de Sal and organic grain.</div></div>
+        <div class="pv-serve-item"><div class="pv-serve-num">02</div><div class="pv-serve-name">Palma Martini</div><div class="pv-serve-desc">60ml Palma Vodka · 10ml dry vermouth · ice-cold. Garnish with a lemon twist.</div></div>
+        <div class="pv-serve-item"><div class="pv-serve-num">03</div><div class="pv-serve-name">Sea Salt &amp; Tonic</div><div class="pv-serve-desc">50ml Palma Vodka · premium tonic · ice · a pinch of Flor de Sal. Simple and very Mallorcan.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pv-section pv-awards" id="awards">
+    <div class="pv-wrap">
+      <span class="pv-eyebrow" data-reveal>Awards &amp; recognition</span>
+      <h2 style="margin-top:.8rem" data-reveal>Palma Vodka <span class="pv-ital">Awards</span></h2>
+      <div class="pv-awards-logos" data-reveal>
+        <img src="https://mallorcadistillery.com/cdn/shop/files/Untitled_design_22_1024x1024.png?v=1666794579" alt="Palma Vodka award logos" width="1024" height="360" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <hr class="pv-divider">
+
+  <section class="pv-section" id="reviews">
+    <div class="pv-wrap">
+      <div class="pv-google-reviews" data-reveal>
+        <div class="elfsight-sapp-cff8a79b-9ce9-4e16-9940-5f54ea0cffda"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pv-section pv-newsletter">
+    <div class="pv-wrap">
+      <h2 data-reveal>Ready to taste <span class="pv-ital">pure Mallorca?</span></h2>
+      <p data-reveal>Subscribe for exclusive offers, recipes and news from our Mediterranean paradise — and get 10% off your first order.</p>
+      <form class="pv-newsletter-form" data-reveal onsubmit="return false">
+        <input type="email" placeholder="Your email address" aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const section = document.getElementById('shopify-section-{{ section.id }}');
+  if (!section || section.dataset.palmaVodkaV3 === 'true') return;
+  section.dataset.palmaVodkaV3 = 'true';
+
+  if (section.querySelector('.elfsight-sapp-cff8a79b-9ce9-4e16-9940-5f54ea0cffda') && !document.querySelector('script[data-pv-elfsight]')) {
+    const elfsightScript = document.createElement('script');
+    elfsightScript.src = 'https://shy.elfsight.com/p/platform.js?shop=mallorcadistillerypalmagin.myshopify.com';
+    elfsightScript.async = true;
+    elfsightScript.dataset.pvElfsight = 'true';
+    document.head.appendChild(elfsightScript);
+  }
+
+  const accordions = section.querySelectorAll('[data-accordion]');
+  accordions.forEach((accordion) => {
+    const heading = accordion.querySelector('[data-accordion-toggle]');
+    const text = accordion.querySelector('.pv-accordion-text');
+    if (!heading) return;
+
+    heading.setAttribute('role', 'button');
+    heading.setAttribute('tabindex', '0');
+    heading.setAttribute('aria-expanded', String(accordion.classList.contains('is-open')));
+
+    const open = () => {
+      heading.setAttribute('aria-expanded', 'true');
+      accordion.classList.add('is-open');
+      if (!text) return;
+      text.style.maxHeight = `${text.scrollHeight}px`;
+      const done = (event) => {
+        if (event.propertyName !== 'max-height') return;
+        text.style.maxHeight = 'none';
+        text.removeEventListener('transitionend', done);
+      };
+      text.addEventListener('transitionend', done);
+    };
+
+    const close = () => {
+      heading.setAttribute('aria-expanded', 'false');
+      if (text) {
+        text.style.maxHeight = `${text.scrollHeight}px`;
+        void text.offsetHeight;
+        text.style.maxHeight = '0px';
+      }
+      accordion.classList.remove('is-open');
+    };
+
+    const toggle = () => accordion.classList.contains('is-open') ? close() : open();
+    heading.addEventListener('click', toggle);
+    heading.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      toggle();
+    });
+  });
+
+  const thumbs = Array.from(section.querySelectorAll('[data-gthumb]'));
+  const mains = Array.from(section.querySelectorAll('[data-gmain]'));
+  const activateImage = (index) => {
+    thumbs.forEach((thumb) => {
+      const active = Number(thumb.dataset.gthumb) === index;
+      thumb.classList.toggle('is-active', active);
+      thumb.setAttribute('aria-selected', String(active));
+    });
+    mains.forEach((image) => image.classList.toggle('is-active', Number(image.dataset.gmain) === index));
+  };
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener('click', () => activateImage(Number(thumb.dataset.gthumb)));
+  });
+
+  const revealItems = Array.from(section.querySelectorAll('[data-reveal], [data-split]'));
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+    return;
+  }
+
+  revealItems.forEach((item, index) => {
+    item.style.setProperty('--pv-delay', `${(index % 4) * 70}ms`);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -8% 0px'
+  });
+
+  requestAnimationFrame(() => {
+    revealItems.forEach((item) => observer.observe(item));
+  });
+})();
+</script>
+
+{% comment %}theme-check-enable RemoteAsset{% endcomment %}
+
+{% schema %}
+{
+  "name": "Palma Vodka",
+  "tag": "section",
+  "class": "palma-vodka-section",
+  "settings": [
+    {
+      "type": "url",
+      "id": "product_url",
+      "label": "Product URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Palma Vodka"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:wp="http://wordpress.org/export/1.2/">
+<channel>
+	<title>Der Flugschreiber</title>
+	<link>https://derflugschreiber.digirelation.dev</link>
+	<description>Demo-Blogbeiträge (Deutsch)</description>
+	<pubDate>Mon, 18 May 2026 09:00:00 +0000</pubDate>
+	<language>de-DE</language>
+	<wp:wxr_version>1.2</wp:wxr_version>
+	<wp:base_site_url>https://derflugschreiber.digirelation.dev</wp:base_site_url>
+	<wp:base_blog_url>https://derflugschreiber.digirelation.dev</wp:base_blog_url>
+
+	<wp:author>
+		<wp:author_id>1</wp:author_id>
+		<wp:author_login><![CDATA[admin]]></wp:author_login>
+		<wp:author_display_name><![CDATA[admin]]></wp:author_display_name>
+	</wp:author>
+
+	<wp:category>
+		<wp:term_id>9101</wp:term_id>
+		<wp:category_nicename><![CDATA[blog]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Blog]]></wp:cat_name>
+	</wp:category>
+	<wp:category>
+		<wp:term_id>9102</wp:term_id>
+		<wp:category_nicename><![CDATA[flugsicherheit]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Flugsicherheit]]></wp:cat_name>
+	</wp:category>
+	<wp:category>
+		<wp:term_id>9103</wp:term_id>
+		<wp:category_nicename><![CDATA[ausbildung-praxis]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Ausbildung & Praxis]]></wp:cat_name>
+	</wp:category>
+	<wp:category>
+		<wp:term_id>9104</wp:term_id>
+		<wp:category_nicename><![CDATA[menschen-reisen]]></wp:category_nicename>
+		<wp:category_parent><![CDATA[]]></wp:category_parent>
+		<wp:cat_name><![CDATA[Menschen & Reisen]]></wp:cat_name>
+	</wp:category>
+
+	<item>
+		<title>Sieben kleine Gewohnheiten für sichereres Fliegen</title>
+		<link>https://derflugschreiber.digirelation.dev/sieben-gewohnheiten-sicheres-fliegen/</link>
+		<pubDate>Sat, 02 May 2026 09:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://derflugschreiber.digirelation.dev/?p=9001</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph -->
+<p>Sicherheit in der Luftfahrt entsteht selten durch eine einzige große Entscheidung. Viel häufiger ist sie das Ergebnis vieler kleiner Gewohnheiten, die ein Pilot über Jahre verinnerlicht. Wer diese Routinen pflegt, baut sich ein Sicherheitsnetz auf, das auch an stressigen Tagen trägt.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>1. Die Maschine immer mit der gleichen Sorgfalt vorfliegen</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Die Außenkontrolle verliert ihren Wert, sobald sie zur Formsache wird. Wer jeden Handgriff bewusst ausführt, entdeckt Abweichungen, bevor sie in der Luft zum Problem werden.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>2. Den Treibstoff zweimal rechnen</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Eine kurze, ehrliche Reserve hat noch keinen Flug verdorben – ein zu knapp kalkulierter Tank dagegen schon viele. Plane konservativ und behalte eine Alternative im Hinterkopf.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Die übrigen Gewohnheiten – ein sauberes Briefing, klare Abbruchkriterien, ein wacher Blick auf das Wetter, das ehrliche Eingeständnis eigener Grenzen und die Bereitschaft, einen Flug auch einmal abzusagen – kosten wenig und schützen viel.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[Sicherheit entsteht aus vielen kleinen Routinen. Sieben Gewohnheiten, die jeden Flug ein Stück sicherer machen.]]></excerpt:encoded>
+		<wp:post_id>9001</wp:post_id>
+		<wp:post_date><![CDATA[2026-05-02 09:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-05-02 09:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[sieben-gewohnheiten-sicheres-fliegen]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="flugsicherheit"><![CDATA[Flugsicherheit]]></category>
+		<category domain="category" nicename="blog"><![CDATA[Blog]]></category>
+	</item>
+
+	<item>
+		<title>Was junge Piloten über Müdigkeit wissen sollten</title>
+		<link>https://derflugschreiber.digirelation.dev/junge-piloten-muedigkeit/</link>
+		<pubDate>Wed, 06 May 2026 09:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://derflugschreiber.digirelation.dev/?p=9002</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph -->
+<p>Müdigkeit ist einer der am meisten unterschätzten Risikofaktoren im Cockpit. Sie schleicht sich langsam ein und beeinträchtigt genau die Fähigkeiten, die wir am dringendsten brauchen: Aufmerksamkeit, Urteilsvermögen und Reaktionszeit.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Besonders gefährlich ist, dass müde Piloten ihre eigene Leistung oft überschätzen. Wer übernächtigt fliegt, merkt häufig nicht, wie stark seine Konzentration bereits gelitten hat.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Was hilft</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul>
+<li>Ausreichend Schlaf vor einem Flugtag – nicht erst die Nacht davor.</li>
+<li>Ehrliche Selbsteinschätzung: Bin ich wirklich fit genug?</li>
+<li>Kurze Pausen auf längeren Strecken statt durchzuziehen.</li>
+<li>Den Flug verschieben, wenn der Körper deutlich Nein sagt.</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Die reifste Entscheidung ist manchmal die, am Boden zu bleiben. Kein Ziel ist es wert, übermüdet angesteuert zu werden.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[Müdigkeit beeinträchtigt genau die Fähigkeiten, die wir im Cockpit am dringendsten brauchen. Worauf es ankommt.]]></excerpt:encoded>
+		<wp:post_id>9002</wp:post_id>
+		<wp:post_date><![CDATA[2026-05-06 09:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-05-06 09:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[junge-piloten-muedigkeit]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="flugsicherheit"><![CDATA[Flugsicherheit]]></category>
+		<category domain="category" nicename="blog"><![CDATA[Blog]]></category>
+	</item>
+
+	<item>
+		<title>Warum klare Kommunikation wichtiger ist als schnelle</title>
+		<link>https://derflugschreiber.digirelation.dev/klare-kommunikation-im-funk/</link>
+		<pubDate>Sun, 10 May 2026 09:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://derflugschreiber.digirelation.dev/?p=9003</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph -->
+<p>Im Funkverkehr neigen wir dazu, schnell sein zu wollen. Dabei zählt nicht das Tempo, sondern die Verständlichkeit. Eine klare, ruhig gesprochene Meldung spart am Ende mehr Zeit als ein hastiges Durcheinander, das nachgefragt werden muss.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Standardphraseologie existiert nicht, um umständlich zu klingen, sondern um Missverständnisse zu vermeiden. Wer sie sauber verwendet, macht es allen Beteiligten leichter – besonders dann, wenn es im Luftraum voll wird.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Drei Grundregeln</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul>
+<li>Erst denken, dann die Taste drücken.</li>
+<li>Kurz, vollständig und in fester Reihenfolge melden.</li>
+<li>Im Zweifel lieber einmal mehr rückfragen als raten.</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Gute Kommunikation ist kein Talent, sondern eine Fertigkeit. Sie lässt sich üben – am besten so lange, bis sie unter Stress automatisch funktioniert.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[Im Funk zählt nicht Tempo, sondern Verständlichkeit. Warum klare Meldungen am Ende Zeit sparen.]]></excerpt:encoded>
+		<wp:post_id>9003</wp:post_id>
+		<wp:post_date><![CDATA[2026-05-10 09:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-05-10 09:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[klare-kommunikation-im-funk]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="ausbildung-praxis"><![CDATA[Ausbildung & Praxis]]></category>
+		<category domain="category" nicename="blog"><![CDATA[Blog]]></category>
+	</item>
+
+	<item>
+		<title>Vom Flugschüler zum Kapitän: Ein langer, lohnender Weg</title>
+		<link>https://derflugschreiber.digirelation.dev/vom-flugschueler-zum-kapitaen/</link>
+		<pubDate>Thu, 14 May 2026 09:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://derflugschreiber.digirelation.dev/?p=9004</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph -->
+<p>Der Weg vom ersten Schnupperflug bis ins linke Cockpitsitz ist kein Sprint, sondern ein langer Lauf mit vielen Etappen. Wer ihn geht, lernt nicht nur das Fliegen, sondern auch viel über sich selbst.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Am Anfang steht die Faszination. Dann kommen die Theorie, die ersten Soli, die Stunden im Regen und im Gegenwind, die Prüfungen. Jede Phase fühlt sich an wie ein Gipfel – bis man oben steht und den nächsten sieht.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Was Piloten auf diesem Weg eint, ist nicht das Talent, sondern die Beharrlichkeit. Wer dranbleibt, ehrlich zu sich ist und aus Fehlern lernt, kommt an. Und merkt dann: Der Weg hört nie ganz auf – das ist das Schöne daran.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[Vom ersten Schnupperflug bis ins linke Cockpit: ein langer Lauf mit vielen Etappen – und vielen Lektionen.]]></excerpt:encoded>
+		<wp:post_id>9004</wp:post_id>
+		<wp:post_date><![CDATA[2026-05-14 09:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-05-14 09:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[vom-flugschueler-zum-kapitaen]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="ausbildung-praxis"><![CDATA[Ausbildung & Praxis]]></category>
+		<category domain="category" nicename="blog"><![CDATA[Blog]]></category>
+	</item>
+
+	<item>
+		<title>Luftfahrtbücher, die auf keinem Pilotenschreibtisch fehlen sollten</title>
+		<link>https://derflugschreiber.digirelation.dev/luftfahrtbuecher-pilotenschreibtisch/</link>
+		<pubDate>Mon, 18 May 2026 09:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<guid isPermaLink="false">https://derflugschreiber.digirelation.dev/?p=9005</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph -->
+<p>Ein gutes Buch über die Fliegerei ersetzt keine Flugstunde – aber es kann die Art verändern, wie wir über das Fliegen denken. Manche Werke begleiten Piloten ein Leben lang und werden immer wieder aus dem Regal geholt.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Es lohnt sich, zwischen drei Arten zu unterscheiden: Bücher, die Wissen vermitteln, Bücher, die zum sicheren Entscheiden anleiten, und Bücher, die schlicht die Begeisterung für die Luftfahrt am Leben halten.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Welche Titel das im Einzelnen sind, ist Geschmackssache. Wichtiger als die perfekte Liste ist die Gewohnheit, überhaupt regelmäßig zu lesen – und das Gelernte beim nächsten Flug bewusst auszuprobieren.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[Ein gutes Buch ersetzt keine Flugstunde – aber es verändert, wie wir über das Fliegen denken.]]></excerpt:encoded>
+		<wp:post_id>9005</wp:post_id>
+		<wp:post_date><![CDATA[2026-05-18 09:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-05-18 09:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[luftfahrtbuecher-pilotenschreibtisch]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[post]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="menschen-reisen"><![CDATA[Menschen & Reisen]]></category>
+		<category domain="category" nicename="blog"><![CDATA[Blog]]></category>
+	</item>
+
+</channel>
+</rss>

@@ -1,0 +1,120 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Der Flugschreiber Subscriptions 1.1.0\n"
+"Language: de_DE\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Log in"
+msgstr "Anmelden"
+
+msgid "Log out"
+msgstr "Abmelden"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Password"
+msgstr "Passwort"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Paused"
+msgstr "Pausiert"
+
+msgid "Cancelled"
+msgstr "Gekündigt"
+
+msgid "Trial"
+msgstr "Testzugang"
+
+msgid "Expires at"
+msgstr "Läuft ab am"
+
+msgid "My subscription"
+msgstr "Mein Abonnement"
+
+msgid "Renew subscription"
+msgstr "Abonnement verlängern"
+
+msgid "Display name"
+msgstr "Anzeigename"
+
+msgid "Save profile"
+msgstr "Profil speichern"
+
+msgid "Change password"
+msgstr "Passwort ändern"
+
+msgid "Forgot password?"
+msgstr "Passwort vergessen?"
+
+msgid "Purchase subscription"
+msgstr "Abonnement kaufen"
+
+msgid "To read the full text, please log in or purchase a subscription."
+msgstr "Um den vollständigen Text zu lesen, melden Sie sich bitte an oder kaufen Sie ein Abonnement."
+
+msgid "All Issues"
+msgstr "Alle Ausgaben"
+
+msgid "All Articles"
+msgstr "Alle Artikel"
+
+msgid "Show more"
+msgstr "Mehr anzeigen"
+
+msgid "No issues found."
+msgstr "Keine Ausgaben gefunden."
+
+msgid "No articles found."
+msgstr "Keine Artikel gefunden."
+
+msgid "Read the full article"
+msgstr "Vollständigen Artikel lesen"
+
+msgid "Download PDF"
+msgstr "PDF herunterladen"
+
+msgid "Create subscriber"
+msgstr "Abonnent erstellen"
+
+msgid "Subscribers"
+msgstr "Abonnenten"
+
+msgid "Search subscribers"
+msgstr "Abonnenten suchen"
+
+msgid "Export subscribers as CSV"
+msgstr "Abonnenten als CSV exportieren"
+
+msgid "Import subscribers from CSV"
+msgstr "Abonnenten aus CSV importieren"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Save settings"
+msgstr "Einstellungen speichern"
+
+msgid "Protected PDF for paid issue"
+msgstr "Geschützte PDF für kostenpflichtige Ausgabe"
+
+msgid "Choose PDF"
+msgstr "PDF auswählen"
+
+msgid "Choose image"
+msgstr "Bild auswählen"
+
+msgid "Free article"
+msgstr "Kostenloser Artikel"
+
+msgid "Paid article"
+msgstr "Kostenpflichtiger Artikel"
+
+msgid "Inherit from issue"
+msgstr "Von der Ausgabe übernehmen"

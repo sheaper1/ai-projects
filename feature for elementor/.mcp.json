@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "elementor-mcp": {
+      "type": "http",
+      "url": "https://suessco.digirelation.dev/wp-json/mcp/elementor-mcp-server",
+      "headers": {
+        "Authorization": "Basic ZGlnaXJlbGF0aW9uc3VwcG9ydDpSUTVEIHF5ZjAgQjJOeiBoYUUxIDJOQTcgNG5ObA=="
+      }
+    }
+  }
+}

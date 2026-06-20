@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "palma_vodka": {
+      "type": "palma-vodka"
+    }
+  },
+  "order": ["palma_vodka"]
+}

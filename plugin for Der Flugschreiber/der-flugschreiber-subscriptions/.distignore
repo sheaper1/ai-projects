@@ -1,0 +1,8 @@
+/.git
+/.github
+/.phpunit.result.cache
+/phpunit.xml.dist
+/tests
+/*.zip
+/*.log
+/*.tmp

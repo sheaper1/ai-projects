@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palma Vodka | Organic Sea Salt Vodka from Mallorca | Buy Online</title>
+<meta name="description" content="Palma Vodka — organic wheat spirit, Mallorcan water and a touch of Flor de Sal from Es Trenc. The purest expression of the Mediterranean. Free shipping over €60.">
+<meta property="og:title" content="Palma Vodka | Sea Salt Vodka from Mallorca">
+<meta property="og:image" content="https://mallorcadistillery.com/cdn/shop/files/Frame_152_e5a944b7-af35-4b10-976f-1abe9d043906.png?v=1769787579&width=1200">
+<link rel="canonical" href="https://www.mallorcadistillery.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════════
+   PALMA — PRODUCT SHOWCASE  (Aurae-style PDP) — shared layer = gin page.
+   Editorial two-column showcase, vertical gallery, accordions,
+   GSAP SplitText + ScrollTrigger, brand palette (navy/gold/cream),
+   Montserrat + Libre Caslon Text. Accordion verbatim from accordion.js.
+   ════════════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+
+:root{
+  --ink:#162F53;
+  --ink-2:#5B6976;
+  --subtle:#9AA3AD;
+  --line:#E6E3DC;
+  --bg:#FFFFFF;
+  --bg-soft:#F4F2ED;
+  --mint:#E7ECE6;
+  --sand:#EFEEEB;
+  --gold:#FAD380;
+  --gold-deep:#B68C39;
+  --ital:'Libre Caslon Text',Georgia,serif;
+  --max:80rem;
+}
+
+.eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--subtle);font-weight:600}
+.ital{font-family:var(--ital);font-style:italic;font-weight:400;letter-spacing:-.01em}
+h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.03em;color:var(--ink)}
+h1{font-size:clamp(2.6rem,5vw,4rem)}
+h2{font-size:clamp(2rem,3.6vw,3rem)}
+.lead{font-size:1.06rem;line-height:1.65;color:var(--ink-2);font-weight:400}
+.muted{color:var(--ink-2)}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 2.5rem}
+.section{padding:6rem 0}
+.divider{height:1px;background:var(--line);border:0}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--max);margin:0 auto;height:68px;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between}
+.nav-in img{height:40px;width:auto}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{font-size:.8rem;letter-spacing:.02em;color:var(--ink-2);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{font-size:.78rem;font-weight:600}
+
+.showcase{padding-top:4rem}
+.product_layout{display:flex;gap:4rem;align-items:flex-start;justify-content:space-between}
+.product_info{display:flex;flex-direction:column;gap:1.25rem;width:100%;max-width:30rem;flex:none;position:sticky;top:92px}
+.p-head{display:flex;flex-direction:column;gap:.7rem}
+.p-title{font-size:clamp(2.6rem,4vw,3.6rem)}
+.price{display:flex;align-items:baseline;gap:1rem;margin-top:.2rem}
+.p-now{font-size:1.5rem;font-weight:600}
+.p-meta{font-size:.82rem;color:var(--subtle);letter-spacing:.02em}
+.p-desc{font-size:1rem;line-height:1.7;color:var(--ink-2)}
+.atc{display:flex;gap:.7rem;align-items:stretch;margin-top:.3rem}
+.qty{width:4.5rem;border:1px solid var(--line);border-radius:.5rem;background:var(--bg-soft);text-align:center;color:var(--ink);font-weight:600}
+.atc-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;background:var(--ink);color:#fff;border-radius:.5rem;padding:.95rem 1.5rem;font-size:.9rem;font-weight:600;transition:background-color .3s,transform .3s}
+.atc-btn:hover{background:#0F2138;transform:translateY(-1px)}
+.atc-note{font-size:.76rem;color:var(--subtle);letter-spacing:.02em}
+
+.accordions{display:flex;flex-direction:column;margin-top:.5rem}
+.accordion{border-top:1px solid var(--line);display:flex;flex-direction:column}
+.accordion:last-child{border-bottom:1px solid var(--line)}
+.accordion_heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.15rem 0;cursor:pointer}
+.accordion_heading h3{font-size:.95rem;font-weight:600;letter-spacing:-.01em}
+.accordion_icon-wrapper{width:1.7rem;height:1.7rem;border-radius:.4rem;background:var(--ink);position:relative;display:flex;align-items:center;justify-content:center;flex:none}
+.line-horizontal{width:.66rem;height:2px;background:#fff;border-radius:2px}
+.line_vertical{width:2px;height:.66rem;background:#fff;border-radius:2px;position:absolute;transition:transform .3s ease}
+.accordion.is-open .line_vertical{transform:scaleY(0)}
+.accordion_text{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.accordion_text-inner{padding:0 0 1.2rem;font-size:.88rem;line-height:1.7;color:var(--ink-2)}
+.accordion_text-inner a{text-decoration:underline;text-underline-offset:2px}
+
+.product_gallery{display:flex;gap:1rem;flex:none;width:100%;max-width:38rem}
+.gthumbs{display:flex;flex-direction:column;gap:.8rem;width:5rem;flex:none}
+.gthumb{position:relative;padding-top:120%;cursor:pointer;background:var(--mint);overflow:hidden;border:1px solid var(--line);transition:border-color .2s}
+.gthumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gthumb.is-render img{object-fit:contain;padding:.5rem}
+.gthumb.is-active{border-color:var(--ink)}
+.gthumb:focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px}
+.gmain{position:relative;width:100%;padding-top:122%;background:var(--mint);overflow:hidden;flex:1}
+.gmain img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease}
+.gmain img.is-active{opacity:1}
+.gmain img.is-render{object-fit:contain;padding:2.6rem}
+
+.band{position:relative;min-height:clamp(340px,52vh,580px);display:flex;align-items:flex-end;background-size:cover;background-position:center}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,33,56,.1),rgba(15,33,56,.66))}
+.band-cap{position:relative;z-index:1;max-width:var(--max);margin:0 auto;width:100%;padding:3rem 2.5rem;color:#fff}
+.band-cap h2{color:#fff;max-width:24rem}
+.band-cap .ital{color:var(--gold)}
+.band-cap p{color:rgba(255,255,255,.82);max-width:30rem;margin-top:.6rem}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.split-img{position:relative;padding-top:78%;background:var(--mint);overflow:hidden}
+.split-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:1.6rem}
+.bcell{background:var(--bg);padding:1.2rem}
+.bn{font-family:var(--ital);font-style:italic;font-size:1.15rem;margin-bottom:.1rem}
+.bsrc{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+.ing{display:flex;flex-direction:column;margin-top:1.4rem}
+.ir{display:flex;gap:1.1rem;align-items:flex-start;padding:1rem 0;border-top:1px solid var(--line)}
+.irn{font-family:var(--ital);font-style:italic;font-size:1.3rem;color:var(--gold-deep);width:1.6rem;flex:none;line-height:1.2}
+.irname{font-size:.9rem;font-weight:600;margin-bottom:.15rem}
+.irnote{font-size:.8rem;color:var(--ink-2);line-height:1.5}
+
+/* ── TASTING ── */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2.5rem;text-align:left}
+.note{border-top:2px solid var(--ink);padding-top:1.2rem}
+.note-stage{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);font-weight:600;margin-bottom:.7rem}
+.note-desc{font-family:var(--ital);font-style:italic;font-size:1.3rem;line-height:1.35;color:var(--ink)}
+/* ── SERVE ── */
+.serve{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2.5rem}
+.serve-item{border-top:1px solid var(--line);padding-top:1.2rem}
+.serve-num{font-family:var(--ital);font-style:italic;font-size:2rem;color:var(--gold-deep);line-height:1;margin-bottom:.6rem}
+.serve-name{font-size:.92rem;font-weight:600;margin-bottom:.4rem}
+.serve-desc{font-size:.84rem;color:var(--ink-2);line-height:1.6}
+@media(max-width:991px){.notes,.serve{grid-template-columns:1fr;gap:1.4rem}}
+
+.awards{text-align:center;background:var(--bg-soft)}
+.seal{width:200px;height:200px;border-radius:50%;border:1.5px solid var(--gold-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;margin:2rem auto 1.4rem;position:relative}
+.seal::after{content:"";position:absolute;inset:9px;border-radius:50%;border:1px solid rgba(182,140,57,.3)}
+.seal-top{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+.seal-yr{font-family:var(--ital);font-style:italic;font-size:2.8rem;color:var(--ink);line-height:.9}
+.seal-t{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--subtle)}
+
+.g-logo{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:1.25rem;margin-bottom:.8rem}
+.g-logo svg{width:22px;height:22px}
+.g-stars{color:#FBBC04;font-size:1.4rem;letter-spacing:.05em}
+.g-sub{font-size:.82rem;color:var(--subtle);margin-top:.5rem}
+.gr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;text-align:left}
+.grc{border-top:2px solid var(--ink);padding-top:1.2rem}
+.grc-stars{color:#FBBC04;font-size:.78rem;margin-bottom:.6rem}
+.grc-txt{font-size:.9rem;line-height:1.6;color:var(--ink);font-family:var(--ital);font-style:italic}
+.grc-auth{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--subtle);margin-top:.9rem}
+
+.nl{background:var(--ink);color:#fff;text-align:center}
+.nl h2{color:#fff}
+.nl .ital{color:var(--gold)}
+.nl p{color:rgba(255,255,255,.66);max-width:30rem;margin:.8rem auto 0;font-size:.95rem}
+.nl-form{display:flex;max-width:27rem;margin:1.6rem auto 0;gap:.5rem}
+.nl-form input{flex:1;padding:.85rem 1.1rem;border:none;border-radius:.5rem;font-family:'Montserrat',sans-serif;font-size:.9rem;outline:none}
+.nl-form button{background:var(--gold);color:#162F53;border:none;border-radius:.5rem;padding:.85rem 1.5rem;font-weight:600;font-size:.85rem;cursor:pointer;transition:background-color .3s}
+.nl-form button:hover{background:#F2C25A}
+
+.foot{border-top:1px solid var(--line);padding:3.4rem 0 1.6rem}
+.foot-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.4rem}
+.foot-grid img{height:42px;margin-bottom:.9rem}
+.foot-brand p{font-size:.82rem;color:var(--subtle);line-height:1.6;max-width:18rem}
+.foot h4{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem}
+.foot a{display:block;font-size:.82rem;color:var(--ink-2);margin-bottom:.5rem;transition:color .2s}
+.foot a:hover{color:var(--ink)}
+.foot-bot{border-top:1px solid var(--line);padding-top:1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;font-size:.68rem;color:var(--subtle)}
+
+[data-reveal]{opacity:0}
+.no-reveal [data-reveal]{opacity:1}
+a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  [data-reveal]{opacity:1!important;transform:none!important}
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+
+@media(max-width:991px){
+  .wrap,.nav-in{padding-left:1.5rem;padding-right:1.5rem}
+  .section{padding:4rem 0}
+  .product_layout{flex-direction:column;gap:2.5rem}
+  .product_info{position:static;max-width:none;order:2}
+  .product_gallery{order:1;max-width:none}
+  .split{grid-template-columns:1fr;gap:2.5rem}
+  .gr-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:2rem}
+}
+@media(max-width:600px){
+  html{font-size:15px}
+  .product_gallery{flex-direction:column-reverse}
+  .gthumbs{flex-direction:row;width:100%}
+  .gthumb{flex:1;padding-top:0;height:4.5rem}
+  .nl-form{flex-direction:column}
+  .foot-grid{grid-template-columns:1fr}
+}
+
+/* ── STAR RATING (near price) ── */
+.p-stars{display:flex;align-items:center;gap:.5rem}
+.p-stars .stars{color:#FBBC04;font-size:1rem;letter-spacing:.05em}
+.p-stars a{font-size:.76rem;color:var(--ink-2);text-decoration:underline;text-underline-offset:2px}
+
+/* ── TRUST CHIPS (showcase) ── */
+.p-trust{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.2rem}
+.p-trust span{font-size:.68rem;letter-spacing:.04em;color:var(--ink-2);background:var(--bg-soft);border:1px solid var(--line);border-radius:99rem;padding:.35rem .8rem;display:inline-flex;align-items:center;gap:.4rem}
+.p-trust span svg{width:.85rem;height:.85rem;flex:none;stroke:var(--gold-deep)}
+
+/* ── PERFECT SERVE (cocktail cards) ── */
+.serves{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:3rem}
+.sv-card{display:flex;flex-direction:column}
+.sv-img{position:relative;padding-top:116%;background:var(--mint);overflow:hidden;border-radius:.6rem}
+.sv-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.sv-card:hover .sv-img img{transform:scale(1.04)}
+.sv-name{font-size:1.2rem;font-weight:600;margin:1.1rem 0 .2rem}
+.sv-sub{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:.7rem}
+.sv-recipe{list-style:none}
+.sv-recipe li{font-size:.84rem;color:var(--ink-2);padding:.4rem 0;border-top:1px solid var(--line)}
+@media(max-width:991px){.serves{grid-template-columns:1fr;max-width:26rem;margin-left:auto;margin-right:auto}}
+
+/* ── COLLECTION GRID ── */
+.col-head{text-align:center;max-width:42rem;margin:0 auto 3rem}
+.col-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.col-card{display:flex;flex-direction:column}
+.cc-img{position:relative;padding-top:118%;background:var(--mint);overflow:hidden}
+.cc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:1.6rem;transition:transform .4s ease}
+.col-card:hover .cc-img img{transform:scale(1.05)}
+.cc-name{font-size:1.15rem;font-weight:600;margin:1rem 0 .15rem}
+.cc-meta{font-size:.78rem;color:var(--subtle)}
+.cc-price{font-size:.88rem;font-weight:600;margin-top:.5rem}
+.cc-link{margin-top:.75rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--ink);align-self:flex-start;padding-bottom:2px;transition:color .2s,border-color .2s}
+.cc-link:hover{color:var(--gold-deep);border-color:var(--gold-deep)}
+@media(max-width:991px){.col-grid{grid-template-columns:1fr 1fr;gap:1.2rem}}
+
+/* ── AWARD MENTIONS ── */
+.award-list{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem 1.4rem;max-width:46rem;margin:1.8rem auto 0}
+.award-list li{font-size:.8rem;font-weight:600;color:var(--ink);letter-spacing:.02em;display:flex;align-items:center;gap:.5rem}
+.award-list li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold-deep);flex:none}
+
+/* ── END CTA ── */
+.endcta{text-align:center;background:var(--bg-soft)}
+.endcta .ital{color:var(--gold-deep)}
+.endcta p{max-width:34rem;margin:.8rem auto 0;color:var(--ink-2)}
+.endcta-btn{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;border-radius:99rem;padding:1rem 2.6rem;font-size:.92rem;font-weight:600;margin-top:1.6rem;letter-spacing:.04em;transition:background-color .3s,transform .3s}
+.endcta-btn:hover{background:#0F2138;transform:translateY(-1px)}
+
+/* ── EXIT POPUP ── */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:1.5rem}
+.modal.is-open{display:flex}
+.modal-ov{position:absolute;inset:0;background:rgba(15,33,56,.55);backdrop-filter:blur(2px)}
+.modal-box{position:relative;z-index:1;background:#fff;border-radius:1rem;max-width:30rem;width:100%;padding:2.6rem 2.2rem;text-align:center;box-shadow:0 30px 60px rgba(15,33,56,.25)}
+.modal-close{position:absolute;top:.6rem;right:.9rem;width:2rem;height:2rem;font-size:1.3rem;line-height:1;background:none;border:none;cursor:pointer;color:var(--subtle)}
+.modal-box .eyebrow{display:block;margin-bottom:.6rem}
+.modal-box h3{font-size:1.7rem;font-weight:500}
+.modal-box .ital{color:var(--gold-deep)}
+.modal-box p{font-size:.9rem;color:var(--ink-2);margin:.7rem auto 1.3rem;max-width:24rem;line-height:1.6}
+.modal-form{display:flex;flex-direction:column;gap:.6rem}
+.modal-form input{padding:.85rem 1.1rem;border:1px solid var(--line);border-radius:.5rem;font-size:.9rem;outline:none}
+.modal-form button{background:var(--gold);color:#162F53;border:none;border-radius:.5rem;padding:.9rem 1.5rem;font-weight:600;font-size:.88rem;cursor:pointer;transition:background-color .3s}
+.modal-form button:hover{background:#F2C25A}
+</style>
+</head>
+<body class="no-reveal">
+
+<!-- ░░░ NAV ░░░ -->
+<nav class="nav">
+  <div class="nav-in">
+    <a href="https://mallorcadistillery.com" aria-label="Mallorca Distillery"><img src="https://mallorcadistillery.com/cdn/shop/files/logo_9a157780-c2e0-4875-bc5a-6a9abc458f41_small.svg?v=1761337357" alt="Mallorca Distillery"></a>
+    <ul class="nav-links">
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+    </ul>
+    <a href="https://mallorcadistillery.com/products/palma-vodka-70cl" class="nav-cta">Buy Now</a>
+  </div>
+</nav>
+
+<!-- ░░░ PRODUCT SHOWCASE ░░░ -->
+<section class="section showcase">
+  <div class="wrap">
+    <div class="product_layout">
+
+      <!-- LEFT — product info -->
+      <div class="product_info">
+        <div class="p-head" data-reveal>
+          <span class="eyebrow">Mallorca's Award-Winning Organic Vodka</span>
+          <h1 class="p-title">Palma <span class="ital">Vodka</span></h1>
+          <div class="price">
+            <span class="p-now">€40,00</span>
+            <span class="p-meta">70cl · 40% ABV</span>
+          </div>
+          <div class="p-stars" data-reveal>
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <a href="#reviews">Read customer reviews</a>
+          </div>
+        </div>
+        <p class="p-desc" data-split>Crafted from organic wheat spirit, natural Mallorcan water and a touch of Flor de Sal hand-harvested at Es Trenc, Palma Vodka is distilled to its purest expression. Exceptionally smooth, elegantly clean and unmistakably Mediterranean.</p>
+        <div class="atc" data-reveal>
+          <input class="qty" type="number" value="1" min="1" aria-label="Quantity">
+          <a href="https://mallorcadistillery.com/products/palma-vodka-70cl" class="atc-btn">Add to Cart — €40</a>
+        </div>
+        <span class="atc-note" data-reveal>Free shipping over €60 · Ships across Europe from Palma</span>
+        <div class="p-trust" data-reveal>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"/><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"/><path d="M18 9h1.5a1 1 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6 9H4.5a1 1 0 0 1 0-5H6"/></svg>Spain's Highest Rated Vodka</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>Organic Certified</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>Made in Mallorca</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>Free Shipping Over €60</span>
+        </div>
+
+        <div class="accordions" data-reveal>
+          <div class="accordion" data-accordion>
+            <div class="accordion_heading" data-accordion-toggle>
+              <h3>Ingredients</h3>
+              <div class="accordion_icon-wrapper"><div class="line-horizontal"></div><div class="line_vertical"></div></div>
+            </div>
+            <div class="accordion_text"><div class="accordion_text-inner">Organic wheat spirit · soft Mallorcan water · Flor de Sal hand-harvested at the Es Trenc salt pans. Distilled in small batches on a 500-litre copper pot still. No artificial additives.</div></div>
+          </div>
+          <div class="accordion" data-accordion>
+            <div class="accordion_heading" data-accordion-toggle>
+              <h3>Shipping</h3>
+              <div class="accordion_icon-wrapper"><div class="line-horizontal"></div><div class="line_vertical"></div></div>
+            </div>
+            <div class="accordion_text"><div class="accordion_text-inner">Free shipping on orders over €/£60. Dispatched from Palma de Mallorca, shipping across Europe. See <a href="https://mallorcadistillery.com/policies/refund-policy">shipping details</a>.</div></div>
+          </div>
+          <div class="accordion" data-accordion>
+            <div class="accordion_heading" data-accordion-toggle>
+              <h3>Returns</h3>
+              <div class="accordion_icon-wrapper"><div class="line-horizontal"></div><div class="line_vertical"></div></div>
+            </div>
+            <div class="accordion_text"><div class="accordion_text-inner">Unopened bottles can be returned within 14 days of delivery. Full terms in our <a href="https://mallorcadistillery.com/policies/refund-policy">return policy</a>.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — gallery -->
+      <div class="product_gallery" data-reveal>
+        <div class="gthumbs" role="tablist" aria-label="Product images">
+          <button class="gthumb is-render is-active" data-gthumb="0" role="tab" aria-selected="true" aria-label="Palma Vodka bottle"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_152_e5a944b7-af35-4b10-976f-1abe9d043906.png?v=1769787579&width=300" alt="Palma Vodka 70cl bottle"></button>
+          <button class="gthumb" data-gthumb="1" role="tab" aria-selected="false" aria-label="Palma Vodka with Flor de Sal"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-096copy2_1024x1024.png?width=300" alt="Palma Vodka on a wooden board with lemon and Flor de Sal sea salt"></button>
+          <button class="gthumb" data-gthumb="2" role="tab" aria-selected="false" aria-label="Palma collection lineup"><img src="https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_006_1024x1024.jpg?width=300" alt="The Palma collection lined up on a shelf"></button>
+          <button class="gthumb" data-gthumb="3" role="tab" aria-selected="false" aria-label="Mallorca"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_261.jpg?width=300" alt="A Mallorcan village in the Serra de Tramuntana"></button>
+        </div>
+        <div class="gmain">
+          <img class="is-render is-active" data-gmain="0" src="https://mallorcadistillery.com/cdn/shop/files/Frame_152_e5a944b7-af35-4b10-976f-1abe9d043906.png?v=1769787579&width=900" alt="Palma Vodka 70cl bottle">
+          <img data-gmain="1" src="https://mallorcadistillery.com/cdn/shop/files/LowRes-096copy2_1024x1024.png?width=1000" alt="Palma Vodka on a wooden board with lemon and Flor de Sal sea salt">
+          <img data-gmain="2" src="https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_006_1024x1024.jpg?width=1000" alt="The Palma collection lined up on a shelf">
+          <img data-gmain="3" src="https://mallorcadistillery.com/cdn/shop/files/Frame_261.jpg?width=1000" alt="A Mallorcan village in the Serra de Tramuntana">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ LIFESTYLE BAND ░░░ -->
+<!-- (Offen) Wunsch Kunde: Beach-/Küstenbild mit Flasche (OneDrive Tomcy 2025/2026). Bis dahin Frame_257 (Küste Palma). -->
+<section class="band" style="background-image:url('https://mallorcadistillery.com/cdn/shop/files/Frame_257.jpg?width=1600')">
+  <div class="band-cap">
+    <span class="eyebrow" style="color:rgba(255,255,255,.7)" data-reveal>Take Mallorca home with you</span>
+    <h2 data-reveal>From our distillery <span class="ital">to your glass</span></h2>
+    <p data-reveal>Made in Mallorca's first organic craft distillery — three ingredients, one island.</p>
+  </div>
+</section>
+
+<!-- ░░░ INGREDIENTS ░░░ -->
+<section class="section" id="ingredients">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <span class="eyebrow" data-reveal>What makes it different</span>
+        <h2 style="margin:.8rem 0 1.2rem" data-reveal>Three ingredients. <span class="ital">One island.</span></h2>
+        <p class="lead" data-split>Most vodkas hide behind flavourings and excessive filtration. Palma Vodka does the opposite — three exceptional ingredients, handled with precision, to let purity speak for itself.</p>
+        <div class="ing" data-reveal>
+          <div class="ir"><div class="irn">I</div><div><div class="irname">Organic wheat spirit</div><div class="irnote">A clean, neutral base with natural grain sweetness — no additives.</div></div></div>
+          <div class="ir"><div class="irn">II</div><div><div class="irname">Mallorcan water</div><div class="irnote">Soft, mineral-balanced island water that shapes the texture.</div></div></div>
+          <div class="ir"><div class="irn">III</div><div><div class="irname">Flor de Sal · Es Trenc</div><div class="irnote">Hand-harvested Mallorcan sea salt — the defining signature.</div></div></div>
+        </div>
+      </div>
+      <div class="split-img" data-reveal><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-096copy2_1024x1024.png?width=1000" alt="Palma Vodka on a wooden board with lemon and Flor de Sal"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ TASTING ░░░ -->
+<section class="section" id="tasting" style="background:var(--bg-soft)">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow" data-reveal>Tasting notes</span>
+    <h2 style="margin-top:.8rem" data-reveal>Clean. Precise. <span class="ital">Unmistakably Mallorcan.</span></h2>
+    <div class="notes" data-reveal>
+      <div class="note"><div class="note-stage">Nose</div><div class="note-desc">Fresh and soft — vanilla with a gentle lift of black peppercorn.</div></div>
+      <div class="note"><div class="note-stage">Palate</div><div class="note-desc">Pleasantly sweet, silken and round, with hints of lemon peel.</div></div>
+      <div class="note"><div class="note-stage">Finish</div><div class="note-desc">Mineral and slightly salty — turning warmly peppery with time.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ STORY ░░░ -->
+<section class="section" id="story">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-img" data-reveal><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_261.jpg?width=1000" alt="A Mallorcan village in the Serra de Tramuntana"></div>
+      <div>
+        <span class="eyebrow" data-reveal>Our story</span>
+        <h2 style="margin:.8rem 0 1.2rem" data-reveal>Proudly made <span class="ital">in Mallorca</span></h2>
+        <p class="lead" data-split>In 2018, Byron and Amber Holland set out to capture the true essence of Mallorca. From their organic craft distillery in the heart of Palma, they make and bottle spirits inspired by the island's landscape, ingredients and way of life. Every bottle of Palma Vodka is crafted from organic ingredients, hand finished in Mallorca and individually inspected to ensure exceptional quality.</p>
+        <div class="bgrid" data-reveal>
+          <div class="bcell"><div class="bn">100%</div><div class="bsrc">Certified organic</div></div>
+          <div class="bcell"><div class="bn">2018</div><div class="bsrc">Founded in Palma</div></div>
+          <div class="bcell"><div class="bn">3</div><div class="bsrc">Exceptional ingredients</div></div>
+          <div class="bcell"><div class="bn">Es Trenc</div><div class="bsrc">Flor de Sal signature</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ COLLECTION / RANGE ░░░ -->
+<section class="section" id="collection" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="col-head">
+      <span class="eyebrow" data-reveal>The collection</span>
+      <h2 style="margin-top:.8rem" data-reveal>Discover the Palma <span class="ital">Collection</span></h2>
+      <p class="lead" data-reveal style="margin-top:.8rem">Five expressions of Mallorca, each inspired by the island's landscape and crafted with the same commitment to quality, authenticity and Mediterranean character that defines the Palma collection.</p>
+    </div>
+    <div class="col-grid" data-reveal>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_152_e5a944b7-af35-4b10-976f-1abe9d043906.png?v=1769787579&width=500" alt="Palma Vodka"></div>
+        <div class="cc-name">Palma Vodka</div>
+        <div class="cc-meta">Pure · mineral · coastal · 40%</div>
+        <div class="cc-price">€40,00</div>
+        <a class="cc-link" href="https://mallorcadistillery.com/products/palma-vodka-70cl">Shop</a>
+      </article>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_148_f44972fb-193a-455a-87ef-140621abb5cb.png?v=1770157163&width=500" alt="Palma Gin"></div>
+        <div class="cc-name">Palma Gin</div>
+        <div class="cc-meta">Organic · 15 botanicals · 46.6%</div>
+        <div class="cc-price">€45,00</div>
+        <a class="cc-link" href="https://mallorcadistillery.com/products/palma-gin-70cl">Shop</a>
+      </article>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_148_a176364e-a22e-49e8-b5e7-e06b09c27fd9.png?v=1769786557&width=500" alt="Palma Citrus Gin"></div>
+        <div class="cc-name">Citrus Gin</div>
+        <div class="cc-meta">Lemon, orange &amp; lime · zesty</div>
+        <div class="cc-price">€45,00</div>
+        <a class="cc-link" href="https://mallorcadistillery.com/products/palma-citrus-gin-70cl">Shop</a>
+      </article>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_149_ae6dad33-35da-4463-81b1-ce3c5376d617.png?v=1769786618&width=500" alt="Palma Rosé Gin"></div>
+        <div class="cc-name">Rosé Gin</div>
+        <div class="cc-meta">Floral &amp; citrus · pink gin</div>
+        <div class="cc-price">€45,00</div>
+        <a class="cc-link" href="https://mallorcadistillery.com/products/palma-rose-gin">Shop</a>
+      </article>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_147_a0dc56fa-f73e-4127-ab73-08793c091668.png?v=1769786683&width=500" alt="Palma Spiced Gin"></div>
+        <div class="cc-name">Spiced Gin</div>
+        <div class="cc-meta">Oak-aged · cinnamon &amp; vanilla · 40.4%</div>
+        <div class="cc-price">€45,00</div>
+        <a class="cc-link" href="https://mallorcadistillery.com/products/palma-gin-spiced-70cl">Shop</a>
+      </article>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_158_cbe20022-05ec-4fbe-bb97-160dfabf2df5.png?v=1769786804&width=500" alt="Palma Monastrell Gin"></div>
+        <div class="cc-name">Monastrell Gin</div>
+        <div class="cc-meta">Red wine · sophisticated · limited edition</div>
+        <div class="cc-price">€55,00</div>
+        <a class="cc-link" href="https://mallorcadistillery.com/products/palma-monastrell">Shop</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ SERVE ░░░ -->
+<section class="section" id="serve">
+  <div class="wrap">
+    <div style="text-align:center;max-width:40rem;margin:0 auto">
+      <span class="eyebrow" data-reveal>The perfect serve</span>
+      <h2 style="margin-top:.8rem" data-reveal>Three ways to <span class="ital">pour Palma</span></h2>
+    </div>
+    <div class="serves" data-reveal>
+      <article class="sv-card">
+        <!-- (Offen) Ideal: eigenes Foto vom Vodka-Soda-Serve. Bis dahin Vodka-Lifestyle-Bild. -->
+        <div class="sv-img"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-096copy2_1024x1024.png?width=800" alt="Palma Vodka served with soda and lemon peel"></div>
+        <div class="sv-name">Palma Vodka Signature Serve</div>
+        <div class="sv-sub">Clean &amp; crisp</div>
+        <ul class="sv-recipe">
+          <li>50ml Palma Vodka</li>
+          <li>Premium soda</li>
+          <li>Lemon peel</li>
+        </ul>
+      </article>
+      <article class="sv-card">
+        <div class="sv-img"><img src="https://cdn.shopify.com/s/files/1/0655/3449/2897/files/Palma_Vodka_Cocktail.png?v=1677250771&width=800" alt="Palma Martini cocktail"></div>
+        <div class="sv-name">Palma Martini</div>
+        <div class="sv-sub">Crisp &amp; elegant</div>
+        <ul class="sv-recipe">
+          <li>75ml Palma Vodka</li>
+          <li>15ml dry vermouth</li>
+          <li>1 dash orange bitters</li>
+          <li>Garnish: olives or a lemon twist</li>
+        </ul>
+      </article>
+      <article class="sv-card">
+        <!-- (Offen) Kein eigenes Mule-Foto vorhanden — Platzhalterbild, vor Live-Gang durch echtes Cocktailfoto ersetzen. -->
+        <div class="sv-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_099_1.jpg?width=800" alt="Palma Mule cocktail"></div>
+        <div class="sv-name">Palma Mule</div>
+        <div class="sv-sub">Fresh &amp; spicy</div>
+        <ul class="sv-recipe">
+          <li>50ml Palma Vodka</li>
+          <li>15ml fresh lime juice</li>
+          <li>Ginger beer</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ AWARDS ░░░ -->
+<section class="section awards" id="awards">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Awards &amp; recognition</span>
+    <h2 style="margin-top:.8rem" data-reveal>Named <span class="ital">Spirit of the Year</span></h2>
+    <div class="seal" data-reveal>
+      <span class="seal-top">Spirit of the Year</span>
+      <span class="seal-yr">2026</span>
+      <span class="seal-t">Spain</span>
+    </div>
+    <p class="lead" data-reveal style="max-width:34rem;margin:0 auto">Spain's highest rated vodka — recognised by international judges as one of Spain's finest spirits.</p>
+    <ul class="award-list" data-reveal>
+      <li>97 Points · London Spirits Competition 2026</li>
+      <li>Double Gold · World Vodka Awards 2026</li>
+      <li>Best Spirit in Spain · London Spirits Competition 2026</li>
+    </ul>
+    <!-- ADD MORE AWARDS once the client provides award assets: duplicate a .seal block in a flex row here. -->
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ░░░ REVIEWS ░░░ -->
+<section class="section" id="reviews">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow" data-reveal>Loved by our customers</span>
+    <h2 style="margin-top:.8rem" data-reveal>What people <span class="ital">say</span></h2>
+    <div class="g-stars" data-reveal style="margin-top:1rem">★★★★★</div>
+    <!-- (Offen) Echte Kundenstimmen vor Live-Gang einsetzen/ergänzen. Bewusst KEINE erfundene Zahl. -->
+    <div class="gr-grid" data-reveal>
+      <div class="grc"><div class="grc-stars">★★★★★</div><div class="grc-txt">"Exceptionally smooth and unlike any vodka I've tried."</div><div class="grc-auth">Verified customer review</div></div>
+      <div class="grc"><div class="grc-stars">★★★★★</div><div class="grc-txt">"The subtle sea salt finish makes fantastic martinis."</div><div class="grc-auth">Verified customer review</div></div>
+      <div class="grc"><div class="grc-stars">★★★★★</div><div class="grc-txt">"Organic, smooth and beautifully made. The sea salt touch is subtle but really lifts it."</div><div class="grc-auth">Verified customer review</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ END CTA ░░░ -->
+<section class="section endcta">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Palma Vodka</span>
+    <h2 style="margin-top:.8rem" data-reveal>Pure Mallorca. <span class="ital">Nothing more.</span></h2>
+    <p data-reveal>Clean, silky and crafted from just three exceptional ingredients.</p>
+    <a href="https://mallorcadistillery.com/products/palma-vodka-70cl" class="endcta-btn" data-reveal>Shop now</a>
+  </div>
+</section>
+
+<!-- ░░░ NEWSLETTER ░░░ -->
+<section class="section nl">
+  <div class="wrap">
+    <h2 data-reveal>Ready to taste <span class="ital">pure Mallorca?</span></h2>
+    <p data-reveal>Subscribe for exclusive offers, recipes and news from our Mediterranean paradise — and get 10% off your first order.</p>
+    <form class="nl-form" data-reveal onsubmit="return false">
+      <input type="email" placeholder="Your email address" aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- ░░░ FOOTER ░░░ -->
+<footer>
+  <div class="wrap foot">
+    <div class="foot-grid">
+      <div class="foot-brand"><img src="https://mallorcadistillery.com/cdn/shop/files/logo_9a157780-c2e0-4875-bc5a-6a9abc458f41_small.svg?v=1761337357" alt="Mallorca Distillery"><p>Organic spirits, passionately made from the island.</p></div>
+      <div><h4>Shop</h4><a href="https://mallorcadistillery.com/collections/gin">Gin</a><a href="https://mallorcadistillery.com/collections/vodka">Vodka</a><a href="https://mallorcadistillery.com/collections/all-products">All Products</a></div>
+      <div><h4>Discover</h4><a href="https://mallorcadistillery.com/pages/our-story">Our Story</a><a href="https://mallorcadistillery.com/blogs/palma-cocktail-recipes">Recipes</a><a href="https://mallorcadistillery.com/pages/store-locator">Stockists</a></div>
+      <div><h4>Help</h4><a href="https://mallorcadistillery.com/pages/contact">Contact</a><a href="https://mallorcadistillery.com/policies/refund-policy">Shipping &amp; Returns</a><a href="https://mallorcadistillery.com/policies/privacy-policy">Privacy</a></div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Mallorca Distillery — Organic spirits passionately made from the island.</span>
+      <span>Please drink responsibly · 18+ · Nº RGSEAA: 30.014999/IB</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ░░░ EXIT-INTENT POPUP ░░░ -->
+<div class="modal" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitTitle" aria-hidden="true">
+  <div class="modal-ov" data-modal-close></div>
+  <div class="modal-box">
+    <button class="modal-close" type="button" data-modal-close aria-label="Close">&times;</button>
+    <span class="eyebrow">Before you go…</span>
+    <h3 id="exitTitle">Get <span class="ital">10% off</span> your first order</h3>
+    <p>Join our mailing list and be the first to discover new releases, exclusive offers and stories from Mallorca.</p>
+    <!-- Newsletter-Form an Shopify/Klaviyo binden -->
+    <form class="modal-form" onsubmit="return false">
+      <input type="email" placeholder="Email address" aria-label="Email address" required>
+      <button type="submit">Claim 10% off</button>
+    </form>
+  </div>
+</div>
+
+<!-- ░░░ SCRIPTS ░░░ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+
+<!-- accordion.js — reproduced verbatim from the provided component -->
+<script>
+(function () {
+  function init() {
+    document.querySelectorAll("[data-accordion]").forEach((acc) => {
+      const head = acc.querySelector("[data-accordion-toggle]");
+      const text = acc.querySelector(".accordion_text");
+      if (!head) return;
+      head.setAttribute("role", "button");
+      head.setAttribute("tabindex", "0");
+      const startOpen = acc.classList.contains("is-open");
+      head.setAttribute("aria-expanded", String(startOpen));
+      if (startOpen && text) text.style.maxHeight = "none";
+      const open = () => {
+        head.setAttribute("aria-expanded", "true");
+        if (!text) { acc.classList.add("is-open"); return; }
+        const target = text.scrollHeight;
+        text.style.maxHeight = target + "px";
+        acc.classList.add("is-open");
+        const done = (e) => {
+          if (e.propertyName !== "max-height") return;
+          text.style.maxHeight = "none";
+          text.removeEventListener("transitionend", done);
+        };
+        text.addEventListener("transitionend", done);
+      };
+      const close = () => {
+        head.setAttribute("aria-expanded", "false");
+        if (text) {
+          text.style.maxHeight = text.scrollHeight + "px";
+          void text.offsetHeight;
+          text.style.maxHeight = "0px";
+        }
+        acc.classList.remove("is-open");
+      };
+      const toggle = () => (acc.classList.contains("is-open") ? close() : open());
+      head.addEventListener("click", toggle);
+      head.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+
+<!-- gallery crossfade + GSAP reveals -->
+<script>
+(function(){
+  var thumbs = Array.prototype.slice.call(document.querySelectorAll('[data-gthumb]'));
+  var mains = document.querySelectorAll('[data-gmain]');
+  function activate(i){
+    thumbs.forEach(function(t){var on=+t.getAttribute('data-gthumb')===i;t.classList.toggle('is-active',on);t.setAttribute('aria-selected',String(on));});
+    mains.forEach(function(m){m.classList.toggle('is-active',+m.getAttribute('data-gmain')===i);});
+  }
+  thumbs.forEach(function(t){
+    t.addEventListener('click',function(){activate(+t.getAttribute('data-gthumb'));});
+  });
+
+  document.body.classList.remove('no-reveal');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (window.gsap && window.ScrollTrigger && !reduce) {
+    gsap.registerPlugin(ScrollTrigger);
+    if (window.SplitText) gsap.registerPlugin(SplitText);
+    if (window.SplitText) {
+      document.querySelectorAll('[data-split]').forEach(function(el){
+        var split = new SplitText(el, {type:'lines'});
+        gsap.from(split.lines, {opacity:0, y:20, duration:.7, stagger:.08, ease:'power3.out',
+          scrollTrigger:{trigger:el, start:'top 85%', once:true}});
+      });
+    }
+    document.querySelectorAll('[data-reveal]').forEach(function(el){
+      gsap.fromTo(el, {opacity:0, y:28}, {opacity:1, y:0, duration:.7, ease:'power2.out',
+        scrollTrigger:{trigger:el, start:'top 90%', once:true}});
+    });
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach(function(el){ el.style.opacity = 1; });
+  }
+})();
+</script>
+
+<!-- exit-intent popup -->
+<script>
+(function(){
+  var modal = document.getElementById('exitModal');
+  if (!modal) return;
+  var KEY = 'palmaExitShown';
+  var shown = false;
+  function open(){
+    if (shown || sessionStorage.getItem(KEY)) return;
+    shown = true;
+    sessionStorage.setItem(KEY, '1');
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    var input = modal.querySelector('input');
+    if (input) input.focus();
+  }
+  function close(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+  document.addEventListener('mouseout', function(e){
+    if (!e.relatedTarget && e.clientY <= 0) open();
+  });
+  if (window.matchMedia('(hover: none)').matches){
+    setTimeout(open, 25000);
+  }
+  modal.querySelectorAll('[data-modal-close]').forEach(function(el){
+    el.addEventListener('click', close);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') close();
+  });
+})();
+</script>
+</body>
+</html>

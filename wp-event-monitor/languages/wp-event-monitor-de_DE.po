@@ -1,0 +1,650 @@
+msgid ""
+msgstr "Project-Id-Version: WP Event Monitor 1.1.2\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-06-02 00:00+0000\nPO-Revision-Date: 2026-06-02 00:00+0000\nLast-Translator: Digirelation\nLanguage-Team: German\nLanguage: de_DE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid " Found: %1$d, matched: %2$d."
+msgstr " Gefunden: %1$d, passend: %2$d."
+
+msgid "(Adjust path /var/www/html to your WordPress installation)"
+msgstr "(Pfad /var/www/html an Ihre WordPress-Installation anpassen)"
+
+msgid "(Replace username and path with your cPanel username)"
+msgstr "(Benutzername und Pfad durch Ihre cPanel-Daten ersetzen)"
+
+msgid "→ For 20 websites, we recommend Option A or B for reliable scheduling"
+msgstr "→ F?r 20 Websites empfehlen wir Option A oder B f?r eine zuverl?ssige Planung"
+
+msgid "⏱️ Time needed: 15 minutes"
+msgstr "⏱️ Zeitaufwand: 15 Minuten"
+
+msgid "⚙️ Setup Real Cron (Optional but Recommended)"
+msgstr "⚙️ Echten Cron einrichten (optional, aber empfohlen)"
+
+msgid "❓ Instructions"
+msgstr "❓ Anleitung"
+
+msgid "💡 Tip: Use regex for complex patterns"
+msgstr "💡 Tipp: Verwenden Sie Regex f?r komplexe Muster"
+
+msgid "📋 What to do next:"
+msgstr "📋 N?chste Schritte:"
+
+msgid "📑 Tab Overview"
+msgstr "📑 Tab-?bersicht"
+
+msgid "🔄 How It Works"
+msgstr "🔄 So funktioniert es"
+
+msgid "🚀 Getting Started - 4 Simple Steps"
+msgstr "🚀 Erste Schritte - 4 einfache Schritte"
+
+msgid "Actions"
+msgstr "Aktionen"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Activity Log"
+msgstr "Aktivit?tsprotokoll"
+
+msgid "Add Keyword"
+msgstr "Schl?sselwort hinzuf?gen"
+
+msgid "Add New Keyword"
+msgstr "Neues Schl?sselwort hinzuf?gen"
+
+msgid "Add New Source"
+msgstr "Neue Quelle hinzuf?gen"
+
+msgid "Add Source"
+msgstr "Quelle hinzuf?gen"
+
+msgid "Add this line (example: every Monday at 08:00):"
+msgstr "Diese Zeile hinzuf?gen (Beispiel: jeden Montag um 08:00 Uhr):"
+
+msgid "Advanced selectors"
+msgstr "Erweiterte Selektoren"
+
+msgid "After saving, you will see when the next scrape is scheduled."
+msgstr "Nach dem Speichern sehen Sie, wann der n?chste Abruf geplant ist."
+
+msgid "All 20 websites are fetched"
+msgstr "Alle 20 Websites werden abgerufen"
+
+msgid "Always review draft posts before publishing them to ensure quality"
+msgstr "Pr?fen Sie Entw?rfe immer vor der Ver?ffentlichung"
+
+msgid "Are you sure?"
+msgstr "Sind Sie sicher?"
+
+msgid "Auto"
+msgstr "Automatisch"
+
+msgid "Bi-weekly"
+msgstr "Zweiw?chentlich"
+
+msgid "Bulk Keywords"
+msgstr "Mehrere Schl?sselw?rter"
+
+msgid "By default, scraping runs when WordPress Cron triggers (on website visits). For reliable scraping at exact times, set up a real server cron job:"
+msgstr "Standardm??ig l?uft der Abruf ?ber WordPress Cron bei Website-Besuchen. F?r zuverl?ssige feste Zeiten richten Sie einen echten Server-Cronjob ein:"
+
+msgid "Choose matching type"
+msgstr "Treffertyp w?hlen"
+
+msgid "Choose:"
+msgstr "Ausw?hlen:"
+
+msgid "Clear all logs?"
+msgstr "Alle Protokolle l?schen?"
+
+msgid "Clear Log"
+msgstr "Protokoll l?schen"
+
+msgid "Click \"Add Cron Job\""
+msgstr "Auf \"Cronjob hinzuf?gen\" klicken"
+
+msgid "Click \"Add New Cron Job\""
+msgstr "Auf \"Neuen Cronjob hinzuf?gen\" klicken"
+
+msgid "Common Settings: Select \"Once per week\" or your preferred interval"
+msgstr "Allgemeine Einstellungen: \"Einmal pro Woche\" oder ein gew?nschtes Intervall w?hlen"
+
+msgid "Configure scrape schedule and timing"
+msgstr "Abrufplan und Timing konfigurieren"
+
+msgid "Configure source"
+msgstr "Quelle konfigurieren"
+
+msgid "Connect via SSH:"
+msgstr "Per SSH verbinden:"
+
+msgid "CSS Selectors:"
+msgstr "CSS-Selektoren:"
+
+msgid "Date / Time"
+msgstr "Datum / Zeit"
+
+msgid "Date Selector"
+msgstr "Datums-Selektor"
+
+msgid "Day"
+msgstr "Tag"
+
+msgid "Day of Month"
+msgstr "Tag des Monats"
+
+msgid "Delete"
+msgstr "L?schen"
+
+msgid "Description Selector"
+msgstr "Beschreibungs-Selektor"
+
+msgid "Disable"
+msgstr "Deaktivieren"
+
+msgid "Downside:"
+msgstr "Nachteil:"
+
+msgid "Duplicate"
+msgstr "Duplikat"
+
+msgid "During low-traffic periods, scrapes may be delayed"
+msgstr "Bei wenig Traffic k?nnen Abrufe verz?gert werden"
+
+msgid "Edit wp-config.php and add:"
+msgstr "wp-config.php bearbeiten und hinzuf?gen:"
+
+msgid "Email:"
+msgstr "E-Mail:"
+
+msgid "Enable"
+msgstr "Aktivieren"
+
+msgid "Enter Command:"
+msgstr "Befehl eingeben:"
+
+msgid "Event Item Selector"
+msgstr "Selektor f?r Veranstaltungseintrag"
+
+msgid "Event Monitor"
+msgstr "Event-Monitor"
+
+msgid "Event Monitor → Activity Log: Do you see a new entry?"
+msgstr "Event Monitor → Aktivit?tsprotokoll: Sehen Sie einen neuen Eintrag?"
+
+msgid "Events are extracted from the HTML"
+msgstr "Veranstaltungen werden aus dem HTML extrahiert"
+
+msgid "Events are matched against your keywords"
+msgstr "Veranstaltungen werden mit Ihren Schl?sselw?rtern abgeglichen"
+
+msgid "Every 3 hours"
+msgstr "Alle 3 Stunden"
+
+msgid "Every 6 hours"
+msgstr "Alle 6 Stunden"
+
+msgid "Every scheduled scrape:"
+msgstr "Bei jedem geplanten Abruf:"
+
+msgid "Everything is logged in the Activity Log"
+msgstr "Alles wird im Aktivit?tsprotokoll erfasst"
+
+msgid "Example:"
+msgstr "Beispiel:"
+
+msgid "Failed to add keyword"
+msgstr "Schl?sselwort konnte nicht hinzugef?gt werden"
+
+msgid "Failed to add source"
+msgstr "Quelle konnte nicht hinzugef?gt werden"
+
+msgid "Failed to create event draft"
+msgstr "Veranstaltungsentwurf konnte nicht erstellt werden"
+
+msgid "Fetch:"
+msgstr "Abrufen:"
+
+msgid "Filter:"
+msgstr "Filtern:"
+
+msgid "Find \"Cron Jobs\" section"
+msgstr "Bereich \"Cron Jobs\" suchen"
+
+msgid "Found"
+msgstr "Gefunden"
+
+msgid "Friday"
+msgstr "Freitag"
+
+msgid "Full URL to scrape for events"
+msgstr "Vollst?ndige URL zum Abrufen von Veranstaltungen"
+
+msgid "Go back to the \"Sources\" tab and click \"Scrape Now\" on one website to test."
+msgstr "Gehen Sie zur?ck zum Tab \"Quellen\" und klicken Sie bei einer Website auf \"Jetzt abrufen\"."
+
+msgid "Go to Keywords Tab →"
+msgstr "Zum Tab Schl?sselw?rter →"
+
+msgid "Go to Settings Tab →"
+msgstr "Zum Tab Einstellungen →"
+
+msgid "Go to Sources & Test →"
+msgstr "Zu Quellen & Test →"
+
+msgid "Go to Sources Tab →"
+msgstr "Zum Tab Quellen →"
+
+msgid "Go to the \"Keywords\" tab and add your search keywords. Only events matching these keywords will be posted."
+msgstr "Wechseln Sie zum Tab \"Schl?sselw?rter\" und f?gen Sie Suchbegriffe hinzu. Nur passende Veranstaltungen werden ?bernommen."
+
+msgid "Go to the \"Settings\" tab and set your scrape interval."
+msgstr "Wechseln Sie zum Tab \"Einstellungen\" und legen Sie das Abrufintervall fest."
+
+msgid "Go to the \"Sources\" tab and add your event websites."
+msgstr "Wechseln Sie zum Tab \"Quellen\" und f?gen Sie Ihre Veranstaltungs-Websites hinzu."
+
+msgid "Good for:"
+msgstr "Geeignet f?r:"
+
+msgid "HTML"
+msgstr "HTML"
+
+msgid "HTML only"
+msgstr "Nur HTML"
+
+msgid "Human-readable name (optional)"
+msgstr "Lesbarer Name (optional)"
+
+msgid "If you don't set up a real cron job, WordPress Cron will still work. Scrapes will run when someone visits your website."
+msgstr "Wenn Sie keinen echten Cronjob einrichten, funktioniert WordPress Cron weiterhin. Abrufe laufen dann, wenn jemand die Website besucht."
+
+msgid "If you have cPanel access:"
+msgstr "Wenn Sie cPanel-Zugriff haben:"
+
+msgid "If you have SSH access:"
+msgstr "Wenn Sie SSH-Zugriff haben:"
+
+msgid "In WordPress, edit wp-config.php and add:"
+msgstr "In WordPress wp-config.php bearbeiten und hinzuf?gen:"
+
+msgid "Inactive"
+msgstr "Inaktiv"
+
+msgid "Invalid day of month"
+msgstr "Ung?ltiger Tag des Monats"
+
+msgid "Invalid day of week"
+msgstr "Ung?ltiger Wochentag"
+
+msgid "Invalid keyword"
+msgstr "Ung?ltiges Schl?sselwort"
+
+msgid "Invalid schedule type"
+msgstr "Ung?ltiger Zeitplantyp"
+
+msgid "Invalid source"
+msgstr "Ung?ltige Quelle"
+
+msgid "Invalid URL"
+msgstr "Ung?ltige URL"
+
+msgid "Keyword"
+msgstr "Schl?sselwort"
+
+msgid "Keyword / Pattern"
+msgstr "Schl?sselwort / Muster"
+
+msgid "Keyword cannot be empty"
+msgstr "Schl?sselwort darf nicht leer sein"
+
+msgid "Keywords"
+msgstr "Schl?sselw?rter"
+
+msgid "Keywords imported. Added: %1$d, skipped: %2$d, failed: %3$d."
+msgstr "Schl?sselw?rter importiert. Hinzugef?gt: %1$d, ?bersprungen: %2$d, fehlgeschlagen: %3$d."
+
+msgid "Keywords:"
+msgstr "Schl?sselw?rter:"
+
+msgid "Label"
+msgstr "Bezeichnung"
+
+msgid "Last Scraped"
+msgstr "Zuletzt abgerufen"
+
+msgid "Less critical timing requirements"
+msgstr "Weniger kritische Zeitvorgaben"
+
+msgid "Link Selector"
+msgstr "Link-Selektor"
+
+msgid "Log:"
+msgstr "Protokoll:"
+
+msgid "Login to cPanel"
+msgstr "Bei cPanel anmelden"
+
+msgid "Manage event websites to scrape"
+msgstr "Veranstaltungs-Websites verwalten"
+
+msgid "Manage search keywords and patterns"
+msgstr "Suchbegriffe und Muster verwalten"
+
+msgid "Matched"
+msgstr "Passend"
+
+msgid "Matching events are created as WordPress draft posts"
+msgstr "Passende Veranstaltungen werden als WordPress-Entw?rfe erstellt"
+
+msgid "Mode"
+msgstr "Modus"
+
+msgid "Monday"
+msgstr "Montag"
+
+msgid "Monthly"
+msgstr "Monatlich"
+
+msgid "Next Scrape:"
+msgstr "N?chster Abruf:"
+
+msgid "No keyword match"
+msgstr "Kein Schl?sselwort-Treffer"
+
+msgid "No keywords added yet."
+msgstr "Noch keine Schl?sselw?rter hinzugef?gt."
+
+msgid "No keywords defined"
+msgstr "Keine Schl?sselw?rter definiert"
+
+msgid "No logs yet."
+msgstr "Noch keine Protokolle vorhanden."
+
+msgid "No sources added yet."
+msgstr "Noch keine Quellen hinzugef?gt."
+
+msgid "Open crontab:"
+msgstr "Crontab ?ffnen:"
+
+msgid "Optional: leave empty for Auto. Use these only when preview needs manual tuning."
+msgstr "Optional: f?r Auto leer lassen. Nur verwenden, wenn die Vorschau manuelle Anpassung ben?tigt."
+
+msgid "Optional: paste many plain keywords separated by new lines, commas, or semicolons. Regex patterns are split by new lines only."
+msgstr "Optional: Mehrere Klartext-Schl?sselw?rter per Zeile, Komma oder Semikolon einf?gen. Regex-Muster werden nur nach Zeilen getrennt."
+
+msgid "Parse:"
+msgstr "Parsen:"
+
+msgid "Parsing Mode"
+msgstr "Parsing-Modus"
+
+msgid "Phone:"
+msgstr "Telefon:"
+
+msgid "Plain Text (case-insensitive)"
+msgstr "Klartext (Gro?-/Kleinschreibung egal)"
+
+msgid "Plain text or regex pattern (with delimiters and flags)"
+msgstr "Klartext oder Regex-Muster (mit Begrenzern und Flags)"
+
+msgid "Post:"
+msgstr "Erstellen:"
+
+msgid "Posts Created"
+msgstr "Erstellte Beitr?ge"
+
+msgid "Preview"
+msgstr "Vorschau"
+
+msgid "Preview completed"
+msgstr "Vorschau abgeschlossen"
+
+msgid "Preview:"
+msgstr "Vorschau:"
+
+msgid "Purpose"
+msgstr "Zweck"
+
+msgid "Recent Activity (Last 100 entries)"
+msgstr "Letzte Aktivit?t (letzte 100 Eintr?ge)"
+
+msgid "Regular Expression"
+msgstr "Regul?rer Ausdruck"
+
+msgid "Repeat for all 20 websites"
+msgstr "F?r alle 20 Websites wiederholen"
+
+msgid "Review:"
+msgstr "Pr?fung:"
+
+msgid "Saturday"
+msgstr "Samstag"
+
+msgid "Save & exit (vi: press :wq)"
+msgstr "Speichern und beenden (vi: :wq dr?cken)"
+
+msgid "Save Schedule"
+msgstr "Zeitplan speichern"
+
+msgid "Save Source Settings"
+msgstr "Quelleneinstellungen speichern"
+
+msgid "Scrape All Now"
+msgstr "Alle jetzt abrufen"
+
+msgid "Scrape completed"
+msgstr "Abruf abgeschlossen"
+
+msgid "Scrape Interval"
+msgstr "Abrufintervall"
+
+msgid "Scrape Now"
+msgstr "Jetzt abrufen"
+
+msgid "Scrape Schedule"
+msgstr "Abrufplan"
+
+msgid "Scrapes may run late (when someone visits)"
+msgstr "Abrufe k?nnen versp?tet laufen, wenn erst sp?ter jemand die Website besucht"
+
+msgid "Security check failed"
+msgstr "Sicherheitspr?fung fehlgeschlagen"
+
+msgid "Selector"
+msgstr "Selektor"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Skipped duplicates: %d"
+msgstr "?bersprungene Duplikate: %d"
+
+msgid "Source"
+msgstr "Quelle"
+
+msgid "Source not found"
+msgstr "Quelle nicht gefunden"
+
+msgid "Source:"
+msgstr "Quelle:"
+
+msgid "Sources"
+msgstr "Quellen"
+
+msgid "Start with broad keywords and make them more specific if you get too many false positives"
+msgstr "Beginnen Sie mit breiten Begriffen und verfeinern Sie diese bei zu vielen Fehl Treffern"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Structured data"
+msgstr "Strukturierte Daten"
+
+msgid "Structured data only"
+msgstr "Nur strukturierte Daten"
+
+msgid "Sunday"
+msgstr "Sonntag"
+
+msgid "Tab"
+msgstr "Tab"
+
+msgid "Testing:"
+msgstr "Testen:"
+
+msgid "Then check:"
+msgstr "Dann pr?fen:"
+
+msgid "Thursday"
+msgstr "Donnerstag"
+
+msgid "Time"
+msgstr "Zeit"
+
+msgid "Time Selector"
+msgstr "Zeit-Selektor"
+
+msgid "Time:"
+msgstr "Zeit:"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Title Selector"
+msgstr "Titel-Selektor"
+
+msgid "Tuesday"
+msgstr "Dienstag"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Unauthorized"
+msgstr "Nicht autorisiert"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Use \"Scrape Now\" frequently to test your setup before enabling automatic scrapes"
+msgstr "Nutzen Sie \"Jetzt abrufen\" regelm??ig, um die Einrichtung vor automatischen Abrufen zu testen"
+
+msgid "Use browser F12 → Inspect to find the right selector for event elements"
+msgstr "Verwenden Sie im Browser F12 → Untersuchen, um den passenden Selektor f?r Event-Elemente zu finden"
+
+msgid "View Event"
+msgstr "Veranstaltung ansehen"
+
+msgid "View scrape history and statistics"
+msgstr "Abrufhistorie und Statistiken anzeigen"
+
+msgid "Websites with daily visitors"
+msgstr "Websites mit t?glichen Besuchern"
+
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+msgid "Weekday"
+msgstr "Wochentag"
+
+msgid "Weekly"
+msgstr "W?chentlich"
+
+msgid "What time to run the scrape (24-hour format)"
+msgstr "Zu welcher Uhrzeit der Abruf laufen soll (24-Stunden-Format)"
+
+msgid "Which day to run the scrape"
+msgstr "An welchem Tag der Abruf laufen soll"
+
+msgid "Will import"
+msgstr "Wird importiert"
+
+msgid "WordPress Posts → Drafts: Are there new draft posts?"
+msgstr "WordPress Beitr?ge → Entw?rfe: Gibt es neue Beitragsentw?rfe?"
+
+msgid "Buy Ticket"
+msgstr "Ticket kaufen"
+
+msgid "Image source:"
+msgstr "Bildquelle:"
+
+msgid "Add New Event"
+msgstr "Neue Veranstaltung hinzuf?gen"
+
+msgid "Edit Event"
+msgstr "Veranstaltung bearbeiten"
+
+msgid "New Event"
+msgstr "Neue Veranstaltung"
+
+msgid "Search Events"
+msgstr "Veranstaltungen suchen"
+
+msgid "No events found"
+msgstr "Keine Veranstaltungen gefunden"
+
+msgid "Event Categories"
+msgstr "Veranstaltungskategorien"
+
+msgid "Event Category"
+msgstr "Veranstaltungskategorie"
+
+msgid "Cities"
+msgstr "Orte"
+
+msgid "City"
+msgstr "Ort"
+
+msgid "Carousel controls"
+msgstr "Karussell-Steuerung"
+
+msgid "Vorherige Veranstaltung"
+msgstr "Vorherige Veranstaltung"
+
+msgid "Naechste Veranstaltung"
+msgstr "Naechste Veranstaltung"
+
+msgid "Go to slide %d"
+msgstr "Zu Folie %d"
+
+msgid "Kontaktiere uns!"
+msgstr "Kontaktiere uns!"
+
+msgid "Folge uns auf Social Media!"
+msgstr "Folge uns auf Social Media!"
+
+msgid "Datum auswählen"
+msgstr "Datum auswählen"
+
+msgid "Alle Städte"
+msgstr "Alle Städte"
+
+msgid "Alle Kategorien"
+msgstr "Alle Kategorien"
+
+msgid "Scrape Settings"
+msgstr "Abruf-Einstellungen"
+
+msgid "Fallback Image Gallery"
+msgstr "Fallback-Bildergalerie"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Select Images"
+msgstr "Bilder auswählen"
+
+msgid "Clear Gallery"
+msgstr "Galerie leeren"
+
+msgid "When an event has no usable scraped image, one image from this gallery is assigned randomly as the featured image."
+msgstr "Wenn eine Veranstaltung kein nutzbares gescraptes Bild hat, wird zufällig ein Bild aus dieser Galerie als Beitragsbild zugewiesen."
+
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
+
+msgid "Select fallback images"
+msgstr "Fallback-Bilder auswählen"
+
+msgid "Use selected images"
+msgstr "Ausgewählte Bilder verwenden"

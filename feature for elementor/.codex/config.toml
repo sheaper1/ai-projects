@@ -1,0 +1,5 @@
+[mcp_servers.elementor-mcp]
+url = "https://suessco.digirelation.dev/wp-json/mcp/elementor-mcp-server"
+
+[mcp_servers.elementor-mcp.http_headers]
+Authorization = "Basic ZGlnaXJlbGF0aW9uc3VwcG9ydDpSUTVEIHF5ZjAgQjJOeiBoYUUxIDJOQTcgNG5ObA=="

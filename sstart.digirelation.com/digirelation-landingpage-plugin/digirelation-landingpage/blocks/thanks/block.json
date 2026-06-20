@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "digirelation/thanks",
+  "title": "Vielen Dank (Danke-Seite)",
+  "description": "Danke-Seite nach Formular-Absendung mit Termin-Buchungs-CTA.",
+  "category": "design",
+  "icon": "yes-alt",
+  "keywords": ["thanks", "danke", "vielen dank", "digirelation", "termin"],
+  "acf": {
+    "blockVersion": 3,
+    "renderTemplate": "render.php",
+    "hideFieldsInSidebar": true
+  },
+  "supports": {
+    "anchor": false,
+    "align": ["full"],
+    "mode": false,
+    "html": false,
+    "customClassName": false
+  },
+  "example": {}
+}

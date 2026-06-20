@@ -1,0 +1,615 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Der Flugschreiber Subscriptions 1.6.0\n"
+"Language: de_DE\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "A free PDF issue requires a PDF URL. The issue was kept as paid."
+msgstr "Eine kostenlose PDF-Ausgabe benötigt eine PDF-URL. Die Ausgabe wurde als kostenpflichtig beibehalten."
+
+msgid "A user with this email already exists."
+msgstr "Ein Benutzer mit dieser E-Mail-Adresse existiert bereits."
+
+msgid "Abonnenten anlegen"
+msgstr "Abonnenten anlegen"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Active until %s"
+msgstr "Aktiv bis %s"
+
+msgid "Add New Article"
+msgstr "Neuen Artikel hinzufügen"
+
+msgid "Add New Magazine"
+msgstr "Neue Ausgabe hinzufügen"
+
+msgid "All Articles"
+msgstr "Alle Artikel"
+
+msgid "All Issues"
+msgstr "Alle Ausgaben"
+
+msgid "All Posts"
+msgstr "Alle Beiträge"
+
+msgid "Alle Artikel"
+msgstr "Alle Artikel"
+
+msgid "Alle Ausgaben"
+msgstr "Alle Ausgaben"
+
+msgid "Alle Felder sind optional — leere Felder verwenden den Standardtext (grau angezeigt)."
+msgstr "Alle Felder sind optional — leere Felder verwenden den Standardtext (grau angezeigt)."
+
+msgid "Alle sichtbaren Texte (Überschriften, Buttons, Hinweise) änderst du unter %s. Leere Felder verwenden den Standardtext."
+msgstr "Alle sichtbaren Texte (Überschriften, Buttons, Hinweise) änderst du unter %s. Leere Felder verwenden den Standardtext."
+
+msgid "Anleitung"
+msgstr "Anleitung"
+
+msgid "Anleitung — Magazin einrichten"
+msgstr "Anleitung — Magazin einrichten"
+
+msgid "Apply"
+msgstr "Anwenden"
+
+msgid "Article access"
+msgstr "Artikel-Zugriff"
+
+msgid "Article filters"
+msgstr "Artikel-Filter"
+
+msgid "Article image URL"
+msgstr "Bild-URL des Artikels"
+
+msgid "Article magazine requirement"
+msgstr "Ausgaben-Pflicht für Artikel"
+
+msgid "Artikel dieser Ausgabe"
+msgstr "Artikel dieser Ausgabe"
+
+msgid "Artikel → Neu"
+msgstr "Artikel → Neu"
+
+msgid "Ausgaben und Artikel erstellen"
+msgstr "Ausgaben und Artikel erstellen"
+
+msgid "Ausgaben → Neu"
+msgstr "Ausgaben → Neu"
+
+msgid "Bezahlseite (Payment page URL):"
+msgstr "Bezahlseite (Payment page URL):"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Bulk action completed."
+msgstr "Massenaktion abgeschlossen."
+
+msgid "Bulk actions"
+msgstr "Massenaktionen"
+
+msgid "Cancel"
+msgstr "Kündigen"
+
+msgid "Cancelled"
+msgstr "Gekündigt"
+
+msgid "Change expiration date"
+msgstr "Ablaufdatum ändern"
+
+msgid "Change password"
+msgstr "Passwort ändern"
+
+msgid "Choose PDF"
+msgstr "PDF auswählen"
+
+msgid "Choose a valid CSV file."
+msgstr "Bitte eine gültige CSV-Datei auswählen."
+
+msgid "Choose image"
+msgstr "Bild auswählen"
+
+msgid "Clear"
+msgstr "Zurücksetzen"
+
+msgid "Columns: email, name, expires_at, status. Existing subscribers are updated by email."
+msgstr "Spalten: email, name, expires_at, status. Bestehende Abonnenten werden anhand der E-Mail aktualisiert."
+
+msgid "Could not load issues. Please try again."
+msgstr "Ausgaben konnten nicht geladen werden. Bitte erneut versuchen."
+
+msgid "Cover image URL"
+msgstr "Cover-Bild-URL"
+
+msgid "Create demo content"
+msgstr "Demo-Inhalte erstellen"
+
+msgid "Create sample magazines, topic categories, issue years, and linked articles for testing the subscription architecture."
+msgstr "Erstellt Beispiel-Ausgaben, Themen-Kategorien, Jahrgänge und verknüpfte Artikel zum Testen der Abo-Struktur."
+
+msgid "Create subscriber"
+msgstr "Abonnent erstellen"
+
+msgid "DF Subscriber"
+msgstr "DF Abonnent"
+
+msgid "DF Subscription"
+msgstr "DF Abonnement"
+
+msgid "DF Subscriptions"
+msgstr "DF Abonnements"
+
+msgid "DF Subscriptions → Einstellungen"
+msgstr "DF Subscriptions → Einstellungen"
+
+msgid "Delete data on uninstall"
+msgstr "Daten bei Deinstallation löschen"
+
+msgid "Delete the selected subscriber accounts permanently?"
+msgstr "Die ausgewählten Abonnenten-Konten endgültig löschen?"
+
+msgid "Delete users"
+msgstr "Benutzer löschen"
+
+msgid "Demo content"
+msgstr "Demo-Inhalte"
+
+msgid "Demo content ready. Created %1$d magazines and %2$d articles. Existing matching demo titles were skipped."
+msgstr "Demo-Inhalte bereit. %1$d Ausgaben und %2$d Artikel erstellt. Bereits vorhandene Demo-Titel wurden übersprungen."
+
+msgid "Demo issue preview for testing filters, subscriptions, and issue cards."
+msgstr "Demo-Vorschau zum Testen von Filtern, Abos und Ausgaben-Karten."
+
+msgid "Der Flugschreiber"
+msgstr "Der Flugschreiber"
+
+msgid "Der Flugschreiber Subscriptions"
+msgstr "Der Flugschreiber Subscriptions"
+
+msgid "Die öffentliche PDF-URL ist nur für alte, kostenlose Ausgaben gedacht. Bezahlte Ausgaben nutzen den geschützten PDF-Upload."
+msgstr "Die öffentliche PDF-URL ist nur für alte, kostenlose Ausgaben gedacht. Bezahlte Ausgaben nutzen den geschützten PDF-Upload."
+
+msgid "Display name"
+msgstr "Anzeigename"
+
+msgid "Edit Article"
+msgstr "Artikel bearbeiten"
+
+msgid "Edit Magazine"
+msgstr "Ausgabe bearbeiten"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Email, name, or username"
+msgstr "E-Mail, Name oder Benutzername"
+
+msgid "Entdecken Sie aktuelle und vergangene Ausgaben des Flugschreibers. Neue Ausgaben sind Teil des Abonnements, ältere Ausgaben stehen teilweise als freie PDF-Dateien bereit."
+msgstr "Entdecken Sie aktuelle und vergangene Ausgaben des Flugschreibers. Neue Ausgaben sind Teil des Abonnements, ältere Ausgaben stehen teilweise als freie PDF-Dateien bereit."
+
+msgid "Erschienen im %s"
+msgstr "Erschienen im %s"
+
+msgid "Erstelle Abonnenten von Hand unter %s mit E-Mail, Passwort und Ablaufdatum — oder importiere sie als CSV (Spalten: email, name, expires_at, status). Über Massenaktionen kannst du Abos pausieren, verlängern oder beenden."
+msgstr "Erstelle Abonnenten von Hand unter %s mit E-Mail, Passwort und Ablaufdatum — oder importiere sie als CSV (Spalten: email, name, expires_at, status). Über Massenaktionen kannst du Abos pausieren, verlängern oder beenden."
+
+msgid "Erstelle eine Seite mit %s und kopiere ihre URL in Schritt 1 (Login-Seite)."
+msgstr "Erstelle eine Seite mit %s und kopiere ihre URL in Schritt 1 (Login-Seite)."
+
+msgid "Erstelle eine Seite mit %s, damit Abonnenten ihren Status und ihr Ablaufdatum sehen."
+msgstr "Erstelle eine Seite mit %s, damit Abonnenten ihren Status und ihr Ablaufdatum sehen."
+
+msgid "Expired on %s"
+msgstr "Abgelaufen am %s"
+
+msgid "Expires at"
+msgstr "Läuft ab am"
+
+msgid "Export subscribers as CSV"
+msgstr "Abonnenten als CSV exportieren"
+
+msgid "Extend by 30 days"
+msgstr "Um 30 Tage verlängern"
+
+msgid "Free article"
+msgstr "Kostenloser Artikel"
+
+msgid "Für automatische E-Mails (Willkommen, Erinnerung, Ablauf) muss WordPress-Cron laufen."
+msgstr "Für automatische E-Mails (Willkommen, Erinnerung, Ablauf) muss WordPress-Cron laufen."
+
+msgid "Go Back"
+msgstr "Zurück"
+
+msgid "Grundeinstellungen festlegen"
+msgstr "Grundeinstellungen festlegen"
+
+msgid "Gut zu wissen"
+msgstr "Gut zu wissen"
+
+msgid "Hier legst du außerdem fest, ob E-Mails verschickt werden und ob Daten beim Löschen des Plugins erhalten bleiben."
+msgstr "Hier legst du außerdem fest, ob E-Mails verschickt werden und ob Daten beim Löschen des Plugins erhalten bleiben."
+
+msgid "Ihre Vorteile"
+msgstr "Ihre Vorteile"
+
+msgid "Import and export"
+msgstr "Import und Export"
+
+msgid "Import subscribers from CSV"
+msgstr "Abonnenten aus CSV importieren"
+
+msgid "Imported or updated %d subscribers."
+msgstr "%d Abonnenten importiert oder aktualisiert."
+
+msgid "Incorrect email, username, or password. Please try again."
+msgstr "E-Mail, Benutzername oder Passwort ist falsch. Bitte erneut versuchen."
+
+msgid "Inhalte"
+msgstr "Inhalte"
+
+msgid "Inherit from issue"
+msgstr "Von der Ausgabe übernehmen"
+
+msgid "Issue Date"
+msgstr "Ausgabe-Datum"
+
+msgid "Issue Details"
+msgstr "Ausgabe-Details"
+
+msgid "Issue Type"
+msgstr "Ausgabe-Typ"
+
+msgid "Issue Year"
+msgstr "Jahrgang"
+
+msgid "Issue Years"
+msgstr "Jahrgänge"
+
+msgid "Issue date"
+msgstr "Ausgabe-Datum"
+
+msgid "Issue filters"
+msgstr "Ausgaben-Filter"
+
+msgid "Issue number"
+msgstr "Ausgabennummer"
+
+msgid "Issue type"
+msgstr "Ausgabe-Typ"
+
+msgid "Last change"
+msgstr "Letzte Änderung"
+
+msgid "Lege unter %s eine Ausgabe an. Wähle den Zugriff: „bezahlt“ (nur Abonnenten) oder „kostenloses PDF“ (frei). Setze Cover, Ausgabennummer und Datum."
+msgstr "Lege unter %s eine Ausgabe an. Wähle den Zugriff: „bezahlt“ (nur Abonnenten) oder „kostenloses PDF“ (frei). Setze Cover, Ausgabennummer und Datum."
+
+msgid "Lege unter %s einen Artikel an und verknüpfe ihn mit seiner Ausgabe. Der öffentliche Auszug ist für alle sichtbar, der volle Text nur für aktive Abonnenten."
+msgstr "Lege unter %s einen Artikel an und verknüpfe ihn mit seiner Ausgabe. Der öffentliche Auszug ist für alle sichtbar, der volle Text nur für aktive Abonnenten."
+
+msgid "Log in"
+msgstr "Anmelden"
+
+msgid "Log out"
+msgstr "Abmelden"
+
+msgid "Login-Seite (Subscriber login page URL):"
+msgstr "Login-Seite (Subscriber login page URL):"
+
+msgid "Magazine"
+msgstr "Ausgabe"
+
+msgid "Magazine Article"
+msgstr "Magazin-Artikel"
+
+msgid "Magazine Articles"
+msgstr "Magazin-Artikel"
+
+msgid "Magazine Issue"
+msgstr "Magazin-Ausgabe"
+
+msgid "Magazine article"
+msgstr "Magazin-Artikel"
+
+msgid "Magazine issue"
+msgstr "Magazin-Ausgabe"
+
+msgid "Magazines"
+msgstr "Ausgaben"
+
+msgid "My subscription"
+msgstr "Mein Abonnement"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "New paid"
+msgstr "Neu (kostenpflichtig)"
+
+msgid "New paid issue"
+msgstr "Neue kostenpflichtige Ausgabe"
+
+msgid "Next"
+msgstr "Weiter"
+
+msgid "No expiration date"
+msgstr "Kein Ablaufdatum"
+
+msgid "No history"
+msgstr "Kein Verlauf"
+
+msgid "No magazine selected"
+msgstr "Keine Ausgabe ausgewählt"
+
+msgid "No matching subscribers found."
+msgstr "Keine passenden Abonnenten gefunden."
+
+msgid "No subscribers yet."
+msgstr "Noch keine Abonnenten."
+
+msgid "Not set"
+msgstr "Nicht festgelegt"
+
+msgid "Old free PDF"
+msgstr "Alt (kostenloses PDF)"
+
+msgid "Old free PDF issue"
+msgstr "Alte kostenlose PDF-Ausgabe"
+
+msgid "Old free PDF issues can redirect directly to this PDF when opened."
+msgstr "Alte kostenlose PDF-Ausgaben können beim Öffnen direkt zu dieser PDF weiterleiten."
+
+msgid "Only valid PDF files can be uploaded as protected issues."
+msgstr "Als geschützte Ausgaben können nur gültige PDF-Dateien hochgeladen werden."
+
+msgid "Open PDF"
+msgstr "PDF öffnen"
+
+msgid "Optional für einen Blog mit normalen WordPress-Beiträgen:"
+msgstr "Optional für einen Blog mit normalen WordPress-Beiträgen:"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "PDF URL for old issue"
+msgstr "PDF-URL für alte Ausgabe"
+
+msgid "Paid article"
+msgstr "Kostenpflichtiger Artikel"
+
+msgid "Password"
+msgstr "Passwort"
+
+msgid "Pause"
+msgstr "Pausieren"
+
+msgid "Paused"
+msgstr "Pausiert"
+
+msgid "Payment page URL"
+msgstr "URL der Bezahlseite"
+
+msgid "Permanently delete plugin content, settings, and subscriber metadata when the plugin is deleted."
+msgstr "Plugin-Inhalte, Einstellungen und Abonnenten-Metadaten beim Löschen des Plugins endgültig entfernen."
+
+msgid "Please enter a password and a valid expiration date."
+msgstr "Bitte ein Passwort und ein gültiges Ablaufdatum eingeben."
+
+msgid "Please enter a valid email address."
+msgstr "Bitte eine gültige E-Mail-Adresse eingeben."
+
+msgid "Please enter a valid expiration date."
+msgstr "Bitte ein gültiges Ablaufdatum eingeben."
+
+msgid "Please enter your email or username and password."
+msgstr "Bitte E-Mail oder Benutzername und Passwort eingeben."
+
+msgid "Please log in to view your subscription."
+msgstr "Bitte melden Sie sich an, um Ihr Abonnement zu sehen."
+
+msgid "Post filters"
+msgstr "Beitrags-Filter"
+
+msgid "Preview length in words"
+msgstr "Vorschaulänge in Wörtern"
+
+msgid "Previous"
+msgstr "Zurück"
+
+msgid "Protected PDF for paid issue"
+msgstr "Geschützte PDF für kostenpflichtige Ausgabe"
+
+msgid "Purchase subscription"
+msgstr "Abonnement kaufen"
+
+msgid "Read the full article"
+msgstr "Vollständigen Artikel lesen"
+
+msgid "Remove protected PDF"
+msgstr "Geschützte PDF entfernen"
+
+msgid "Renew subscription"
+msgstr "Abonnement verlängern"
+
+msgid "Reportagen, Fachwissen und persönliche Geschichten aus der Welt der Luftfahrt - geschrieben von Piloten und Flugbegeisterten."
+msgstr "Reportagen, Fachwissen und persönliche Geschichten aus der Welt der Luftfahrt - geschrieben von Piloten und Flugbegeisterten."
+
+msgid "Require every magazine article to be linked to an issue."
+msgstr "Jeden Magazin-Artikel verpflichtend mit einer Ausgabe verknüpfen."
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Save profile"
+msgstr "Profil speichern"
+
+msgid "Save settings"
+msgstr "Einstellungen speichern"
+
+msgid "Search subscribers"
+msgstr "Abonnenten suchen"
+
+msgid "Security check failed."
+msgstr "Sicherheitsprüfung fehlgeschlagen."
+
+msgid "Select %s"
+msgstr "%s auswählen"
+
+msgid "Select all subscribers"
+msgstr "Alle Abonnenten auswählen"
+
+msgid "Select magazine issue"
+msgstr "Ausgabe auswählen"
+
+msgid "Select subscribers and a valid bulk action."
+msgstr "Bitte Abonnenten und eine gültige Massenaktion auswählen."
+
+msgid "Send welcome, expiration reminder, and expired subscription emails."
+msgstr "Willkommens-, Erinnerungs- und Ablauf-E-Mails senden."
+
+msgid "Set active"
+msgstr "Auf aktiv setzen"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Subscriber created."
+msgstr "Abonnent erstellt."
+
+msgid "Subscriber login page URL"
+msgstr "URL der Login-Seite für Abonnenten"
+
+msgid "Enter the URL of the subscriber account page. Guests will use the same page to log in."
+msgstr "Tragen Sie die URL der Konto-Seite für Abonnenten ein. Gäste melden sich auf derselben Seite an."
+
+msgid "Subscribers"
+msgstr "Abonnenten"
+
+msgid "Subscription emails"
+msgstr "Abo-E-Mails"
+
+msgid "Subscription updated."
+msgstr "Abonnement aktualisiert."
+
+msgid "System"
+msgstr "System"
+
+msgid "Texte anpassen und testen"
+msgstr "Texte anpassen und testen"
+
+msgid "Texte gespeichert."
+msgstr "Texte gespeichert."
+
+msgid "The CSV columns are invalid."
+msgstr "Die CSV-Spalten sind ungültig."
+
+msgid "The PDF file could not be found."
+msgstr "Die PDF-Datei konnte nicht gefunden werden."
+
+msgid "The article was saved as a draft because no magazine issue was selected."
+msgstr "Der Artikel wurde als Entwurf gespeichert, da keine Ausgabe ausgewählt wurde."
+
+msgid "The download link is invalid or expired."
+msgstr "Der Download-Link ist ungültig oder abgelaufen."
+
+msgid "The login form expired. Please try again."
+msgstr "Das Anmeldeformular ist abgelaufen. Bitte erneut versuchen."
+
+msgid "The profile could not be updated."
+msgstr "Das Profil konnte nicht aktualisiert werden."
+
+msgid "The protected PDF could not be saved."
+msgstr "Die geschützte PDF konnte nicht gespeichert werden."
+
+msgid "The protected PDF directory could not be created."
+msgstr "Das Verzeichnis für geschützte PDFs konnte nicht erstellt werden."
+
+msgid "The selected user is not a subscriber."
+msgstr "Der ausgewählte Benutzer ist kein Abonnent."
+
+msgid "This is demo issue content. New paid issues are protected by the subscription gate; old PDF issues can redirect directly to the PDF URL."
+msgstr "Dies ist ein Demo-Ausgabeninhalt. Neue kostenpflichtige Ausgaben sind durch die Abo-Sperre geschützt; alte PDF-Ausgaben können direkt zur PDF-URL weiterleiten."
+
+msgid "This is the full demo article text. It should only be visible to administrators and subscribers with an active subscription date."
+msgstr "Dies ist der vollständige Demo-Artikeltext. Er sollte nur für Administratoren und Abonnenten mit aktivem Abo sichtbar sein."
+
+msgid "This public excerpt is visible to visitors without an active subscription."
+msgstr "Dieser öffentliche Auszug ist für Besucher ohne aktives Abo sichtbar."
+
+msgid "To read the full text, please log in or purchase a subscription."
+msgstr "Um den vollständigen Text zu lesen, melden Sie sich bitte an oder kaufen Sie ein Abonnement."
+
+msgid "Topic Categories"
+msgstr "Themen-Kategorien"
+
+msgid "Topic Category"
+msgstr "Themen-Kategorie"
+
+msgid "Trial"
+msgstr "Testzugang"
+
+msgid "User"
+msgstr "Benutzer"
+
+msgid "Visitors without active subscription will see this link below the article preview."
+msgstr "Besucher ohne aktives Abo sehen diesen Link unterhalb der Artikel-Vorschau."
+
+msgid "Website-Texte"
+msgstr "Website-Texte"
+
+msgid "Wofür"
+msgstr "Wofür"
+
+msgid "You do not have access to this PDF."
+msgstr "Sie haben keinen Zugriff auf diese PDF."
+
+msgid "Your Der Flugschreiber subscription account"
+msgstr "Ihr Der-Flugschreiber-Abonnentenkonto"
+
+msgid "Your Der Flugschreiber subscription expired on %s. Use the subscription page to renew it."
+msgstr "Ihr Der-Flugschreiber-Abonnement ist am %s abgelaufen. Verlängern Sie es über die Abo-Seite."
+
+msgid "Your Der Flugschreiber subscription is active until %s. Use the subscription page to renew it."
+msgstr "Ihr Der-Flugschreiber-Abonnement ist bis %s aktiv. Verlängern Sie es über die Abo-Seite."
+
+msgid "Your profile was updated."
+msgstr "Ihr Profil wurde aktualisiert."
+
+msgid "Your subscriber account is ready. You can log in here: %s"
+msgstr "Ihr Abonnentenkonto ist bereit. Sie können sich hier anmelden: %s"
+
+msgid "Your subscription expires soon"
+msgstr "Ihr Abonnement läuft bald ab"
+
+msgid "Your subscription has expired"
+msgstr "Ihr Abonnement ist abgelaufen"
+
+msgid "Zahlungen laufen extern: Das Plugin verarbeitet kein Geld, es leitet nur zur Bezahlseite weiter."
+msgstr "Zahlungen laufen extern: Das Plugin verarbeitet kein Geld, es leitet nur zur Bezahlseite weiter."
+
+msgid "Zum Ausprobieren erzeugst du unter %s Demo-Ausgaben und -Artikel. Öffne die Seiten danach in einem privaten Browserfenster (abgemeldet), um die Besucher-Ansicht zu prüfen."
+msgstr "Zum Ausprobieren erzeugst du unter %s Demo-Ausgaben und -Artikel. Öffne die Seiten danach in einem privaten Browserfenster (abgemeldet), um die Besucher-Ansicht zu prüfen."
+
+msgid "die Adresse deiner Anmelde-Seite aus Schritt 3."
+msgstr "die Adresse deiner Anmelde-Seite aus Schritt 3."
+
+msgid "die externe Seite, auf der das Abo gekauft wird. Besucher ohne aktives Abo werden dorthin geleitet."
+msgstr "die externe Seite, auf der das Abo gekauft wird. Besucher ohne aktives Abo werden dorthin geleitet."
+
+msgid "kopiert"
+msgstr "kopiert"
+
+msgid "neue WordPress-Seite"
+msgstr "neue WordPress-Seite"
+
+msgid "Öffne %s und trage zwei Adressen ein:"
+msgstr "Öffne %s und trage zwei Adressen ein:"

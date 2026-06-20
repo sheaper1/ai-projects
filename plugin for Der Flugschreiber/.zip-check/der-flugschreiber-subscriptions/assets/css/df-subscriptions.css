@@ -1,0 +1,33 @@
+.df-subscriptions-excerpt {
+    margin-bottom: 1.5rem;
+}
+
+.df-subscriptions-locked {
+    border: 1px solid #d7d7d7;
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+}
+
+.df-subscriptions-locked p:last-child {
+    margin-bottom: 0;
+}
+
+.df-subscriptions-payment-link,
+.df-subscriptions-login-link {
+    margin-right: 0.5rem;
+}
+
+.df-subscriptions-login-form {
+    max-width: 420px;
+}
+
+.df-subscriptions-login-form .login-username,
+.df-subscriptions-login-form .login-password,
+.df-subscriptions-login-form .login-remember {
+    margin-bottom: 1rem;
+}
+
+.df-subscriptions-login-form input[type="text"],
+.df-subscriptions-login-form input[type="password"] {
+    width: 100%;
+}

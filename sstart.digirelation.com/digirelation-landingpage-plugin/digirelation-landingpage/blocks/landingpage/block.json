@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "digirelation/landingpage",
+  "title": "Performance Landingpage",
+  "description": "Komplette digirelation Performance-Landingpage (dunkles CI-Design). Medien im Plugin gebündelt, Texte/Video/Testimonials via ACF.",
+  "category": "design",
+  "icon": "layout",
+  "keywords": ["landingpage", "digirelation", "performance", "hero"],
+  "acf": {
+    "blockVersion": 3,
+    "renderTemplate": "render.php",
+    "hideFieldsInSidebar": true,
+    "expandedEditorButtonText": "Inhalte bearbeiten"
+  },
+  "supports": {
+    "anchor": true,
+    "align": ["full"],
+    "mode": true,
+    "html": false,
+    "customClassName": false
+  },
+  "example": {}
+}

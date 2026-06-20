@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "win_mallorca": {
+      "type": "win-mallorca"
+    }
+  },
+  "order": ["win_mallorca"]
+}

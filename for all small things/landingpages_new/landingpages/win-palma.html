@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Win Palma | Win the Ultimate Mallorca Escape — Palma Giveaway</title>
+<meta name="description" content="Enter the Palma giveaway: post your Mallorca moment on Instagram with #TakePalmaHome. Monthly winners receive the complete Palma Collection, and the grand prize is a VIP Mallorca escape worth €3,500+.">
+<meta property="og:title" content="Win Palma — Win the Ultimate Mallorca Escape">
+<meta property="og:image" content="https://mallorcadistillery.com/cdn/shop/files/Frame_260.jpg?width=1200">
+<link rel="canonical" href="https://www.mallorcadistillery.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════════
+   PALMA — "TAKE MALLORCA HOME" GIVEAWAY LANDING PAGE
+   Same design system as the Palma Gin/Vodka showcases (navy/gold/
+   cream, Montserrat + Libre Caslon Text italic accents). Campaign
+   page: email entry, prize tiers, how-to-enter, collection teaser.
+   ════════════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+
+:root{
+  --ink:#162F53;
+  --ink-2:#5B6976;
+  --subtle:#9AA3AD;
+  --line:#E6E3DC;
+  --bg:#FFFFFF;
+  --bg-soft:#F4F2ED;
+  --mint:#E7ECE6;
+  --sand:#EFEEEB;
+  --gold:#FAD380;
+  --gold-deep:#B68C39;
+  --navy:#162F53;
+  --navy-deep:#0F2138;
+  --ital:'Libre Caslon Text',Georgia,serif;
+  --max:80rem;
+}
+
+.eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--subtle);font-weight:600}
+.ital{font-family:var(--ital);font-style:italic;font-weight:400;letter-spacing:-.01em}
+h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.03em;color:var(--ink)}
+h1{font-size:clamp(2.8rem,6vw,5rem)}
+h2{font-size:clamp(2rem,3.6vw,3rem)}
+.lead{font-size:1.08rem;line-height:1.65;color:var(--ink-2);font-weight:400}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 2.5rem}
+.section{padding:6rem 0}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--max);margin:0 auto;height:68px;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between}
+.nav-in img{height:40px;width:auto}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{font-size:.8rem;color:var(--ink-2);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{font-size:.78rem;font-weight:600}
+
+/* gold pill button */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--gold);color:var(--navy-deep);border-radius:99rem;padding:.95rem 1.8rem;font-size:.95rem;font-weight:600;transition:background-color .3s,transform .3s;cursor:pointer;border:none}
+.btn:hover{background:#F2C25A;transform:translateY(-1px)}
+
+/* entry form */
+.entry{display:flex;gap:.5rem;max-width:30rem;width:100%}
+.entry input{flex:1;padding:.95rem 1.2rem;border:1px solid transparent;border-radius:99rem;font-family:'Montserrat',sans-serif;font-size:.95rem;outline:none;background:#fff;color:var(--ink)}
+.entry input:focus-visible{border-color:var(--gold)}
+.fine{font-size:.72rem;color:var(--subtle);margin-top:.9rem;letter-spacing:.01em}
+
+/* instagram CTAs + hashtag */
+.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.btn-ig{display:inline-flex;align-items:center;gap:.55rem;background:#fff;color:var(--navy-deep);border-radius:99rem;padding:.95rem 1.7rem;font-size:.95rem;font-weight:600;cursor:pointer;transition:transform .3s}
+.btn-ig:hover{transform:translateY(-1px)}
+.btn-ig svg{width:19px;height:19px}
+.btn-line{display:inline-flex;align-items:center;gap:.55rem;border:1px solid #ffffff55;color:#fff;border-radius:99rem;padding:.95rem 1.6rem;font-size:.95rem;font-weight:500;transition:background-color .3s,color .3s}
+.btn-line:hover{background:#fff;color:var(--navy-deep)}
+.hashtag{display:inline-block;font-family:var(--ital);font-style:italic;color:var(--gold);font-size:1.25rem;margin-top:1.2rem}
+
+/* submissions wall */
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:3rem}
+.wall-item{position:relative;padding-top:100%;background:var(--mint);border-radius:.6rem;overflow:hidden}
+.wall-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wall-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(15,33,56,.25))}
+.wall-tag{position:absolute;z-index:1;left:.7rem;bottom:.6rem;color:#fff;font-size:.66rem;letter-spacing:.04em;opacity:.9}
+@media(max-width:991px){.wall{grid-template-columns:1fr 1fr}}
+
+/* HERO — full-bleed lifestyle */
+.hero-win{position:relative;min-height:92vh;display:flex;align-items:center;background-size:cover;background-position:center}
+.hero-win::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,33,56,.35),rgba(15,33,56,.82))}
+.hero-in{position:relative;z-index:1;max-width:var(--max);margin:0 auto;padding:6rem 2.5rem;color:#fff;width:100%}
+.hero-in h1{color:#fff;max-width:18ch}
+.hero-in h1 .ital{color:var(--gold)}
+.hero-in .badge{display:inline-block;background:#ffffff1f;border:1px solid #ffffff33;color:#fff;border-radius:99rem;padding:.5rem 1.1rem;font-size:.72rem;font-weight:600;letter-spacing:.06em;margin-bottom:1.4rem}
+.hero-sub{font-size:1.12rem;line-height:1.6;color:rgba(255,255,255,.85);max-width:34rem;margin:1.2rem 0 2rem;font-weight:400}
+.hero-in .entry input{border-color:#ffffff33}
+.hero-in .fine{color:rgba(255,255,255,.6)}
+
+/* PRIZES */
+.prizes-head{text-align:center;max-width:42rem;margin:0 auto 3rem}
+.prize-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:1.6rem}
+.prize{position:relative;border-radius:1.25rem;overflow:hidden;min-height:26rem;display:flex;align-items:flex-end;background-size:cover;background-position:center;color:#fff}
+.prize::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,33,56,.05),rgba(15,33,56,.78))}
+.prize-body{position:relative;z-index:1;padding:2.2rem}
+.prize-tag{display:inline-block;background:var(--gold);color:var(--navy-deep);border-radius:99rem;padding:.4rem 1rem;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
+.prize h3{color:#fff;font-size:2rem}
+.prize h3 .ital{color:var(--gold)}
+.prize p{color:rgba(255,255,255,.85);font-size:.95rem;line-height:1.6;margin-top:.6rem;max-width:26rem}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.step{border-top:2px solid var(--ink);padding-top:1.3rem}
+.step-num{font-family:var(--ital);font-style:italic;font-size:2.2rem;color:var(--gold-deep);line-height:1;margin-bottom:.6rem}
+.step-name{font-size:1.05rem;font-weight:600;margin-bottom:.4rem}
+.step-desc{font-size:.88rem;color:var(--ink-2);line-height:1.6}
+
+/* COLLECTION TEASER */
+.col-head{text-align:center;max-width:42rem;margin:0 auto 3rem}
+.col-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.4rem}
+.col-card{display:flex;flex-direction:column;text-align:center}
+.cc-img{position:relative;padding-top:118%;background:var(--mint);overflow:hidden;border-radius:.6rem}
+.cc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:1.4rem}
+.cc-name{font-size:1.05rem;font-weight:600;margin:.9rem 0 .15rem}
+.cc-meta{font-size:.78rem;color:var(--subtle)}
+
+/* CTA band */
+.cta{background:var(--navy);color:#fff;text-align:center}
+.cta h2{color:#fff}
+.cta h2 .ital{color:var(--gold)}
+.cta p{color:rgba(255,255,255,.66);max-width:32rem;margin:.8rem auto 0}
+.cta .entry{margin:1.8rem auto 0;justify-content:center}
+.cta .entry input{border-color:#ffffff22}
+.cta .fine{color:rgba(255,255,255,.5);text-align:center}
+
+/* FOOTER */
+.foot{border-top:1px solid var(--line);padding:3.4rem 0 1.6rem}
+.foot-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr;gap:2.5rem;margin-bottom:2.4rem}
+.foot-grid img{height:42px;margin-bottom:.9rem}
+.foot-brand p{font-size:.82rem;color:var(--subtle);line-height:1.6;max-width:18rem}
+.foot h4{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem}
+.foot a{display:block;font-size:.82rem;color:var(--ink-2);margin-bottom:.5rem;transition:color .2s}
+.foot a:hover{color:var(--ink)}
+.foot-bot{border-top:1px solid var(--line);padding-top:1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;font-size:.68rem;color:var(--subtle)}
+
+[data-reveal]{opacity:0}
+.no-reveal [data-reveal]{opacity:1}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  [data-reveal]{opacity:1!important;transform:none!important}
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+
+@media(max-width:991px){
+  .wrap,.nav-in{padding-left:1.5rem;padding-right:1.5rem}
+  .section{padding:4rem 0}
+  .prize-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;gap:1.4rem}
+  .col-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:2rem}
+}
+@media(max-width:600px){
+  html{font-size:15px}
+  .entry{flex-direction:column}
+  .entry input,.entry .btn{border-radius:.7rem}
+  .col-grid{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr}
+}
+
+/* ── PRIZE INCLUDES ── */
+.prize-incl{list-style:none;margin:1.1rem 0 .2rem;display:flex;flex-direction:column;gap:.45rem}
+.prize-incl li{font-size:.88rem;color:rgba(255,255,255,.92);display:flex;gap:.6rem;align-items:flex-start;line-height:1.45}
+.prize-incl li svg{width:1.1rem;height:1.1rem;flex:none;margin-top:.1rem;stroke:var(--gold)}
+.prize-value{display:inline-block;margin-top:1rem;font-family:var(--ital);font-style:italic;color:var(--gold);font-size:1.5rem}
+
+/* ── TRUST STRIP ── */
+.trust-strip{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust-strip .wrap{padding-top:2.2rem;padding-bottom:2.2rem;text-align:center}
+.trust-strip .eyebrow{display:block;margin-bottom:1rem}
+.trust-badges{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem .9rem}
+.trust-badges li{font-size:.78rem;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:99rem;padding:.5rem 1rem;display:inline-flex;align-items:center;gap:.45rem}
+.trust-badges li svg{width:.95rem;height:.95rem;flex:none;stroke:var(--gold-deep)}
+
+/* ── WHY SECTION ── */
+.why-badges{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem 1.4rem;margin-top:2rem;max-width:48rem;margin-left:auto;margin-right:auto}
+.why-badges li{font-size:.85rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:.5rem}
+.why-badges li svg{width:1.05rem;height:1.05rem;flex:none;stroke:var(--gold-deep)}
+</style>
+</head>
+<body class="no-reveal">
+
+<!-- ░░░ NAV ░░░ -->
+<nav class="nav">
+  <div class="nav-in">
+    <a href="https://mallorcadistillery.com" aria-label="Mallorca Distillery"><img src="https://mallorcadistillery.com/cdn/shop/files/logo_9a157780-c2e0-4875-bc5a-6a9abc458f41_small.svg?v=1761337357" alt="Mallorca Distillery"></a>
+    <ul class="nav-links">
+      <li><a href="#prizes">Prizes</a></li>
+      <li><a href="#how">How to enter</a></li>
+      <li><a href="#collection">The Collection</a></li>
+    </ul>
+    <a href="#enter" class="btn nav-cta">Enter now</a>
+  </div>
+</nav>
+
+<!-- ░░░ HERO ░░░ -->
+<header class="hero-win" style="background-image:url('https://mallorcadistillery.com/cdn/shop/files/Frame_260.jpg?width=1800')">
+  <div class="hero-in">
+    <span class="badge" data-reveal>The Palma Photo Contest</span>
+    <h1 data-reveal>Win the ultimate <span class="ital">Mallorca escape.</span></h1>
+    <p class="hero-sub" data-reveal>Share your Mallorca moment for the chance to win. Post a photo or video inspired by Mallorca, tag <strong>@mallorcadistillery</strong> and use <strong>#TakePalmaHome</strong> — or enter free by email. Win a complete Palma Spirits Collection every month, plus entry into the grand-prize draw: a VIP Palma escape in Mallorca worth <strong>€3,500+</strong>.</p>
+    <div class="hero-actions" id="enter" data-reveal>
+      <!-- (Offen) Instagram-Account-Link vor Live-Gang prüfen -->
+      <a href="https://www.instagram.com/mallorcadistillery/" target="_blank" rel="noopener" class="btn-ig"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.52.01-4.76.07-.92.04-1.42.2-1.75.33-.44.17-.76.38-1.09.71-.33.33-.54.65-.71 1.09-.13.33-.29.83-.33 1.75-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.04.92.2 1.42.33 1.75.17.44.38.76.71 1.09.33.33.65.54 1.09.71.33.13.83.29 1.75.33 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c.92-.04 1.42-.2 1.75-.33.44-.17.76-.38 1.09-.71.33-.33.54-.65.71-1.09.13-.33.29-.83.33-1.75.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.04-.92-.2-1.42-.33-1.75a2.94 2.94 0 00-.71-1.09 2.94 2.94 0 00-1.09-.71c-.33-.13-.83-.29-1.75-.33-1.24-.06-1.61-.07-4.76-.07zm0 2.76a5.46 5.46 0 110 10.92 5.46 5.46 0 010-10.92zm0 9a3.54 3.54 0 100-7.08 3.54 3.54 0 000 7.08zm6.95-9.22a1.27 1.27 0 11-2.55 0 1.27 1.27 0 012.55 0z"/></svg>Follow @mallorcadistillery</a>
+      <a href="#how" class="btn-line">How to enter</a>
+      <a href="#free-entry" class="btn-line">Free entry</a>
+    </div>
+    <span class="hashtag" data-reveal>#TakePalmaHome</span>
+    <p class="fine" data-reveal>Free to enter via Instagram or email · No purchase necessary · 18+ · Closes 31 December 2026 · This promotion is not sponsored, endorsed or administered by Instagram. <a href="win-palma-terms.html" style="text-decoration:underline">Terms apply</a></p>
+  </div>
+</header>
+
+<!-- ░░░ PRIZES ░░░ -->
+<section class="section" id="prizes">
+  <div class="wrap">
+    <div class="prizes-head">
+      <span class="eyebrow" data-reveal>What you can win</span>
+      <h2 style="margin-top:.8rem" data-reveal>Two ways to <span class="ital">win Mallorca</span></h2>
+      <p class="lead" data-reveal style="margin-top:1rem">A new monthly winner at the end of every month — and the grand-prize draw at the close of the giveaway on <strong>31 December 2026</strong>.</p>
+    </div>
+    <!-- (Offen) Optional: kleine Foto-/Banner-Reihe mit Preis-Beschreibung über/unter dem Bild (Kundenwunsch). -->
+    <div class="prize-grid">
+      <!-- GRAND PRIZE -->
+      <article class="prize" data-reveal style="background-image:url('https://mallorcadistillery.com/cdn/shop/files/Frame_261.jpg?width=1200')">
+        <div class="prize-body">
+          <span class="prize-tag">Grand prize · up to 3 winners</span>
+          <h3>The ultimate <span class="ital">Mallorca escape</span></h3>
+          <p>Experience the island behind Palma. Return flights, luxury accommodation and exclusive island experiences await on the Mediterranean island that inspires every bottle we create.</p>
+          <ul class="prize-incl">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>Return flights for two</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg>Luxury accommodation for 3 nights</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></svg>Palma Gin distillery experience</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>Explore Palma's hidden gems with a local tour</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg>Complete Palma Spirits Collection</li>
+          </ul>
+          <span class="prize-value">Prize value €3,500+</span>
+          <p style="margin-top:.4rem">Drawn at the close of the giveaway on 31 December 2026.</p>
+          <!-- (Offen) Reise-Details (genaue Unterkunft, Termine) bestätigen. -->
+        </div>
+      </article>
+      <!-- MONTHLY -->
+      <article class="prize" data-reveal style="background-image:url('https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_006_1024x1024.jpg?width=1200')">
+        <div class="prize-body">
+          <span class="prize-tag">Every month</span>
+          <h3>The complete <span class="ital">Palma Collection</span></h3>
+          <p>Each month, our favourite entries receive the full Palma Spirits Collection — an award-winning range of organic spirits inspired by Mallorca, delivered directly to your door. The monthly window closes on the last day of each month.</p>
+          <!-- (Offen) Genauer Inhalt des Komplettsets + Anzahl monatlicher Gewinner. -->
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ HOW TO ENTER ░░░ -->
+<section class="section" id="how" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="prizes-head">
+      <span class="eyebrow" data-reveal>How to enter</span>
+      <h2 style="margin-top:.8rem" data-reveal>Three steps to <span class="ital">the island</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step" data-reveal><div class="step-num">01</div><div class="step-name">Follow @mallorcadistillery</div><div class="step-desc">Follow us on Instagram and find your Mallorca moment — a Palma serve, a sunset, a memory of the island.</div></div>
+      <div class="step" data-reveal><div class="step-num">02</div><div class="step-name">Post &amp; tag</div><div class="step-desc">Share your Mallorca moment — a Palma serve, the bottle, or simply the island feeling — with <strong>#TakePalmaHome</strong> and tag <strong>@mallorcadistillery</strong>. Public profiles only.</div></div>
+      <div class="step" data-reveal><div class="step-num">03</div><div class="step-name">Best entries win</div><div class="step-desc">We pick our favourite entries — the most creative Palma moments stand out. A complete set every month, and the grand-prize trip for up to 3 winners.</div></div>
+    </div>
+    <p class="lead" data-reveal style="text-align:center;margin-top:2.5rem">Not on Instagram? <a href="#free-entry" style="text-decoration:underline;text-underline-offset:2px">Enter for free by email</a> — it counts as a full entry.</p>
+  </div>
+</section>
+
+<!-- ░░░ TRUST STRIP ░░░ -->
+<section class="trust-strip">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Crafted by Mallorca Distillery</span>
+    <ul class="trust-badges" data-reveal>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></svg>Mallorca's First Organic Craft Distillery</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>40+ International Gold Awards</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"/><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"/><path d="M18 9h1.5a1 1 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6 9H4.5a1 1 0 0 1 0-5H6"/></svg>Best Spirit in Spain 2026</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>100% Certified Organic</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ░░░ SUBMISSIONS WALL ░░░ -->
+<section class="section" id="entries">
+  <div class="wrap">
+    <div class="prizes-head">
+      <span class="eyebrow" data-reveal>The entries</span>
+      <h2 style="margin-top:.8rem" data-reveal>Tagged with <span class="ital">#TakePalmaHome</span></h2>
+      <p class="lead" data-reveal style="margin-top:.8rem">Real moments from the Palma community across the island and beyond.</p>
+    </div>
+    <!-- (Offen) An ein Instagram-Hashtag-Feed-Widget binden (z. B. Behold, EmbedSocial, Taggbox). Bis dahin Beispiel-Kacheln aus echten Shop-Lifestyle-Bildern: -->
+    <div class="wall" data-reveal>
+      <div class="wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_091_1024x1024.jpg?width=500" alt=""><span class="wall-tag">@entry</span></div>
+      <div class="wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_099_1.jpg?width=500" alt=""><span class="wall-tag">@entry</span></div>
+      <div class="wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_260.jpg?width=500" alt=""><span class="wall-tag">@entry</span></div>
+      <div class="wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-111copy2_1024x1024.png?width=500" alt=""><span class="wall-tag">@entry</span></div>
+      <div class="wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_261.jpg?width=500" alt=""><span class="wall-tag">@entry</span></div>
+      <div class="wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-096copy2_1024x1024.png?width=500" alt=""><span class="wall-tag">@entry</span></div>
+      <div class="wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_257.jpg?width=500" alt=""><span class="wall-tag">@entry</span></div>
+      <div class="wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_006_1024x1024.jpg?width=500" alt=""><span class="wall-tag">@entry</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ COLLECTION TEASER ░░░ -->
+<section class="section" id="collection">
+  <div class="wrap">
+    <div class="col-head">
+      <span class="eyebrow" data-reveal>What's in the collection</span>
+      <h2 style="margin-top:.8rem" data-reveal>The Palma <span class="ital">Collection</span></h2>
+      <p class="lead" data-reveal style="margin-top:.8rem">Take Mallorca home with our award-winning collection of organic spirits, crafted in Palma and inspired by the island's landscape, ingredients and Mediterranean way of life.</p>
+    </div>
+    <div class="col-grid" data-reveal>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_148_f44972fb-193a-455a-87ef-140621abb5cb.png?v=1770157163&width=500" alt="Palma Gin"></div>
+        <div class="cc-name">Palma Gin</div><div class="cc-meta">Organic · 15 botanicals</div>
+      </article>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_148_a176364e-a22e-49e8-b5e7-e06b09c27fd9.png?v=1769786557&width=500" alt="Palma Citrus Gin"></div>
+        <div class="cc-name">Citrus Gin</div><div class="cc-meta">Lemon, orange &amp; lime</div>
+      </article>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_147_a0dc56fa-f73e-4127-ab73-08793c091668.png?v=1769786683&width=500" alt="Palma Spiced Gin"></div>
+        <div class="cc-name">Spiced Gin</div><div class="cc-meta">Oak-aged · cinnamon &amp; vanilla</div>
+      </article>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_149_ae6dad33-35da-4463-81b1-ce3c5376d617.png?v=1769786618&width=500" alt="Palma Rosé Gin"></div>
+        <div class="cc-name">Rosé Gin</div><div class="cc-meta">Floral &amp; citrus · pink gin</div>
+      </article>
+      <article class="col-card">
+        <div class="cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_152_e5a944b7-af35-4b10-976f-1abe9d043906.png?v=1769787579&width=500" alt="Palma Vodka"></div>
+        <div class="cc-name">Palma Vodka</div><div class="cc-meta">Organic · Flor de Sal</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ WHY THIS GIVEAWAY ░░░ -->
+<section class="section" id="why" style="background:var(--bg-soft)">
+  <div class="wrap">
+    <div class="prizes-head">
+      <span class="eyebrow" data-reveal>Behind the giveaway</span>
+      <h2 style="margin-top:.8rem" data-reveal>Why we're <span class="ital">running this giveaway</span></h2>
+      <p class="lead" data-reveal style="margin-top:1rem">We want more people to discover the island we call home — and experience the inspiration behind Mallorca Distillery's Palma spirits.</p>
+      <p class="lead" data-reveal style="margin-top:.8rem">Mallorca Distillery was founded to capture the true spirit of Mallorca. Today, our award-winning organic spirits are enjoyed across Europe, inspired by the same island you could soon be exploring yourself.</p>
+    </div>
+    <ul class="why-badges" data-reveal>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>Mallorca's First Organic Craft Distillery</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>40+ International Gold Awards</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"/><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"/><path d="M18 9h1.5a1 1 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6 9H4.5a1 1 0 0 1 0-5H6"/></svg>Best Spirit in Spain 2026</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.66 17.67a1.08 1.08 0 0 1-.04 1.6A12 12 0 0 1 4.73 2.38a1.1 1.1 0 0 1 1.61-.04z"/><path d="M19.65 15.66A8 8 0 0 1 8.35 4.34"/><path d="m14 10-5.5 5.5"/><path d="M14 17.85V10H6.15"/></svg>Inspired by Local Mediterranean Botanicals</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"/><path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4"/><path d="M5 21h14"/></svg>100% Certified Organic Production</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ░░░ CTA / ENTRY ░░░ -->
+<section class="section cta" id="free-entry">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal style="color:var(--gold)">Enter for free</span>
+    <h2 style="margin-top:.8rem" data-reveal>Not on Instagram? <span class="ital">Enter by email.</span></h2>
+    <p data-reveal>Enter the giveaway for free with your email — no purchase necessary, and it counts as a full entry. You'll also get winner announcements, new releases and 10% off your first order.</p>
+    <!-- E-Mail-Form an Shopify/Klaviyo binden; markiert Teilnahme + Newsletter-Opt-in -->
+    <form class="entry" data-reveal onsubmit="return false">
+      <input type="email" placeholder="Your email address" aria-label="Email address" required>
+      <button type="submit" class="btn">Enter &amp; save 10%</button>
+    </form>
+    <p class="fine" data-reveal>Free entry · No purchase necessary · 18+ · Closes 31 December 2026 · This promotion is not sponsored, endorsed or administered by Instagram. <a href="win-palma-terms.html" style="text-decoration:underline;color:rgba(255,255,255,.7)">Terms apply</a></p>
+  </div>
+</section>
+
+<!-- ░░░ FOOTER ░░░ -->
+<footer>
+  <div class="wrap foot">
+    <div class="foot-grid">
+      <div class="foot-brand"><img src="https://mallorcadistillery.com/cdn/shop/files/logo_9a157780-c2e0-4875-bc5a-6a9abc458f41_small.svg?v=1761337357" alt="Mallorca Distillery"><p>Organic spirits, passionately made from the island.</p></div>
+      <div><h4>Shop</h4><a href="https://mallorcadistillery.com/collections/gin">Gin</a><a href="https://mallorcadistillery.com/collections/vodka">Vodka</a><a href="https://mallorcadistillery.com/collections/all-products">All Products</a></div>
+      <div><h4>Help</h4><a href="https://mallorcadistillery.com/pages/contact">Contact</a><a href="win-palma-terms.html">Giveaway Terms</a><a href="https://mallorcadistillery.com/policies/privacy-policy">Privacy</a></div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Mallorca Distillery — Organic spirits passionately made from the island.</span>
+      <span>Please drink responsibly · 18+ · No purchase necessary</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ░░░ SCRIPTS ░░░ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+document.body.classList.remove('no-reveal');
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (window.gsap && window.ScrollTrigger && !reduce) {
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll('[data-reveal]').forEach(function(el){
+    gsap.fromTo(el, {opacity:0, y:28}, {opacity:1, y:0, duration:.7, ease:'power2.out',
+      scrollTrigger:{trigger:el, start:'top 90%', once:true}});
+  });
+} else {
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ el.style.opacity = 1; });
+}
+</script>
+</body>
+</html>

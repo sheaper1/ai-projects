@@ -1,0 +1,381 @@
+{% comment %}theme-check-disable RemoteAsset{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} .win-mallorca {
+    --ink: #162F53;
+    --ink-2: #5B6976;
+    --subtle: #9AA3AD;
+    --line: #E6E3DC;
+    --bg: #FFFFFF;
+    --bg-soft: #F4F2ED;
+    --mint: #E7ECE6;
+    --gold: #FAD380;
+    --gold-deep: #B68C39;
+    --navy-deep: #0F2138;
+    --ital: 'Libre Caslon Text', Georgia, serif;
+    --max: 80rem;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #shopify-section-{{ section.id }},
+  #shopify-section-{{ section.id }}.shopify-section,
+  #shopify-section-{{ section.id }}.win-mallorca-section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  body:has(#shopify-section-{{ section.id }} .win-mallorca) main,
+  body:has(#shopify-section-{{ section.id }} .win-mallorca) #main-content,
+  body:has(#shopify-section-{{ section.id }} .win-mallorca) .main-content {
+    padding-top: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .win-mallorca *,
+  #shopify-section-{{ section.id }} .win-mallorca *::before,
+  #shopify-section-{{ section.id }} .win-mallorca *::after { box-sizing: border-box; }
+  #shopify-section-{{ section.id }} .win-mallorca img { display: block; max-width: 100%; }
+  #shopify-section-{{ section.id }} .win-mallorca a { color: inherit; text-decoration: none; }
+  #shopify-section-{{ section.id }} .win-mallorca button,
+  #shopify-section-{{ section.id }} .win-mallorca input { font: inherit; }
+
+  #shopify-section-{{ section.id }} .wm-wrap { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+  #shopify-section-{{ section.id }} .wm-section { padding: 6rem 0; }
+  #shopify-section-{{ section.id }} .wm-eyebrow { color: var(--subtle); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
+  #shopify-section-{{ section.id }} .wm-ital { font-family: var(--ital); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  #shopify-section-{{ section.id }} .win-mallorca h1,
+  #shopify-section-{{ section.id }} .win-mallorca h2,
+  #shopify-section-{{ section.id }} .win-mallorca h3 { margin: 0; color: var(--ink); font-weight: 500; line-height: 1.04; letter-spacing: -0.03em; }
+  #shopify-section-{{ section.id }} .win-mallorca h1 { font-size: clamp(2.8rem, 6vw, 5rem); }
+  #shopify-section-{{ section.id }} .win-mallorca h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
+  #shopify-section-{{ section.id }} .wm-lead { color: var(--ink-2); font-size: 1.08rem; font-weight: 400; line-height: 1.65; }
+
+  #shopify-section-{{ section.id }} .wm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--navy-deep) !important;
+    padding: 0.95rem 1.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  #shopify-section-{{ section.id }} .wm-btn:hover { background: #F2C25A; transform: translateY(-1px); }
+
+  #shopify-section-{{ section.id }} .wm-entry { display: flex; gap: 0.5rem; width: 100%; max-width: 30rem; }
+  #shopify-section-{{ section.id }} .wm-entry input {
+    flex: 1;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    outline: 0;
+    background: #fff;
+    color: var(--ink);
+    padding: 0.95rem 1.2rem;
+    font-size: 0.95rem;
+  }
+  #shopify-section-{{ section.id }} .wm-entry input:focus-visible { border-color: var(--gold); }
+  #shopify-section-{{ section.id }} .wm-fine { margin-top: 0.9rem; color: var(--subtle); font-size: 0.72rem; letter-spacing: 0.01em; }
+
+  #shopify-section-{{ section.id }} .wm-hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; }
+  #shopify-section-{{ section.id }} .wm-btn-ig {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--navy-deep) !important;
+    padding: 0.95rem 1.7rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: transform 0.3s;
+  }
+  #shopify-section-{{ section.id }} .wm-btn-ig:hover { transform: translateY(-1px); }
+  #shopify-section-{{ section.id }} .wm-btn-ig svg { width: 19px; height: 19px; }
+  #shopify-section-{{ section.id }} .wm-btn-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    border: 1px solid rgba(255,255,255,0.34);
+    border-radius: 999px;
+    color: #fff !important;
+    padding: 0.95rem 1.6rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  #shopify-section-{{ section.id }} .wm-btn-line:hover { background: #fff; color: var(--navy-deep) !important; }
+  #shopify-section-{{ section.id }} .wm-hashtag { display: inline-block; margin-top: 1.2rem; color: var(--gold); font-family: var(--ital); font-size: 1.25rem; font-style: italic; }
+
+  #shopify-section-{{ section.id }} .wm-hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    background-image: url('https://mallorcadistillery.com/cdn/shop/files/Frame_260.jpg?width=1800');
+    background-size: cover;
+    background-position: center;
+  }
+  #shopify-section-{{ section.id }} .wm-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,33,56,0.35), rgba(15,33,56,0.82)); }
+  #shopify-section-{{ section.id }} .wm-hero-in { position: relative; z-index: 1; width: 100%; max-width: var(--max); margin: 0 auto; padding: 6rem 2.5rem; color: #fff; }
+  #shopify-section-{{ section.id }} .wm-hero-in h1 { max-width: 18ch; color: #fff; }
+  #shopify-section-{{ section.id }} .wm-hero-in h1 .wm-ital { color: var(--gold); }
+  #shopify-section-{{ section.id }} .wm-badge { display: inline-block; margin-bottom: 1.4rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; background: rgba(255,255,255,0.12); color: #fff; padding: 0.5rem 1.1rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; }
+  #shopify-section-{{ section.id }} .wm-hero-sub { max-width: 34rem; margin: 1.2rem 0 2rem; color: rgba(255,255,255,0.85); font-size: 1.12rem; font-weight: 400; line-height: 1.6; }
+  #shopify-section-{{ section.id }} .wm-hero-in .wm-fine { color: rgba(255,255,255,0.6); }
+
+  #shopify-section-{{ section.id }} .wm-prizes-head { max-width: 42rem; margin: 0 auto 3rem; text-align: center; }
+  #shopify-section-{{ section.id }} .wm-prize-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.6rem; }
+  #shopify-section-{{ section.id }} .wm-prize {
+    position: relative;
+    min-height: 26rem;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+  }
+  #shopify-section-{{ section.id }} .wm-prize::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,33,56,0.05), rgba(15,33,56,0.78)); }
+  #shopify-section-{{ section.id }} .wm-prize-body { position: relative; z-index: 1; padding: 2.2rem; }
+  #shopify-section-{{ section.id }} .wm-prize-tag { display: inline-block; margin-bottom: 1rem; border-radius: 999px; background: var(--gold); color: var(--navy-deep); padding: 0.4rem 1rem; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  #shopify-section-{{ section.id }} .wm-prize h3 { color: #fff; font-size: 2rem; }
+  #shopify-section-{{ section.id }} .wm-prize h3 .wm-ital { color: var(--gold); }
+  #shopify-section-{{ section.id }} .wm-prize p { max-width: 26rem; margin-top: 0.6rem; color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.6; }
+
+  #shopify-section-{{ section.id }} .wm-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+  #shopify-section-{{ section.id }} .wm-step { border-top: 2px solid var(--ink); padding-top: 1.3rem; }
+  #shopify-section-{{ section.id }} .wm-step-num { margin-bottom: 0.6rem; color: var(--gold-deep); font-family: var(--ital); font-size: 2.2rem; font-style: italic; line-height: 1; }
+  #shopify-section-{{ section.id }} .wm-step-name { margin-bottom: 0.4rem; font-size: 1.05rem; font-weight: 600; }
+  #shopify-section-{{ section.id }} .wm-step-desc { color: var(--ink-2); font-size: 0.88rem; line-height: 1.6; }
+
+  #shopify-section-{{ section.id }} .wm-wall { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-top: 3rem; }
+  #shopify-section-{{ section.id }} .wm-entries-title {
+    font-size: clamp(1.65rem, 3vw, 2.45rem);
+    line-height: 1.05;
+  }
+  #shopify-section-{{ section.id }} .wm-entries-title .wm-ital {
+    font-size: inherit;
+  }
+  #shopify-section-{{ section.id }} .wm-wall-item { position: relative; overflow: hidden; border-radius: 0.6rem; background: var(--mint); padding-top: 100%; }
+  #shopify-section-{{ section.id }} .wm-wall-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #shopify-section-{{ section.id }} .wm-wall-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(15,33,56,0.25)); }
+  #shopify-section-{{ section.id }} .wm-wall-tag { position: absolute; z-index: 1; left: 0.7rem; bottom: 0.6rem; color: #fff; font-size: 0.66rem; letter-spacing: 0.04em; opacity: 0.9; }
+
+  #shopify-section-{{ section.id }} .wm-col-head { max-width: 42rem; margin: 0 auto 3rem; text-align: center; }
+  #shopify-section-{{ section.id }} .wm-col-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+  #shopify-section-{{ section.id }} .wm-col-card { display: flex; flex-direction: column; text-align: center; }
+  #shopify-section-{{ section.id }} .wm-cc-img { position: relative; overflow: hidden; border-radius: 0.6rem; background: var(--mint); padding-top: 118%; }
+  #shopify-section-{{ section.id }} .wm-cc-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 1.4rem; }
+  #shopify-section-{{ section.id }} .wm-cc-name { margin: 0.9rem 0 0.15rem; font-size: 1.05rem; font-weight: 600; }
+  #shopify-section-{{ section.id }} .wm-cc-meta { color: var(--subtle); font-size: 0.78rem; }
+
+  #shopify-section-{{ section.id }} .wm-cta { background: var(--ink); color: #fff; text-align: center; }
+  #shopify-section-{{ section.id }} .wm-cta h2 { color: #fff; }
+  #shopify-section-{{ section.id }} .wm-cta h2 .wm-ital { color: var(--gold); }
+  #shopify-section-{{ section.id }} .wm-cta p { max-width: 32rem; margin: 0.8rem auto 0; color: rgba(255,255,255,0.66); }
+  #shopify-section-{{ section.id }} .wm-cta .wm-entry { justify-content: center; margin: 1.8rem auto 0; }
+  #shopify-section-{{ section.id }} .wm-cta .wm-entry input { border-color: rgba(255,255,255,0.13); }
+  #shopify-section-{{ section.id }} .wm-cta .wm-fine { color: rgba(255,255,255,0.5); text-align: center; }
+
+  #shopify-section-{{ section.id }} [data-wm-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; transition-delay: var(--wm-delay, 0ms); }
+  #shopify-section-{{ section.id }} [data-wm-reveal].is-visible { opacity: 1; transform: translateY(0); }
+  #shopify-section-{{ section.id }} .win-mallorca a:focus-visible,
+  #shopify-section-{{ section.id }} .win-mallorca button:focus-visible,
+  #shopify-section-{{ section.id }} .win-mallorca input:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} [data-wm-reveal] { opacity: 1 !important; transform: none !important; transition-duration: 0.001ms !important; }
+  }
+
+  @media (max-width: 991px) {
+    #shopify-section-{{ section.id }} .wm-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+    #shopify-section-{{ section.id }} .wm-section { padding: 4rem 0; }
+    #shopify-section-{{ section.id }} .wm-prize-grid,
+    #shopify-section-{{ section.id }} .wm-steps { grid-template-columns: 1fr; gap: 1.4rem; }
+    #shopify-section-{{ section.id }} .wm-wall,
+    #shopify-section-{{ section.id }} .wm-col-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    #shopify-section-{{ section.id }} .win-mallorca { font-size: 15px; }
+    #shopify-section-{{ section.id }} .wm-entries-title {
+      max-width: 22rem;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      text-align: center;
+      font-size: 1.62rem !important;
+      line-height: 1.08;
+    }
+    #shopify-section-{{ section.id }} .wm-entries-title .wm-ital {
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      margin: 0.15rem auto 0;
+      font-size: 1.48rem !important;
+    }
+    #shopify-section-{{ section.id }} .wm-entry { flex-direction: column; }
+    #shopify-section-{{ section.id }} .wm-entry input,
+    #shopify-section-{{ section.id }} .wm-entry .wm-btn { border-radius: 0.7rem; }
+    #shopify-section-{{ section.id }} .wm-hero-in { padding: 4rem 1.5rem; }
+  }
+</style>
+
+<div class="win-mallorca">
+  <header class="wm-hero">
+    <div class="wm-hero-in">
+      <span class="wm-badge" data-wm-reveal>The Palma Photo Contest</span>
+      <h1 data-wm-reveal>Take Mallorca <span class="wm-ital">home.</span></h1>
+      <p class="wm-hero-sub" data-wm-reveal>Share your Mallorca moment for the chance to win. Post a photo or story, tag <strong>@palmagin</strong> and use <strong>#TakePalmaHome</strong> — the best entries win a complete Palma set every month, and a grand-prize trip to the island.</p>
+      <div class="wm-hero-actions" id="enter" data-wm-reveal>
+        <a href="https://www.instagram.com/mallorcadistillery" target="_blank" rel="noopener" class="wm-btn-ig">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.52.01-4.76.07-.92.04-1.42.2-1.75.33-.44.17-.76.38-1.09.71-.33.33-.54.65-.71 1.09-.13.33-.29.83-.33 1.75-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.04.92.2 1.42.33 1.75.17.44.38.76.71 1.09.33.33.65.54 1.09.71.33.13.83.29 1.75.33 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c.92-.04 1.42-.2 1.75-.33.44-.17.76-.38 1.09-.71.33-.33.54-.65.71-1.09.13-.33.29-.83.33-1.75.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.04-.92-.2-1.42-.33-1.75a2.94 2.94 0 00-.71-1.09 2.94 2.94 0 00-1.09-.71c-.33-.13-.83-.29-1.75-.33-1.24-.06-1.61-.07-4.76-.07zm0 2.76a5.46 5.46 0 110 10.92 5.46 5.46 0 010-10.92zm0 9a3.54 3.54 0 100-7.08 3.54 3.54 0 000 7.08zm6.95-9.22a1.27 1.27 0 11-2.55 0 1.27 1.27 0 012.55 0z"/></svg>
+          Follow @palmagin
+        </a>
+        <a href="#how" class="wm-btn-line">How to enter</a>
+      </div>
+      <span class="wm-hashtag" data-wm-reveal>#TakePalmaHome</span>
+      <p class="wm-fine" data-wm-reveal>Free to enter · No purchase necessary · 18+ · This promotion is not sponsored, endorsed or administered by Instagram. <a href="#" style="text-decoration:underline">Terms apply</a></p>
+    </div>
+  </header>
+
+  <section class="wm-section" id="prizes">
+    <div class="wm-wrap">
+      <div class="wm-prizes-head">
+        <span class="wm-eyebrow" data-wm-reveal>What you can win</span>
+        <h2 style="margin-top:.8rem" data-wm-reveal>Two ways to <span class="wm-ital">win Mallorca</span></h2>
+      </div>
+      <div class="wm-prize-grid">
+        <article class="wm-prize" data-wm-reveal style="background-image:url('https://mallorcadistillery.com/cdn/shop/files/Frame_261.jpg?width=1200')">
+          <div class="wm-prize-body">
+            <span class="wm-prize-tag">Grand prize · up to 3 winners</span>
+            <h3>A trip to <span class="wm-ital">Mallorca</span></h3>
+            <p>The standout entries win a journey to the island where Palma is distilled — and experience the place behind every bottle. Up to three winners, chosen at the close of the contest.</p>
+          </div>
+        </article>
+        <article class="wm-prize" data-wm-reveal style="background-image:url('https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_006_1024x1024.jpg?width=1200')">
+          <div class="wm-prize-body">
+            <span class="wm-prize-tag">Every month</span>
+            <h3>A complete <span class="wm-ital">Palma set</span></h3>
+            <p>Each month we pick our favourite entries to win a full Palma collection — the organic range delivered to your door.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="wm-section" id="how" style="background:var(--bg-soft)">
+    <div class="wm-wrap">
+      <div class="wm-prizes-head">
+        <span class="wm-eyebrow" data-wm-reveal>How to enter</span>
+        <h2 style="margin-top:.8rem" data-wm-reveal>Three steps to <span class="wm-ital">the island</span></h2>
+      </div>
+      <div class="wm-steps">
+        <div class="wm-step" data-wm-reveal><div class="wm-step-num">01</div><div class="wm-step-name">Follow @palmagin</div><div class="wm-step-desc">Follow us on Instagram and find your Mallorca moment — a Palma serve, a sunset, a memory of the island.</div></div>
+        <div class="wm-step" data-wm-reveal><div class="wm-step-num">02</div><div class="wm-step-name">Post &amp; tag</div><div class="wm-step-desc">Share your Mallorca moment — a Palma serve, the bottle, or simply the island feeling — with <strong>#TakePalmaHome</strong> and tag <strong>@palmagin</strong>. Public profiles only.</div></div>
+        <div class="wm-step" data-wm-reveal><div class="wm-step-num">03</div><div class="wm-step-name">Best entries win</div><div class="wm-step-desc">We pick our favourite entries — the most creative Palma moments stand out. A complete set every month, and the grand-prize trip for up to 3 winners.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wm-section" id="entries">
+    <div class="wm-wrap">
+      <div class="wm-prizes-head">
+        <span class="wm-eyebrow" data-wm-reveal>The entries</span>
+        <h2 class="wm-entries-title" style="margin-top:.8rem" data-wm-reveal>Tagged with <span class="wm-ital">#TakePalmaHome</span></h2>
+        <p class="wm-lead" data-wm-reveal style="margin-top:.8rem">Real moments from the Palma community across the island and beyond.</p>
+      </div>
+      <div class="wm-wall" data-wm-reveal>
+        <div class="wm-wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_091_1024x1024.jpg?width=500" alt="Palma community entry" width="500" height="500" loading="lazy" decoding="async"><span class="wm-wall-tag">@entry</span></div>
+        <div class="wm-wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_099_1.jpg?width=500" alt="Palma community entry" width="500" height="500" loading="lazy" decoding="async"><span class="wm-wall-tag">@entry</span></div>
+        <div class="wm-wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_260.jpg?width=500" alt="Palma community entry" width="500" height="500" loading="lazy" decoding="async"><span class="wm-wall-tag">@entry</span></div>
+        <div class="wm-wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-111copy2_1024x1024.png?width=500" alt="Palma community entry" width="500" height="500" loading="lazy" decoding="async"><span class="wm-wall-tag">@entry</span></div>
+        <div class="wm-wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_261.jpg?width=500" alt="Palma community entry" width="500" height="500" loading="lazy" decoding="async"><span class="wm-wall-tag">@entry</span></div>
+        <div class="wm-wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/LowRes-096copy2_1024x1024.png?width=500" alt="Palma community entry" width="500" height="500" loading="lazy" decoding="async"><span class="wm-wall-tag">@entry</span></div>
+        <div class="wm-wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_257.jpg?width=500" alt="Palma community entry" width="500" height="500" loading="lazy" decoding="async"><span class="wm-wall-tag">@entry</span></div>
+        <div class="wm-wall-item"><img src="https://mallorcadistillery.com/cdn/shop/files/Low_Res_-_006_1024x1024.jpg?width=500" alt="Palma community entry" width="500" height="500" loading="lazy" decoding="async"><span class="wm-wall-tag">@entry</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wm-section" id="collection">
+    <div class="wm-wrap">
+      <div class="wm-col-head">
+        <span class="wm-eyebrow" data-wm-reveal>What's in a set</span>
+        <h2 style="margin-top:.8rem" data-wm-reveal>The Palma <span class="wm-ital">collection</span></h2>
+        <p class="wm-lead" data-wm-reveal style="margin-top:.8rem">Organic, small-batch spirits, handcrafted at Mallorca's first organic distillery — and named Spirit of the Year Spain 2026.</p>
+      </div>
+      <div class="wm-col-grid" data-wm-reveal>
+        <article class="wm-col-card"><div class="wm-cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_148_f44972fb-193a-455a-87ef-140621abb5cb.png?v=1770157163&width=500" alt="Palma Gin" width="500" height="890" loading="lazy" decoding="async"></div><div class="wm-cc-name">Palma Gin</div><div class="wm-cc-meta">Organic · 15 botanicals</div></article>
+        <article class="wm-col-card"><div class="wm-cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_148_a176364e-a22e-49e8-b5e7-e06b09c27fd9.png?v=1769786557&width=500" alt="Palma Citrus Gin" width="500" height="890" loading="lazy" decoding="async"></div><div class="wm-cc-name">Citrus Gin</div><div class="wm-cc-meta">Lemon, orange and lime</div></article>
+        <article class="wm-col-card"><div class="wm-cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_147_a0dc56fa-f73e-4127-ab73-08793c091668.png?v=1769786683&width=500" alt="Palma Spiced Gin" width="500" height="890" loading="lazy" decoding="async"></div><div class="wm-cc-name">Spiced Gin</div><div class="wm-cc-meta">Oak-aged · cinnamon and vanilla</div></article>
+        <article class="wm-col-card"><div class="wm-cc-img"><img src="https://mallorcadistillery.com/cdn/shop/files/Frame_152_e5a944b7-af35-4b10-976f-1abe9d043906.png?v=1769787579&width=500" alt="Palma Vodka" width="500" height="890" loading="lazy" decoding="async"></div><div class="wm-cc-name">Palma Vodka</div><div class="wm-cc-meta">Organic · Flor de Sal</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="wm-section wm-cta">
+    <div class="wm-wrap">
+      <span class="wm-eyebrow" data-wm-reveal style="color:var(--gold)">Stay in the loop</span>
+      <h2 style="margin-top:.8rem" data-wm-reveal>Not on Instagram? <span class="wm-ital">Stay close.</span></h2>
+      <p data-wm-reveal>Subscribe for winner announcements, recipes and new releases — and get 10% off your first order. Entries are made on Instagram with #TakePalmaHome.</p>
+      <form class="wm-entry" data-wm-reveal onsubmit="return false">
+        <input type="email" placeholder="Your email address" aria-label="Email address" required>
+        <button type="submit" class="wm-btn">Subscribe &amp; save 10%</button>
+      </form>
+      <p class="wm-fine" data-wm-reveal>10% off your first order · 18+ · This promotion is not sponsored, endorsed or administered by Instagram. <a href="#" style="text-decoration:underline;color:rgba(255,255,255,.7)">Terms apply</a></p>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const section = document.getElementById('shopify-section-{{ section.id }}');
+  if (!section || section.dataset.winMallorcaReady === 'true') return;
+  section.dataset.winMallorcaReady = 'true';
+
+  const items = Array.from(section.querySelectorAll('[data-wm-reveal]'));
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach((item) => item.classList.add('is-visible'));
+    return;
+  }
+  items.forEach((item, index) => item.style.setProperty('--wm-delay', `${(index % 4) * 70}ms`));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  requestAnimationFrame(() => items.forEach((item) => observer.observe(item)));
+})();
+</script>
+
+{% comment %}theme-check-enable RemoteAsset{% endcomment %}
+
+{% schema %}
+{
+  "name": "Win Mallorca",
+  "tag": "section",
+  "class": "win-mallorca-section",
+  "presets": [
+    {
+      "name": "Win Mallorca"
+    }
+  ]
+}
+{% endschema %}

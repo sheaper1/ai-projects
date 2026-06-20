@@ -1,0 +1,208 @@
+A free PDF issue requires a PDF URL. The issue was kept as paid.
+A user with this email already exists.
+Abonnenten anlegen
+Active
+Active until %s
+Add New Article
+Add New Magazine
+All Articles
+All Issues
+All Posts
+Alle Artikel
+Alle Ausgaben
+Alle Felder sind optional — leere Felder verwenden den Standardtext (grau angezeigt).
+Alle sichtbaren Texte (Überschriften, Buttons, Hinweise) änderst du unter %s. Leere Felder verwenden den Standardtext.
+Anleitung
+Anleitung — Magazin einrichten
+Apply
+Arbeite diese Schritte einmal von oben nach unten ab. Klicke einen Shortcode an, um ihn zu kopieren.
+Article access
+Article filters
+Article image URL
+Article magazine requirement
+Artikel dieser Ausgabe
+Artikel → Neu
+Ausgaben und Artikel erstellen
+Ausgaben → Neu
+Bezahlseite (Payment page URL):
+Blog
+Bulk action completed.
+Bulk actions
+Cancel
+Cancelled
+Change expiration date
+Change password
+Choose PDF
+Choose a valid CSV file.
+Choose image
+Clear
+Columns: email, name, expires_at, status. Existing subscribers are updated by email.
+Could not load issues. Please try again.
+Cover image URL
+Create a page with the [df_login_form] shortcode and paste its URL here.
+Create demo content
+Create sample magazines, topic categories, issue years, and linked articles for testing the subscription architecture.
+Create subscriber
+DF Subscriber
+DF Subscription
+DF Subscriptions
+DF Subscriptions → Einstellungen
+Delete data on uninstall
+Delete the selected subscriber accounts permanently?
+Delete users
+Demo content
+Demo content ready. Created %1$d magazines and %2$d articles. Existing matching demo titles were skipped.
+Demo issue preview for testing filters, subscriptions, and issue cards.
+Der Flugschreiber
+Der Flugschreiber Subscriptions
+Die öffentliche PDF-URL ist nur für alte, kostenlose Ausgaben gedacht. Bezahlte Ausgaben nutzen den geschützten PDF-Upload.
+Display name
+Edit Article
+Edit Magazine
+Email
+Email, name, or username
+Entdecken Sie aktuelle und vergangene Ausgaben des Flugschreibers. Neue Ausgaben sind Teil des Abonnements, ältere Ausgaben stehen teilweise als freie PDF-Dateien bereit.
+Erschienen im %s
+Erstelle Abonnenten von Hand unter %s mit E-Mail, Passwort und Ablaufdatum — oder importiere sie als CSV (Spalten: email, name, expires_at, status). Über Massenaktionen kannst du Abos pausieren, verlängern oder beenden.
+Erstelle eine Seite mit %s und kopiere ihre URL in Schritt 1 (Login-Seite).
+Erstelle eine Seite mit %s, damit Abonnenten ihren Status und ihr Ablaufdatum sehen.
+Expired on %s
+Expires at
+Export subscribers as CSV
+Extend by 30 days
+Free article
+Für automatische E-Mails (Willkommen, Erinnerung, Ablauf) muss WordPress-Cron laufen.
+Go Back
+Grundeinstellungen festlegen
+Gut zu wissen
+Hier legst du außerdem fest, ob E-Mails verschickt werden und ob Daten beim Löschen des Plugins erhalten bleiben.
+Ihre Vorteile
+Import and export
+Import subscribers from CSV
+Imported or updated %d subscribers.
+Incorrect email, username, or password. Please try again.
+Inhalte
+Inherit from issue
+Issue Date
+Issue Details
+Issue Type
+Issue Year
+Issue Years
+Issue date
+Issue filters
+Issue number
+Issue type
+Last change
+Lege für jeden Bereich eine %s an und füge genau einen Shortcode in den Inhalt ein. Der Shortcode baut das fertige Layout automatisch.
+Lege unter %s eine Ausgabe an. Wähle den Zugriff: „bezahlt“ (nur Abonnenten) oder „kostenloses PDF“ (frei). Setze Cover, Ausgabennummer und Datum.
+Lege unter %s einen Artikel an und verknüpfe ihn mit seiner Ausgabe. Der öffentliche Auszug ist für alle sichtbar, der volle Text nur für aktive Abonnenten.
+Log in
+Log out
+Login- und Konto-Seite verbinden
+Login-Seite (Subscriber login page URL):
+Magazine
+Magazine Article
+Magazine Articles
+Magazine Issue
+Magazine article
+Magazine issue
+Magazines
+My subscription
+Name
+New paid
+New paid issue
+Next
+No expiration date
+No history
+No magazine selected
+No matching subscribers found.
+No subscribers yet.
+Not set
+Old free PDF
+Old free PDF issue
+Old free PDF issues can redirect directly to this PDF when opened.
+Only valid PDF files can be uploaded as protected issues.
+Open PDF
+Optional für einen Blog mit normalen WordPress-Beiträgen:
+PDF
+PDF URL for old issue
+Paid article
+Password
+Pause
+Paused
+Payment page URL
+Permanently delete plugin content, settings, and subscriber metadata when the plugin is deleted.
+Please enter a password and a valid expiration date.
+Please enter a valid email address.
+Please enter a valid expiration date.
+Please enter your email or username and password.
+Please log in to view your subscription.
+Post filters
+Preview length in words
+Previous
+Protected PDF for paid issue
+Purchase subscription
+Read the full article
+Remove protected PDF
+Renew subscription
+Reportagen, Fachwissen und persönliche Geschichten aus der Welt der Luftfahrt - geschrieben von Piloten und Flugbegeisterten.
+Require every magazine article to be linked to an issue.
+Save
+Save profile
+Save settings
+Search subscribers
+Security check failed.
+Seiten anlegen und Shortcodes einfügen
+Select %s
+Select all subscribers
+Select magazine issue
+Select subscribers and a valid bulk action.
+Send welcome, expiration reminder, and expired subscription emails.
+Set active
+Settings
+Settings saved.
+Shortcode
+Status
+Subscriber created.
+Subscriber login page URL
+Subscribers
+Subscription emails
+Subscription updated.
+System
+Texte anpassen und testen
+Texte gespeichert.
+The CSV columns are invalid.
+The PDF file could not be found.
+The article was saved as a draft because no magazine issue was selected.
+The download link is invalid or expired.
+The login form expired. Please try again.
+The profile could not be updated.
+The protected PDF could not be saved.
+The protected PDF directory could not be created.
+The selected user is not a subscriber.
+This is demo issue content. New paid issues are protected by the subscription gate; old PDF issues can redirect directly to the PDF URL.
+This is the full demo article text. It should only be visible to administrators and subscribers with an active subscription date.
+This public excerpt is visible to visitors without an active subscription.
+To read the full text, please log in or purchase a subscription.
+Topic Categories
+Topic Category
+Trial
+User
+Visitors without active subscription will see this link below the article preview.
+Website-Texte
+Wofür
+You do not have access to this PDF.
+Your Der Flugschreiber subscription account
+Your Der Flugschreiber subscription expired on %s. Use the subscription page to renew it.
+Your Der Flugschreiber subscription is active until %s. Use the subscription page to renew it.
+Your profile was updated.
+Your subscriber account is ready. You can log in here: %s
+Your subscription expires soon
+Your subscription has expired
+Zahlungen laufen extern: Das Plugin verarbeitet kein Geld, es leitet nur zur Bezahlseite weiter.
+Zum Ausprobieren erzeugst du unter %s Demo-Ausgaben und -Artikel. Öffne die Seiten danach in einem privaten Browserfenster (abgemeldet), um die Besucher-Ansicht zu prüfen.
+die Adresse deiner Anmelde-Seite aus Schritt 3.
+die externe Seite, auf der das Abo gekauft wird. Besucher ohne aktives Abo werden dorthin geleitet.
+kopiert
+neue WordPress-Seite
+Öffne %s und trage zwei Adressen ein:

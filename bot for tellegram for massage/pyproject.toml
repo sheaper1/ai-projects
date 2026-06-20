@@ -1,0 +1,19 @@
+[project]
+name = "massage-telegram-bot"
+version = "0.1.0"
+description = "Telegram bot for massage appointment requests"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "aiogram==3.13.1",
+    "python-dotenv==1.0.1",
+    "tzdata==2026.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.3.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

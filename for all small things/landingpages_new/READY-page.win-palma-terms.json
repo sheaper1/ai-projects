@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": {
+      "type": "win-palma-terms"
+    }
+  },
+  "order": ["main"]
+}

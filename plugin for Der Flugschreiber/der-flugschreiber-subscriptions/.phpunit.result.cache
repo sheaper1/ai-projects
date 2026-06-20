@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"AccessTest::test_legacy_status_remains_active":0,"AccessTest::test_trial_can_read_paid_content":0,"AccessTest::test_paused_and_cancelled_cannot_read":0,"AccessTest::test_expiration_uses_end_of_wordpress_day":0,"AccessTest::test_wrong_role_and_invalid_date_are_denied":0}}

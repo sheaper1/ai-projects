@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "palma_gin": {
+      "type": "palma-gin"
+    }
+  },
+  "order": ["palma_gin"]
+}
