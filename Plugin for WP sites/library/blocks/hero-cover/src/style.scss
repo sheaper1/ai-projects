@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;1,300&family=Roboto+Flex:wght@400;500;600;800&display=swap');
+
+.wp-block-library-hero-cover {
+	// Дизайн-токены блока — централизованно, чтобы менять в одном месте.
+	--hc-fg: #ffffff;
+	--hc-font-head: 'Nunito Sans', sans-serif;
+	--hc-font-body: 'Roboto Flex', system-ui, sans-serif;
+	--hc-pad-x: clamp(20px, 4vw, 48px);
+	--hc-pad-y: clamp(20px, 3.5vw, 40px);
+	--hc-max: 724px;
+
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	min-height: clamp(640px, 100svh, 940px);
+	color: var(--hc-fg);
+	font-family: var(--hc-font-body);
+	background-color: #969696;
+	background-image: var(--hc-bg);
+	background-size: cover;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	overflow: hidden;
+
+	// Затемнение для читаемости: чуть темнее сверху, слева и снизу.
+	.hero-cover__overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+		background:
+			linear-gradient(180deg, rgba(18, 26, 38, 0.28) 0%, rgba(18, 26, 38, 0) 24%, rgba(18, 26, 38, 0) 56%, rgba(10, 15, 22, 0.58) 100%),
+			linear-gradient(90deg, rgba(10, 15, 22, 0.45) 0%, rgba(10, 15, 22, 0) 55%);
+	}
+
+	.hero-cover__inner {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		gap: clamp(24px, 4vh, 40px);
+		padding: var(--hc-pad-y) var(--hc-pad-x);
+	}
+
+	// --- Верхняя панель ---
+	.hero-cover__bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.hero-cover__menu {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-weight: 600;
+		font-size: 18px;
+		text-transform: uppercase;
+
+		svg { width: 32px; height: 32px; }
+	}
+
+	.hero-cover__logo {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+	}
+	.hero-cover__logo-box {
+		display: block;
+		width: 112px;
+		height: 61px;
+		border: 8px solid var(--hc-fg);
+	}
+	.hero-cover__logo-text {
+		font-weight: 800;
+		font-size: 20px;
+		letter-spacing: 0.04em;
+	}
+
+	.hero-cover__contact {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 56px;
+		padding: 14px 30px;
+		border-radius: 100px;
+		background: var(--hc-fg);
+		color: #000;
+		font-weight: 500;
+		font-size: 18px;
+		text-decoration: none;
+		white-space: nowrap;
+		backdrop-filter: blur(26px);
+	}
+
+	// --- Контент по центру ---
+	.hero-cover__content {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: center;
+		gap: clamp(12px, 1.5vw, 16px);
+		max-width: var(--hc-max);
+	}
+
+	.hero-cover__title {
+		display: flex;
+		flex-direction: column;
+		row-gap: 0.4em;
+		margin: 0;
+		font-family: var(--hc-font-head);
+		font-weight: 400;
+		font-size: clamp(40px, 6vw, 80px);
+		line-height: 1;
+		letter-spacing: -0.03em;
+	}
+	.hero-cover__title-main { display: block; }
+	.hero-cover__title-accent {
+		display: block;
+		font-style: italic;
+		font-weight: 300;
+	}
+
+	.hero-cover__subtitle {
+		margin: 0;
+		max-width: var(--hc-max);
+		font-size: clamp(18px, 2vw, 24px);
+		font-weight: 400;
+		line-height: 1.3;
+	}
+
+	// --- Колонки текста снизу ---
+	.hero-cover__cols {
+		display: flex;
+		flex-wrap: wrap;
+		gap: clamp(24px, 6vw, 96px);
+	}
+	.hero-cover__col {
+		margin: 0;
+		max-width: 333px;
+		font-size: clamp(15px, 1.4vw, 18px);
+		line-height: 1.4;
+	}
+
+	// --- Мобильная адаптация ---
+	@media (max-width: 782px) {
+		min-height: 100svh;
+		background-position: center;
+
+		.hero-cover__menu { font-size: 16px; svg { width: 26px; height: 26px; } }
+		.hero-cover__logo-box { width: 84px; height: 46px; border-width: 6px; }
+		.hero-cover__logo-text { font-size: 17px; }
+		.hero-cover__contact { min-height: 46px; padding: 10px 20px; font-size: 16px; }
+		.hero-cover__cols { flex-direction: column; gap: 18px; }
+		.hero-cover__col { max-width: none; }
+	}
+
+	@media (max-width: 480px) {
+		.hero-cover__menu span,
+		.hero-cover__logo { display: none; } // на узких экранах оставляем иконку и контакт
+		.hero-cover__bar { justify-content: space-between; }
+	}
+}

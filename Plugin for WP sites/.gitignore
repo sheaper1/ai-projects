@@ -17,6 +17,7 @@ wp-config.php
 # Логи и временное
 *.log
 npm-debug.log*
+.figma-tmp/
 
 # Мусор ОС / редакторов
 .DS_Store

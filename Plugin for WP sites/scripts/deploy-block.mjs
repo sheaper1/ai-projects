@@ -1,0 +1,132 @@
+// Универсальный деплой блока библиотеки на staging через Code Snippets REST.
+// Заливает ВСЕ файлы блока (block.json, render.php, build/*, assets/*),
+// регистрирует editor-скрипт/стиль явно (с рабочим URL), создаёт/обновляет
+// тест-страницу с блоком и проверяет рендер.
+//
+// Запуск: node scripts/deploy-block.mjs <slug>
+//   напр.: node scripts/deploy-block.mjs hero-cover
+
+import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { resolve, dirname, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = resolve( dirname( fileURLToPath( import.meta.url ) ), '..' );
+const slug = process.argv[ 2 ];
+if ( ! slug ) { console.error( 'Укажи slug блока: node scripts/deploy-block.mjs <slug>' ); process.exit( 1 ); }
+
+const blockDir = resolve( root, 'library/blocks', slug );
+
+// --- .env ---
+const env = {};
+for ( const line of readFileSync( resolve( root, '.env' ), 'utf8' ).split( /\r?\n/ ) ) {
+	const m = line.match( /^([A-Z_]+)=(.*)$/ );
+	if ( m ) env[ m[ 1 ] ] = m[ 2 ];
+}
+const BASE = env.WP_URL.replace( /\/$/, '' );
+const AUTH = 'Basic ' + Buffer.from( `${ env.WP_USER }:${ env.WP_APP_PASSWORD }` ).toString( 'base64' );
+
+const api = async ( path, opts = {} ) => {
+	const res = await fetch( `${ BASE }${ path }`, {
+		...opts,
+		headers: { Authorization: AUTH, 'Content-Type': 'application/json', ...( opts.headers || {} ) },
+	} );
+	const text = await res.text();
+	let body; try { body = JSON.parse( text ); } catch { body = text; }
+	return { status: res.status, body };
+};
+
+// --- собрать все файлы блока (рекурсивно) в base64 ---
+const walk = ( dir ) => readdirSync( dir ).flatMap( ( name ) => {
+	const p = resolve( dir, name );
+	return statSync( p ).isDirectory() ? walk( p ) : [ p ];
+} );
+
+const files = {};
+for ( const abs of walk( blockDir ) ) {
+	let rel = relative( blockDir, abs ).split( '\\' ).join( '/' );
+	let buf = readFileSync( abs );
+	// из block.json убираем editorScript/style — регистрируем их вручную.
+	if ( rel === 'block.json' ) {
+		const json = JSON.parse( buf.toString( 'utf8' ) );
+		delete json.editorScript;
+		delete json.style;
+		buf = Buffer.from( JSON.stringify( json, null, '\t' ) );
+	}
+	files[ rel ] = buf.toString( 'base64' );
+}
+
+const filesPhp = Object.entries( files )
+	.map( ( [ rel, data ] ) => `\t'${ rel }' => '${ data }',` )
+	.join( '\n' );
+
+const handle = `library-${ slug }`;
+const snippetCode = `$up = wp_upload_dir();
+$dir = trailingslashit( $up['basedir'] ) . 'library-blocks/${ slug }';
+$url = trailingslashit( $up['baseurl'] ) . 'library-blocks/${ slug }';
+$files = array(
+${ filesPhp }
+);
+foreach ( $files as $rel => $b64 ) {
+	$dest = $dir . '/' . $rel;
+	wp_mkdir_p( dirname( $dest ) );
+	file_put_contents( $dest, base64_decode( $b64 ) );
+}
+add_action( 'init', function () use ( $dir, $url ) {
+	if ( ! file_exists( $dir . '/block.json' ) ) { return; }
+	$asset = file_exists( $dir . '/build/index.asset.php' )
+		? include $dir . '/build/index.asset.php'
+		: array( 'dependencies' => array(), 'version' => '1' );
+	wp_register_script( '${ handle }-editor', $url . '/build/index.js', $asset['dependencies'], $asset['version'], true );
+	wp_register_style( '${ handle }-style', $url . '/build/style-index.css', array(), $asset['version'] );
+	register_block_type( $dir, array(
+		'editor_script' => '${ handle }-editor',
+		'style'         => '${ handle }-style',
+	) );
+} );`;
+
+const SNIPPET_NAME = `Library: ${ slug } block (auto-deploy)`;
+const blockName = `library/${ slug }`;
+
+const main = async () => {
+	// удалить прежний сниппет с тем же именем
+	const list = await api( '/wp-json/code-snippets/v1/snippets' );
+	if ( Array.isArray( list.body ) ) {
+		for ( const s of list.body ) {
+			if ( s.name === SNIPPET_NAME ) {
+				await api( `/wp-json/code-snippets/v1/snippets/${ s.id }`, { method: 'DELETE' } );
+				console.log( `Удалён старый сниппет #${ s.id }` );
+			}
+		}
+	}
+
+	const created = await api( '/wp-json/code-snippets/v1/snippets', {
+		method: 'POST',
+		body: JSON.stringify( {
+			name: SNIPPET_NAME,
+			desc: `Авто-деплой блока ${ blockName }.`,
+			code: snippetCode,
+			scope: 'global',
+			active: true,
+		} ),
+	} );
+	console.log( 'Сниппет:', created.status, 'id=', created.body && created.body.id );
+	if ( ! ( created.body && created.body.id ) ) { console.log( JSON.stringify( created.body ).slice( 0, 400 ) ); throw new Error( 'Сниппет не создан' ); }
+
+	// тест-страница: самозакрывающийся динамический блок (контент строит render.php)
+	const pageSlug = `${ slug }-test`;
+	const content = `<!-- wp:${ blockName } {"align":"full"} /-->`;
+	const existing = await api( `/wp-json/wp/v2/pages?slug=${ pageSlug }&status=publish` );
+	const existId = Array.isArray( existing.body ) && existing.body[ 0 ] && existing.body[ 0 ].id;
+	const page = existId
+		? await api( `/wp-json/wp/v2/pages/${ existId }`, { method: 'POST', body: JSON.stringify( { content } ) } )
+		: await api( '/wp-json/wp/v2/pages', { method: 'POST', body: JSON.stringify( { title: `${ slug } test`, slug: pageSlug, status: 'publish', content } ) } );
+	console.log( existId ? 'Страница обновлена:' : 'Страница создана:', page.status, 'id=', page.body && page.body.id );
+	const link = page.body && page.body.link;
+
+	const html = await ( await fetch( link ) ).text();
+	const ok = html.includes( `wp-block-${ slug.replace( '/', '-' ) }` ) || html.includes( `wp-block-library-${ slug }` );
+	console.log( '\nСтраница:', link );
+	console.log( ok ? '✅ Блок отрендерен сервером' : '❌ Маркер блока не найден' );
+};
+
+main().catch( ( e ) => { console.error( e ); process.exit( 1 ); } );

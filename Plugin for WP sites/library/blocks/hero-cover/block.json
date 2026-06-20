@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/hero-cover",
+	"version": "0.1.0",
+	"title": "Hero Cover",
+	"category": "design",
+	"icon": "cover-image",
+	"description": "Полноэкранный Hero с фоновым фото, верхней панелью (меню/лого/контакт), заголовком и колонками текста. Адаптивный.",
+	"keywords": [ "hero", "cover", "обложка", "первый экран", "недвижимость" ],
+	"textdomain": "library",
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [ "full" ],
+		"multiple": true
+	},
+	"attributes": {
+		"align": { "type": "string", "default": "full" },
+		"titleMain": { "type": "string", "default": "Ihr Immobilienmakler in Vorarlberg," },
+		"titleAccent": { "type": "string", "default": "der ehrlich bewertet" },
+		"subtitle": { "type": "string", "default": "Verkaufen ohne falsche Versprechen und ohne Verkaufsdruck" },
+		"colLeft": { "type": "string", "default": "Sie verkaufen Ihre Immobilie, ohne hingehalten zu werden, ohne unrealistische Preisversprechen und ohne wochenlang auf einen Rückruf zu warten." },
+		"colRight": { "type": "string", "default": "Sie haben klare Kommunikation und einen festen Ansprechpartner vom ersten Gespräch bis zur Übergabe." },
+		"menuText": { "type": "string", "default": "Menu" },
+		"logoText": { "type": "string", "default": "LOGO" },
+		"contactText": { "type": "string", "default": "Contact" },
+		"contactUrl": { "type": "string", "default": "#" },
+		"backgroundUrl": { "type": "string", "default": "" },
+		"backgroundId": { "type": "number" }
+	},
+	"render": "file:./render.php"
+}
