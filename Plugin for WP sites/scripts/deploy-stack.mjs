@@ -1,10 +1,11 @@
-// Полная установка стека на staging БЕЗ SFTP: плагин library-blocks + тема rosenberger.
-// Code Snippets используется как ОДНОРАЗОВЫЙ установщик: пишет файлы, активирует
-// плагин и тему, после чего сниппет удаляется. В рабочем состоянии — только плагин и тема.
+// Деплой проекта на staging БЕЗ SFTP: блочная тема rosenberger (блоки внутри неё).
+// Модель «копия в проект»: блоки живут в теме, отдельного плагина нет.
+// Code Snippets — одноразовый установщик: пишет файлы темы, активирует тему,
+// сносит старый плагin library-blocks, затем обезвреживается.
 //
 // Запуск: node scripts/deploy-stack.mjs
 
-import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { resolve, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -33,45 +34,35 @@ const walk = ( dir ) => readdirSync( dir ).flatMap( ( name ) => {
 	return statSync( p ).isDirectory() ? walk( p ) : [ p ];
 } );
 
-const toRel = ( base, abs ) => relative( base, abs ).split( '\\' ).join( '/' );
-
-// --- файлы плагина: main php + все блоки (без src/) ---
-const pluginFiles = {};
-pluginFiles[ 'library-blocks.php' ] = readFileSync( resolve( root, 'library/library-blocks.php' ) ).toString( 'base64' );
-const blocksDir = resolve( root, 'library/blocks' );
-for ( const abs of walk( blocksDir ) ) {
-	const rel = toRel( blocksDir, abs );
-	if ( rel.includes( '/src/' ) ) continue; // исходники на сервер не нужны
-	pluginFiles[ `blocks/${ rel }` ] = readFileSync( abs ).toString( 'base64' );
-}
-
-// --- файлы темы ---
-const themeFiles = {};
+// --- файлы темы (включая blocks/ с build/ и assets/, без src/) ---
 const themeDir = resolve( root, 'projects/rosenberger' );
+const themeFiles = {};
 for ( const abs of walk( themeDir ) ) {
-	themeFiles[ toRel( themeDir, abs ) ] = readFileSync( abs ).toString( 'base64' );
+	const rel = relative( themeDir, abs ).split( '\\' ).join( '/' );
+	if ( rel.includes( '/src/' ) ) continue; // исходники на сервер не нужны
+	themeFiles[ rel ] = readFileSync( abs ).toString( 'base64' );
 }
 
 const phpArray = ( obj ) => Object.entries( obj ).map( ( [ k, v ] ) => `\t'${ k }' => '${ v }',` ).join( '\n' );
 
-const snippetCode = `$plugin_dir = WP_PLUGIN_DIR . '/library-blocks';
-$theme_dir  = get_theme_root() . '/rosenberger';
-$plugin_files = array(
-${ phpArray( pluginFiles ) }
-);
+const snippetCode = `$theme_dir = get_theme_root() . '/rosenberger';
 $theme_files = array(
 ${ phpArray( themeFiles ) }
 );
-foreach ( $plugin_files as $rel => $b64 ) { $d = $plugin_dir . '/' . $rel; wp_mkdir_p( dirname( $d ) ); file_put_contents( $d, base64_decode( $b64 ) ); }
 foreach ( $theme_files as $rel => $b64 ) { $d = $theme_dir . '/' . $rel; wp_mkdir_p( dirname( $d ) ); file_put_contents( $d, base64_decode( $b64 ) ); }
+if ( get_option( 'stylesheet' ) !== 'rosenberger' ) { switch_theme( 'rosenberger' ); }
+// Сносим старый общий плагин (модель сменилась на «блоки в теме»).
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
-if ( ! is_plugin_active( 'library-blocks/library-blocks.php' ) ) { activate_plugin( 'library-blocks/library-blocks.php' ); }
-if ( get_option( 'stylesheet' ) !== 'rosenberger' ) { switch_theme( 'rosenberger' ); }`;
+if ( is_plugin_active( 'library-blocks/library-blocks.php' ) ) { deactivate_plugins( 'library-blocks/library-blocks.php' ); }
+$pd = WP_PLUGIN_DIR . '/library-blocks';
+if ( is_dir( $pd ) ) {
+	$it = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $pd, FilesystemIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
+	foreach ( $it as $f ) { $f->isDir() ? @rmdir( $f->getPathname() ) : @unlink( $f->getPathname() ); }
+	@rmdir( $pd );
+}`;
 
 const INSTALLER = 'Library: STACK installer (temporary)';
 
-// В этой версии Code Snippets DELETE через REST не работает (500), поэтому наши
-// сниппеты «обезвреживаем»: деактивируем и очищаем код (становятся инертными).
 const neutralizeLibrarySnippets = async () => {
 	const list = await api( '/wp-json/code-snippets/v1/snippets' );
 	if ( ! Array.isArray( list.body ) ) return;
@@ -87,15 +78,14 @@ const neutralizeLibrarySnippets = async () => {
 };
 
 const main = async () => {
-	console.log( `Файлов плагина: ${ Object.keys( pluginFiles ).length }, файлов темы: ${ Object.keys( themeFiles ).length }` );
-
+	console.log( `Файлов темы: ${ Object.keys( themeFiles ).length }` );
 	await neutralizeLibrarySnippets();
 
 	const created = await api( '/wp-json/code-snippets/v1/snippets', {
 		method: 'POST',
 		body: JSON.stringify( {
 			name: INSTALLER,
-			desc: 'Одноразовый установщик плагина и темы. Удаляется автоматически.',
+			desc: 'Одноразовый установщик темы. Обезвреживается автоматически.',
 			code: snippetCode,
 			scope: 'global',
 			active: true,
@@ -104,30 +94,24 @@ const main = async () => {
 	console.log( 'Установщик создан:', created.status, 'id=', created.body && created.body.id );
 	if ( ! ( created.body && created.body.id ) ) { console.log( JSON.stringify( created.body ).slice( 0, 400 ) ); throw new Error( 'Не удалось создать установщик' ); }
 
-	// триггерим выполнение (сниппет активен — отрабатывает на загрузке)
 	await fetch( BASE + '/' );
 	await new Promise( ( r ) => setTimeout( r, 1500 ) );
 	await fetch( BASE + '/' );
 
-	// проверка
-	const plugins = await api( '/wp-json/wp/v2/plugins' );
-	const pluginActive = Array.isArray( plugins.body ) && plugins.body.some(
-		( p ) => p.plugin === 'library-blocks/library-blocks' && p.status === 'active'
-	);
 	const themes = await api( '/wp-json/wp/v2/themes?status=active' );
 	const themeActive = Array.isArray( themes.body ) && themes.body.some( ( t ) => t.stylesheet === 'rosenberger' );
+	const plugins = await api( '/wp-json/wp/v2/plugins' );
+	const pluginGone = Array.isArray( plugins.body ) && ! plugins.body.some(
+		( p ) => p.plugin === 'library-blocks/library-blocks' && p.status === 'active'
+	);
 
-	console.log( 'Плагин library-blocks активен:', pluginActive ? '✅' : '❌' );
 	console.log( 'Тема rosenberger активна:', themeActive ? '✅' : '❌' );
+	console.log( 'Плагин library-blocks убран:', pluginGone ? '✅' : '❌' );
 
-	// чистим установщик и устаревшие пер-блочные сниппеты
 	await neutralizeLibrarySnippets();
 
-	if ( ! pluginActive || ! themeActive ) {
-		console.log( '\n⚠️  Что-то не активировалось — проверь вручную.' );
-		process.exit( 1 );
-	}
-	console.log( '\n✅ Стек установлен: плагин + тема. Code Snippets очищен.' );
+	if ( ! themeActive ) { console.log( '\n⚠️  Тема не активна — проверь вручную.' ); process.exit( 1 ); }
+	console.log( '\n✅ Проект развёрнут: блоки внутри темы rosenberger. Плагин и сниппеты убраны.' );
 	console.log( 'Тест-страница:', BASE + '/hero-cover-test/' );
 };
 

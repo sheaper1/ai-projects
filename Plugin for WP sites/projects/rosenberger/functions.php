@@ -1,12 +1,50 @@
 <?php
 /**
- * Тема Rosenberger — подключение шрифтов и поддержка тем.
+ * Тема Rosenberger — регистрация блоков проекта, шрифты.
+ *
+ * Модель «копия в проект»: блоки лежат внутри темы (blocks/), правятся здесь,
+ * эталон в /library не трогаем.
  *
  * @package rosenberger
  */
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Регистрируем все блоки темы из /blocks/<slug>/ (каждый со своим block.json).
+ */
+add_action(
+	'init',
+	function () {
+		foreach ( glob( get_stylesheet_directory() . '/blocks/*', GLOB_ONLYDIR ) as $dir ) {
+			if ( file_exists( $dir . '/block.json' ) ) {
+				register_block_type( $dir );
+			}
+		}
+	}
+);
+
+/**
+ * Дефолтный фон Hero Cover для редактора (чтобы блок не выглядел пустым).
+ */
+add_action(
+	'enqueue_block_editor_assets',
+	function () {
+		$handle = 'library-hero-cover-editor-script';
+		if ( wp_script_is( $handle, 'registered' ) ) {
+			$bg = get_stylesheet_directory_uri() . '/blocks/hero-cover/assets/hero-bg.webp';
+			wp_add_inline_script(
+				$handle,
+				"window.libraryBlockDefaults=window.libraryBlockDefaults||{};window.libraryBlockDefaults['hero-cover']={bg:" . wp_json_encode( $bg ) . '};',
+				'after'
+			);
+		}
+	}
+);
+
+/**
+ * Шрифты темы (бренд проекта).
+ */
 add_action(
 	'wp_enqueue_scripts',
 	function () {

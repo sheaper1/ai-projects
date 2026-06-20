@@ -4,10 +4,8 @@
 	"private": true,
 	"description": "Эталонная библиотека динамических блоков Gutenberg для веб-агентства.",
 	"scripts": {
-		"build:hero": "wp-scripts build --webpack-src-dir=library/blocks/hero/src --output-path=library/blocks/hero/build",
-		"build:hero-cover": "wp-scripts build --webpack-src-dir=library/blocks/hero-cover/src --output-path=library/blocks/hero-cover/build",
-		"build": "npm run build:hero && npm run build:hero-cover",
-		"start:hero-cover": "wp-scripts start --webpack-src-dir=library/blocks/hero-cover/src --output-path=library/blocks/hero-cover/build"
+		"build": "node scripts/build-blocks.mjs projects/rosenberger",
+		"build:library": "node scripts/build-blocks.mjs library"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.0.0",

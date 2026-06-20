@@ -1,0 +1,21 @@
+// Hero — стили только через CSS-переменные из theme.json.
+// Никаких захардкоженных цветов и шрифтов: цвет/типографика наследуются от
+// theme.json и пользовательских настроек блока (supports.color).
+
+.wp-block-library-hero {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--40, 1.5rem);
+	min-height: 60vh;
+	padding-block: var(--wp--preset--spacing--70, 4rem);
+	padding-inline: var(--wp--preset--spacing--50, 2rem);
+	text-align: center;
+
+	// Содержимое ограничиваем шириной контента из theme.json и центрируем.
+	> * {
+		width: 100%;
+		max-width: var(--wp--style--global--content-size, 960px);
+		margin-inline: auto;
+	}
+}
