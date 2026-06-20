@@ -13,16 +13,16 @@ Text Domain: rosenberger
 	position: absolute;
 	inset: 0 0 auto 0;
 	z-index: 10;
-	color: #fff;
+	color: var(--wp--preset--color--on-dark);
 	align-items: center;
 }
 .site-header a {
-	color: #fff;
+	color: var(--wp--preset--color--on-dark);
 	text-decoration: none;
 }
 .site-header .wp-block-site-title {
 	font-weight: 800;
-	font-size: 20px;
+	font-size: var(--wp--preset--font-size--large);
 	letter-spacing: 0.04em;
 }
 .site-header .wp-block-navigation {
@@ -31,10 +31,10 @@ Text Domain: rosenberger
 }
 /* Кнопка-контакт: белая «пилюля». */
 .site-header .site-header__cta .wp-block-button__link {
-	background: #fff;
-	color: #000;
-	border-radius: 100px;
-	padding: 12px 28px;
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+	border-radius: var(--wp--custom--radius--pill);
+	padding: 0.875rem 1.75rem;
 	font-weight: 500;
 }
 

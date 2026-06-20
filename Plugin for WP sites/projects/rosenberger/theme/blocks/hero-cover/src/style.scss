@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;1,300&family=Roboto+Flex:wght@400;500;600;800&display=swap');
 
 .wp-block-library-hero-cover {
-	// Дизайн-токены блока — централизованно, чтобы менять в одном месте.
-	--hc-fg: #ffffff;
-	--hc-font-head: 'Nunito Sans', sans-serif;
-	--hc-font-body: 'Roboto Flex', system-ui, sans-serif;
-	--hc-pad-x: clamp(20px, 4vw, 48px);
-	--hc-pad-y: clamp(20px, 3.5vw, 40px);
-	--hc-max: 724px;
+	// Локальные алиасы ссылаются только на глобальную систему темы.
+	--hc-fg: var(--wp--preset--color--on-dark);
+	--hc-font-head: var(--wp--preset--font-family--heading);
+	--hc-font-body: var(--wp--preset--font-family--body);
+	--hc-pad-x: var(--wp--custom--layout--gutter);
+	--hc-pad-y: var(--wp--preset--spacing--50);
+	--hc-max: var(--wp--style--global--content-size);
 
 	position: relative;
 	isolation: isolate;
@@ -15,7 +15,7 @@
 	min-height: clamp(640px, 100svh, 940px);
 	color: var(--hc-fg);
 	font-family: var(--hc-font-body);
-	background-color: #969696;
+	background-color: var(--wp--preset--color--primary);
 	overflow: hidden;
 
 	// Фоновое фото: прижато к низу, как в макете (object-bottom).
@@ -67,7 +67,7 @@
 		margin: 0;
 		font-family: var(--hc-font-head);
 		font-weight: 400;
-		font-size: clamp(40px, 6vw, 80px);
+		font-size: var(--wp--preset--font-size--display);
 		line-height: 1;
 		letter-spacing: -0.03em;
 
@@ -83,7 +83,7 @@
 	.hero-cover__subtitle {
 		margin: 0;
 		max-width: var(--hc-max);
-		font-size: clamp(18px, 2vw, 24px);
+		font-size: var(--wp--preset--font-size--x-large);
 		font-weight: 400;
 		line-height: 1.3;
 	}
@@ -97,7 +97,7 @@
 	.hero-cover__col {
 		margin: 0;
 		max-width: 333px;
-		font-size: clamp(15px, 1.4vw, 18px);
+		font-size: var(--wp--preset--font-size--large);
 		line-height: 1.4;
 	}
 
