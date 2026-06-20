@@ -52,59 +52,6 @@
 		padding: var(--hc-pad-y) var(--hc-pad-x);
 	}
 
-	// --- Верхняя панель ---
-	.hero-cover__bar {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 16px;
-	}
-
-	.hero-cover__menu {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		font-weight: 600;
-		font-size: 18px;
-		text-transform: uppercase;
-
-		svg { width: 32px; height: 32px; }
-	}
-
-	.hero-cover__logo {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 6px;
-	}
-	.hero-cover__logo-box {
-		display: block;
-		width: 112px;
-		height: 61px;
-		border: 8px solid var(--hc-fg);
-	}
-	.hero-cover__logo-text {
-		font-weight: 800;
-		font-size: 20px;
-		letter-spacing: 0.04em;
-	}
-
-	.hero-cover__contact {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		min-height: 56px;
-		padding: 14px 30px;
-		border-radius: 100px;
-		background: var(--hc-fg);
-		color: #000;
-		font-weight: 500;
-		font-size: 18px;
-		text-decoration: none;
-		white-space: nowrap;
-		backdrop-filter: blur(26px);
-	}
-
 	// --- Контент по центру ---
 	.hero-cover__content {
 		display: flex;
@@ -158,17 +105,7 @@
 	@media (max-width: 782px) {
 		min-height: 100svh;
 
-		.hero-cover__menu { font-size: 16px; svg { width: 26px; height: 26px; } }
-		.hero-cover__logo-box { width: 84px; height: 46px; border-width: 6px; }
-		.hero-cover__logo-text { font-size: 17px; }
-		.hero-cover__contact { min-height: 46px; padding: 10px 20px; font-size: 16px; }
 		.hero-cover__cols { flex-direction: column; gap: 18px; }
 		.hero-cover__col { max-width: none; }
-	}
-
-	@media (max-width: 480px) {
-		.hero-cover__menu span,
-		.hero-cover__logo { display: none; } // на узких экранах оставляем иконку и контакт
-		.hero-cover__bar { justify-content: space-between; }
 	}
 }

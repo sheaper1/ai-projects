@@ -7,3 +7,38 @@ Tested up to: 6.7
 Requires PHP: 8.0
 Text Domain: rosenberger
 */
+
+/* Прозрачная шапка поверх Hero (первой секции страницы). */
+.site-header {
+	position: absolute;
+	inset: 0 0 auto 0;
+	z-index: 10;
+	color: #fff;
+	align-items: center;
+}
+.site-header a {
+	color: #fff;
+	text-decoration: none;
+}
+.site-header .wp-block-site-title {
+	font-weight: 800;
+	font-size: 20px;
+	letter-spacing: 0.04em;
+}
+.site-header .wp-block-navigation {
+	font-weight: 600;
+	gap: clamp(16px, 2vw, 32px);
+}
+/* Кнопка-контакт: белая «пилюля». */
+.site-header .site-header__cta .wp-block-button__link {
+	background: #fff;
+	color: #000;
+	border-radius: 100px;
+	padding: 12px 28px;
+	font-weight: 500;
+}
+
+/* Подвал. */
+.site-footer .wp-block-heading {
+	margin: 0 0 0.5em;
+}

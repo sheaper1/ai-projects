@@ -9,23 +9,14 @@ import {
 	PanelBody, TextControl, TextareaControl, Button, Flex, FlexItem,
 } from '@wordpress/components';
 
-const MenuIcon = () => (
-	<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-		<path d="M4 6h16v2H4zM4 11h16v2H4zM4 16h10v2H4z" />
-	</svg>
-);
-
-// Дефолтный фон, проброшенный с сервера (см. deploy-block.mjs → wp_add_inline_script).
+// Дефолтный фон, проброшенный с сервера (см. functions.php → wp_add_inline_script).
 const defaultBg =
 	( typeof window !== 'undefined' && window.libraryBlockDefaults
 		&& window.libraryBlockDefaults[ 'hero-cover' ]
 		&& window.libraryBlockDefaults[ 'hero-cover' ].bg ) || '';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const {
-		titleMain, titleAccent, subtitle, columns,
-		menuText, logoText, contactText, contactUrl, backgroundUrl,
-	} = attributes;
+	const { titleMain, titleAccent, subtitle, columns, backgroundUrl } = attributes;
 
 	const cols = Array.isArray( columns ) ? columns : [];
 	const bgUrl = backgroundUrl || defaultBg;
@@ -74,17 +65,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					<Button variant="secondary" onClick={ addCol }>{ __( '+ Добавить колонку', 'library' ) }</Button>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Шапка', 'library' ) } initialOpen={ false }>
-					<TextControl label={ __( 'Меню', 'library' ) } value={ menuText }
-						onChange={ ( v ) => setAttributes( { menuText: v } ) } />
-					<TextControl label={ __( 'Лого (текст)', 'library' ) } value={ logoText }
-						onChange={ ( v ) => setAttributes( { logoText: v } ) } />
-					<TextControl label={ __( 'Кнопка «Контакт»', 'library' ) } value={ contactText }
-						onChange={ ( v ) => setAttributes( { contactText: v } ) } />
-					<TextControl label={ __( 'Ссылка кнопки', 'library' ) } value={ contactUrl }
-						onChange={ ( v ) => setAttributes( { contactUrl: v } ) } />
-				</PanelBody>
-
 				<PanelBody title={ __( 'Фоновое изображение', 'library' ) } initialOpen={ false }>
 					<MediaUploadCheck>
 						<MediaUpload
@@ -112,15 +92,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				{ bgUrl && <img className="hero-cover__bg" src={ bgUrl } alt="" /> }
 				<div className="hero-cover__overlay" aria-hidden="true" />
 				<div className="hero-cover__inner">
-					<header className="hero-cover__bar">
-						<div className="hero-cover__menu"><MenuIcon /><span>{ menuText }</span></div>
-						<div className="hero-cover__logo">
-							<span className="hero-cover__logo-box" aria-hidden="true" />
-							<span className="hero-cover__logo-text">{ logoText }</span>
-						</div>
-						<span className="hero-cover__contact">{ contactText }</span>
-					</header>
-
 					<div className="hero-cover__content">
 						<h1 className="hero-cover__title">
 							{ titleMain }

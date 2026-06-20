@@ -43,7 +43,7 @@ add_action(
 );
 
 /**
- * Шрифты темы (бренд проекта).
+ * Шрифты бренда + style.css темы (стили шапки/подвала).
  */
 add_action(
 	'wp_enqueue_scripts',
@@ -53,6 +53,12 @@ add_action(
 			'https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;1,300&family=Roboto+Flex:wght@400;500;600;800&display=swap',
 			array(),
 			null
+		);
+		wp_enqueue_style(
+			'rosenberger-style',
+			get_stylesheet_uri(),
+			array(),
+			wp_get_theme()->get( 'Version' )
 		);
 	}
 );

@@ -24,10 +24,6 @@ if ( '' === $bg ) {
 
 $wrapper = get_block_wrapper_attributes();
 
-$menu_text    = esc_html( $attributes['menuText'] ?? 'Menu' );
-$logo_text    = esc_html( $attributes['logoText'] ?? 'LOGO' );
-$contact_text = esc_html( $attributes['contactText'] ?? 'Contact' );
-$contact_url  = esc_url( $attributes['contactUrl'] ?? '#' );
 $title_main   = esc_html( $attributes['titleMain'] ?? '' );
 $title_accent = esc_html( $attributes['titleAccent'] ?? '' );
 $subtitle     = esc_html( $attributes['subtitle'] ?? '' );
@@ -39,18 +35,6 @@ $columns      = isset( $attributes['columns'] ) && is_array( $attributes['column
 	<?php endif; ?>
 	<div class="hero-cover__overlay" aria-hidden="true"></div>
 	<div class="hero-cover__inner">
-		<header class="hero-cover__bar">
-			<div class="hero-cover__menu">
-				<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 6h16v2H4zM4 11h16v2H4zM4 16h10v2H4z"></path></svg>
-				<span><?php echo $menu_text; ?></span>
-			</div>
-			<div class="hero-cover__logo">
-				<span class="hero-cover__logo-box" aria-hidden="true"></span>
-				<span class="hero-cover__logo-text"><?php echo $logo_text; ?></span>
-			</div>
-			<a class="hero-cover__contact" href="<?php echo $contact_url; ?>"><?php echo $contact_text; ?></a>
-		</header>
-
 		<div class="hero-cover__content">
 			<h1 class="hero-cover__title"><?php echo $title_main; ?><?php if ( '' !== $title_accent ) : ?><em><?php echo $title_accent; ?></em><?php endif; ?></h1>
 			<p class="hero-cover__subtitle"><?php echo $subtitle; ?></p>
