@@ -1,1 +1,25 @@
+# Зависимости
 node_modules/
+vendor/
+
+# Собранные файлы (артефакты сборки — воспроизводятся `npm run build`)
+build/
+
+# Секреты и окружение — НИКОГДА не коммитим
+.env
+.env.*
+*.key
+*.pem
+*.p12
+secrets.*
+wp-config.php
+
+# Логи и временное
+*.log
+npm-debug.log*
+
+# Мусор ОС / редакторов
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
