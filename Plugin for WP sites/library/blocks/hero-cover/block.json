@@ -17,7 +17,7 @@
 	},
 	"attributes": {
 		"align": { "type": "string", "default": "full" },
-		"title": { "type": "string", "default": "Ihr Immobilienmakler in Vorarlberg,<br><br><em>der ehrlich bewertet</em>" },
+		"title": { "type": "string", "default": "Ihr Immobilienmakler in Vorarlberg, <em>der ehrlich bewertet</em>" },
 		"subtitle": { "type": "string", "default": "Verkaufen ohne falsche Versprechen und ohne Verkaufsdruck" },
 		"colLeft": { "type": "string", "default": "Sie verkaufen Ihre Immobilie, ohne hingehalten zu werden, ohne unrealistische Preisversprechen und ohne wochenlang auf einen Rückruf zu warten." },
 		"colRight": { "type": "string", "default": "Sie haben klare Kommunikation und einen festen Ansprechpartner vom ersten Gespräch bis zur Übergabe." },

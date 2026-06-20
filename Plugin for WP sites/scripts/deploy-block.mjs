@@ -6,7 +6,7 @@
 // Запуск: node scripts/deploy-block.mjs <slug>
 //   напр.: node scripts/deploy-block.mjs hero-cover
 
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { resolve, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -128,9 +128,40 @@ const main = async () => {
 	console.log( 'Сниппет:', created.status, 'id=', created.body && created.body.id );
 	if ( ! ( created.body && created.body.id ) ) { console.log( JSON.stringify( created.body ).slice( 0, 400 ) ); throw new Error( 'Сниппет не создан' ); }
 
+	// Дефолтный фон — в медиатеку (идемпотентно), чтобы был виден в редакторе.
+	let bgAttr = '';
+	const bgPath = resolve( blockDir, 'assets/hero-bg.webp' );
+	if ( existsSync( bgPath ) ) {
+		const mediaSlug = `library-${ slug }-bg`;
+		const found = await api( `/wp-json/wp/v2/media?slug=${ mediaSlug }` );
+		let media = Array.isArray( found.body ) && found.body[ 0 ];
+		if ( ! media ) {
+			const up = await fetch( `${ BASE }/wp-json/wp/v2/media`, {
+				method: 'POST',
+				headers: {
+					Authorization: AUTH,
+					'Content-Type': 'image/webp',
+					'Content-Disposition': `attachment; filename="${ mediaSlug }.webp"`,
+				},
+				body: readFileSync( bgPath ),
+			} );
+			media = await up.json();
+			// зафиксировать slug
+			if ( media && media.id ) {
+				await api( `/wp-json/wp/v2/media/${ media.id }`, { method: 'POST', body: JSON.stringify( { slug: mediaSlug, title: `${ slug } background` } ) } );
+			}
+			console.log( 'Фон загружен в медиатеку: id=', media && media.id );
+		} else {
+			console.log( 'Фон уже в медиатеке: id=', media.id );
+		}
+		if ( media && media.id ) {
+			bgAttr = `,"backgroundUrl":${ JSON.stringify( media.source_url ) },"backgroundId":${ media.id }`;
+		}
+	}
+
 	// тест-страница: самозакрывающийся динамический блок (контент строит render.php)
 	const pageSlug = `${ slug }-test`;
-	const content = `<!-- wp:${ blockName } {"align":"full"} /-->`;
+	const content = `<!-- wp:${ blockName } {"align":"full"${ bgAttr }} /-->`;
 	const existing = await api( `/wp-json/wp/v2/pages?slug=${ pageSlug }&status=publish` );
 	const existId = Array.isArray( existing.body ) && existing.body[ 0 ] && existing.body[ 0 ].id;
 	const path = existId ? `/wp-json/wp/v2/pages/${ existId }` : '/wp-json/wp/v2/pages';
