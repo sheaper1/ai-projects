@@ -82,7 +82,23 @@ add_action( 'init', function () use ( $dir, $url ) {
 		'editor_script' => '${ handle }-editor',
 		'style'         => '${ handle }-style',
 	) );
-} );`;
+	// Пробрасываем дефолтный фон в редактор, чтобы блок не выглядел пустым.
+	if ( file_exists( $dir . '/assets/hero-bg.webp' ) ) {
+		wp_add_inline_script(
+			'${ handle }-editor',
+			"window.libraryBlockDefaults=window.libraryBlockDefaults||{};window.libraryBlockDefaults['${ slug }']={bg:" . wp_json_encode( $url . '/assets/hero-bg.webp' ) . "};",
+			'after'
+		);
+	}
+} );
+${ slug === 'hero-cover'
+	? `// Полноэкранный Hero сам себе шапка — прячем заголовок темы на таких страницах.
+add_action( 'wp_head', function () {
+	if ( is_singular() && has_block( 'library/hero-cover' ) ) {
+		echo '<style id="hero-cover-title-hide">.page-header{display:none!important;}</style>';
+	}
+} );`
+	: '' }`;
 
 const SNIPPET_NAME = `Library: ${ slug } block (auto-deploy)`;
 const blockName = `library/${ slug }`;
@@ -117,9 +133,17 @@ const main = async () => {
 	const content = `<!-- wp:${ blockName } {"align":"full"} /-->`;
 	const existing = await api( `/wp-json/wp/v2/pages?slug=${ pageSlug }&status=publish` );
 	const existId = Array.isArray( existing.body ) && existing.body[ 0 ] && existing.body[ 0 ].id;
-	const page = existId
-		? await api( `/wp-json/wp/v2/pages/${ existId }`, { method: 'POST', body: JSON.stringify( { content } ) } )
-		: await api( '/wp-json/wp/v2/pages', { method: 'POST', body: JSON.stringify( { title: `${ slug } test`, slug: pageSlug, status: 'publish', content } ) } );
+	const path = existId ? `/wp-json/wp/v2/pages/${ existId }` : '/wp-json/wp/v2/pages';
+	const base = existId
+		? { content }
+		: { title: `${ slug } test`, slug: pageSlug, status: 'publish', content };
+
+	// Чистый шаблон без шапки/заголовка темы (Elementor Canvas), с откатом.
+	let page = await api( path, { method: 'POST', body: JSON.stringify( { ...base, template: 'elementor_canvas' } ) } );
+	if ( page.status >= 400 ) {
+		console.log( 'Шаблон elementor_canvas недоступен, ставлю без шаблона.' );
+		page = await api( path, { method: 'POST', body: JSON.stringify( base ) } );
+	}
 	console.log( existId ? 'Страница обновлена:' : 'Страница создана:', page.status, 'id=', page.body && page.body.id );
 	const link = page.body && page.body.link;
 

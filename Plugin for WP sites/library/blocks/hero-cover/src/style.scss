@@ -16,17 +16,26 @@
 	color: var(--hc-fg);
 	font-family: var(--hc-font-body);
 	background-color: #969696;
-	background-image: var(--hc-bg);
-	background-size: cover;
-	background-position: center bottom;
-	background-repeat: no-repeat;
 	overflow: hidden;
+
+	// Фоновое фото: прижато к низу, как в макете (object-bottom).
+	.hero-cover__bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center bottom;
+		pointer-events: none;
+		user-select: none;
+	}
 
 	// Затемнение для читаемости: чуть темнее сверху, слева и снизу.
 	.hero-cover__overlay {
 		position: absolute;
 		inset: 0;
-		z-index: 0;
+		z-index: 1;
 		pointer-events: none;
 		background:
 			linear-gradient(180deg, rgba(18, 26, 38, 0.28) 0%, rgba(18, 26, 38, 0) 24%, rgba(18, 26, 38, 0) 56%, rgba(10, 15, 22, 0.58) 100%),
@@ -35,7 +44,7 @@
 
 	.hero-cover__inner {
 		position: relative;
-		z-index: 1;
+		z-index: 2;
 		display: flex;
 		flex-direction: column;
 		flex: 1;
@@ -107,21 +116,19 @@
 	}
 
 	.hero-cover__title {
-		display: flex;
-		flex-direction: column;
-		row-gap: 0.4em;
+		display: block;
 		margin: 0;
 		font-family: var(--hc-font-head);
 		font-weight: 400;
 		font-size: clamp(40px, 6vw, 80px);
 		line-height: 1;
 		letter-spacing: -0.03em;
-	}
-	.hero-cover__title-main { display: block; }
-	.hero-cover__title-accent {
-		display: block;
-		font-style: italic;
-		font-weight: 300;
+
+		// Акцентная строка: курсив + тонкое начертание (как в макете).
+		em, i {
+			font-style: italic;
+			font-weight: 300;
+		}
 	}
 
 	.hero-cover__subtitle {
@@ -148,7 +155,6 @@
 	// --- Мобильная адаптация ---
 	@media (max-width: 782px) {
 		min-height: 100svh;
-		background-position: center;
 
 		.hero-cover__menu { font-size: 16px; svg { width: 26px; height: 26px; } }
 		.hero-cover__logo-box { width: 84px; height: 46px; border-width: 6px; }

@@ -14,17 +14,20 @@ const MenuIcon = () => (
 	</svg>
 );
 
+// Дефолтный фон, проброшенный с сервера (см. deploy-block.mjs → wp_add_inline_script).
+const defaultBg =
+	( typeof window !== 'undefined' && window.libraryBlockDefaults
+		&& window.libraryBlockDefaults[ 'hero-cover' ]
+		&& window.libraryBlockDefaults[ 'hero-cover' ].bg ) || '';
+
 export default function Edit( { attributes, setAttributes } ) {
 	const {
-		titleMain, titleAccent, subtitle, colLeft, colRight,
+		title, subtitle, colLeft, colRight,
 		menuText, logoText, contactText, backgroundUrl,
 	} = attributes;
 
-	// В редакторе фон показываем, если выбран; иначе блок подставит дефолт на фронте.
-	const blockProps = useBlockProps( {
-		className: 'wp-block-library-hero-cover',
-		style: backgroundUrl ? { '--hc-bg': `url(${ backgroundUrl })` } : undefined,
-	} );
+	const bgUrl = backgroundUrl || defaultBg;
+	const blockProps = useBlockProps( { className: 'wp-block-library-hero-cover' } );
 
 	return (
 		<>
@@ -43,12 +46,8 @@ export default function Edit( { attributes, setAttributes } ) {
 						/>
 					</MediaUploadCheck>
 					{ backgroundUrl && (
-						<Button
-							variant="link"
-							isDestructive
-							onClick={ () => setAttributes( { backgroundUrl: '', backgroundId: undefined } ) }
-							style={ { marginTop: 8 } }
-						>
+						<Button variant="link" isDestructive style={ { marginTop: 8 } }
+							onClick={ () => setAttributes( { backgroundUrl: '', backgroundId: undefined } ) }>
 							{ __( 'Сбросить (вернуть дефолт)', 'library' ) }
 						</Button>
 					) }
@@ -56,81 +55,42 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
+				{ bgUrl && <img className="hero-cover__bg" src={ bgUrl } alt="" /> }
 				<div className="hero-cover__overlay" aria-hidden="true" />
 				<div className="hero-cover__inner">
 					<header className="hero-cover__bar">
 						<div className="hero-cover__menu">
 							<MenuIcon />
-							<RichText
-								tagName="span"
-								value={ menuText }
-								onChange={ ( v ) => setAttributes( { menuText: v } ) }
-								allowedFormats={ [] }
-							/>
+							<RichText tagName="span" value={ menuText }
+								onChange={ ( v ) => setAttributes( { menuText: v } ) } allowedFormats={ [] } />
 						</div>
 						<div className="hero-cover__logo">
 							<span className="hero-cover__logo-box" aria-hidden="true" />
-							<RichText
-								tagName="span"
-								className="hero-cover__logo-text"
-								value={ logoText }
-								onChange={ ( v ) => setAttributes( { logoText: v } ) }
-								allowedFormats={ [] }
-							/>
+							<RichText tagName="span" className="hero-cover__logo-text" value={ logoText }
+								onChange={ ( v ) => setAttributes( { logoText: v } ) } allowedFormats={ [] } />
 						</div>
-						<RichText
-							tagName="span"
-							className="hero-cover__contact"
-							value={ contactText }
-							onChange={ ( v ) => setAttributes( { contactText: v } ) }
-							allowedFormats={ [] }
-						/>
+						<RichText tagName="span" className="hero-cover__contact" value={ contactText }
+							onChange={ ( v ) => setAttributes( { contactText: v } ) } allowedFormats={ [] } />
 					</header>
 
 					<div className="hero-cover__content">
-						<h1 className="hero-cover__title">
-							<RichText
-								tagName="span"
-								className="hero-cover__title-main"
-								value={ titleMain }
-								onChange={ ( v ) => setAttributes( { titleMain: v } ) }
-								allowedFormats={ [] }
-								placeholder={ __( 'Заголовок…', 'library' ) }
-							/>
-							<RichText
-								tagName="em"
-								className="hero-cover__title-accent"
-								value={ titleAccent }
-								onChange={ ( v ) => setAttributes( { titleAccent: v } ) }
-								allowedFormats={ [] }
-								placeholder={ __( 'Акцент…', 'library' ) }
-							/>
-						</h1>
-						<RichText
-							tagName="p"
-							className="hero-cover__subtitle"
-							value={ subtitle }
+						<RichText tagName="h1" className="hero-cover__title" value={ title }
+							onChange={ ( v ) => setAttributes( { title: v } ) }
+							allowedFormats={ [ 'core/bold', 'core/italic' ] }
+							placeholder={ __( 'Заголовок… (выдели строку и нажми курсив для акцента)', 'library' ) } />
+						<RichText tagName="p" className="hero-cover__subtitle" value={ subtitle }
 							onChange={ ( v ) => setAttributes( { subtitle: v } ) }
-							allowedFormats={ [] }
-							placeholder={ __( 'Подзаголовок…', 'library' ) }
-						/>
+							allowedFormats={ [ 'core/bold', 'core/italic' ] }
+							placeholder={ __( 'Подзаголовок…', 'library' ) } />
 					</div>
 
 					<div className="hero-cover__cols">
-						<RichText
-							tagName="p"
-							className="hero-cover__col"
-							value={ colLeft }
+						<RichText tagName="p" className="hero-cover__col" value={ colLeft }
 							onChange={ ( v ) => setAttributes( { colLeft: v } ) }
-							allowedFormats={ [] }
-						/>
-						<RichText
-							tagName="p"
-							className="hero-cover__col"
-							value={ colRight }
+							allowedFormats={ [ 'core/bold', 'core/italic' ] } />
+						<RichText tagName="p" className="hero-cover__col" value={ colRight }
 							onChange={ ( v ) => setAttributes( { colRight: v } ) }
-							allowedFormats={ [] }
-						/>
+							allowedFormats={ [ 'core/bold', 'core/italic' ] } />
 					</div>
 				</div>
 			</div>

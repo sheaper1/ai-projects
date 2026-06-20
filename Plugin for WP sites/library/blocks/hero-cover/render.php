@@ -22,20 +22,29 @@ if ( '' === $bg ) {
 	}
 }
 
-$style   = $bg ? '--hc-bg:url(' . esc_url( $bg ) . ');' : '';
-$wrapper = get_block_wrapper_attributes( $style ? array( 'style' => $style ) : array() );
+$wrapper = get_block_wrapper_attributes();
+
+$allowed_inline = array(
+	'br'     => array(),
+	'em'     => array(),
+	'i'      => array(),
+	'strong' => array(),
+	'b'      => array(),
+);
 
 $menu_text    = esc_html( $attributes['menuText'] ?? 'Menu' );
 $logo_text    = esc_html( $attributes['logoText'] ?? 'LOGO' );
 $contact_text = esc_html( $attributes['contactText'] ?? 'Contact' );
 $contact_url  = esc_url( $attributes['contactUrl'] ?? '#' );
-$title_main   = esc_html( $attributes['titleMain'] ?? '' );
-$title_accent = esc_html( $attributes['titleAccent'] ?? '' );
-$subtitle     = esc_html( $attributes['subtitle'] ?? '' );
-$col_left     = esc_html( $attributes['colLeft'] ?? '' );
-$col_right    = esc_html( $attributes['colRight'] ?? '' );
+$title        = wp_kses( $attributes['title'] ?? '', $allowed_inline );
+$subtitle     = wp_kses( $attributes['subtitle'] ?? '', $allowed_inline );
+$col_left     = wp_kses( $attributes['colLeft'] ?? '', $allowed_inline );
+$col_right    = wp_kses( $attributes['colRight'] ?? '', $allowed_inline );
 ?>
 <section <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+	<?php if ( $bg ) : ?>
+		<img class="hero-cover__bg" src="<?php echo esc_url( $bg ); ?>" alt="" loading="eager" fetchpriority="high" decoding="async" />
+	<?php endif; ?>
 	<div class="hero-cover__overlay" aria-hidden="true"></div>
 	<div class="hero-cover__inner">
 		<header class="hero-cover__bar">
@@ -51,16 +60,13 @@ $col_right    = esc_html( $attributes['colRight'] ?? '' );
 		</header>
 
 		<div class="hero-cover__content">
-			<h1 class="hero-cover__title">
-				<span class="hero-cover__title-main"><?php echo $title_main; ?></span>
-				<em class="hero-cover__title-accent"><?php echo $title_accent; ?></em>
-			</h1>
-			<p class="hero-cover__subtitle"><?php echo $subtitle; ?></p>
+			<h1 class="hero-cover__title"><?php echo $title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h1>
+			<p class="hero-cover__subtitle"><?php echo $subtitle; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 		</div>
 
 		<div class="hero-cover__cols">
-			<p class="hero-cover__col"><?php echo $col_left; ?></p>
-			<p class="hero-cover__col"><?php echo $col_right; ?></p>
+			<p class="hero-cover__col"><?php echo $col_left; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+			<p class="hero-cover__col"><?php echo $col_right; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 		</div>
 	</div>
 </section>
