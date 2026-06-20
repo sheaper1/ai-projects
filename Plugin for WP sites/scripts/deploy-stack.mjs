@@ -65,6 +65,17 @@ foreach ( $plugin_files as $rel => $b64 ) { $d = $plugin_dir . '/' . $rel; wp_mk
 if ( get_option( 'stylesheet' ) !== 'rosenberger' ) { switch_theme( 'rosenberger' ); }
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 if ( ! is_plugin_active( 'rosenberger-core/rosenberger-core.php' ) ) { activate_plugin( 'rosenberger-core/rosenberger-core.php' ); }
+// Разовый посев примера контактов (не перезатирает правки клиента).
+if ( false === get_option( 'rosenberger_contacts' ) ) {
+	add_option( 'rosenberger_contacts', array(
+		'phone'    => '+43 5572 123456',
+		'email'    => 'office@rosenberger.at',
+		'address'  => 'Bregenz, Vorarlberg',
+		'hours'    => 'Mo-Fr 9:00-17:00',
+		'cta_text' => 'Kontakt',
+		'cta_url'  => '/kontakt/',
+	) );
+}
 // сносим старый общий плагин (модель сменилась на «всё в проекте»)
 if ( is_plugin_active( 'library-blocks/library-blocks.php' ) ) { deactivate_plugins( 'library-blocks/library-blocks.php' ); }
 $old = WP_PLUGIN_DIR . '/library-blocks';
