@@ -31,9 +31,18 @@ const api = async ( path, opts = {} ) => {
 };
 
 // --- файлы блока -> base64 ---
-const b64 = ( rel ) => readFileSync( resolve( root, 'library/blocks/hero', rel ) ).toString( 'base64' );
+const blockDir = resolve( root, 'library/blocks/hero' );
+const b64 = ( rel ) => readFileSync( resolve( blockDir, rel ) ).toString( 'base64' );
+
+// block.json для сервера: убираем editorScript/style — скрипт и стиль регистрируем
+// в сниппете явно, с заведомо рабочим URL (uploads), чтобы редактор увидел блок.
+const blockJson = JSON.parse( readFileSync( resolve( blockDir, 'block.json' ), 'utf8' ) );
+delete blockJson.editorScript;
+delete blockJson.style;
+const serverBlockJsonB64 = Buffer.from( JSON.stringify( blockJson, null, '\t' ) ).toString( 'base64' );
+
 const files = {
-	'block.json': b64( 'block.json' ),
+	'block.json': serverBlockJsonB64,
 	'render.php': b64( 'render.php' ),
 	'build/index.js': b64( 'build/index.js' ),
 	'build/style-index.css': b64( 'build/style-index.css' ),
@@ -47,19 +56,31 @@ const filesPhp = Object.entries( files )
 
 const snippetCode = `$up = wp_upload_dir();
 $dir = trailingslashit( $up['basedir'] ) . 'library-blocks/hero';
+$url = trailingslashit( $up['baseurl'] ) . 'library-blocks/hero';
 $files = array(
 ${ filesPhp }
 );
-if ( ! file_exists( $dir . '/block.json' ) ) {
-	wp_mkdir_p( $dir . '/build' );
-	foreach ( $files as $rel => $b64 ) {
-		file_put_contents( $dir . '/' . $rel, base64_decode( $b64 ) );
-	}
+// Файлы перезаписываем всегда — чтобы деплой обновлял блок, а не только ставил с нуля.
+wp_mkdir_p( $dir . '/build' );
+foreach ( $files as $rel => $b64 ) {
+	file_put_contents( $dir . '/' . $rel, base64_decode( $b64 ) );
 }
-add_action( 'init', function () use ( $dir ) {
-	if ( file_exists( $dir . '/block.json' ) ) {
-		register_block_type( $dir );
+add_action( 'init', function () use ( $dir, $url ) {
+	if ( ! file_exists( $dir . '/block.json' ) ) {
+		return;
 	}
+	$asset = file_exists( $dir . '/build/index.asset.php' )
+		? include $dir . '/build/index.asset.php'
+		: array( 'dependencies' => array(), 'version' => '1' );
+
+	// Явная регистрация скрипта и стиля с рабочим URL (uploads), затем — блока.
+	wp_register_script( 'library-hero-editor', $url . '/build/index.js', $asset['dependencies'], $asset['version'], true );
+	wp_register_style( 'library-hero-style', $url . '/build/style-index.css', array(), $asset['version'] );
+
+	register_block_type( $dir, array(
+		'editor_script' => 'library-hero-editor',
+		'style'         => 'library-hero-style',
+	) );
 } );`;
 
 const SNIPPET_NAME = 'Library: Hero block (auto-deploy)';
@@ -107,13 +128,21 @@ const main = async () => {
 <!-- /wp:buttons -->
 <!-- /wp:library/hero -->`;
 
-	const page = await api( '/wp-json/wp/v2/pages', {
-		method: 'POST',
-		body: JSON.stringify( { title: 'Hero smoke-test', status: 'publish', content } ),
-	} );
-	console.log( 'Создание страницы:', page.status, 'id=', page.body && page.body.id );
+	// переиспользуем существующую страницу по слагу (без дублей)
+	const existing = await api( '/wp-json/wp/v2/pages?slug=hero-smoke-test&status=publish' );
+	const existingId = Array.isArray( existing.body ) && existing.body[ 0 ] && existing.body[ 0 ].id;
+	const page = existingId
+		? await api( `/wp-json/wp/v2/pages/${ existingId }`, {
+			method: 'POST',
+			body: JSON.stringify( { content } ),
+		} )
+		: await api( '/wp-json/wp/v2/pages', {
+			method: 'POST',
+			body: JSON.stringify( { title: 'Hero smoke-test', status: 'publish', content } ),
+		} );
+	console.log( existingId ? 'Обновление страницы:' : 'Создание страницы:', page.status, 'id=', page.body && page.body.id );
 	const link = page.body && page.body.link;
-	if ( ! link ) throw new Error( 'Не удалось создать страницу' );
+	if ( ! link ) throw new Error( 'Не удалось создать/обновить страницу' );
 
 	// 5. прочитать отрендеренную страницу и проверить маркер блока
 	const html = await ( await fetch( link ) ).text();
