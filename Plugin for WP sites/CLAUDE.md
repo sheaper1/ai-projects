@@ -57,24 +57,24 @@ package.json              — сборка библиотеки
   build/              — генерируется `npm run build`; в git НЕ коммитим (.gitignore)
 ```
 
-## Сборка
+## Сборка и поставка
 
 ```
 npm install
-npm run build      # собрать блок(и)
-npm start          # режим разработки с пересборкой
+npm run build          # собрать все блоки
 ```
 
-Регистрация блока в теме проекта (`functions.php`):
+**Блоки поставляются как плагин `library-blocks`** (`library/library-blocks.php`
+регистрирует все блоки из `blocks/*` штатно — editorScript/style резолвятся через
+`plugins_url`, без хаков). **Проект = блочная тема** (`projects/<name>/` с `theme.json`).
 
-```php
-add_action( 'init', function () {
-	register_block_type( get_stylesheet_directory() . '/blocks/hero' );
-} );
-```
+**Деплой на staging (без SFTP):** `node scripts/deploy-stack.mjs` — собирает плагин
++ тему, заливает файлы и активирует их через одноразовый сниппет Code Snippets,
+который сам себя обезвреживает. Подробности доступов — в `.env` (gitignore).
 
-> `build/` в git не хранится. После копирования блока в проект выполни
-> `npm run build`, иначе блок не отрисуется (нет JS/CSS).
+> `build/` в git не хранится — нужен `npm run build` перед деплоем.
+> ВАЖНО: в этой версии Code Snippets REST DELETE сломан (500); наши служебные
+> сниппеты не удаляются, а обезвреживаются (деактивация + пустой код).
 
 ## Работа с Git
 
