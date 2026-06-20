@@ -6,10 +6,10 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: var(--wp--preset--spacing--40, 1.5rem);
+	gap: var(--wp--preset--spacing--r-24, 1.5rem);
 	min-height: 60vh;
-	padding-block: var(--wp--preset--spacing--70, 4rem);
-	padding-inline: var(--wp--preset--spacing--50, 2rem);
+	padding-block: var(--wp--preset--spacing--r-48, 3rem);
+	padding-inline: var(--wp--preset--spacing--r-32, 2rem);
 	text-align: center;
 
 	// Содержимое ограничиваем шириной контента из theme.json и центрируем.

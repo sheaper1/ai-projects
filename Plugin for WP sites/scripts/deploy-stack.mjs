@@ -72,9 +72,15 @@ if ( false === get_option( 'rosenberger_contacts' ) ) {
 		'email'    => 'office@rosenberger.at',
 		'address'  => 'Bregenz, Vorarlberg',
 		'hours'    => 'Mo-Fr 9:00-17:00',
-		'cta_text' => 'Kontakt',
+		'cta_text' => 'Termin vereinbaren',
 		'cta_url'  => '/kontakt/',
 	) );
+}
+// Миграция старого демонстрационного CTA; произвольный текст клиента не трогаем.
+$contacts = get_option( 'rosenberger_contacts', array() );
+if ( isset( $contacts['cta_text'] ) && 'Kontakt' === $contacts['cta_text'] ) {
+	$contacts['cta_text'] = 'Termin vereinbaren';
+	update_option( 'rosenberger_contacts', $contacts );
 }
 // сносим старый общий плагин (модель сменилась на «всё в проекте»)
 if ( is_plugin_active( 'library-blocks/library-blocks.php' ) ) { deactivate_plugins( 'library-blocks/library-blocks.php' ); }
@@ -128,6 +134,21 @@ const main = async () => {
 	const coreActive = Array.isArray( plugins.body ) && plugins.body.some(
 		( p ) => p.plugin === 'rosenberger-core/rosenberger-core' && p.status === 'active'
 	);
+
+	// Тестовая страница повторяет первые две секции Figma. Повторный деплой не
+	// дублирует Trust Bar и не меняет другой контент страницы.
+	const pages = await api( '/wp-json/wp/v2/pages?slug=hero-cover-test&context=edit' );
+	if ( Array.isArray( pages.body ) && pages.body[ 0 ] ) {
+		const page = pages.body[ 0 ];
+		const raw = page.content && page.content.raw ? page.content.raw : '';
+		if ( ! raw.includes( 'wp:library/trust-bar' ) ) {
+			await api( `/wp-json/wp/v2/pages/${ page.id }`, {
+				method: 'POST',
+				body: JSON.stringify( { content: `${ raw }\n\n<!-- wp:library/trust-bar /-->` } ),
+			} );
+			console.log( 'Trust Bar добавлен после Hero.' );
+		}
+	}
 
 	console.log( 'Тема rosenberger активна:', themeActive ? '✅' : '❌' );
 	console.log( 'Плагин rosenberger-core активен:', coreActive ? '✅' : '❌' );

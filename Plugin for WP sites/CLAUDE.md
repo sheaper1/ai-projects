@@ -66,8 +66,10 @@ package.json              — сборка/деплой
   `surface-muted`, `muted`, `border`, `placeholder`, `on-dark`.
 - Шрифты: `var(--wp--preset--font-family--body)` и
   `var(--wp--preset--font-family--heading)`.
-- Размеры текста и интервалы: только `--wp--preset--font-size--*` и
-  `--wp--preset--spacing--*`.
+- Размеры текста и интервалы: только проектные пресеты
+  `--wp--preset--font-size--r-*` и `--wp--preset--spacing--r-*`. Префикс `r-`
+  обязателен: стандартные slug'и Gutenberg могут быть переопределены сохранёнными
+  Global Styles в базе WordPress.
 - Радиусы: `--wp--custom--radius--small|medium|large|pill`.
 
 Не создавай в блоке собственную палитру, шкалу размеров или контейнер. Если

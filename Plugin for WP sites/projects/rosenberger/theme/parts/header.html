@@ -1,17 +1,19 @@
-<!-- wp:group {"tagName":"header","className":"site-header","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"},"style":{"spacing":{"padding":{"top":"24px","bottom":"24px","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}}} -->
-<header class="wp-block-group site-header" style="padding-top:24px;padding-bottom:24px;padding-left:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50)">
-	<!-- wp:site-title {"level":0} /-->
+<!-- wp:group {"tagName":"header","className":"site-header","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
+<header class="wp-block-group site-header">
+	<!-- wp:html -->
+	<a class="site-header__brand" href="/" aria-label="Rosenberger Immobilien – Startseite">Rosenberger Immobilien</a>
+	<!-- /wp:html -->
 
-	<!-- wp:navigation {"layout":{"type":"flex","justifyContent":"right"}} -->
-		<!-- wp:navigation-link {"label":"Start","url":"/"} /-->
-		<!-- wp:navigation-link {"label":"Objekte","url":"/objekte/"} /-->
-		<!-- wp:navigation-link {"label":"Kontakt","url":"/kontakt/"} /-->
-	<!-- /wp:navigation -->
+	<!-- wp:group {"className":"site-header__actions","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+	<div class="wp-block-group site-header__actions">
+		<!-- wp:buttons -->
+		<div class="wp-block-buttons"><!-- wp:button {"className":"site-header__cta","metadata":{"bindings":{"text":{"source":"rosenberger/setting","args":{"key":"cta_text"}},"url":{"source":"rosenberger/setting","args":{"key":"cta_url"}}}}} -->
+		<div class="wp-block-button site-header__cta"><a class="wp-block-button__link wp-element-button" href="/kontakt/">Termin vereinbaren</a></div>
+		<!-- /wp:button --></div>
+		<!-- /wp:buttons -->
 
-	<!-- wp:buttons -->
-	<div class="wp-block-buttons"><!-- wp:button {"className":"site-header__cta","metadata":{"bindings":{"text":{"source":"rosenberger/setting","args":{"key":"cta_text"}},"url":{"source":"rosenberger/setting","args":{"key":"cta_url"}}}}} -->
-	<div class="wp-block-button site-header__cta"><a class="wp-block-button__link wp-element-button" href="/kontakt/">Kontakt</a></div>
-	<!-- /wp:button --></div>
-	<!-- /wp:buttons -->
+		<!-- wp:navigation {"overlayMenu":"always","className":"site-header__menu","layout":{"type":"flex","justifyContent":"right"}} /-->
+	</div>
+	<!-- /wp:group -->
 </header>
 <!-- /wp:group -->
