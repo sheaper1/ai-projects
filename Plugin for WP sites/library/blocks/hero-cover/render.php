@@ -24,22 +24,14 @@ if ( '' === $bg ) {
 
 $wrapper = get_block_wrapper_attributes();
 
-$allowed_inline = array(
-	'br'     => array(),
-	'em'     => array(),
-	'i'      => array(),
-	'strong' => array(),
-	'b'      => array(),
-);
-
 $menu_text    = esc_html( $attributes['menuText'] ?? 'Menu' );
 $logo_text    = esc_html( $attributes['logoText'] ?? 'LOGO' );
 $contact_text = esc_html( $attributes['contactText'] ?? 'Contact' );
 $contact_url  = esc_url( $attributes['contactUrl'] ?? '#' );
-$title        = wp_kses( $attributes['title'] ?? '', $allowed_inline );
-$subtitle     = wp_kses( $attributes['subtitle'] ?? '', $allowed_inline );
-$col_left     = wp_kses( $attributes['colLeft'] ?? '', $allowed_inline );
-$col_right    = wp_kses( $attributes['colRight'] ?? '', $allowed_inline );
+$title_main   = esc_html( $attributes['titleMain'] ?? '' );
+$title_accent = esc_html( $attributes['titleAccent'] ?? '' );
+$subtitle     = esc_html( $attributes['subtitle'] ?? '' );
+$columns      = isset( $attributes['columns'] ) && is_array( $attributes['columns'] ) ? $attributes['columns'] : array();
 ?>
 <section <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<?php if ( $bg ) : ?>
@@ -60,13 +52,16 @@ $col_right    = wp_kses( $attributes['colRight'] ?? '', $allowed_inline );
 		</header>
 
 		<div class="hero-cover__content">
-			<h1 class="hero-cover__title"><?php echo $title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h1>
-			<p class="hero-cover__subtitle"><?php echo $subtitle; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+			<h1 class="hero-cover__title"><?php echo $title_main; ?><?php if ( '' !== $title_accent ) : ?><em><?php echo $title_accent; ?></em><?php endif; ?></h1>
+			<p class="hero-cover__subtitle"><?php echo $subtitle; ?></p>
 		</div>
 
-		<div class="hero-cover__cols">
-			<p class="hero-cover__col"><?php echo $col_left; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<p class="hero-cover__col"><?php echo $col_right; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-		</div>
+		<?php if ( ! empty( $columns ) ) : ?>
+			<div class="hero-cover__cols">
+				<?php foreach ( $columns as $col ) : ?>
+					<p class="hero-cover__col"><?php echo esc_html( $col ); ?></p>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>
