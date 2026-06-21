@@ -8,6 +8,7 @@
 
 ---
 
+- [Claude] 2026-06-21 — Property Catalog: блок library/property-catalog — 3 фильтра (Lage/Typ/Sortieren), 3×2 сетка карточек CPT property, мета (Lage/Kaufpreis/Fläche/Zimmer), CTA-кнопка, view.js auto-submit. Добавлен на страницу 882 через REST. Staging ✓
 - [Claude] 2026-06-21 — Region Grid: блок library/region-grid (2×2 сетка регионов, backdrop-blur pill-ссылка, репитер 4 карточки). Собран library+project, задеплоен, страница 882 обновлена через REST API, about-атрибуты восстановлены. Staging ✓
 - [Claude] 2026-06-21 — Property CPT: taxonomy property-type + property-city, мета-поля (price/area/rooms/status), meta box в Gutenberg, блок rosenberger/property-meta (render.php), шаблоны single-property.html + archive-property.html, CSS стили карточек и страниц, seed-скрипт с Code Snippets fallback. staging /objekte/ — готово.
 - [Claude] 2026-06-21 — `footer`: переделан по Figma (2005:1394) — CTA-заголовок 56px + H256-иконка, белый логотип, Block Bindings для контактов, соцсети (4 иконки SVG inline), 4 nav-колонки, копирайт. Мобилка: стек 2×2. Задеплоено, staging 200 — готово.
