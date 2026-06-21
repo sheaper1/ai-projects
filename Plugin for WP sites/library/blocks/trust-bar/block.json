@@ -10,6 +10,8 @@
 	"textdomain": "library",
 	"supports": { "html": false, "align": [ "full" ], "multiple": false },
 	"attributes": {
+		"badgeUrl": { "type": "string", "default": "" },
+		"badgeId": { "type": "number", "default": 0 },
 		"rating": { "type": "string", "default": "4.5" },
 		"items": { "type": "array", "default": [ "Persönlich von mir betreut", "Schnelle Rückmeldung", "Vor Ort in ganz Vorarlberg" ] }
 	},

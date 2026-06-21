@@ -16,3 +16,4 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/includes/settings.php';
 require_once __DIR__ . '/includes/bindings.php';
 require_once __DIR__ . '/includes/cpt.php';
+require_once __DIR__ . '/includes/svg-media.php';

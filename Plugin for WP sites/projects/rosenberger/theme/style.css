@@ -10,7 +10,8 @@ Text Domain: rosenberger
 
 /* Полноширинные секции лендинга стыкуются без стандартного block gap Gutenberg. */
 .entry-content.wp-block-post-content > .wp-block-library-hero-cover,
-.entry-content.wp-block-post-content > .wp-block-library-trust-bar {
+.entry-content.wp-block-post-content > .wp-block-library-trust-bar,
+.entry-content.wp-block-post-content > .wp-block-library-pain-points {
 	margin-block-start: 0 !important;
 }
 .entry-content.wp-block-post-content {

@@ -31,6 +31,24 @@ const api = async ( path, opts = {} ) => {
 	return { status: res.status, body };
 };
 
+const ensureSvgMedia = async ( slug, file ) => {
+	const found = await api( `/wp-json/wp/v2/media?slug=${ encodeURIComponent( slug ) }&per_page=1` );
+	if ( Array.isArray( found.body ) && found.body[ 0 ] ) return found.body[ 0 ];
+	const filename = `${ slug }.svg`;
+	const res = await fetch( `${ BASE }/wp-json/wp/v2/media`, {
+		method: 'POST',
+		headers: {
+			Authorization: AUTH,
+			'Content-Type': 'image/svg+xml',
+			'Content-Disposition': `attachment; filename="${ filename }"`,
+		},
+		body: readFileSync( file ),
+	} );
+	const body = await res.json();
+	if ( ! res.ok ) throw new Error( `Не удалось загрузить ${ filename }: ${ body.message || res.status }` );
+	return body;
+};
+
 const walk = ( dir ) => readdirSync( dir ).flatMap( ( name ) => {
 	const p = resolve( dir, name );
 	return statSync( p ).isDirectory() ? walk( p ) : [ p ];
@@ -134,19 +152,47 @@ const main = async () => {
 	const coreActive = Array.isArray( plugins.body ) && plugins.body.some(
 		( p ) => p.plugin === 'rosenberger-core/rosenberger-core' && p.status === 'active'
 	);
+	if ( ! themeActive || ! coreActive ) throw new Error( 'Тема или project-core не активировались' );
 
-	// Тестовая страница повторяет первые две секции Figma. Повторный деплой не
-	// дублирует Trust Bar и не меняет другой контент страницы.
+	const iconDir = resolve( root, 'projects/rosenberger/media/icons' );
+	const ratingMedia = await ensureSvgMedia( 'rosenberger-google-rating', resolve( root, 'projects/rosenberger/media/google-rating.svg' ) );
+	const iconFiles = [ 'price', 'callback', 'pressure', 'commission', 'hidden' ];
+	const iconMedia = [];
+	for ( const name of iconFiles ) {
+		iconMedia.push( await ensureSvgMedia( `rosenberger-icon-${ name }`, resolve( iconDir, `${ name }.svg` ) ) );
+	}
+
+	// Тестовая страница повторяет секции Figma. Повторный деплой не дублирует блоки.
 	const pages = await api( '/wp-json/wp/v2/pages?slug=hero-cover-test&context=edit' );
 	if ( Array.isArray( pages.body ) && pages.body[ 0 ] ) {
 		const page = pages.body[ 0 ];
-		const raw = page.content && page.content.raw ? page.content.raw : '';
+		let raw = page.content && page.content.raw ? page.content.raw : '';
+		let changed = false;
 		if ( ! raw.includes( 'wp:library/trust-bar' ) ) {
+			raw += `\n\n<!-- wp:library/trust-bar ${ JSON.stringify( { badgeId: ratingMedia.id, badgeUrl: ratingMedia.source_url } ) } /-->`;
+			changed = true;
+		} else if ( ! raw.includes( 'badgeUrl' ) ) {
+			raw = raw.replace( '<!-- wp:library/trust-bar /-->', `<!-- wp:library/trust-bar ${ JSON.stringify( { badgeId: ratingMedia.id, badgeUrl: ratingMedia.source_url } ) } /-->` );
+			changed = true;
+		}
+		if ( ! raw.includes( 'wp:library/pain-points' ) ) {
+			const defaults = [
+				[ 'Preisversprechen, die nicht halten', 'Ein hoher Wunschpreis bringt dem Makler den Auftrag. Danach steht das Inserat monatelang und der Preis wird Stück für Stück gesenkt.' ],
+				[ 'Makler, die nicht zurückrufen', 'Nach der Unterschrift kommen keine Rückmeldungen mehr, und Sie erfahren wochenlang nichts über den Stand.' ],
+				[ 'Druck statt Beratung', 'Sie sollen sich schnell entscheiden, weil angeblich andere Käufer schon warten.' ],
+				[ 'Unklare Provision', 'Was der Verkauf kostet und was darin enthalten ist, bleibt bis zum Schluss vage.' ],
+				[ 'Übergang', 'Was der Verkauf kostet und was darin enthalten ist, bleibt bis zum Schluss vage.' ],
+			];
+			const items = defaults.map( ( [ title, text ], i ) => ( { title, text, iconId: iconMedia[ i ].id, iconUrl: iconMedia[ i ].source_url } ) );
+			raw += `\n\n<!-- wp:library/pain-points ${ JSON.stringify( { items } ) } /-->`;
+			changed = true;
+		}
+		if ( changed ) {
 			await api( `/wp-json/wp/v2/pages/${ page.id }`, {
 				method: 'POST',
-				body: JSON.stringify( { content: `${ raw }\n\n<!-- wp:library/trust-bar /-->` } ),
+				body: JSON.stringify( { content: raw } ),
 			} );
-			console.log( 'Trust Bar добавлен после Hero.' );
+			console.log( 'Секции тестовой страницы синхронизированы.' );
 		}
 	}
 

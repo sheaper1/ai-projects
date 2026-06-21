@@ -11,3 +11,4 @@
 | Hero | `library/hero` | Первый экран: заголовок, подзаголовок и кнопки. Макет заблокирован (InnerBlocks). | hero, первый экран, обложка, cover | stable |
 | Hero Cover | `library/hero-cover` | Полноэкранный Hero: фоновое фото (WebP), верхняя панель (меню/лого/контакт), заголовок и две колонки. Адаптивный. Тексты/фото — атрибуты (RichText + MediaUpload). | hero, cover, обложка, недвижимость, фон | stable |
 | Trust Bar | `library/trust-bar` | Компактная полоса доверия: рейтинг Google и три ключевых преимущества. Адаптивная. | trust, рейтинг, google, преимущества | stable |
+| Pain Points | `library/pain-points` | Проблемы клиента: заголовок и пять пунктов с SVG-иконками из медиатеки. | pain, проблемы, список, иконки | stable |

@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/pain-points",
+	"version": "0.1.0",
+	"title": "Pain Points",
+	"category": "design",
+	"icon": "list-view",
+	"description": "Секция проблем клиента с SVG-иконками из медиатеки.",
+	"textdomain": "library",
+	"supports": { "html": false, "align": [ "full" ], "multiple": false },
+	"attributes": {
+		"titleMain": { "type": "string", "default": "Das haben Sie an Maklern" },
+		"titleAccent": { "type": "string", "default": "sicher satt" },
+		"items": { "type": "array", "default": [
+			{ "title": "Preisversprechen, die nicht halten", "text": "Ein hoher Wunschpreis bringt dem Makler den Auftrag. Danach steht das Inserat monatelang und der Preis wird Stück für Stück gesenkt.", "iconUrl": "", "iconId": 0 },
+			{ "title": "Makler, die nicht zurückrufen", "text": "Nach der Unterschrift kommen keine Rückmeldungen mehr, und Sie erfahren wochenlang nichts über den Stand.", "iconUrl": "", "iconId": 0 },
+			{ "title": "Druck statt Beratung", "text": "Sie sollen sich schnell entscheiden, weil angeblich andere Käufer schon warten.", "iconUrl": "", "iconId": 0 },
+			{ "title": "Unklare Provision", "text": "Was der Verkauf kostet und was darin enthalten ist, bleibt bis zum Schluss vage.", "iconUrl": "", "iconId": 0 },
+			{ "title": "Übergang", "text": "Was der Verkauf kostet und was darin enthalten ist, bleibt bis zum Schluss vage.", "iconUrl": "", "iconId": 0 }
+		] }
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}
