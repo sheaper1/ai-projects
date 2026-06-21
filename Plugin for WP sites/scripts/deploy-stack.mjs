@@ -172,6 +172,8 @@ const main = async () => {
 		cardMedia.push( await ensureMedia( `rosenberger-card-${ n }`, resolve( cardDir, `card-${ n }.jpg` ), 'jpg' ) );
 	}
 
+	const aboutMedia = await ensureMedia( 'rosenberger-about-bg', resolve( root, 'projects/rosenberger/media/about/about-bg.webp' ), 'webp' );
+
 	// Тестовая страница повторяет секции Figma. Повторный деплой не дублирует блоки.
 	const pages = await api( '/wp-json/wp/v2/pages?slug=hero-cover-test&context=edit' );
 	if ( Array.isArray( pages.body ) && pages.body[ 0 ] ) {
@@ -219,6 +221,10 @@ const main = async () => {
 				raw = raw.replace( '<!-- wp:library/cards-stack /-->', cardsComment );
 				changed = true;
 			}
+		}
+		if ( ! raw.includes( 'wp:library/about' ) ) {
+			raw += `\n\n<!-- wp:library/about ${ JSON.stringify( { backgroundId: aboutMedia.id, backgroundUrl: aboutMedia.source_url } ) } /-->`;
+			changed = true;
 		}
 		if ( changed ) {
 			await api( `/wp-json/wp/v2/pages/${ page.id }`, {

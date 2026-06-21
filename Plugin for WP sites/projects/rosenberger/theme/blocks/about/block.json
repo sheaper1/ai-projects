@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/about",
+	"version": "0.1.0",
+	"title": "About",
+	"category": "design",
+	"icon": "businessperson",
+	"description": "О себе: фоновое фото, заголовок, текст, кнопка и ряд карточек-преимуществ поверх фото.",
+	"textdomain": "library",
+	"supports": { "html": false, "align": [ "full" ], "multiple": false },
+	"attributes": {
+		"titleMain": { "type": "string", "default": "Ich war selbst Käufer" },
+		"text": { "type": "string", "default": "Bevor ich Makler wurde, habe ich selbst eine Immobilie gekauft und erlebt, wie zäh und unehrlich der Ablauf sein kann. Genau das wollte ich besser machen." },
+		"buttonText": { "type": "string", "default": "Mehr über mich" },
+		"buttonUrl": { "type": "string", "default": "#" },
+		"backgroundId": { "type": "number", "default": 0 },
+		"backgroundUrl": { "type": "string", "default": "" },
+		"items": { "type": "array", "default": [
+			{ "title": "Ehrliche Bewertung", "text": "Sie bekommen einen realistischen Preis, der zum Markt passt, keinen Wunschpreis, der nur den Auftrag bringen soll." },
+			{ "title": "Rückruf binnen 24 Stunden", "text": "Sie hören von mir, ohne nachfragen zu müssen." },
+			{ "title": "Kein Verkaufsdruck", "text": "Sie entscheiden in Ihrem Tempo, nicht in meinem." },
+			{ "title": "Ein Ansprechpartner", "text": "Vom ersten Anruf bis zur Unterschrift sprechen Sie mit mir, nicht mit wechselnden Mitarbeitern." }
+		] }
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}
