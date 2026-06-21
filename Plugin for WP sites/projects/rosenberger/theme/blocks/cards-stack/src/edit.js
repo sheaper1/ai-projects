@@ -42,16 +42,18 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			<section { ...useBlockProps() }>
 				<header className="cards-stack__head">
-					<h2 className="cards-stack__heading">{ attributes.titleMain } <em>{ attributes.titleAccent }</em></h2>
+					<h2 className="cards-stack__heading"><span className="cards-stack__lead">{ attributes.titleMain }</span> <em>{ attributes.titleAccent }</em></h2>
 					<p className="cards-stack__subtitle">{ attributes.subtitle }</p>
 				</header>
 				<div className="cards-stack__layout">
 					<div className="cards-stack__cards">
 						{ cards.map( ( card, index ) => (
 							<article className="cards-stack__card" key={ index } style={ { '--i': index } } data-index={ index + 1 }>
-								<div className="cards-stack__text">
-									<h3>{ card.title }</h3>
-									<p>{ card.text }</p>
+								<div className="cards-stack__body">
+									<div className="cards-stack__text">
+										<h3>{ card.title }</h3>
+										<p>{ card.text }</p>
+									</div>
 									{ card.buttonText && (
 										<span className="cards-stack__button">{ card.buttonText } <span aria-hidden="true">&rarr;</span></span>
 									) }
@@ -63,6 +65,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					{ cards.length > 0 && (
 						<aside className="cards-stack__counter" aria-hidden="true">
 							<span className="cards-stack__current">01</span>
+							<span className="cards-stack__line"></span>
 							<span className="cards-stack__total">{ String( cards.length ).padStart( 2, '0' ) }</span>
 						</aside>
 					) }

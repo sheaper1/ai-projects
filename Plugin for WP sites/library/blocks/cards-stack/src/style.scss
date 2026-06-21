@@ -1,85 +1,106 @@
+// Cards Stack — секция услуг по макету Rosenberger (node 2005:1010).
+// Все значения — из Figma: фон surface (#f8f5f3), карточки base (#fff),
+// текст contrast (#142335), описание muted (#747c86).
 .wp-block-library-cards-stack {
 	box-sizing: border-box;
 	padding: var(--wp--custom--layout--section-space) var(--wp--custom--layout--gutter);
-	background: var(--wp--preset--color--base);
+	background: var(--wp--preset--color--surface);
 	color: var(--wp--preset--color--contrast);
 
 	* { box-sizing: border-box; }
 
+	// --- Заголовок ---
 	.cards-stack__head {
-		max-width: var(--wp--style--global--content-size, 864px);
+		max-width: 669px;
 		margin: 0 auto var(--wp--preset--spacing--r-64);
 		text-align: center;
 	}
 	.cards-stack__heading {
 		margin: 0 0 var(--wp--preset--spacing--r-16);
+		font-family: var(--wp--preset--font-family--heading);
 		font-size: var(--wp--preset--font-size--r-56);
-		line-height: 1.15;
-		letter-spacing: -0.02em;
+		font-weight: 400;
+		line-height: 1.2;
+		letter-spacing: -0.03em;
 	}
-	.cards-stack__heading em { font-weight: 300; }
+	.cards-stack__heading .cards-stack__lead { font-weight: 400; }
+	.cards-stack__heading em { font-weight: 300; font-style: italic; }
 	.cards-stack__subtitle {
 		margin: 0;
-		color: var(--wp--preset--color--muted);
-		font-size: var(--wp--preset--font-size--r-18);
+		font-family: var(--wp--preset--font-family--body);
+		font-size: var(--wp--preset--font-size--r-16);
+		font-weight: 300;
+		line-height: 1.5;
 	}
 
+	// --- Раскладка: карточки + счётчик ---
 	.cards-stack__layout {
-		max-width: var(--wp--style--global--wide-size, 1344px);
+		max-width: 1216px;
 		margin: 0 auto;
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto;
-		gap: var(--wp--preset--spacing--r-48);
+		column-gap: var(--wp--preset--spacing--r-40);
 		align-items: start;
 	}
-
 	.cards-stack__cards {
+		grid-column: 1;
+		max-width: 1087px;
 		display: flex;
 		flex-direction: column;
 		gap: var(--wp--preset--spacing--r-24);
 	}
+
+	// --- Карточка: белая, без скругления и тени, фото справа ---
 	.cards-stack__card {
 		position: sticky;
 		top: calc(var(--wp--preset--spacing--r-64) + var(--i, 0) * var(--wp--preset--spacing--r-16));
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		min-height: 487px;
 		overflow: hidden;
-		background: var(--wp--preset--color--surface);
-		border-radius: var(--wp--custom--radius--large);
-		box-shadow: 0 24px 48px color-mix(in srgb, var(--wp--preset--color--contrast) 10%, transparent);
+		background: var(--wp--preset--color--base);
 	}
-
-	.cards-stack__text {
+	.cards-stack__body {
 		align-self: center;
 		display: flex;
 		flex-direction: column;
-		gap: var(--wp--preset--spacing--r-16);
+		gap: var(--wp--preset--spacing--r-48);
 		padding: var(--wp--preset--spacing--r-48);
+		max-width: 470px;
+	}
+	.cards-stack__text {
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--r-16);
 	}
 	.cards-stack__text h3 {
 		margin: 0;
+		font-family: var(--wp--preset--font-family--heading);
 		font-size: var(--wp--preset--font-size--r-32);
-		font-weight: 600;
-		letter-spacing: -0.02em;
+		font-weight: 500;
+		line-height: 1.2;
 	}
 	.cards-stack__text p {
 		margin: 0;
-		color: var(--wp--preset--color--muted);
+		font-family: var(--wp--preset--font-family--body);
 		font-size: var(--wp--preset--font-size--r-16);
-		line-height: 1.55;
+		font-weight: 300;
+		line-height: 1.5;
+		color: var(--wp--preset--color--muted);
 	}
 	.cards-stack__button {
 		align-self: flex-start;
 		display: inline-flex;
 		align-items: center;
 		gap: var(--wp--preset--spacing--r-8);
-		margin-top: var(--wp--preset--spacing--r-8);
-		padding: var(--wp--preset--spacing--r-16) var(--wp--preset--spacing--r-24);
-		border: 1px solid var(--wp--preset--color--border);
+		height: 56px;
+		padding: 0 var(--wp--preset--spacing--r-24);
+		border: 1px solid var(--wp--preset--color--contrast);
 		border-radius: var(--wp--custom--radius--pill);
+		font-family: var(--wp--preset--font-family--body);
+		font-size: var(--wp--preset--font-size--r-18);
+		font-weight: 500;
 		color: var(--wp--preset--color--contrast);
-		font-size: var(--wp--preset--font-size--r-14);
-		font-weight: 600;
 		text-decoration: none;
 		transition: var(--wp--custom--transition--base);
 	}
@@ -87,9 +108,7 @@
 		background: var(--wp--preset--color--contrast);
 		color: var(--wp--preset--color--on-dark);
 	}
-
 	.cards-stack__media {
-		min-height: 320px;
 		background: var(--wp--preset--color--surface-muted);
 	}
 	.cards-stack__media img {
@@ -99,41 +118,66 @@
 		object-fit: cover;
 	}
 
+	// --- Счётчик: число + линия + затухающий тотал ---
 	.cards-stack__counter {
+		grid-column: 2;
 		position: sticky;
-		top: 45vh;
+		top: 50vh;
+		transform: translateY(-50%);
 		display: flex;
 		flex-direction: column;
-		align-items: flex-end;
+		align-items: center;
+		gap: var(--wp--preset--spacing--r-24);
 		font-family: var(--wp--preset--font-family--heading);
-		line-height: 1;
+		line-height: 1.2;
 	}
 	.cards-stack__current {
-		font-size: var(--wp--preset--font-size--r-64);
-		font-weight: 600;
+		font-size: var(--wp--preset--font-size--r-48);
+		font-weight: 300;
+		letter-spacing: -0.02em;
 		color: var(--wp--preset--color--contrast);
 	}
+	.cards-stack__line {
+		width: 1px;
+		height: 185px;
+		background: linear-gradient(
+			to bottom,
+			transparent,
+			color-mix(in srgb, var(--wp--preset--color--contrast) 22%, transparent),
+			transparent
+		);
+	}
 	.cards-stack__total {
-		font-size: var(--wp--preset--font-size--r-24);
-		color: var(--wp--preset--color--placeholder);
+		font-size: var(--wp--preset--font-size--r-48);
+		font-weight: 300;
+		letter-spacing: -0.02em;
+		background: linear-gradient( to bottom, var(--wp--preset--color--contrast), var(--wp--preset--color--surface) );
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
 	}
 
+	// --- Нижняя кнопка ---
 	.cards-stack__cta {
 		margin-top: var(--wp--preset--spacing--r-48);
 		text-align: center;
 	}
 	.cards-stack__cta-button {
-		display: inline-block;
-		padding: var(--wp--preset--spacing--r-16) var(--wp--preset--spacing--r-32);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 56px;
+		padding: 0 var(--wp--preset--spacing--r-24);
 		background: var(--wp--preset--color--contrast);
 		color: var(--wp--preset--color--on-dark);
 		border-radius: var(--wp--custom--radius--pill);
-		font-family: var(--wp--preset--font-family--heading);
-		font-size: var(--wp--preset--font-size--r-16);
-		font-weight: 600;
+		font-family: var(--wp--preset--font-family--body);
+		font-size: var(--wp--preset--font-size--r-18);
+		font-weight: 500;
 		text-decoration: none;
 	}
 
+	// --- Контрол редактора ---
 	.cards-stack__control {
 		margin-bottom: var(--wp--preset--spacing--r-24);
 		padding-bottom: var(--wp--preset--spacing--r-24);
@@ -149,11 +193,12 @@
 	@media (max-width: 782px) {
 		padding-block: var(--wp--preset--spacing--r-64);
 		.cards-stack__heading { font-size: var(--wp--preset--font-size--r-40); }
-		.cards-stack__card { grid-template-columns: 1fr; }
-		.cards-stack__media { order: -1; min-height: 220px; }
-		.cards-stack__text { padding: var(--wp--preset--spacing--r-24); }
+		.cards-stack__card { grid-template-columns: 1fr; min-height: 0; }
+		.cards-stack__media { order: -1; aspect-ratio: 16 / 10; }
+		.cards-stack__body { padding: var(--wp--preset--spacing--r-24); gap: var(--wp--preset--spacing--r-24); max-width: none; }
 	}
 }
 
 // В редакторе наложение карточек мешает правке — выключаем sticky.
 .editor-styles-wrapper .cards-stack__card { position: static; top: auto; }
+.editor-styles-wrapper .cards-stack__counter { position: static; transform: none; }

@@ -31,15 +31,17 @@ const api = async ( path, opts = {} ) => {
 	return { status: res.status, body };
 };
 
-const ensureSvgMedia = async ( slug, file ) => {
+const MIME = { svg: 'image/svg+xml', jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp' };
+
+const ensureMedia = async ( slug, file, ext = 'svg' ) => {
 	const found = await api( `/wp-json/wp/v2/media?slug=${ encodeURIComponent( slug ) }&per_page=1` );
 	if ( Array.isArray( found.body ) && found.body[ 0 ] ) return found.body[ 0 ];
-	const filename = `${ slug }.svg`;
+	const filename = `${ slug }.${ ext }`;
 	const res = await fetch( `${ BASE }/wp-json/wp/v2/media`, {
 		method: 'POST',
 		headers: {
 			Authorization: AUTH,
-			'Content-Type': 'image/svg+xml',
+			'Content-Type': MIME[ ext ] || 'application/octet-stream',
 			'Content-Disposition': `attachment; filename="${ filename }"`,
 		},
 		body: readFileSync( file ),
@@ -48,6 +50,8 @@ const ensureSvgMedia = async ( slug, file ) => {
 	if ( ! res.ok ) throw new Error( `Не удалось загрузить ${ filename }: ${ body.message || res.status }` );
 	return body;
 };
+
+const ensureSvgMedia = ( slug, file ) => ensureMedia( slug, file, 'svg' );
 
 const walk = ( dir ) => readdirSync( dir ).flatMap( ( name ) => {
 	const p = resolve( dir, name );
@@ -162,6 +166,12 @@ const main = async () => {
 		iconMedia.push( await ensureSvgMedia( `rosenberger-icon-${ name }`, resolve( iconDir, `${ name }.svg` ) ) );
 	}
 
+	const cardDir = resolve( root, 'projects/rosenberger/media/cards' );
+	const cardMedia = [];
+	for ( const n of [ 1, 2, 3 ] ) {
+		cardMedia.push( await ensureMedia( `rosenberger-card-${ n }`, resolve( cardDir, `card-${ n }.jpg` ), 'jpg' ) );
+	}
+
 	// Тестовая страница повторяет секции Figma. Повторный деплой не дублирует блоки.
 	const pages = await api( '/wp-json/wp/v2/pages?slug=hero-cover-test&context=edit' );
 	if ( Array.isArray( pages.body ) && pages.body[ 0 ] ) {
@@ -187,9 +197,28 @@ const main = async () => {
 			raw += `\n\n<!-- wp:library/pain-points ${ JSON.stringify( { items } ) } /-->`;
 			changed = true;
 		}
-		if ( ! raw.includes( 'wp:library/cards-stack' ) ) {
-			raw += '\n\n<!-- wp:library/cards-stack /-->';
-			changed = true;
+		{
+			const cardDefaults = [
+				[ 'Immobilie verkaufen', 'Von der Bewertung über die Vermarktung bis zur Übergabe übernehme ich den ganzen Verkauf für Sie.' ],
+				[ 'Immobilienbewertung', 'Sie erfahren realistisch, was Ihre Immobilie wert ist, ohne überzogene Versprechen und ohne Verpflichtung.' ],
+				[ 'Immobilie vermieten', 'Sie bekommen sorgfältig ausgewählte Mieter, und ich kümmere mich um Bonität, Vertrag und Übergabe.' ],
+			];
+			const cardsAttr = cardDefaults.map( ( [ title, text ], i ) => ( {
+				title,
+				text,
+				buttonText: 'Erfahren Sie mehr',
+				buttonUrl: '#',
+				imageId: cardMedia[ i ].id,
+				imageUrl: cardMedia[ i ].source_url,
+			} ) );
+			const cardsComment = `<!-- wp:library/cards-stack ${ JSON.stringify( { cards: cardsAttr } ) } /-->`;
+			if ( ! raw.includes( 'wp:library/cards-stack' ) ) {
+				raw += `\n\n${ cardsComment }`;
+				changed = true;
+			} else if ( ! raw.includes( 'rosenberger-card-' ) ) {
+				raw = raw.replace( '<!-- wp:library/cards-stack /-->', cardsComment );
+				changed = true;
+			}
 		}
 		if ( changed ) {
 			await api( `/wp-json/wp/v2/pages/${ page.id }`, {
