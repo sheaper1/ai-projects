@@ -11,9 +11,12 @@
 		"align": [ "full" ]
 	},
 	"attributes": {
-		"align":        { "type": "string", "default": "full" },
-		"postsPerPage": { "type": "number", "default": 6 },
-		"archiveUrl":   { "type": "string", "default": "/objekte/" }
+		"align":         { "type": "string", "default": "full" },
+		"postsPerPage":  { "type": "number", "default": 6 },
+		"archiveUrl":    { "type": "string", "default": "/objekte/" },
+		"heading":       { "type": "string", "default": "Aktuelle Objekte" },
+		"headingItalic": { "type": "string", "default": "in Vorarlberg" },
+		"subtext":       { "type": "string", "default": "Sie suchen ein Zuhause oder ein Grundstück in Vorarlberg? Hier sehen Sie, was ich gerade vermittle. Der Bestand wird laufend aktualisiert." }
 	},
 	"editorScript": "file:./build/index.js",
 	"viewScript":   "file:./view.js",
