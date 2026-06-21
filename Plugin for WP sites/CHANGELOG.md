@@ -8,6 +8,7 @@
 
 ---
 
+- [Codex] 2026-06-21 — Front page staging: сломанная главная (page 296) заменена контентом из hero-cover-test; восстановлен region-bregenz, объектам CPT назначены sample featured images, визуально перепроверены region-grid и property-catalog. Добавлен scripts/sync-front-page.mjs для быстрой синхронизации главной — готово.
 - [Claude] 2026-06-21 — Property Catalog: блок library/property-catalog — 3 фильтра (Lage/Typ/Sortieren), 3×2 сетка карточек CPT property, мета (Lage/Kaufpreis/Fläche/Zimmer), CTA-кнопка, view.js auto-submit. Добавлен на страницу 882 через REST. Staging ✓
 - [Claude] 2026-06-21 — Region Grid: блок library/region-grid (2×2 сетка регионов, backdrop-blur pill-ссылка, репитер 4 карточки). Собран library+project, задеплоен, страница 882 обновлена через REST API, about-атрибуты восстановлены. Staging ✓
 - [Claude] 2026-06-21 — Property CPT: taxonomy property-type + property-city, мета-поля (price/area/rooms/status), meta box в Gutenberg, блок rosenberger/property-meta (render.php), шаблоны single-property.html + archive-property.html, CSS стили карточек и страниц, seed-скрипт с Code Snippets fallback. staging /objekte/ — готово.
