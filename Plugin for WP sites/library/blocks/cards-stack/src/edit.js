@@ -44,14 +44,12 @@ export default function Edit( { attributes, setAttributes } ) {
 									value={ card.imageId }
 									onSelect={ ( media ) => patchCard( index, { imageId: media.id, imageUrl: media.url } ) }
 									render={ ( { open } ) => (
-										<Flex align="center" gap={ 2 } justify="flex-start">
-											<FlexItem><Button variant="secondary" onClick={ open }>{ card.imageUrl ? 'Заменить фото' : 'Выбрать фото' }</Button></FlexItem>
+										<div>
 											{ card.imageUrl && (
-												<FlexItem>
-													<img src={ card.imageUrl } alt="" onClick={ open } style={ { width: 64, height: 44, objectFit: 'cover', borderRadius: 4, display: 'block', cursor: 'pointer', border: '1px solid #ddd' } } />
-												</FlexItem>
+												<img src={ card.imageUrl } alt="" onClick={ open } style={ { width: '100%', height: 150, objectFit: 'cover', borderRadius: 6, display: 'block', cursor: 'pointer', border: '1px solid #ddd', marginBottom: 8 } } />
 											) }
-										</Flex>
+											<Button variant="secondary" onClick={ open }>{ card.imageUrl ? 'Заменить фото' : 'Выбрать фото' }</Button>
+										</div>
 									) }
 								/>
 							</MediaUploadCheck>

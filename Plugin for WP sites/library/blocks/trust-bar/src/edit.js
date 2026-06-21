@@ -21,14 +21,12 @@ export default function Edit( { attributes, setAttributes } ) {
 					<TextControl label="Рейтинг" value={ attributes.rating } onChange={ ( rating ) => setAttributes( { rating } ) } />
 					<MediaUploadCheck>
 						<MediaUpload allowedTypes={ [ 'image' ] } value={ attributes.badgeId } onSelect={ ( media ) => setAttributes( { badgeId: media.id, badgeUrl: media.url } ) } render={ ( { open } ) => (
-							<Flex align="center" gap={ 2 } justify="flex-start">
-								<FlexItem><Button variant="secondary" onClick={ open }>{ attributes.badgeUrl ? 'Заменить SVG рейтинга' : 'Выбрать SVG рейтинга' }</Button></FlexItem>
+							<div>
 								{ attributes.badgeUrl && (
-									<FlexItem>
-										<img src={ attributes.badgeUrl } alt="" onClick={ open } style={ { width: 80, height: 28, objectFit: 'contain', borderRadius: 4, display: 'block', cursor: 'pointer', background: '#f0f0f0', border: '1px solid #ddd' } } />
-									</FlexItem>
+									<img src={ attributes.badgeUrl } alt="" onClick={ open } style={ { width: '100%', height: 64, objectFit: 'contain', padding: 8, borderRadius: 6, display: 'block', cursor: 'pointer', background: '#f0f0f0', border: '1px solid #ddd', marginBottom: 8 } } />
 								) }
-							</Flex>
+								<Button variant="secondary" onClick={ open }>{ attributes.badgeUrl ? 'Заменить SVG рейтинга' : 'Выбрать SVG рейтинга' }</Button>
+							</div>
 						) } />
 					</MediaUploadCheck>
 				</PanelBody>

@@ -35,14 +35,12 @@ export default function Edit( { attributes, setAttributes } ) {
 									value={ item.iconId }
 									onSelect={ ( media ) => patchItem( index, { iconId: media.id, iconUrl: media.url } ) }
 									render={ ( { open } ) => (
-										<Flex align="center" gap={ 2 } justify="flex-start">
-											<FlexItem><Button variant="secondary" onClick={ open }>{ item.iconUrl ? 'Заменить SVG' : 'Выбрать SVG' }</Button></FlexItem>
+										<div>
 											{ item.iconUrl && (
-												<FlexItem>
-													<img src={ item.iconUrl } alt="" onClick={ open } style={ { width: 44, height: 44, objectFit: 'contain', padding: 6, borderRadius: 4, display: 'block', cursor: 'pointer', background: '#f0f0f0', border: '1px solid #ddd' } } />
-												</FlexItem>
+												<img src={ item.iconUrl } alt="" onClick={ open } style={ { width: 80, height: 80, objectFit: 'contain', padding: 12, borderRadius: 6, display: 'block', cursor: 'pointer', background: '#f0f0f0', border: '1px solid #ddd', marginBottom: 8 } } />
 											) }
-										</Flex>
+											<Button variant="secondary" onClick={ open }>{ item.iconUrl ? 'Заменить SVG' : 'Выбрать SVG' }</Button>
+										</div>
 									) }
 								/>
 							</MediaUploadCheck>
