@@ -12,26 +12,13 @@
 		"multiple": false
 	},
 	"attributes": {
-		"heading": { "type": "string", "default": "Erfolgreich verkauft" },
-		"headingItalic": { "type": "string", "default": "in Vorarlberg" },
-		"title": { "type": "string", "default": "Wohnung" },
-		"text": { "type": "string", "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas." },
-		"locationLabel": { "type": "string", "default": "Lage" },
-		"locationValue": { "type": "string", "default": "Vorarlberg | Österreich" },
-		"priceLabel": { "type": "string", "default": "Kaufpreis" },
-		"priceValue": { "type": "string", "default": "Auf Anfrage" },
-		"areaLabel": { "type": "string", "default": "Grundstücksfläche" },
-		"areaValue": { "type": "string", "default": "ca. 130 m²" },
-		"roomsLabel": { "type": "string", "default": "Zimmer" },
-		"roomsValue": { "type": "string", "default": "4" },
-		"buttonText": { "type": "string", "default": "Erfahren Sie mehr" },
-		"buttonUrl": { "type": "string", "default": "#" },
-		"ctaText": { "type": "string", "default": "Alle Referenzen ansehen" },
-		"ctaUrl": { "type": "string", "default": "#" },
-		"imageId": { "type": "number", "default": 0 },
-		"imageUrl": { "type": "string", "default": "" }
+		"heading":      { "type": "string", "default": "Erfolgreich verkauft" },
+		"headingItalic":{ "type": "string", "default": "in Vorarlberg" },
+		"ctaText":      { "type": "string", "default": "Alle Referenzen ansehen" },
+		"ctaUrl":       { "type": "string", "default": "/objekte/" }
 	},
 	"editorScript": "file:./build/index.js",
-	"style": "file:./build/style-index.css",
-	"render": "file:./render.php"
+	"viewScript":   "file:./view.js",
+	"style":        "file:./build/style-index.css",
+	"render":       "file:./render.php"
 }

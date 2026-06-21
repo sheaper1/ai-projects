@@ -28,6 +28,8 @@
 	font-weight: 300;
 }
 
+// ── Frame (nav + track) ─────────────────────────────────────────────────────
+
 .sold-showcase__frame {
 	display: grid;
 	grid-template-columns: 48px minmax(0, 1fr) 48px;
@@ -35,7 +37,13 @@
 	gap: 24px;
 }
 
+// ── Nav buttons ─────────────────────────────────────────────────────────────
+
 .sold-showcase__nav {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 40px;
 	height: 40px;
 	border: 1px solid var(--wp--preset--color--accent);
@@ -43,15 +51,37 @@
 	background: transparent;
 	color: var(--wp--preset--color--accent);
 	font-size: 20px;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+	&:hover,
+	&:focus-visible {
+		background: var(--wp--preset--color--accent);
+		color: var(--wp--preset--color--on-dark);
+		border-color: var(--wp--preset--color--accent);
+		outline: none;
+	}
 }
 
-.sold-showcase__card {
-	display: grid;
-	grid-template-columns: 38% 62%;
-	min-height: 504px;
-	border: 1px solid rgba(178, 179, 183, 0.7);
-	background: var(--wp--preset--color--base);
+// ── Track + slides ──────────────────────────────────────────────────────────
+
+.sold-showcase__track {
+	position: relative;
 }
+
+.sold-showcase__slide {
+	display: none;
+
+	&.is-active {
+		display: grid;
+		grid-template-columns: 38% 62%;
+		min-height: 504px;
+		border: 1px solid rgba(178, 179, 183, 0.7);
+		background: var(--wp--preset--color--base);
+	}
+}
+
+// ── Card content ─────────────────────────────────────────────────────────────
 
 .sold-showcase__content {
 	padding: 56px 48px 48px;
@@ -97,13 +127,26 @@
 	color: var(--wp--preset--color--contrast);
 }
 
+// ── Text link inside card ────────────────────────────────────────────────────
+
 .sold-showcase__link {
+	display: inline-block;
 	margin-top: 48px;
 	font-weight: 600;
 	color: var(--wp--preset--color--contrast);
 	text-decoration: underline;
 	text-underline-offset: 0.2em;
+	transition: color 0.2s ease, text-decoration-color 0.2s ease;
+
+	&:hover,
+	&:focus-visible {
+		color: var(--wp--preset--color--primary);
+		text-decoration-color: var(--wp--preset--color--primary);
+		outline: none;
+	}
 }
+
+// ── Media ────────────────────────────────────────────────────────────────────
 
 .sold-showcase__media img {
 	width: 100%;
@@ -111,6 +154,8 @@
 	object-fit: cover;
 	display: block;
 }
+
+// ── Footer ───────────────────────────────────────────────────────────────────
 
 .sold-showcase__footer {
 	display: flex;
@@ -125,27 +170,52 @@
 	gap: 10px;
 }
 
-.sold-showcase__dots span {
+.sold-showcase__dot {
 	width: 14px;
 	height: 4px;
 	background: var(--wp--preset--color--accent);
+	transition: background 0.2s ease;
+
+	&.is-active {
+		background: var(--wp--preset--color--contrast);
+	}
 }
 
-.sold-showcase__dots .is-active {
-	background: var(--wp--preset--color--contrast);
-}
+// ── CTA button ───────────────────────────────────────────────────────────────
 
 .sold-showcase__button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	min-height: 56px;
-	padding: 16px 24px;
+	padding: 16px 32px;
 	border-radius: var(--wp--custom--radius--pill);
 	background: var(--wp--preset--color--contrast);
 	color: var(--wp--preset--color--on-dark);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-16);
+	font-weight: 600;
 	text-decoration: none;
+	white-space: nowrap;
+	transition: background 0.2s ease, color 0.2s ease;
+
+	&:hover,
+	&:focus-visible {
+		background: var(--wp--preset--color--primary);
+		color: var(--wp--preset--color--on-dark);
+		outline: none;
+	}
 }
+
+// ── Empty state ──────────────────────────────────────────────────────────────
+
+.sold-showcase__empty {
+	text-align: center;
+	color: var(--wp--preset--color--muted);
+	padding: 48px 0;
+}
+
+// ── Responsive ───────────────────────────────────────────────────────────────
 
 @media (max-width: 1024px) {
 	.sold-showcase__frame {
@@ -156,8 +226,9 @@
 		display: none;
 	}
 
-	.sold-showcase__card {
+	.sold-showcase__slide.is-active {
 		grid-template-columns: 1fr;
+		min-height: auto;
 	}
 
 	.sold-showcase__media {
@@ -168,7 +239,7 @@
 
 @media (max-width: 781px) {
 	.wp-block-library-sold-showcase {
-		padding: 96px 16px;
+		padding: 80px var(--wp--custom--layout--gutter);
 	}
 
 	.sold-showcase__header {
@@ -185,10 +256,22 @@
 
 	.sold-showcase__content h3 {
 		font-size: var(--wp--preset--font-size--r-32);
+		margin-bottom: 16px;
 	}
 
 	.sold-showcase__meta {
-		grid-template-columns: 1fr 1fr;
-		gap: 24px 16px;
+		gap: 20px 16px;
+	}
+
+	.sold-showcase__link {
+		margin-top: 32px;
+	}
+
+	.sold-showcase__button {
+		width: 100%;
+		max-width: 320px;
+		padding: 14px 24px;
+		min-height: 52px;
+		font-size: var(--wp--preset--font-size--r-14);
 	}
 }
