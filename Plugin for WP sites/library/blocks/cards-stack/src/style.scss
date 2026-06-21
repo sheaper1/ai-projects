@@ -1,11 +1,15 @@
 // Cards Stack — секция услуг по макету Rosenberger (node 2005:1010).
-// Все значения — из Figma: фон surface (#f8f5f3), карточки base (#fff),
-// текст contrast (#142335), описание muted (#747c86).
+// Дизайн строго по Figma: фон surface (#f8f5f3), карточки base (#fff) без
+// скруглений, фото в край, счётчик в contrast (#142335).
+// Механику stack-on-scroll и одометр-счётчик заимствованы из референса.
 .wp-block-library-cards-stack {
+	--cards-sticky-top: 120px;
+	--cards-cell: 64px;
 	box-sizing: border-box;
 	padding: var(--wp--custom--layout--section-space) var(--wp--custom--layout--gutter);
 	background: var(--wp--preset--color--surface);
 	color: var(--wp--preset--color--contrast);
+	overflow: visible;
 
 	* { box-sizing: border-box; }
 
@@ -28,37 +32,49 @@
 	.cards-stack__subtitle {
 		margin: 0;
 		font-family: var(--wp--preset--font-family--body);
-		font-size: var(--wp--preset--font-size--r-16);
+		font-size: var(--wp--preset--font-size--r-18);
 		font-weight: 300;
 		line-height: 1.5;
 	}
 
-	// --- Раскладка: карточки + счётчик ---
-	.cards-stack__layout {
+	// --- Сцена: карточки + счётчик ---
+	.cards-stack__stage {
 		max-width: 1216px;
 		margin: 0 auto;
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) auto;
+		grid-template-columns: minmax(0, 1fr) 100px;
 		column-gap: var(--wp--preset--spacing--r-40);
 		align-items: start;
+		overflow: visible;
 	}
 	.cards-stack__cards {
-		grid-column: 1;
-		max-width: 1087px;
 		display: flex;
 		flex-direction: column;
 		gap: var(--wp--preset--spacing--r-24);
+		overflow: visible;
 	}
 
-	// --- Карточка: белая, без скругления и тени, фото справа ---
+	// --- Карточка: белая, без скругления, фото справа в край ---
 	.cards-stack__card {
 		position: sticky;
-		top: calc(var(--wp--preset--spacing--r-64) + var(--i, 0) * var(--wp--preset--spacing--r-16));
+		top: var(--cards-sticky-top);
+		z-index: var(--card-index, 1);
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: minmax(0, 1fr) 50%;
 		min-height: 487px;
 		overflow: hidden;
 		background: var(--wp--preset--color--base);
+		transform: translateY( var(--card-y, 0px) ) scale( var(--card-scale, 1) );
+		transform-origin: center top;
+		opacity: var(--card-opacity, 1);
+		transition:
+			transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+			box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+		will-change: transform, opacity;
+	}
+	.cards-stack__card.is-active {
+		box-shadow: 0 24px 70px color-mix( in srgb, var(--wp--preset--color--contrast) 8%, transparent );
 	}
 	.cards-stack__body {
 		align-self: center;
@@ -79,6 +95,7 @@
 		font-size: var(--wp--preset--font-size--r-32);
 		font-weight: 500;
 		line-height: 1.2;
+		letter-spacing: -0.02em;
 	}
 	.cards-stack__text p {
 		margin: 0;
@@ -104,10 +121,12 @@
 		text-decoration: none;
 		transition: var(--wp--custom--transition--base);
 	}
+	.cards-stack__button svg { flex-shrink: 0; transition: transform 0.25s; }
 	.cards-stack__button:hover {
 		background: var(--wp--preset--color--contrast);
 		color: var(--wp--preset--color--on-dark);
 	}
+	.cards-stack__button:hover svg { transform: translateX(3px); }
 	.cards-stack__media {
 		background: var(--wp--preset--color--surface-muted);
 	}
@@ -118,43 +137,60 @@
 		object-fit: cover;
 	}
 
-	// --- Счётчик: число + линия + затухающий тотал ---
+	// --- Счётчик-одометр: окно с треком + линия-прогресс + затухающий тотал ---
 	.cards-stack__counter {
-		grid-column: 2;
 		position: sticky;
-		top: 50vh;
-		transform: translateY(-50%);
+		top: var(--cards-sticky-top);
+		min-height: 487px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: var(--wp--preset--spacing--r-24);
+		justify-content: center;
 		font-family: var(--wp--preset--font-family--heading);
-		line-height: 1.2;
 	}
-	.cards-stack__current {
+	.cards-stack__window {
+		width: 100%;
+		height: var(--cards-cell);
+		overflow: hidden;
+	}
+	.cards-stack__track {
+		transform: translateY( calc( var(--active-index, 0) * var(--cards-cell) * -1 ) );
+		transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	.cards-stack__track span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: var(--cards-cell);
 		font-size: var(--wp--preset--font-size--r-48);
 		font-weight: 300;
+		line-height: 1.2;
 		letter-spacing: -0.02em;
 		color: var(--wp--preset--color--contrast);
 	}
 	.cards-stack__line {
+		position: relative;
 		width: 1px;
-		height: 185px;
-		background: linear-gradient(
-			to bottom,
-			transparent,
-			color-mix(in srgb, var(--wp--preset--color--contrast) 22%, transparent),
-			transparent
-		);
+		height: 160px;
+		margin: var(--wp--preset--spacing--r-24) 0;
+		background: color-mix( in srgb, var(--wp--preset--color--contrast) 14%, transparent );
+		overflow: hidden;
+	}
+	.cards-stack__line span {
+		position: absolute;
+		inset: 0;
+		background: var(--wp--preset--color--contrast);
+		transform-origin: top center;
+		transform: scaleY(0.08);
+		transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 	.cards-stack__total {
 		font-size: var(--wp--preset--font-size--r-48);
 		font-weight: 300;
+		line-height: 1.2;
 		letter-spacing: -0.02em;
-		background: linear-gradient( to bottom, var(--wp--preset--color--contrast), var(--wp--preset--color--surface) );
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
+		color: color-mix( in srgb, var(--wp--preset--color--contrast) 28%, transparent );
 	}
 
 	// --- Нижняя кнопка ---
@@ -185,20 +221,28 @@
 	}
 
 	@media (max-width: 1024px) {
-		.cards-stack__layout { grid-template-columns: 1fr; }
+		.cards-stack__stage { display: block; }
 		.cards-stack__counter { display: none; }
-		.cards-stack__card { position: static; top: auto; }
+		.cards-stack__card {
+			position: relative;
+			top: auto;
+			grid-template-columns: 1fr;
+			min-height: 0;
+			transform: none !important;
+			opacity: 1 !important;
+			box-shadow: none !important;
+		}
+		.cards-stack__media { order: -1; aspect-ratio: 16 / 10; }
+		.cards-stack__body { padding: var(--wp--preset--spacing--r-24); gap: var(--wp--preset--spacing--r-24); max-width: none; }
 	}
 
 	@media (max-width: 782px) {
 		padding-block: var(--wp--preset--spacing--r-64);
 		.cards-stack__heading { font-size: var(--wp--preset--font-size--r-40); }
-		.cards-stack__card { grid-template-columns: 1fr; min-height: 0; }
-		.cards-stack__media { order: -1; aspect-ratio: 16 / 10; }
-		.cards-stack__body { padding: var(--wp--preset--spacing--r-24); gap: var(--wp--preset--spacing--r-24); max-width: none; }
+		.cards-stack__media { aspect-ratio: 16 / 11; }
 	}
 }
 
-// В редакторе наложение карточек мешает правке — выключаем sticky.
-.editor-styles-wrapper .cards-stack__card { position: static; top: auto; }
-.editor-styles-wrapper .cards-stack__counter { position: static; transform: none; }
+// В редакторе наложение/трансформы мешают правке — нейтрализуем.
+.editor-styles-wrapper .cards-stack__card { position: static; top: auto; transform: none; opacity: 1; }
+.editor-styles-wrapper .cards-stack__counter { position: static; }

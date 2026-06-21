@@ -1,6 +1,12 @@
 import { InspectorControls, MediaUpload, MediaUploadCheck, useBlockProps } from '@wordpress/block-editor';
 import { Button, PanelBody, TextControl, TextareaControl } from '@wordpress/components';
 
+const Arrow = () => (
+	<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+		<path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+	</svg>
+);
+
 export default function Edit( { attributes, setAttributes } ) {
 	const cards = Array.isArray( attributes.cards ) ? attributes.cards : [];
 	const patchCard = ( index, patch ) =>
@@ -45,17 +51,17 @@ export default function Edit( { attributes, setAttributes } ) {
 					<h2 className="cards-stack__heading"><span className="cards-stack__lead">{ attributes.titleMain }</span> <em>{ attributes.titleAccent }</em></h2>
 					<p className="cards-stack__subtitle">{ attributes.subtitle }</p>
 				</header>
-				<div className="cards-stack__layout">
+				<div className="cards-stack__stage">
 					<div className="cards-stack__cards">
 						{ cards.map( ( card, index ) => (
-							<article className="cards-stack__card" key={ index } style={ { '--i': index } } data-index={ index + 1 }>
+							<article className="cards-stack__card" key={ index } style={ { '--card-index': index + 1 } } data-index={ index }>
 								<div className="cards-stack__body">
 									<div className="cards-stack__text">
 										<h3>{ card.title }</h3>
 										<p>{ card.text }</p>
 									</div>
 									{ card.buttonText && (
-										<span className="cards-stack__button">{ card.buttonText } <span aria-hidden="true">&rarr;</span></span>
+										<span className="cards-stack__button">{ card.buttonText } <Arrow /></span>
 									) }
 								</div>
 								<div className="cards-stack__media">{ card.imageUrl && <img src={ card.imageUrl } alt="" /> }</div>
@@ -64,9 +70,15 @@ export default function Edit( { attributes, setAttributes } ) {
 					</div>
 					{ cards.length > 0 && (
 						<aside className="cards-stack__counter" aria-hidden="true">
-							<span className="cards-stack__current">01</span>
-							<span className="cards-stack__line"></span>
-							<span className="cards-stack__total">{ String( cards.length ).padStart( 2, '0' ) }</span>
+							<div className="cards-stack__window">
+								<div className="cards-stack__track">
+									{ cards.map( ( _, i ) => (
+										<span key={ i }>{ String( i + 1 ).padStart( 2, '0' ) }</span>
+									) ) }
+								</div>
+							</div>
+							<div className="cards-stack__line"><span></span></div>
+							<div className="cards-stack__total">{ String( cards.length ).padStart( 2, '0' ) }</div>
 						</aside>
 					) }
 				</div>
