@@ -1,5 +1,7 @@
 import { InspectorControls, MediaUpload, MediaUploadCheck, useBlockProps } from '@wordpress/block-editor';
-import { Button, PanelBody, TextControl, TextareaControl } from '@wordpress/components';
+import { Button, Flex, FlexItem, PanelBody, TextControl, TextareaControl } from '@wordpress/components';
+
+const EMPTY = { title: '', text: '', buttonText: 'Erfahren Sie mehr', buttonUrl: '#', imageId: 0, imageUrl: '' };
 
 const Arrow = () => (
 	<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -11,6 +13,15 @@ export default function Edit( { attributes, setAttributes } ) {
 	const cards = Array.isArray( attributes.cards ) ? attributes.cards : [];
 	const patchCard = ( index, patch ) =>
 		setAttributes( { cards: cards.map( ( card, i ) => ( i === index ? { ...card, ...patch } : card ) ) } );
+	const addCard = () => setAttributes( { cards: [ ...cards, { ...EMPTY } ] } );
+	const removeCard = ( index ) => setAttributes( { cards: cards.filter( ( _, i ) => i !== index ) } );
+	const moveCard = ( index, dir ) => {
+		const j = index + dir;
+		if ( j < 0 || j >= cards.length ) return;
+		const next = [ ...cards ];
+		[ next[ index ], next[ j ] ] = [ next[ j ], next[ index ] ];
+		setAttributes( { cards: next } );
+	};
 
 	return (
 		<>
@@ -37,8 +48,14 @@ export default function Edit( { attributes, setAttributes } ) {
 									) }
 								/>
 							</MediaUploadCheck>
+							<Flex justify="flex-start" gap={ 2 } style={ { marginTop: 8 } }>
+								<FlexItem><Button size="small" onClick={ () => moveCard( index, -1 ) } disabled={ index === 0 }>↑</Button></FlexItem>
+								<FlexItem><Button size="small" onClick={ () => moveCard( index, 1 ) } disabled={ index === cards.length - 1 }>↓</Button></FlexItem>
+								<FlexItem><Button size="small" isDestructive onClick={ () => removeCard( index ) }>Удалить</Button></FlexItem>
+							</Flex>
 						</div>
 					) ) }
+					<Button variant="secondary" onClick={ addCard }>+ Добавить карточку</Button>
 				</PanelBody>
 				<PanelBody title="Кнопка снизу">
 					<TextControl label="Текст" value={ attributes.ctaText } onChange={ ( ctaText ) => setAttributes( { ctaText } ) } />
