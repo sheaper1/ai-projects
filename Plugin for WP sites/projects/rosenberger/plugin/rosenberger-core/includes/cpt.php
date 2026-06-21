@@ -96,6 +96,7 @@ add_action( 'init', function () {
 			array(
 				'type'              => 'string',
 				'description'       => $description,
+				'default'           => '',
 				'single'            => true,
 				'sanitize_callback' => 'sanitize_text_field',
 				'auth_callback'     => fn() => current_user_can( 'edit_posts' ),

@@ -1,0 +1,62 @@
+{
+	"_comment": "Шаблон конфига для scaffold-cpt.mjs. Скопируй, переименуй и заполни.",
+
+	"slug":        "property",
+	"singular":    "Objekt",
+	"plural":      "Objekte",
+	"urlSlug":     "objekte",
+	"pluginDir":   "projects/rosenberger/plugin/rosenberger-core",
+	"icon":        "dashicons-building",
+	"menuPosition": 5,
+	"supports":    ["title", "editor", "thumbnail", "excerpt", "revisions"],
+	"textdomain":  "rosenberger-core",
+
+	"taxonomies": [
+		{
+			"slug":         "property-type",
+			"urlSlug":      "objekte-typ",
+			"singular":     "Typ",
+			"plural":       "Typen",
+			"hierarchical": true
+		},
+		{
+			"slug":         "property-city",
+			"urlSlug":      "objekte-ort",
+			"singular":     "Ort",
+			"plural":       "Orte",
+			"hierarchical": false
+		}
+	],
+
+	"metaFields": [
+		{
+			"key":         "property_price",
+			"label":       "Kaufpreis",
+			"description": "Kaufpreis (z. B. «Auf Anfrage» oder «€ 450.000»)",
+			"type":        "text",
+			"placeholder": "z. B. Auf Anfrage oder € 450.000"
+		},
+		{
+			"key":         "property_area",
+			"label":       "Wohnfläche",
+			"description": "Wohnfläche (z. B. «ca. 130 m²»)",
+			"type":        "text",
+			"placeholder": "z. B. ca. 130 m²"
+		},
+		{
+			"key":         "property_rooms",
+			"label":       "Zimmer",
+			"description": "Zimmer (z. B. «4» oder «4,5»)",
+			"type":        "text",
+			"placeholder": "z. B. 4"
+		},
+		{
+			"key":         "property_status",
+			"label":       "Status",
+			"description": "Status: Verfügbar | Reserviert | Verkauft",
+			"type":        "select",
+			"options":     ["Verfügbar", "Reserviert", "Verkauft"],
+			"default":     "Verfügbar"
+		}
+	]
+}

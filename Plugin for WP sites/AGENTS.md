@@ -15,13 +15,14 @@
 4. [Золотые правила (не нарушать)](#4-золотые-правила)
 5. [Дизайн-токены — справочник](#5-дизайн-токены)
 6. [Как собрать новый блок — пошагово](#6-как-собрать-новый-блок)
-7. [Обязательный цикл завершения задачи](#7-цикл-завершения)
-8. [Сборка и деплой](#8-сборка-и-деплой)
-9. [Работа с Figma](#9-figma)
-10. [Грабли и решения (важно!)](#10-грабли)
-11. [Экономия токенов](#11-экономия-токенов)
-12. [Git-протокол](#12-git)
-13. [Текущее состояние](#13-текущее-состояние)
+7. [Как создать новый CPT — scaffold](#7-cpt)
+8. [Обязательный цикл завершения задачи](#8-цикл-завершения)
+9. [Сборка и деплой](#9-сборка-и-деплой)
+10. [Работа с Figma](#10-figma)
+11. [Грабли и решения (важно!)](#11-грабли)
+12. [Экономия токенов](#12-экономия-токенов)
+13. [Git-протокол](#13-git)
+14. [Текущее состояние](#14-текущее-состояние)
 
 ---
 
@@ -78,6 +79,8 @@
 /scripts/
   build-blocks.mjs          ← сборка блоков каталога через wp-scripts
   deploy-stack.mjs          ← деплой темы+плагина на staging + аплоад медиа
+  scaffold-cpt.mjs          ← генерация PHP-файлов для нового CPT (см. §7)
+  cpt-templates/example.json ← шаблон конфига для scaffold-cpt
 /library/
   blocks-registry.md        ← каталог всех блоков (СВЕРЯТЬСЯ перед созданием)
   blocks/<slug>/            ← эталон блока
@@ -262,7 +265,72 @@ render={({ open }) => (
 
 ---
 
-## 7. Цикл завершения
+## 7. CPT — скаффолдинг нового типа записей
+
+**Принцип:** CPT/таксономии/мета — всегда в **плагине** (`plugin/<name>-core/includes/`), не в теме. Так данные переживают смену темы.
+
+### Быстрый старт
+
+```bash
+# 1. Создай конфиг по шаблону
+cp scripts/cpt-templates/example.json scripts/cpt-templates/<slug>.json
+# 2. Отредактируй конфиг (slug, labels, taxonomies, metaFields)
+# 3. Сгенерируй PHP-файлы
+node scripts/scaffold-cpt.mjs scripts/cpt-templates/<slug>.json
+# 4. Следуй чеклисту в выводе скрипта
+```
+
+Флаг `--dry-run` — показать сгенерированный PHP в консоль без записи.
+
+### Что генерирует скрипт
+
+| Файл | Содержимое |
+|------|-----------|
+| `includes/<slug>-cpt.php` | `register_post_type` + `register_taxonomy` (N штук) + `register_post_meta` |
+| `includes/<slug>-meta-box.php` | meta box с 2-column grid, text/select-поля, nonce + save hook |
+
+### Что сделать вручную после генерации
+
+1. **Подключить в плагине** — добавить 2 строки `require_once` в `<plugin>-core.php`
+2. **Сбросить перемалинки** — WP Admin → Settings → Permalinks → Save (один раз после деплоя)
+3. **Блок отображения мета** — `theme/blocks/<slug>-meta/` (render.php, block.json). Пример — `property-meta`. Использует `$block->context['postId']` для query-loop-совместимости.
+4. **Шаблоны** — `templates/single-<slug>.html` и `templates/archive-<slug>.html`. Структура — по аналогии с `single-property.html` / `archive-property.html`.
+5. **CSS карточки** — в `theme/style.css`
+6. **Seed-скрипт** — по аналогии с `scripts/seed-properties.mjs`; мета пишем через Code Snippets если ACF блокирует REST
+
+### Грабли CPT
+
+- **`show_in_rest: true`** нужно и для CPT, и для каждой таксономии, и для каждого мета-поля — иначе Gutenberg не видит данные.
+- **`'default' => ''`** в `register_post_meta` — REST API вернёт `""` вместо `null` для незаполненных полей; render.php проверяет `empty()` и работает в обоих случаях, но явный default чище.
+- **ACF блокирует REST meta** — на staging установлен ACF, который убирает ключ `meta` из REST-ответа. Читать мета через PHP (`get_post_meta`) в render.php — работает. Писать через REST — нет. Обходной путь: Code Snippets (см. `seed-properties.mjs` → `writeMeta()`).
+- **404 на архиве** после первого деплоя — нужен сброс перемалинок (п. 2 выше).
+- **`save_post_<slug>`** хук — при использовании `save_post` (без суффикса) hook срабатывает на все типы; лучше `save_post_<slug>` как в шаблоне.
+
+### Шаблон конфига (ключевые поля)
+
+```json
+{
+  "slug":        "project",        // CPT slug (в URLs и функциях)
+  "singular":    "Projekt",        // Ед.ч. для labels
+  "plural":      "Projekte",       // Мн.ч. для labels
+  "urlSlug":     "projekte",       // URL slug (/projekte/)
+  "pluginDir":   "projects/rosenberger/plugin/rosenberger-core",
+  "icon":        "dashicons-portfolio",
+  "taxonomies": [
+    { "slug": "project-type", "urlSlug": "projekt-typ",
+      "singular": "Typ", "plural": "Typen", "hierarchical": true }
+  ],
+  "metaFields": [
+    { "key": "project_budget", "label": "Budget", "type": "text", "placeholder": "z. B. € 200.000" },
+    { "key": "project_status", "label": "Status",  "type": "select",
+      "options": ["Geplant", "In Arbeit", "Abgeschlossen"], "default": "Geplant" }
+  ]
+}
+```
+
+---
+
+## 8. Цикл завершения
 
 Для любой задачи, меняющей код/тему/плагин/контент — **без напоминаний**:
 
@@ -280,7 +348,7 @@ render={({ open }) => (
 
 ---
 
-## 8. Сборка и деплой
+## 9. Сборка и деплой
 
 ```
 npm install
@@ -301,7 +369,7 @@ node scripts/deploy-stack.mjs   # деплой темы + плагина на st
 
 ---
 
-## 9. Figma
+## 10. Figma
 
 - Файл дизайна Rosenberger: **`3AzuInZ4YD95cLiQgiD24W`**.
 - Перед блоком читай конкретный **frame/node** и бери точные значения. Если ссылка
@@ -318,7 +386,7 @@ node scripts/deploy-stack.mjs   # деплой темы + плагина на st
 
 ---
 
-## 10. Грабли (важно!)
+## 11. Грабли (важно!)
 
 Реальные ошибки, уже наступленные — не повторять:
 
@@ -345,7 +413,7 @@ node scripts/deploy-stack.mjs   # деплой темы + плагина на st
 
 ---
 
-## 11. Экономия токенов
+## 12. Экономия токенов
 
 Пользователь следит за расходом — дёшево и точно:
 
@@ -360,7 +428,7 @@ node scripts/deploy-stack.mjs   # деплой темы + плагина на st
 
 ---
 
-## 12. Git
+## 13. Git
 
 - **Старт работы → `git pull`. Конец → `git push`.** Забыл push — второй ИИ
   продолжит со старого. Недопустимо.
@@ -373,17 +441,22 @@ node scripts/deploy-stack.mjs   # деплой темы + плагина на st
 
 ---
 
-## 13. Текущее состояние
+## 14. Текущее состояние
 
 Источник правды — `CHANGELOG.md` (хвост) и `library/blocks-registry.md`.
 
 Готовые блоки проекта: `hero-cover`, `trust-bar`, `pain-points`, `cards-stack`,
-`about` (+ эталон `hero` с InnerBlocks). Все контентные секции — на репитерах с
-превью медиа и в контейнере 1344px.
+`about`, `region-grid` (+ эталон `hero` с InnerBlocks). Все контентные секции —
+на репитерах с превью медиа и в контейнере 1344px.
 
 Главная страница (сверху вниз): Hero → Trust Bar → Pain Points → Cards Stack →
-About → (footer). Дальше по макету: `Frame 27` (`2005:1066`), затем секции из CPT
-(`2005:1133`/`2005:1278`). **Google-отзывы пока не трогаем.**
+About → Region Grid → (footer). Дальше по макету: `Frame 27` (`2005:1066`),
+секция каталога CPT (`2005:1133`). **Google-отзывы пока не трогаем.**
+
+CPT `property` готов: таксономии `property-type` / `property-city`, мета-поля
+(price / area / rooms / status), meta box, блок `rosenberger/property-meta`,
+шаблоны `single-property.html` + `archive-property.html`, 6 тестовых записей.
+Scaffold-скрипт для новых CPT: `scripts/scaffold-cpt.mjs` (см. §7).
 
 Staging тест-страница: <https://staging.digirelation.dev/hero-cover-test/> (id 882).
 Настройки сайта: `/wp-admin/admin.php?page=rosenberger-settings`.
