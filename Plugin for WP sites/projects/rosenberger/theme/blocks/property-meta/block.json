@@ -1,0 +1,9 @@
+{
+	"apiVersion": 3,
+	"name": "rosenberger/property-meta",
+	"title": "Objekt-Details",
+	"category": "theme",
+	"description": "2×2 таблица мета-полей объекта (Lage, Kaufpreis, Wohnfläche, Zimmer). Только server-side render, в шаблоны вставляется вручную.",
+	"render": "render.php",
+	"textdomain": "rosenberger"
+}

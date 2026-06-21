@@ -1,33 +1,106 @@
 <?php
 /**
- * Кастомные записи проекта. Пример: «Объекты» (недвижимость).
- * CPT держим в плагине, чтобы данные пережили смену/обновление темы.
+ * Кастомные записи проекта.
+ * CPT `property` держим в плагине — данные переживают смену темы.
  *
  * @package rosenberger-core
  */
 
 defined( 'ABSPATH' ) || exit;
 
-add_action(
-	'init',
-	function () {
-		register_post_type(
+add_action( 'init', function () {
+
+	// ── CPT: Objekte (property) ──────────────────────────────────────────────
+	register_post_type(
+		'property',
+		array(
+			'labels'            => array(
+				'name'               => 'Objekte',
+				'singular_name'      => 'Objekt',
+				'add_new_item'       => 'Objekt hinzufügen',
+				'edit_item'          => 'Objekt bearbeiten',
+				'new_item'           => 'Neues Objekt',
+				'view_item'          => 'Objekt ansehen',
+				'search_items'       => 'Objekte suchen',
+				'not_found'          => 'Keine Objekte gefunden',
+				'not_found_in_trash' => 'Keine Objekte im Papierkorb',
+				'all_items'          => 'Alle Objekte',
+			),
+			'public'            => true,
+			'has_archive'       => true,
+			'menu_icon'         => 'dashicons-building',
+			'menu_position'     => 5,
+			'supports'          => array( 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ),
+			'show_in_rest'      => true,
+			'rewrite'           => array( 'slug' => 'objekte' ),
+			'taxonomies'        => array( 'property-type', 'property-city' ),
+		)
+	);
+
+	// ── Taxonomy: Typ (Wohnung, Haus, Grundstück…) ──────────────────────────
+	register_taxonomy(
+		'property-type',
+		'property',
+		array(
+			'labels'            => array(
+				'name'          => 'Typen',
+				'singular_name' => 'Typ',
+				'add_new_item'  => 'Typ hinzufügen',
+				'edit_item'     => 'Typ bearbeiten',
+				'search_items'  => 'Typen suchen',
+				'all_items'     => 'Alle Typen',
+				'menu_name'     => 'Typen',
+			),
+			'hierarchical'      => true,
+			'public'            => true,
+			'show_in_rest'      => true,
+			'show_admin_column' => true,
+			'rewrite'           => array( 'slug' => 'objekte-typ' ),
+		)
+	);
+
+	// ── Taxonomy: Lage / Ort (Feldkirch, Dornbirn…) ─────────────────────────
+	register_taxonomy(
+		'property-city',
+		'property',
+		array(
+			'labels'            => array(
+				'name'          => 'Orte',
+				'singular_name' => 'Ort',
+				'add_new_item'  => 'Ort hinzufügen',
+				'edit_item'     => 'Ort bearbeiten',
+				'search_items'  => 'Orte suchen',
+				'all_items'     => 'Alle Orte',
+				'menu_name'     => 'Orte',
+			),
+			'hierarchical'      => false,
+			'public'            => true,
+			'show_in_rest'      => true,
+			'show_admin_column' => true,
+			'rewrite'           => array( 'slug' => 'objekte-ort' ),
+		)
+	);
+
+	// ── Meta-поля (show_in_rest для Block Bindings и REST-фильтрации) ────────
+	$meta_fields = array(
+		'property_price'  => 'Kaufpreis (z. B. «Auf Anfrage» oder «€ 450.000»)',
+		'property_area'   => 'Wohnfläche (z. B. «ca. 130 m²»)',
+		'property_rooms'  => 'Zimmer (z. B. «4» oder «4,5»)',
+		'property_status' => 'Status: Verfügbar | Reserviert | Verkauft',
+	);
+
+	foreach ( $meta_fields as $key => $description ) {
+		register_post_meta(
 			'property',
+			$key,
 			array(
-				'labels'       => array(
-					'name'          => 'Объекты',
-					'singular_name' => 'Объект',
-					'add_new_item'  => 'Добавить объект',
-					'edit_item'     => 'Редактировать объект',
-					'search_items'  => 'Искать объекты',
-				),
-				'public'       => true,
-				'has_archive'  => true,
-				'menu_icon'    => 'dashicons-building',
-				'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-				'show_in_rest' => true,
-				'rewrite'      => array( 'slug' => 'objekte' ),
+				'type'              => 'string',
+				'description'       => $description,
+				'single'            => true,
+				'sanitize_callback' => 'sanitize_text_field',
+				'auth_callback'     => fn() => current_user_can( 'edit_posts' ),
+				'show_in_rest'      => true,
 			)
 		);
 	}
-);
+} );
