@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/region-grid",
+	"version": "0.1.0",
+	"title": "Region Grid",
+	"category": "design",
+	"icon": "location",
+	"description": "2×2 сетка регионов: полноформатная фотокарточка с backdrop-blur pill-ссылкой по центру.",
+	"keywords": [ "region", "grid", "photo", "регион", "карточки", "местоположение" ],
+	"textdomain": "library",
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [ "full" ],
+		"multiple": true
+	},
+	"attributes": {
+		"align": { "type": "string", "default": "full" },
+		"heading": { "type": "string", "default": "Vor Ort in ganz" },
+		"headingItalic": { "type": "string", "default": "Vorarlberg" },
+		"subtext": { "type": "string", "default": "Ich kenne die Lagen, die Preise und die Besonderheiten vor Ort,\nvon Feldkirch bis Bregenz." },
+		"regions": {
+			"type": "array",
+			"default": [
+				{ "mediaId": 0, "mediaUrl": "", "label": "Feldkirch", "url": "/objekte/" },
+				{ "mediaId": 0, "mediaUrl": "", "label": "Bludenz",   "url": "/objekte/" },
+				{ "mediaId": 0, "mediaUrl": "", "label": "Dornbirn",  "url": "/objekte/" },
+				{ "mediaId": 0, "mediaUrl": "", "label": "Bregenz",   "url": "/objekte/" }
+			]
+		}
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}
