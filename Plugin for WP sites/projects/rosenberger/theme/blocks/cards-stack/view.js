@@ -31,16 +31,6 @@
 		}
 
 		function update() {
-			if ( window.matchMedia( '(max-width: 1024px)' ).matches ) {
-				cards.forEach( function ( c ) {
-					c.classList.remove( 'is-active', 'is-past', 'is-future' );
-					c.style.removeProperty( '--card-scale' );
-					c.style.removeProperty( '--card-y' );
-					c.style.removeProperty( '--card-opacity' );
-				} );
-				return;
-			}
-
 			var checkpoint = window.scrollY + stickyTop() + 80;
 			var active = 0;
 			cards.forEach( function ( c, i ) {

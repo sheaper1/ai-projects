@@ -33,6 +33,7 @@
 		// Мобильный фрейм 2005:2377: поля 16px (контент 343px), иконка 40×40.
 		padding-block: var(--wp--preset--spacing--r-64);
 		padding-inline: 16px;
+		.pain-points__inner { gap: var(--wp--preset--spacing--r-64); }
 		.pain-points__heading { font-size: var(--wp--preset--font-size--r-32); }
 		.pain-points__item { grid-template-columns: 40px 1fr; gap: var(--wp--preset--spacing--r-16); }
 		.pain-points__icon { width: 40px; height: 40px; }

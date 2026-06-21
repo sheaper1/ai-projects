@@ -221,16 +221,12 @@
 	}
 
 	@media (max-width: 1024px) {
+		--cards-sticky-top: 72px;
 		.cards-stack__stage { display: block; }
 		.cards-stack__counter { display: none; }
 		.cards-stack__card {
-			position: relative;
-			top: auto;
 			grid-template-columns: 1fr;
 			min-height: 0;
-			transform: none !important;
-			opacity: 1 !important;
-			box-shadow: none !important;
 		}
 		.cards-stack__media { order: -1; aspect-ratio: 16 / 10; }
 		.cards-stack__body { padding: var(--wp--preset--spacing--r-24); gap: var(--wp--preset--spacing--r-24); max-width: none; }
@@ -238,7 +234,10 @@
 
 	@media (max-width: 782px) {
 		padding-block: var(--wp--preset--spacing--r-64);
+		.cards-stack__head { margin-bottom: var(--wp--preset--spacing--r-64); }
 		.cards-stack__heading { font-size: var(--wp--preset--font-size--r-40); }
+		.cards-stack__cards { gap: 16px; }
+		.cards-stack__card { top: 24px; }
 		.cards-stack__media { aspect-ratio: 16 / 11; }
 	}
 }
