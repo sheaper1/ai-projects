@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/referral-cta",
+	"title": "Referral CTA",
+	"category": "design",
+	"icon": "megaphone",
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [ "full" ],
+		"multiple": false
+	},
+	"attributes": {
+		"heading": { "type": "string", "default": "Kennen Sie jemanden," },
+		"headingItalic": { "type": "string", "default": "der verkaufen möchte?" },
+		"text": { "type": "string", "default": "Viele Verkäufe beginnen mit einer Empfehlung. Wenn Sie jemanden kennen, der seine Immobilie verkaufen möchte, geben Sie den Tipp weiter. Kommt es zum Verkauf, erhalten Sie eine Provision." },
+		"buttonText": { "type": "string", "default": "Mehr zum Tippgeber-Programm" },
+		"buttonUrl": { "type": "string", "default": "#" },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "" }
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}

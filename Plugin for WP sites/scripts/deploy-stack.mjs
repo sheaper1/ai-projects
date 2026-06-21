@@ -173,6 +173,9 @@ const main = async () => {
 	}
 
 	const aboutMedia = await ensureMedia( 'rosenberger-about-bg', resolve( root, 'projects/rosenberger/media/about/about-bg.webp' ), 'webp' );
+	const figmaSoldShowcaseUrl = 'https://www.figma.com/api/mcp/asset/61d143ff-edab-476b-9409-602908ec4e7a';
+	const figmaReferralUrl = 'https://www.figma.com/api/mcp/asset/11225be6-4f8b-406a-a944-82585aaa43ee';
+	const figmaConsultationBgUrl = 'https://www.figma.com/api/mcp/asset/0bbf51fc-6133-4432-812d-0e34f66da8ff';
 
 	// Тестовая страница повторяет секции Figma. Повторный деплой не дублирует блоки.
 	const pages = await api( '/wp-json/wp/v2/pages?slug=hero-cover-test&context=edit' );
@@ -224,6 +227,36 @@ const main = async () => {
 		}
 		if ( ! raw.includes( 'wp:library/about' ) ) {
 			raw += `\n\n<!-- wp:library/about ${ JSON.stringify( { backgroundId: aboutMedia.id, backgroundUrl: aboutMedia.source_url } ) } /-->`;
+			changed = true;
+		}
+		if ( ! raw.includes( 'wp:library/process-steps' ) ) {
+			raw += `\n\n<!-- wp:library/process-steps /-->`;
+			changed = true;
+		}
+		if ( ! raw.includes( 'wp:library/sold-showcase' ) ) {
+			raw += `\n\n<!-- wp:library/sold-showcase ${ JSON.stringify( {
+				imageUrl: figmaSoldShowcaseUrl,
+				buttonUrl: '#',
+				ctaUrl: '#',
+			} ) } /-->`;
+			changed = true;
+		}
+		if ( ! raw.includes( 'wp:library/referral-cta' ) ) {
+			raw += `\n\n<!-- wp:library/referral-cta ${ JSON.stringify( {
+				imageUrl: figmaReferralUrl,
+				buttonUrl: '#',
+			} ) } /-->`;
+			changed = true;
+		}
+		if ( ! raw.includes( 'wp:library/faq-section' ) ) {
+			raw += `\n\n<!-- wp:library/faq-section /-->`;
+			changed = true;
+		}
+		if ( ! raw.includes( 'wp:library/consultation-cta' ) ) {
+			raw += `\n\n<!-- wp:library/consultation-cta ${ JSON.stringify( {
+				backgroundUrl: figmaConsultationBgUrl,
+				buttonUrl: '#',
+			} ) } /-->`;
 			changed = true;
 		}
 		if ( changed ) {

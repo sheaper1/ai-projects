@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/process-steps",
+	"title": "Process Steps",
+	"category": "design",
+	"icon": "list-view",
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [ "full" ],
+		"multiple": false
+	},
+	"attributes": {
+		"heading": { "type": "string", "default": "So läuft es" },
+		"headingItalic": { "type": "string", "default": "mit mir ab" },
+		"subtext": { "type": "string", "default": "In vier Schritten vom ersten Gespräch bis zur Übergabe. Ihr Aufwand bleibt überschaubar." },
+		"buttonText": { "type": "string", "default": "Kostenlos beraten lassen" },
+		"buttonUrl": { "type": "string", "default": "#" },
+		"steps": {
+			"type": "array",
+			"default": [
+				{ "number": "01", "title": "Erstgespräch", "text": "Wir sprechen über Ihre Immobilie und Ihre Situation, ohne Verpflichtung." },
+				{ "number": "02", "title": "Einschätzung und Strategie", "text": "Ich schätze Ihre Situation ein und schlage Ihnen einen klaren Weg vor." },
+				{ "number": "03", "title": "Vermarktung und Termine", "text": "Ich bereite Ihr Objekt auf, vermarkte es und übernehme die Termine." },
+				{ "number": "04", "title": "Abschluss und Übergabe", "text": "Verhandlung, Vertrag und Übergabe wickle ich für Sie ab." }
+			]
+		}
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}
