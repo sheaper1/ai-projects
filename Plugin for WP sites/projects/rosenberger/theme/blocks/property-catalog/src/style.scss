@@ -3,7 +3,7 @@
 	padding: var(--wp--preset--spacing--r-section) var(--wp--custom--layout--gutter);
 
 	.pc-inner {
-		max-width: var(--wp--style--global--content-size, 84rem);
+		max-width: var(--wp--style--global--wide-size, 84rem);
 		margin-inline: auto;
 		display: flex;
 		flex-direction: column;
@@ -111,6 +111,7 @@
 	}
 
 	.pc-card__body {
+		flex: 1 1 auto;
 		flex-shrink: 0;
 		padding: 16px 16px 24px;
 		display: flex;
@@ -119,6 +120,7 @@
 	}
 
 	.pc-card__content {
+		flex: 1 1 auto;
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
@@ -184,6 +186,7 @@
 	}
 
 	.pc-card__link {
+		margin-top: auto;
 		font-size: var(--wp--preset--font-size--r-16);
 		font-weight: 700;
 		text-transform: uppercase;

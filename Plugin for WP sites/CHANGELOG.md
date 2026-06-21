@@ -8,6 +8,7 @@
 
 ---
 
+- [Codex] 2026-06-21 — property-catalog: секция выведена из узкого contentSize в wideSize по макету; у карточек выровнена внутренняя вертикаль и нижняя линия CTA. Синхронизировано в theme и library, собрано, задеплоено, staging 200 — готово.
 - [Codex] 2026-06-21 — region-grid: на главной исправлена контрастность текста в светлой секции — заголовок и подписи pill переведены с base на contrast. Синхронизировано в theme и library, собрано, задеплоено, staging 200 — готово.
 - [Codex] 2026-06-21 — Front page staging: сломанная главная (page 296) заменена контентом из hero-cover-test; восстановлен region-bregenz, объектам CPT назначены sample featured images, визуально перепроверены region-grid и property-catalog. Добавлен scripts/sync-front-page.mjs для быстрой синхронизации главной — готово.
 - [Claude] 2026-06-21 — Property Catalog: блок library/property-catalog — 3 фильтра (Lage/Typ/Sortieren), 3×2 сетка карточек CPT property, мета (Lage/Kaufpreis/Fläche/Zimmer), CTA-кнопка, view.js auto-submit. Добавлен на страницу 882 через REST. Staging ✓
