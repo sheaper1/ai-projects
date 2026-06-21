@@ -16,7 +16,7 @@
 	.pain-points__icon img { width: 32px; height: 32px; object-fit: contain; }
 	.pain-points__item h3 { margin: 0 0 var(--wp--preset--spacing--r-16); font-size: var(--wp--preset--font-size--r-24); font-weight: 600; letter-spacing: -0.03em; }
 	.pain-points__item p { margin: 0; color: var(--wp--preset--color--muted); font-size: var(--wp--preset--font-size--r-16); line-height: 1.5; }
-	.pain-points__control { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #ddd; }
+	.pain-points__control { margin-bottom: var(--wp--preset--spacing--r-24); padding-bottom: var(--wp--preset--spacing--r-24); border-bottom: 1px solid var(--wp--preset--color--border); }
 
 	@media (max-width: 782px) {
 		grid-template-columns: 1fr;

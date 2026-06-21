@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/cards-stack",
+	"version": "0.1.0",
+	"title": "Cards Stack",
+	"category": "design",
+	"icon": "index-card",
+	"description": "Секция услуг: карточки накладываются друг на друга при скролле, номер справа меняется.",
+	"textdomain": "library",
+	"supports": { "html": false, "align": [ "full" ], "multiple": false },
+	"attributes": {
+		"titleMain": { "type": "string", "default": "Alles erledigt," },
+		"titleAccent": { "type": "string", "default": "von der Bewertung bis zur Übergabe" },
+		"subtitle": { "type": "string", "default": "Ihr Aufwand liegt bei rund einer Stunde. Den Rest mache ich." },
+		"cards": { "type": "array", "default": [
+			{ "title": "Immobilie verkaufen", "text": "Von der Bewertung über die Vermarktung bis zur Übergabe übernehme ich den ganzen Verkauf für Sie.", "buttonText": "Erfahren Sie mehr", "buttonUrl": "#", "imageId": 0, "imageUrl": "" },
+			{ "title": "Immobilienbewertung", "text": "Sie erfahren realistisch, was Ihre Immobilie wert ist, ohne überzogene Versprechen und ohne Verpflichtung.", "buttonText": "Erfahren Sie mehr", "buttonUrl": "#", "imageId": 0, "imageUrl": "" },
+			{ "title": "Immobilie vermieten", "text": "Sie bekommen sorgfältig ausgewählte Mieter, und ich kümmere mich um Bonität, Vertrag und Übergabe.", "buttonText": "Erfahren Sie mehr", "buttonUrl": "#", "imageId": 0, "imageUrl": "" }
+		] },
+		"ctaText": { "type": "string", "default": "Kostenlos beraten lassen" },
+		"ctaUrl": { "type": "string", "default": "#" }
+	},
+	"editorScript": "file:./build/index.js",
+	"viewScript": "file:./view.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}

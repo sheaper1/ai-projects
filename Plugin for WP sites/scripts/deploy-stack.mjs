@@ -187,6 +187,10 @@ const main = async () => {
 			raw += `\n\n<!-- wp:library/pain-points ${ JSON.stringify( { items } ) } /-->`;
 			changed = true;
 		}
+		if ( ! raw.includes( 'wp:library/cards-stack' ) ) {
+			raw += '\n\n<!-- wp:library/cards-stack /-->';
+			changed = true;
+		}
 		if ( changed ) {
 			await api( `/wp-json/wp/v2/pages/${ page.id }`, {
 				method: 'POST',
