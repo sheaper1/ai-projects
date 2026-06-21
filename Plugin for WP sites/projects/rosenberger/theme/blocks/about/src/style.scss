@@ -129,9 +129,37 @@
 
 	@media (max-width: 782px) {
 		min-height: 0;
-		.about__bg::after { background: color-mix( in srgb, var(--wp--preset--color--contrast) 35%, transparent ); }
-		.about__inner { padding-top: var(--wp--preset--spacing--r-64); }
-		.about__heading { font-size: var(--wp--preset--font-size--r-40); }
-		.about__cards { grid-template-columns: 1fr; }
+		.about__bg img { object-position: center top; }
+		.about__bg::after {
+			background: linear-gradient(
+				180deg,
+				color-mix( in srgb, var(--wp--preset--color--contrast) 8%, transparent ) 0%,
+				color-mix( in srgb, var(--wp--preset--color--contrast) 14%, transparent ) 34%,
+				color-mix( in srgb, var(--wp--preset--color--contrast) 36%, transparent ) 100%
+			);
+		}
+		.about__inner {
+			padding: 80px 16px;
+		}
+		.about__intro {
+			max-width: 343px;
+			gap: 40px;
+		}
+		.about__heading { font-size: var(--wp--preset--font-size--r-32); }
+		.about__button {
+			align-self: stretch;
+			width: 100%;
+		}
+		.about__cards {
+			grid-template-columns: 1fr;
+			margin-top: 484px;
+			padding-top: 0;
+			gap: 16px;
+		}
+		.about__card {
+			min-height: 0;
+			padding: var(--wp--preset--spacing--r-24);
+		}
+		.about__card h3 { font-size: var(--wp--preset--font-size--r-20); }
 	}
 }
