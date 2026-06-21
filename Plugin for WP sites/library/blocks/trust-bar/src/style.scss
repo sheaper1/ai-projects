@@ -25,7 +25,22 @@
 		.trust-bar__items span + span::before { content: none; }
 	}
 	@media (max-width: 600px) {
-		.trust-bar__inner { flex-direction: column; }
+		min-height: 72px;
+		padding: 16px 24px;
+		.trust-bar__inner {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 32px;
+		}
+		.trust-bar__rating {
+			flex: 0 0 auto;
+			width: 144.19px;
+			height: 40px;
+		}
+		.trust-bar__rating img {
+			width: 144.19px;
+			height: 40px;
+		}
 		.trust-bar__items { display: none; }
 	}
 }

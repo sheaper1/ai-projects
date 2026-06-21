@@ -128,11 +128,11 @@
 	}
 
 	@media (max-width: 782px) {
-		min-height: 1516px;
+		min-height: auto;
 		.about__bg {
-			top: 320px;
+			top: clamp( 318px, 84vw, 336px );
 			bottom: auto;
-			height: 840px;
+			height: clamp( 560px, 162vw, 640px );
 		}
 		.about__bg img {
 			object-position: 84% top;
@@ -145,9 +145,9 @@
 			padding: 80px 16px 48px;
 		}
 		.about__intro {
-			max-width: 343px;
+			max-width: none;
 			gap: 40px;
-			margin-bottom: 828px;
+			margin-bottom: clamp( 560px, 162vw, 640px );
 		}
 		.about__heading { font-size: var(--wp--preset--font-size--r-32); }
 		.about__button {
@@ -161,7 +161,7 @@
 			gap: 16px;
 		}
 		.about__card {
-			min-height: 202px;
+			min-height: 0;
 			padding: var(--wp--preset--spacing--r-24);
 		}
 		.about__card h3 { font-size: var(--wp--preset--font-size--r-20); }
