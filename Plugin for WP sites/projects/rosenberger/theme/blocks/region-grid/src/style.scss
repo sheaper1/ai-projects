@@ -4,7 +4,7 @@
 	--rg-overlay: rgba(20, 35, 53, 0.2);
 	--rg-blur: 26.7px;
 
-	background: #fff;
+	background: var(--wp--preset--color--base);
 	padding: var(--wp--preset--spacing--r-section) var(--wp--custom--layout--gutter);
 
 	// ── Шапка секции ─────────────────────────────────────────────────────────
@@ -48,7 +48,7 @@
 		position: relative;
 		height: var(--rg-card-h);
 		overflow: hidden;
-		background: var(--wp--preset--color--surface-muted, #969696);
+		background: var(--wp--preset--color--surface-muted);
 	}
 
 	.region-grid__img,

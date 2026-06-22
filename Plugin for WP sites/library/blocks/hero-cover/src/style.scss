@@ -2,7 +2,7 @@
 
 .wp-block-library-hero-cover {
 	// Дизайн-токены блока — централизованно, чтобы менять в одном месте.
-	--hc-fg: #ffffff;
+	--hc-fg: var(--wp--preset--color--on-dark);
 	--hc-font-head: 'Nunito Sans', sans-serif;
 	--hc-font-body: 'Roboto Flex', system-ui, sans-serif;
 	--hc-pad-x: clamp(20px, 4vw, 48px);
@@ -15,7 +15,7 @@
 	min-height: clamp(640px, 100svh, 940px);
 	color: var(--hc-fg);
 	font-family: var(--hc-font-body);
-	background-color: #969696;
+	background-color: var(--wp--preset--color--primary);
 	overflow: hidden;
 
 	// Фоновое фото: прижато к низу, как в макете (object-bottom).

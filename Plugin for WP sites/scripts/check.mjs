@@ -6,7 +6,10 @@
 //          node scripts/check.mjs --range origin/main..HEAD   — диапазон (для pre-push)
 
 import { execSync } from 'node:child_process';
-import { resolve } from 'node:path';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const scriptsDir = dirname( fileURLToPath( import.meta.url ) );
 
 const run = ( cmd ) => execSync( cmd, { encoding: 'utf8' } ).trim();
 const runSafe = ( cmd ) => { try { return run( cmd ); } catch { return ''; } };
@@ -54,6 +57,13 @@ if ( phpFiles.length && ! phpAvailable ) {
 			fail( `php -l: ${ f }\n${ ( e.stdout || e.stderr || '' ).toString().trim() }` );
 		}
 	}
+}
+
+// --- 3. Хардкод-цвета в SCSS блоков (есть токен → нарушение) ---------------
+try {
+	execSync( `node "${ resolve( scriptsDir, 'figma-tokens.mjs' ) }" --scan`, { stdio: 'inherit' } );
+} catch {
+	fail( 'хардкод-цвета в SCSS блоков (см. вывод выше; правь на токены theme.json)' );
 }
 
 if ( problems ) {
