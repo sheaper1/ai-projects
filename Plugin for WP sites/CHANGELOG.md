@@ -8,6 +8,7 @@
 
 ---
 
+- [Claude] 2026-06-23 — главная страница на продакшн: 48 медиа загружено, все блоки (hero→trust→pain→cards→about→regions→catalog→process→sold→referral→faq→cta), front page назначена, contacts seeded — готово
 - [Claude] 2026-06-23 — деплой на продакшн rosenberger.digirelation.dev: установлен Code Snippets, активирована тема rosenberger + rosenberger-core, деактивирован Elementor и связанные плагины; добавлен флаг --prod в deploy-stack.mjs — готово
 
 - [Claude] 2026-06-23 — Переиспользование блоков: новый `scripts/blocks-list.mjs` + `npm run blocks` печатает каталог из `block.json` (slug/категория/описание/keywords, library+тема — всегда актуально). В `AGENTS.md` §6 шаг 1 сделан обязательным: перед новым блоком прогнать `npm run blocks` и при совпадении копировать+допиливать, а не создавать с нуля.
