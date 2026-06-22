@@ -15,7 +15,11 @@
 		"heading":      { "type": "string", "default": "Erfolgreich verkauft" },
 		"headingItalic":{ "type": "string", "default": "in Vorarlberg" },
 		"ctaText":      { "type": "string", "default": "Alle Referenzen ansehen" },
-		"ctaUrl":       { "type": "string", "default": "/objekte/" }
+		"ctaUrl":       { "type": "string", "default": "/objekte/" },
+		"navNextId":    { "type": "number", "default": 0 },
+		"navNextUrl":   { "type": "string", "default": "" },
+		"navPrevId":    { "type": "number", "default": 0 },
+		"navPrevUrl":   { "type": "string", "default": "" }
 	},
 	"editorScript": "file:./build/index.js",
 	"viewScript":   "file:./view.js",

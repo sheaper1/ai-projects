@@ -35,24 +35,9 @@
 }
 
 .process-steps__button {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
 	min-width: 250px;
-	min-height: 56px;
-	padding: 16px 24px;
-	border-radius: var(--wp--custom--radius--pill);
 	background: var(--wp--preset--color--contrast);
 	color: var(--wp--preset--color--on-dark);
-	font-weight: 500;
-	text-decoration: none;
-	transition: background 0.2s ease;
-
-	&:hover,
-	&:focus-visible {
-		background: var(--wp--preset--color--primary);
-		outline: none;
-	}
 }
 
 .process-steps__list {

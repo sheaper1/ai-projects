@@ -52,23 +52,8 @@
 }
 
 .consultation-cta__button {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 56px;
-	padding: 16px 24px;
-	border-radius: var(--wp--custom--radius--pill);
 	background: var(--wp--preset--color--base);
 	color: var(--wp--preset--color--contrast);
-	text-decoration: none;
-	transition: background 0.2s ease, color 0.2s ease;
-
-	&:hover,
-	&:focus-visible {
-		background: var(--wp--preset--color--primary);
-		color: var(--wp--preset--color--on-dark);
-		outline: none;
-	}
 }
 
 @media (max-width: 781px) {

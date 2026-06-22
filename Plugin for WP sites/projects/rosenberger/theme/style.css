@@ -244,6 +244,67 @@ main.wp-block-group { margin-block-start: 0 !important; }
 	box-sizing: border-box;
 }
 
+/* ===== Глобальные стили кнопок (из дизайна Figma) ===== */
+
+/*
+ * Тёмная кнопка (contrast фон, on-dark текст).
+ * Hover по дизайну = белый оверлей 8% поверх фона (#142335).
+ */
+.process-steps__button,
+.referral-cta__button,
+.sold-showcase__button {
+	height: 56px;
+	padding: 0 24px;
+	border-radius: var(--wp--custom--radius--pill);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-18);
+	font-weight: 500;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
+	transition: background-image 0.2s ease;
+}
+
+.process-steps__button:hover,
+.process-steps__button:focus-visible,
+.referral-cta__button:hover,
+.referral-cta__button:focus-visible,
+.sold-showcase__button:hover,
+.sold-showcase__button:focus-visible {
+	background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
+	outline: none;
+}
+
+/*
+ * Светлая кнопка (base фон, contrast текст) — используется на тёмных секциях.
+ * Hover = лёгкое затемнение (contrast overlay 6%).
+ */
+.about__button,
+.consultation-cta__button {
+	height: 56px;
+	padding: 0 24px;
+	border-radius: var(--wp--custom--radius--pill);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-18);
+	font-weight: 500;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
+	transition: background-image 0.2s ease;
+}
+
+.about__button:hover,
+.about__button:focus-visible,
+.consultation-cta__button:hover,
+.consultation-cta__button:focus-visible {
+	background-image: linear-gradient(rgba(20, 35, 53, 0.06), rgba(20, 35, 53, 0.06));
+	outline: none;
+}
+
 /* ===== Мета-блок объекта (rosenberger/property-meta) ===== */
 .property-meta { margin-block: var(--wp--preset--spacing--r-32) 0; }
 
