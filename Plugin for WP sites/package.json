@@ -7,6 +7,8 @@
 		"build": "node scripts/build-blocks.mjs projects/rosenberger/theme",
 		"build:library": "node scripts/build-blocks.mjs library",
 		"diff:blocks": "node scripts/diff-blocks.mjs",
+		"tokens": "node scripts/figma-tokens.mjs",
+		"tokens:scan": "node scripts/figma-tokens.mjs --scan",
 		"check": "node scripts/check.mjs"
 	},
 	"devDependencies": {
