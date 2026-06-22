@@ -21,3 +21,9 @@
 | Referral CTA | `library/referral-cta` | Секция Tippgeber: текст с CTA слева и крупное фото справа. | referral, tippgeber, cta, split, image | stable |
 | FAQ Section | `library/faq-section` | FAQ-секция: заголовок слева и список вопросов через `details/summary` справа. Репитер вопросов. | faq, accordion, questions, details | stable |
 | Consultation CTA | `library/consultation-cta` | Финальный CTA на фоне с крупным заголовком, подзаголовком и pill-кнопкой. | cta, consultation, cover, final, background | stable |
+| Bio Hero | `library/bio-hero` | Split-hero: метка, имя, должность и био-текст слева; портрет справа. | hero, bio, портрет, split, о себе | stable |
+| Founder Bio | `library/founder-bio` | Две колонки: текст (заголовок + абзацы) слева, высокий портрет справа. | founder, bio, портрет, о себе, split | stable |
+| Founder Story | `library/founder-story` | Две колонки: крупный заголовок слева, лид + текст + цитата справа. | founder, story, история, цитата, split | stable |
+| Promise List | `library/promise-list` | Две колонки: заголовок слева, нумерованный список обещаний с разделителями справа. | promise, список, обещания, нумерация | stable |
+| Quote Cover | `library/quote-cover` | Полноширинное фоновое фото с крупной центрированной курсивной цитатой. | quote, цитата, cover, фон, обложка | stable |
+| Value Cards | `library/value-cards` | Три горизонтальные карточки-преимущества: SVG-иконка, заголовок, описание. Репитер. | value, карточки, преимущества, иконки, репитер | stable |

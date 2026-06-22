@@ -1,11 +1,11 @@
-// Деплой проекта на staging БЕЗ SFTP: блочная тема rosenberger (вид, блоки внутри)
-// + плагин проекта rosenberger-core (данные/логика: настройки, CPT).
-// Модель «копия в проект»: всё per-project и изолировано.
+﻿// Р”РµРїР»РѕР№ РїСЂРѕРµРєС‚Р° РЅР° staging Р‘Р•Р— SFTP: Р±Р»РѕС‡РЅР°СЏ С‚РµРјР° rosenberger (РІРёРґ, Р±Р»РѕРєРё РІРЅСѓС‚СЂРё)
+// + РїР»Р°РіРёРЅ РїСЂРѕРµРєС‚Р° rosenberger-core (РґР°РЅРЅС‹Рµ/Р»РѕРіРёРєР°: РЅР°СЃС‚СЂРѕР№РєРё, CPT).
+// РњРѕРґРµР»СЊ В«РєРѕРїРёСЏ РІ РїСЂРѕРµРєС‚В»: РІСЃС‘ per-project Рё РёР·РѕР»РёСЂРѕРІР°РЅРѕ.
 //
-// Code Snippets — одноразовый установщик: пишет файлы темы и плагина, активирует
-// тему и плагин, сносит старый общий плагин library-blocks, затем обезвреживается.
+// Code Snippets вЂ” РѕРґРЅРѕСЂР°Р·РѕРІС‹Р№ СѓСЃС‚Р°РЅРѕРІС‰РёРє: РїРёС€РµС‚ С„Р°Р№Р»С‹ С‚РµРјС‹ Рё РїР»Р°РіРёРЅР°, Р°РєС‚РёРІРёСЂСѓРµС‚
+// С‚РµРјСѓ Рё РїР»Р°РіРёРЅ, СЃРЅРѕСЃРёС‚ СЃС‚Р°СЂС‹Р№ РѕР±С‰РёР№ РїР»Р°РіРёРЅ library-blocks, Р·Р°С‚РµРј РѕР±РµР·РІСЂРµР¶РёРІР°РµС‚СЃСЏ.
 //
-// Запуск: node scripts/deploy-stack.mjs
+// Р—Р°РїСѓСЃРє: node scripts/deploy-stack.mjs
 
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { resolve, dirname, relative } from 'node:path';
@@ -47,7 +47,7 @@ const ensureMedia = async ( slug, file, ext = 'svg' ) => {
 		body: readFileSync( file ),
 	} );
 	const body = await res.json();
-	if ( ! res.ok ) throw new Error( `Не удалось загрузить ${ filename }: ${ body.message || res.status }` );
+	if ( ! res.ok ) throw new Error( `РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ ${ filename }: ${ body.message || res.status }` );
 	return body;
 };
 
@@ -58,7 +58,7 @@ const walk = ( dir ) => readdirSync( dir ).flatMap( ( name ) => {
 	return statSync( p ).isDirectory() ? walk( p ) : [ p ];
 } );
 
-// собрать файлы каталога в { относительный_путь: base64 }, пропуская src/
+// СЃРѕР±СЂР°С‚СЊ С„Р°Р№Р»С‹ РєР°С‚Р°Р»РѕРіР° РІ { РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Р№_РїСѓС‚СЊ: base64 }, РїСЂРѕРїСѓСЃРєР°СЏ src/
 const collect = ( dir ) => {
 	const out = {};
 	for ( const abs of walk( dir ) ) {
@@ -87,7 +87,7 @@ foreach ( $plugin_files as $rel => $b64 ) { $d = $plugin_dir . '/' . $rel; wp_mk
 if ( get_option( 'stylesheet' ) !== 'rosenberger' ) { switch_theme( 'rosenberger' ); }
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 if ( ! is_plugin_active( 'rosenberger-core/rosenberger-core.php' ) ) { activate_plugin( 'rosenberger-core/rosenberger-core.php' ); }
-// Разовый посев примера контактов (не перезатирает правки клиента).
+// Р Р°Р·РѕРІС‹Р№ РїРѕСЃРµРІ РїСЂРёРјРµСЂР° РєРѕРЅС‚Р°РєС‚РѕРІ (РЅРµ РїРµСЂРµР·Р°С‚РёСЂР°РµС‚ РїСЂР°РІРєРё РєР»РёРµРЅС‚Р°).
 if ( false === get_option( 'rosenberger_contacts' ) ) {
 	add_option( 'rosenberger_contacts', array(
 		'phone'    => '+43 5572 123456',
@@ -98,13 +98,13 @@ if ( false === get_option( 'rosenberger_contacts' ) ) {
 		'cta_url'  => '/kontakt/',
 	) );
 }
-// Миграция старого демонстрационного CTA; произвольный текст клиента не трогаем.
+// РњРёРіСЂР°С†РёСЏ СЃС‚Р°СЂРѕРіРѕ РґРµРјРѕРЅСЃС‚СЂР°С†РёРѕРЅРЅРѕРіРѕ CTA; РїСЂРѕРёР·РІРѕР»СЊРЅС‹Р№ С‚РµРєСЃС‚ РєР»РёРµРЅС‚Р° РЅРµ С‚СЂРѕРіР°РµРј.
 $contacts = get_option( 'rosenberger_contacts', array() );
 if ( isset( $contacts['cta_text'] ) && 'Kontakt' === $contacts['cta_text'] ) {
 	$contacts['cta_text'] = 'Termin vereinbaren';
 	update_option( 'rosenberger_contacts', $contacts );
 }
-// сносим старый общий плагин (модель сменилась на «всё в проекте»)
+// СЃРЅРѕСЃРёРј СЃС‚Р°СЂС‹Р№ РѕР±С‰РёР№ РїР»Р°РіРёРЅ (РјРѕРґРµР»СЊ СЃРјРµРЅРёР»Р°СЃСЊ РЅР° В«РІСЃС‘ РІ РїСЂРѕРµРєС‚РµВ»)
 if ( is_plugin_active( 'library-blocks/library-blocks.php' ) ) { deactivate_plugins( 'library-blocks/library-blocks.php' ); }
 $old = WP_PLUGIN_DIR . '/library-blocks';
 if ( is_dir( $old ) ) {
@@ -124,27 +124,27 @@ const neutralizeLibrarySnippets = async () => {
 				method: 'POST',
 				body: JSON.stringify( { active: false, code: '// removed' } ),
 			} );
-			console.log( `Обезврежен сниппет #${ s.id } (${ s.name })` );
+			console.log( `РћР±РµР·РІСЂРµР¶РµРЅ СЃРЅРёРїРїРµС‚ #${ s.id } (${ s.name })` );
 		}
 	}
 };
 
 const main = async () => {
-	console.log( `Файлов темы: ${ Object.keys( themeFiles ).length }, файлов плагина: ${ Object.keys( pluginFiles ).length }` );
+	console.log( `Р¤Р°Р№Р»РѕРІ С‚РµРјС‹: ${ Object.keys( themeFiles ).length }, С„Р°Р№Р»РѕРІ РїР»Р°РіРёРЅР°: ${ Object.keys( pluginFiles ).length }` );
 	await neutralizeLibrarySnippets();
 
 	const created = await api( '/wp-json/code-snippets/v1/snippets', {
 		method: 'POST',
 		body: JSON.stringify( {
 			name: INSTALLER,
-			desc: 'Одноразовый установщик темы и плагина проекта. Обезвреживается автоматически.',
+			desc: 'РћРґРЅРѕСЂР°Р·РѕРІС‹Р№ СѓСЃС‚Р°РЅРѕРІС‰РёРє С‚РµРјС‹ Рё РїР»Р°РіРёРЅР° РїСЂРѕРµРєС‚Р°. РћР±РµР·РІСЂРµР¶РёРІР°РµС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё.',
 			code: snippetCode,
 			scope: 'global',
 			active: true,
 		} ),
 	} );
-	console.log( 'Установщик создан:', created.status, 'id=', created.body && created.body.id );
-	if ( ! ( created.body && created.body.id ) ) { console.log( JSON.stringify( created.body ).slice( 0, 400 ) ); throw new Error( 'Не удалось создать установщик' ); }
+	console.log( 'РЈСЃС‚Р°РЅРѕРІС‰РёРє СЃРѕР·РґР°РЅ:', created.status, 'id=', created.body && created.body.id );
+	if ( ! ( created.body && created.body.id ) ) { console.log( JSON.stringify( created.body ).slice( 0, 400 ) ); throw new Error( 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ СѓСЃС‚Р°РЅРѕРІС‰РёРє' ); }
 
 	await fetch( BASE + '/' );
 	await new Promise( ( r ) => setTimeout( r, 1500 ) );
@@ -156,7 +156,7 @@ const main = async () => {
 	const coreActive = Array.isArray( plugins.body ) && plugins.body.some(
 		( p ) => p.plugin === 'rosenberger-core/rosenberger-core' && p.status === 'active'
 	);
-	if ( ! themeActive || ! coreActive ) throw new Error( 'Тема или project-core не активировались' );
+	if ( ! themeActive || ! coreActive ) throw new Error( 'РўРµРјР° РёР»Рё project-core РЅРµ Р°РєС‚РёРІРёСЂРѕРІР°Р»РёСЃСЊ' );
 
 	const iconDir = resolve( root, 'projects/rosenberger/media/icons' );
 	const ratingMedia = await ensureSvgMedia( 'rosenberger-google-rating', resolve( root, 'projects/rosenberger/media/google-rating.svg' ) );
@@ -173,11 +173,12 @@ const main = async () => {
 	}
 
 	const aboutMedia = await ensureMedia( 'rosenberger-about-bg', resolve( root, 'projects/rosenberger/media/about/about-bg.webp' ), 'webp' );
-	const figmaSoldShowcaseUrl = 'https://www.figma.com/api/mcp/asset/61d143ff-edab-476b-9409-602908ec4e7a';
-	const figmaReferralUrl = 'https://www.figma.com/api/mcp/asset/11225be6-4f8b-406a-a944-82585aaa43ee';
-	const figmaConsultationBgUrl = 'https://www.figma.com/api/mcp/asset/0bbf51fc-6133-4432-812d-0e34f66da8ff';
-
-	// Тестовая страница повторяет секции Figma. Повторный деплой не дублирует блоки.
+	// РђСЃСЃРµС‚С‹ РёР· РјРµРґРёР°С‚РµРєРё WP (Р° РЅРµ РїСЂРѕС‚СѓС…Р°СЋС‰РёРµ Figma-CDN URL) вЂ” РїСЂР°РІРёР»Рѕ В«РєР°СЂС‚РёРЅРєРё С‚РѕР»СЊРєРѕ РёР· РјРµРґРёР°С‚РµРєРёВ».
+		const homeDir = resolve( root, 'projects/rosenberger/media/home' );
+		const referralMedia = await ensureMedia( 'rosenberger-referral', resolve( homeDir, 'referral.webp' ), 'webp' );
+		const consultationBgMedia = await ensureMedia( 'rosenberger-consultation-bg', resolve( homeDir, 'cta-bg.webp' ), 'webp' );
+		
+	// РўРµСЃС‚РѕРІР°СЏ СЃС‚СЂР°РЅРёС†Р° РїРѕРІС‚РѕСЂСЏРµС‚ СЃРµРєС†РёРё Figma. РџРѕРІС‚РѕСЂРЅС‹Р№ РґРµРїР»РѕР№ РЅРµ РґСѓР±Р»РёСЂСѓРµС‚ Р±Р»РѕРєРё.
 	const pages = await api( '/wp-json/wp/v2/pages?slug=hero-cover-test&context=edit' );
 	if ( Array.isArray( pages.body ) && pages.body[ 0 ] ) {
 		const page = pages.body[ 0 ];
@@ -192,11 +193,11 @@ const main = async () => {
 		}
 		if ( ! raw.includes( 'wp:library/pain-points' ) ) {
 			const defaults = [
-				[ 'Preisversprechen, die nicht halten', 'Ein hoher Wunschpreis bringt dem Makler den Auftrag. Danach steht das Inserat monatelang und der Preis wird Stück für Stück gesenkt.' ],
-				[ 'Makler, die nicht zurückrufen', 'Nach der Unterschrift kommen keine Rückmeldungen mehr, und Sie erfahren wochenlang nichts über den Stand.' ],
-				[ 'Druck statt Beratung', 'Sie sollen sich schnell entscheiden, weil angeblich andere Käufer schon warten.' ],
+				[ 'Preisversprechen, die nicht halten', 'Ein hoher Wunschpreis bringt dem Makler den Auftrag. Danach steht das Inserat monatelang und der Preis wird StГјck fГјr StГјck gesenkt.' ],
+				[ 'Makler, die nicht zurГјckrufen', 'Nach der Unterschrift kommen keine RГјckmeldungen mehr, und Sie erfahren wochenlang nichts Гјber den Stand.' ],
+				[ 'Druck statt Beratung', 'Sie sollen sich schnell entscheiden, weil angeblich andere KГ¤ufer schon warten.' ],
 				[ 'Unklare Provision', 'Was der Verkauf kostet und was darin enthalten ist, bleibt bis zum Schluss vage.' ],
-				[ 'Übergang', 'Was der Verkauf kostet und was darin enthalten ist, bleibt bis zum Schluss vage.' ],
+				[ 'Гњbergang', 'Was der Verkauf kostet und was darin enthalten ist, bleibt bis zum Schluss vage.' ],
 			];
 			const items = defaults.map( ( [ title, text ], i ) => ( { title, text, iconId: iconMedia[ i ].id, iconUrl: iconMedia[ i ].source_url } ) );
 			raw += `\n\n<!-- wp:library/pain-points ${ JSON.stringify( { items } ) } /-->`;
@@ -204,9 +205,9 @@ const main = async () => {
 		}
 		{
 			const cardDefaults = [
-				[ 'Immobilie verkaufen', 'Von der Bewertung über die Vermarktung bis zur Übergabe übernehme ich den ganzen Verkauf für Sie.' ],
-				[ 'Immobilienbewertung', 'Sie erfahren realistisch, was Ihre Immobilie wert ist, ohne überzogene Versprechen und ohne Verpflichtung.' ],
-				[ 'Immobilie vermieten', 'Sie bekommen sorgfältig ausgewählte Mieter, und ich kümmere mich um Bonität, Vertrag und Übergabe.' ],
+				[ 'Immobilie verkaufen', 'Von der Bewertung Гјber die Vermarktung bis zur Гњbergabe Гјbernehme ich den ganzen Verkauf fГјr Sie.' ],
+				[ 'Immobilienbewertung', 'Sie erfahren realistisch, was Ihre Immobilie wert ist, ohne Гјberzogene Versprechen und ohne Verpflichtung.' ],
+				[ 'Immobilie vermieten', 'Sie bekommen sorgfГ¤ltig ausgewГ¤hlte Mieter, und ich kГјmmere mich um BonitГ¤t, Vertrag und Гњbergabe.' ],
 			];
 			const cardsAttr = cardDefaults.map( ( [ title, text ], i ) => ( {
 				title,
@@ -235,15 +236,14 @@ const main = async () => {
 		}
 		if ( ! raw.includes( 'wp:library/sold-showcase' ) ) {
 			raw += `\n\n<!-- wp:library/sold-showcase ${ JSON.stringify( {
-				imageUrl: figmaSoldShowcaseUrl,
-				buttonUrl: '#',
 				ctaUrl: '#',
 			} ) } /-->`;
 			changed = true;
 		}
 		if ( ! raw.includes( 'wp:library/referral-cta' ) ) {
 			raw += `\n\n<!-- wp:library/referral-cta ${ JSON.stringify( {
-				imageUrl: figmaReferralUrl,
+				imageId: referralMedia.id,
+					imageUrl: referralMedia.source_url,
 				buttonUrl: '#',
 			} ) } /-->`;
 			changed = true;
@@ -254,7 +254,8 @@ const main = async () => {
 		}
 		if ( ! raw.includes( 'wp:library/consultation-cta' ) ) {
 			raw += `\n\n<!-- wp:library/consultation-cta ${ JSON.stringify( {
-				backgroundUrl: figmaConsultationBgUrl,
+				backgroundId: consultationBgMedia.id,
+					backgroundUrl: consultationBgMedia.source_url,
 				buttonUrl: '#',
 			} ) } /-->`;
 			changed = true;
@@ -264,19 +265,19 @@ const main = async () => {
 				method: 'POST',
 				body: JSON.stringify( { content: raw } ),
 			} );
-			console.log( 'Секции тестовой страницы синхронизированы.' );
+			console.log( 'РЎРµРєС†РёРё С‚РµСЃС‚РѕРІРѕР№ СЃС‚СЂР°РЅРёС†С‹ СЃРёРЅС…СЂРѕРЅРёР·РёСЂРѕРІР°РЅС‹.' );
 		}
 	}
 
-	console.log( 'Тема rosenberger активна:', themeActive ? '✅' : '❌' );
-	console.log( 'Плагин rosenberger-core активен:', coreActive ? '✅' : '❌' );
+	console.log( 'РўРµРјР° rosenberger Р°РєС‚РёРІРЅР°:', themeActive ? 'вњ…' : 'вќЊ' );
+	console.log( 'РџР»Р°РіРёРЅ rosenberger-core Р°РєС‚РёРІРµРЅ:', coreActive ? 'вњ…' : 'вќЊ' );
 
 	await neutralizeLibrarySnippets();
 
-	if ( ! themeActive || ! coreActive ) { console.log( '\n⚠️  Что-то не активировалось — проверь вручную.' ); process.exit( 1 ); }
-	console.log( '\n✅ Проект развёрнут: тема rosenberger + плагин rosenberger-core. Сниппеты обезврежены.' );
-	console.log( 'Настройки сайта: ' + BASE + '/wp-admin/admin.php?page=rosenberger-settings' );
-	console.log( 'Тест-страница:   ' + BASE + '/hero-cover-test/' );
+	if ( ! themeActive || ! coreActive ) { console.log( '\nвљ пёЏ  Р§С‚Рѕ-С‚Рѕ РЅРµ Р°РєС‚РёРІРёСЂРѕРІР°Р»РѕСЃСЊ вЂ” РїСЂРѕРІРµСЂСЊ РІСЂСѓС‡РЅСѓСЋ.' ); process.exit( 1 ); }
+	console.log( '\nвњ… РџСЂРѕРµРєС‚ СЂР°Р·РІС‘СЂРЅСѓС‚: С‚РµРјР° rosenberger + РїР»Р°РіРёРЅ rosenberger-core. РЎРЅРёРїРїРµС‚С‹ РѕР±РµР·РІСЂРµР¶РµРЅС‹.' );
+	console.log( 'РќР°СЃС‚СЂРѕР№РєРё СЃР°Р№С‚Р°: ' + BASE + '/wp-admin/admin.php?page=rosenberger-settings' );
+	console.log( 'РўРµСЃС‚-СЃС‚СЂР°РЅРёС†Р°:   ' + BASE + '/hero-cover-test/' );
 };
 
 main().catch( ( e ) => { console.error( e ); process.exit( 1 ); } );

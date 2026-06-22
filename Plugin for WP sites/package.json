@@ -5,7 +5,8 @@
 	"description": "Эталонная библиотека динамических блоков Gutenberg для веб-агентства.",
 	"scripts": {
 		"build": "node scripts/build-blocks.mjs projects/rosenberger/theme",
-		"build:library": "node scripts/build-blocks.mjs library"
+		"build:library": "node scripts/build-blocks.mjs library",
+		"diff:blocks": "node scripts/diff-blocks.mjs"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.0.0",
