@@ -46,6 +46,13 @@
 	color: var(--wp--preset--color--on-dark);
 	font-weight: 500;
 	text-decoration: none;
+	transition: background 0.2s ease;
+
+	&:hover,
+	&:focus-visible {
+		background: var(--wp--preset--color--primary);
+		outline: none;
+	}
 }
 
 .process-steps__list {

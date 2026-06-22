@@ -85,6 +85,13 @@
 		font-size: var(--wp--preset--font-size--r-18);
 		font-weight: 500;
 		text-decoration: none;
+		transition: background 0.2s ease, color 0.2s ease;
+		&:hover,
+		&:focus-visible {
+			background: var(--wp--preset--color--primary);
+			color: var(--wp--preset--color--on-dark);
+			outline: none;
+		}
 	}
 
 	.about__cards {
