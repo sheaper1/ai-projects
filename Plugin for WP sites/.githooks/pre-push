@@ -1,0 +1,14 @@
+#!/bin/sh
+# Предполётная проверка перед push (см. scripts/check.mjs).
+# Включить один раз:  git config core.hooksPath .githooks
+remote_main="origin/main"
+if git rev-parse --verify "$remote_main" >/dev/null 2>&1; then
+	range="$remote_main..HEAD"
+else
+	range=""
+fi
+if [ -n "$range" ]; then
+	node scripts/check.mjs --range "$range" || exit 1
+else
+	node scripts/check.mjs || exit 1
+fi

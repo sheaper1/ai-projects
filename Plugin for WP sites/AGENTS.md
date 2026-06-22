@@ -374,8 +374,9 @@ node scripts/scaffold-cpt.mjs scripts/cpt-templates/<slug>.json
 
 Для любой задачи, меняющей код/тему/плагин/контент — **без напоминаний**:
 
-1. **Проверка**: `npm run build` (без ошибок) + `php -l` каждого изменённого PHP +
-   при правке вида — **визуальная проверка в браузере** (Chrome MCP, если доступен).
+1. **Проверка**: `npm run build` (без ошибок) + `npm run check` (php -l изменённых
+   PHP + запрет секретов/артефактов в git) + при правке вида — **визуальная проверка
+   в браузере** (Chrome MCP, если доступен).
 2. **Деплой**: `node scripts/deploy-stack.mjs`; убедись, что тема и плагин активны
    и staging отвечает (HTTP 200).
 3. **Строка в `CHANGELOG.md`** (формат — в шапке файла), новые записи сверху.
@@ -392,13 +393,20 @@ node scripts/scaffold-cpt.mjs scripts/cpt-templates/<slug>.json
 
 ```
 npm install
-npm run build           # собрать блоки активного проекта (projects/rosenberger/theme)
+npm run build           # собрать блоки проекта (инкрементально: только изменённые)
+npm run build -- --force        # полная пересборка всех блоков
 npm run build:library   # собрать эталоны (для проверки)
-node scripts/deploy-stack.mjs   # деплой темы + плагина на staging
+npm run diff:blocks     # сверить дрейф library ↔ theme (что разошлось)
+npm run check           # предполётные проверки (php -l + запрет секретов/артефактов)
+node scripts/deploy-stack.mjs            # полный деплой темы + плагина на staging
+node scripts/deploy-stack.mjs --changed  # залить только изменённые файлы (диф-кэш)
 ```
 
-- `npm run build` зовёт `wp-scripts build` на каждый `blocks/<slug>/src`.
+- `npm run build` зовёт `wp-scripts build` на изменённые `blocks/<slug>/src`
+  (пропускает блоки, чей `build/` свежее `src/`; полная пересборка — `-- --force`).
 - `build/` в git НЕ хранится → перед деплоем нужен `npm run build`.
+- `--changed` у деплоя сверяется с локальным `.deploy-cache.json` (gitignore,
+  per-machine): нет кэша → полная заливка; первый деплой на машине делай полным.
 - **Деплой** (`deploy-stack.mjs`): заливает файлы темы+плагина и активирует через
   одноразовый сниппет Code Snippets, который сам себя обезвреживает. Доступы — в
   `.env`. Также грузит медиа в медиатеку (`ensureMedia(slug, file, ext)`) и
@@ -478,6 +486,10 @@ node scripts/deploy-stack.mjs   # деплой темы + плагина на st
 - В индексе не должно быть: `.env`, `build/`, `node_modules/`, `.claude/`,
   `.figma-tmp/`, чужих незакоммиченных файлов.
 - Перед push — строка в `CHANGELOG.md`.
+- **Pre-push hook** (один раз на машине): `git config core.hooksPath .githooks` —
+  тогда `.githooks/pre-push` сам прогонит `npm run check` перед каждым push.
+- Репозиторий — родительская папка (`…/AI project`), пути git с префиксом
+  `Plugin for WP sites/`. Скрипты это учитывают (резолв от `git rev-parse --show-toplevel`).
 
 ---
 

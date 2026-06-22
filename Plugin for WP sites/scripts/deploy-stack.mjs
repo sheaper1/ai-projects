@@ -7,11 +7,16 @@
 //
 // Р—Р°РїСѓСЃРє: node scripts/deploy-stack.mjs
 
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { resolve, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve( dirname( fileURLToPath( import.meta.url ) ), '..' );
+// Opt-in: заливать только изменённые файлы (диф против локального кэша хэшей).
+// По умолчанию — полная заливка (поведение не меняется). Нет кэша → тоже полная.
+const onlyChanged = process.argv.includes( '--changed' );
+const cacheFile = resolve( root, '.deploy-cache.json' );
 
 const env = {};
 for ( const line of readFileSync( resolve( root, '.env' ), 'utf8' ).split( /\r?\n/ ) ) {
@@ -74,13 +79,13 @@ const pluginFiles = collect( resolve( root, 'projects/rosenberger/plugin/rosenbe
 
 const phpArray = ( obj ) => Object.entries( obj ).map( ( [ k, v ] ) => `\t'${ k }' => '${ v }',` ).join( '\n' );
 
-const snippetCode = `$theme_dir  = get_theme_root() . '/rosenberger';
+const buildSnippetCode = ( themeSubset, pluginSubset ) => `$theme_dir  = get_theme_root() . '/rosenberger';
 $plugin_dir = WP_PLUGIN_DIR . '/rosenberger-core';
 $theme_files = array(
-${ phpArray( themeFiles ) }
+${ phpArray( themeSubset ) }
 );
 $plugin_files = array(
-${ phpArray( pluginFiles ) }
+${ phpArray( pluginSubset ) }
 );
 foreach ( $theme_files as $rel => $b64 ) { $d = $theme_dir . '/' . $rel; wp_mkdir_p( dirname( $d ) ); file_put_contents( $d, base64_decode( $b64 ) ); }
 foreach ( $plugin_files as $rel => $b64 ) { $d = $plugin_dir . '/' . $rel; wp_mkdir_p( dirname( $d ) ); file_put_contents( $d, base64_decode( $b64 ) ); }
@@ -113,6 +118,31 @@ if ( is_dir( $old ) ) {
 	@rmdir( $old );
 }`;
 
+// --- Диф-деплой (opt-in --changed) --------------------------------------
+const hashMap = ( obj ) => {
+	const out = {};
+	for ( const [ k, v ] of Object.entries( obj ) ) out[ k ] = createHash( 'sha1' ).update( v ).digest( 'hex' );
+	return out;
+};
+const themeHashes  = hashMap( themeFiles );
+const pluginHashes = hashMap( pluginFiles );
+
+// Подмножество { rel: base64 } для файлов, чей хэш отличается от прошлого деплоя.
+const changedSubset = ( files, hashes, prev ) => {
+	const out = {};
+	for ( const rel of Object.keys( files ) ) {
+		if ( ! prev || prev[ rel ] !== hashes[ rel ] ) out[ rel ] = files[ rel ];
+	}
+	return out;
+};
+const readCache = () => {
+	if ( ! onlyChanged || ! existsSync( cacheFile ) ) return null;
+	try { return JSON.parse( readFileSync( cacheFile, 'utf8' ) ); } catch { return null; }
+};
+const writeCache = () => {
+	try { writeFileSync( cacheFile, JSON.stringify( { theme: themeHashes, plugin: pluginHashes } ) ); } catch {}
+};
+
 const INSTALLER = 'Library: STACK installer (temporary)';
 
 const neutralizeLibrarySnippets = async () => {
@@ -131,6 +161,20 @@ const neutralizeLibrarySnippets = async () => {
 
 const main = async () => {
 	console.log( `Р¤Р°Р№Р»РѕРІ С‚РµРјС‹: ${ Object.keys( themeFiles ).length }, С„Р°Р№Р»РѕРІ РїР»Р°РіРёРЅР°: ${ Object.keys( pluginFiles ).length }` );
+
+	// Полная заливка по умолчанию; --changed + кэш → только изменённые файлы.
+	const cache = readCache();
+	let themeSubset = themeFiles, pluginSubset = pluginFiles;
+	if ( cache ) {
+		themeSubset  = changedSubset( themeFiles, themeHashes, cache.theme );
+		pluginSubset = changedSubset( pluginFiles, pluginHashes, cache.plugin );
+		const n = Object.keys( themeSubset ).length + Object.keys( pluginSubset ).length;
+		console.log( `Диф-режим (--changed): к заливке ${ n } изменённых файлов.` );
+	} else if ( onlyChanged ) {
+		console.log( 'Кэш не найден — полная заливка (кэш создастся после успеха).' );
+	}
+	const snippetCode = buildSnippetCode( themeSubset, pluginSubset );
+
 	await neutralizeLibrarySnippets();
 
 	const created = await api( '/wp-json/code-snippets/v1/snippets', {
@@ -146,17 +190,26 @@ const main = async () => {
 	console.log( 'РЈСЃС‚Р°РЅРѕРІС‰РёРє СЃРѕР·РґР°РЅ:', created.status, 'id=', created.body && created.body.id );
 	if ( ! ( created.body && created.body.id ) ) { console.log( JSON.stringify( created.body ).slice( 0, 400 ) ); throw new Error( 'РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ СѓСЃС‚Р°РЅРѕРІС‰РёРє' ); }
 
-	await fetch( BASE + '/' );
-	await new Promise( ( r ) => setTimeout( r, 1500 ) );
-	await fetch( BASE + '/' );
+	// Сниппет в global scope исполняется на загрузке страницы. Триггерим и поллим
+	// статус активации (вместо слепой паузы) до 30с — обычно готово за 1-2 итерации.
+	const sleep = ( ms ) => new Promise( ( r ) => setTimeout( r, ms ) );
+	let themeActive = false, coreActive = false;
+	const deadline = Date.now() + 30000;
+	while ( Date.now() < deadline ) {
+		await fetch( BASE + '/' ).catch( () => {} );
+		const themes = await api( '/wp-json/wp/v2/themes?status=active' );
+		themeActive = Array.isArray( themes.body ) && themes.body.some( ( t ) => t.stylesheet === 'rosenberger' );
+		const plugins = await api( '/wp-json/wp/v2/plugins' );
+		coreActive = Array.isArray( plugins.body ) && plugins.body.some(
+			( p ) => p.plugin === 'rosenberger-core/rosenberger-core' && p.status === 'active'
+		);
+		if ( themeActive && coreActive ) break;
+		await sleep( 1000 );
+	}
+	if ( ! themeActive || ! coreActive ) throw new Error( 'Тема или project-core не активировались (таймаут 30с)' );
 
-	const themes = await api( '/wp-json/wp/v2/themes?status=active' );
-	const themeActive = Array.isArray( themes.body ) && themes.body.some( ( t ) => t.stylesheet === 'rosenberger' );
-	const plugins = await api( '/wp-json/wp/v2/plugins' );
-	const coreActive = Array.isArray( plugins.body ) && plugins.body.some(
-		( p ) => p.plugin === 'rosenberger-core/rosenberger-core' && p.status === 'active'
-	);
-	if ( ! themeActive || ! coreActive ) throw new Error( 'РўРµРјР° РёР»Рё project-core РЅРµ Р°РєС‚РёРІРёСЂРѕРІР°Р»РёСЃСЊ' );
+	// Файлы темы/плагина залиты и активны — фиксируем кэш хэшей для следующего --changed.
+	writeCache();
 
 	const iconDir = resolve( root, 'projects/rosenberger/media/icons' );
 	const ratingMedia = await ensureSvgMedia( 'rosenberger-google-rating', resolve( root, 'projects/rosenberger/media/google-rating.svg' ) );

@@ -6,7 +6,8 @@
 	"scripts": {
 		"build": "node scripts/build-blocks.mjs projects/rosenberger/theme",
 		"build:library": "node scripts/build-blocks.mjs library",
-		"diff:blocks": "node scripts/diff-blocks.mjs"
+		"diff:blocks": "node scripts/diff-blocks.mjs",
+		"check": "node scripts/check.mjs"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.0.0",

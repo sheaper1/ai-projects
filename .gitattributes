@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Shell-хуки всегда LF (иначе sh спотыкается о CRLF на другой машине)
+**/.githooks/** text eol=lf
