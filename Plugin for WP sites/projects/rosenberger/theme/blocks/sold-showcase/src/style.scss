@@ -28,73 +28,43 @@
 	font-weight: 300;
 }
 
-// ── Frame (nav + track) ─────────────────────────────────────────────────────
-
-.sold-showcase__frame {
-	display: grid;
-	grid-template-columns: 56px minmax(0, 1fr) 56px;
-	align-items: center;
-	gap: 16px;
+.sold-showcase__carousel {
+	position: relative;
 }
-
-// ── Nav buttons ─────────────────────────────────────────────────────────────
-
-.sold-showcase__nav {
-	flex-shrink: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 48px;
-	height: 48px;
-	padding: 0;
-	border: none;
-	background: transparent;
-	color: var(--wp--preset--color--contrast);
-	cursor: pointer;
-	transition: opacity 0.2s ease, transform 0.2s ease;
-
-	img, svg { width: 48px; height: 48px; display: block; }
-
-	&:hover,
-	&:focus-visible {
-		opacity: 0.6;
-		transform: scale(1.08);
-		outline: none;
-	}
-}
-
-// ── Track + slides ──────────────────────────────────────────────────────────
 
 .sold-showcase__track {
-	position: relative;
-	// Фиксированная высота карточки = высота из Figma
-	min-height: 504px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.sold-showcase__strip {
+	display: flex;
+	transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+	will-change: transform;
+	cursor: grab;
+}
+
+.sold-showcase__strip.is-dragging {
+	transition: none;
+	cursor: grabbing;
 }
 
 .sold-showcase__slide {
-	position: absolute;
-	inset: 0;
+	flex: 0 0 100%;
+	min-width: 100%;
 	display: grid;
 	grid-template-columns: 38% 62%;
+	min-height: 504px;
 	border: 1px solid rgba(178, 179, 183, 0.7);
 	background: var(--wp--preset--color--base);
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 0.4s ease;
-
-	&.is-active {
-		opacity: 1;
-		pointer-events: auto;
-	}
+	box-sizing: border-box;
 }
-
-// ── Card content ─────────────────────────────────────────────────────────────
 
 .sold-showcase__content {
 	padding: 56px 48px 48px;
 	display: flex;
 	flex-direction: column;
-	min-height: 504px;
+	min-width: 0;
 }
 
 .sold-showcase__content h3 {
@@ -135,8 +105,6 @@
 	color: var(--wp--preset--color--contrast);
 }
 
-// ── Text link inside card ────────────────────────────────────────────────────
-
 .sold-showcase__link {
 	display: inline-block;
 	margin-top: 48px;
@@ -145,41 +113,68 @@
 	text-decoration: underline;
 	text-underline-offset: 0.2em;
 	transition: opacity 0.2s ease;
-
-	&:hover,
-	&:focus-visible {
-		opacity: 0.6;
-		outline: none;
-	}
 }
 
-// ── Media: cover фиксированной высоты ────────────────────────────────────────
+.sold-showcase__link:hover,
+.sold-showcase__link:focus-visible {
+	opacity: 0.6;
+	outline: none;
+}
 
 .sold-showcase__media {
 	position: relative;
 	overflow: hidden;
-	height: 100%;
-	min-height: 504px;
-
-	img {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: center;
-		display: block;
-	}
+	min-width: 0;
 }
 
-// ── Footer ───────────────────────────────────────────────────────────────────
+.sold-showcase__media img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	display: block;
+	user-select: none;
+	-webkit-user-drag: none;
+	pointer-events: none;
+}
 
-.sold-showcase__footer {
+.sold-showcase__nav-row {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
-	gap: 28px;
-	margin-top: 24px;
+	justify-content: center;
+	gap: 24px;
+	margin-top: 40px;
+}
+
+.sold-showcase__nav {
+	flex-shrink: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	padding: 0;
+	border: none;
+	background: transparent;
+	color: var(--wp--preset--color--contrast);
+	cursor: pointer;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sold-showcase__nav img,
+.sold-showcase__nav svg {
+	width: 48px;
+	height: 48px;
+	display: block;
+}
+
+.sold-showcase__nav:hover,
+.sold-showcase__nav:focus-visible {
+	opacity: 0.6;
+	transform: scale(1.08);
+	outline: none;
 }
 
 .sold-showcase__dots {
@@ -191,21 +186,26 @@
 	width: 14px;
 	height: 4px;
 	background: var(--wp--preset--color--accent);
-	transition: background 0.2s ease;
-
-	&.is-active {
-		background: var(--wp--preset--color--contrast);
-	}
+	transition: background 0.2s ease, width 0.2s ease;
 }
 
-// ── CTA button ───────────────────────────────────────────────────────────────
+.sold-showcase__dot.is-active {
+	width: 24px;
+	background: var(--wp--preset--color--contrast);
+}
+
+.sold-showcase__footer {
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+}
 
 .sold-showcase__button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	height: 56px;
-	padding: 0 32px;
+	padding: 0 24px;
 	border-radius: var(--wp--custom--radius--pill);
 	background: var(--wp--preset--color--contrast);
 	color: var(--wp--preset--color--on-dark);
@@ -214,70 +214,36 @@
 	font-weight: 500;
 	text-decoration: none;
 	white-space: nowrap;
-	transition: background 0.2s ease;
-
-	// Hover из дизайна: белый оверлей 8% поверх тёмного фона
-	&:hover,
-	&:focus-visible {
-		background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
-		background-color: var(--wp--preset--color--contrast);
-		outline: none;
-	}
+	transition: background-image 0.2s ease;
 }
 
-// ── Empty state ──────────────────────────────────────────────────────────────
+.sold-showcase__button:hover,
+.sold-showcase__button:focus-visible {
+	background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
+	outline: none;
+}
 
 .sold-showcase__empty {
+	padding: 48px 0;
 	text-align: center;
 	color: var(--wp--preset--color--muted);
-	padding: 48px 0;
 }
 
-// ── Responsive ───────────────────────────────────────────────────────────────
-
 @media (max-width: 1024px) {
-	.sold-showcase__frame {
-		grid-template-columns: 1fr;
-	}
-
-	.sold-showcase__nav {
-		display: none;
-	}
-
-	.sold-showcase__track {
-		min-height: auto;
-	}
-
 	.sold-showcase__slide {
-		position: relative;
-		inset: auto;
 		grid-template-columns: 1fr;
-		opacity: 0;
-		display: none;
-		pointer-events: none;
-
-		&.is-active {
-			display: grid;
-			opacity: 1;
-			pointer-events: auto;
-		}
+		min-height: auto;
 	}
 
 	.sold-showcase__media {
 		order: -1;
-		height: auto;
-		min-height: auto;
+		min-height: 0;
 		aspect-ratio: 16 / 9;
-
-		img {
-			position: relative;
-			inset: auto;
-			height: 100%;
-		}
 	}
 
-	.sold-showcase__content {
-		min-height: auto;
+	.sold-showcase__media img {
+		position: relative;
+		inset: auto;
 	}
 }
 
@@ -299,8 +265,8 @@
 	}
 
 	.sold-showcase__content h3 {
-		font-size: var(--wp--preset--font-size--r-32);
 		margin-bottom: 16px;
+		font-size: var(--wp--preset--font-size--r-32);
 	}
 
 	.sold-showcase__meta {
@@ -313,7 +279,6 @@
 
 	.sold-showcase__button {
 		width: 100%;
-		max-width: 320px;
-		font-size: var(--wp--preset--font-size--r-16);
+		padding: 0 16px;
 	}
 }

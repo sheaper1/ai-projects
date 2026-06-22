@@ -1,65 +1,73 @@
 import { InspectorControls, MediaUpload, MediaUploadCheck, useBlockProps } from '@wordpress/block-editor';
-import { Button, PanelBody, TextControl, TextareaControl } from '@wordpress/components';
+import { Button, Notice, PanelBody, TextControl } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const blockProps = useBlockProps( { className: 'sold-showcase' } );
 	const set = ( key ) => ( value ) => setAttributes( { [ key ]: value } );
 
+	const ArrowPicker = ( { label, idKey, urlKey } ) => (
+		<MediaUploadCheck>
+			<MediaUpload
+				allowedTypes={ [ 'image/svg+xml' ] }
+				value={ attributes[ idKey ] }
+				onSelect={ ( media ) => setAttributes( { [ idKey ]: media.id, [ urlKey ]: media.url } ) }
+				render={ ( { open } ) => (
+					<div style={ { marginBottom: 12 } }>
+						<p style={ { marginBottom: 4, fontWeight: 600 } }>{ label }</p>
+						{ attributes[ urlKey ] && (
+							<img
+								src={ attributes[ urlKey ] }
+								alt=""
+								onClick={ open }
+								style={ {
+									width: 48,
+									height: 48,
+									display: 'block',
+									cursor: 'pointer',
+									marginBottom: 8,
+									background: '#142335',
+									borderRadius: '50%',
+									padding: 4,
+								} }
+							/>
+						) }
+						<Button variant="secondary" onClick={ open }>
+							{ attributes[ urlKey ] ? 'Ersetzen' : 'SVG auswählen' }
+						</Button>
+					</div>
+				) }
+			/>
+		</MediaUploadCheck>
+	);
+
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title="Heading">
+				<PanelBody title="Überschrift">
 					<TextControl label="Heading" value={ attributes.heading } onChange={ set( 'heading' ) } />
 					<TextControl label="Italic heading" value={ attributes.headingItalic } onChange={ set( 'headingItalic' ) } />
 				</PanelBody>
-				<PanelBody title="Card">
-					<TextControl label="Title" value={ attributes.title } onChange={ set( 'title' ) } />
-					<TextareaControl label="Text" value={ attributes.text } onChange={ set( 'text' ) } />
-					<TextControl label="Location label" value={ attributes.locationLabel } onChange={ set( 'locationLabel' ) } />
-					<TextControl label="Location value" value={ attributes.locationValue } onChange={ set( 'locationValue' ) } />
-					<TextControl label="Price label" value={ attributes.priceLabel } onChange={ set( 'priceLabel' ) } />
-					<TextControl label="Price value" value={ attributes.priceValue } onChange={ set( 'priceValue' ) } />
-					<TextControl label="Area label" value={ attributes.areaLabel } onChange={ set( 'areaLabel' ) } />
-					<TextControl label="Area value" value={ attributes.areaValue } onChange={ set( 'areaValue' ) } />
-					<TextControl label="Rooms label" value={ attributes.roomsLabel } onChange={ set( 'roomsLabel' ) } />
-					<TextControl label="Rooms value" value={ attributes.roomsValue } onChange={ set( 'roomsValue' ) } />
-					<TextControl label="Link text" value={ attributes.buttonText } onChange={ set( 'buttonText' ) } />
-					<TextControl label="Link URL" value={ attributes.buttonUrl } onChange={ set( 'buttonUrl' ) } />
-					<TextControl label="CTA text" value={ attributes.ctaText } onChange={ set( 'ctaText' ) } />
-					<TextControl label="CTA URL" value={ attributes.ctaUrl } onChange={ set( 'ctaUrl' ) } />
+				<PanelBody title="CTA-Button">
+					<TextControl label="Button-Text" value={ attributes.ctaText } onChange={ set( 'ctaText' ) } />
+					<TextControl label="Button-URL" value={ attributes.ctaUrl } onChange={ set( 'ctaUrl' ) } />
 				</PanelBody>
-				<PanelBody title="Image" initialOpen={ false }>
-					<MediaUploadCheck>
-						<MediaUpload
-							allowedTypes={ [ 'image' ] }
-							value={ attributes.imageId }
-							onSelect={ ( media ) => setAttributes( { imageId: media.id, imageUrl: media.url } ) }
-							render={ ( { open } ) => (
-								<div>
-									{ attributes.imageUrl && (
-										<img src={ attributes.imageUrl } alt="" onClick={ open } style={ { width: '100%', height: 180, objectFit: 'cover', display: 'block', cursor: 'pointer', borderRadius: 8, marginBottom: 8 } } />
-									) }
-									<Button variant="secondary" onClick={ open }>{ attributes.imageUrl ? 'Replace image' : 'Select image' }</Button>
-								</div>
-							) }
-						/>
-					</MediaUploadCheck>
+				<PanelBody title="Navigation (SVG-Icons)" initialOpen={ false }>
+					<ArrowPicker label="← Pfeil (Prev)" idKey="navPrevId" urlKey="navPrevUrl" />
+					<ArrowPicker label="→ Pfeil (Next)" idKey="navNextId" urlKey="navNextUrl" />
 				</PanelBody>
 			</InspectorControls>
+
 			<section { ...blockProps }>
 				<div className="sold-showcase__inner">
 					<header className="sold-showcase__header">
-						<h2 className="sold-showcase__heading">{ attributes.heading } <em>{ attributes.headingItalic }</em></h2>
+						<h2 className="sold-showcase__heading">
+							{ attributes.heading } <em>{ attributes.headingItalic }</em>
+						</h2>
 					</header>
-					<div className="sold-showcase__frame">
-						<div className="sold-showcase__card">
-							<div className="sold-showcase__content">
-								<h3>{ attributes.title }</h3>
-								<p className="sold-showcase__text">{ attributes.text }</p>
-							</div>
-							<div className="sold-showcase__media">{ attributes.imageUrl && <img src={ attributes.imageUrl } alt="" /> }</div>
-						</div>
-					</div>
+					<Notice status="info" isDismissible={ false }>
+						Karussell zeigt automatisch CPT-Objekte aus <strong>Objekte</strong> mit dem Status <strong>Verkauft</strong>.
+						Die Pfeile werden im Panel <strong>Navigation (SVG-Icons)</strong> gesetzt.
+					</Notice>
 				</div>
 			</section>
 		</>
