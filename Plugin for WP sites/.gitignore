@@ -22,6 +22,9 @@ wp-config.php
 npm-debug.log*
 .figma-tmp/
 
+# Артефакты визуального диффа (скриншоты/heatmap, per-machine)
+.visual/
+
 # Мусор ОС / редакторов
 .DS_Store
 Thumbs.db

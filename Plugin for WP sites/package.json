@@ -9,6 +9,7 @@
 		"diff:blocks": "node scripts/diff-blocks.mjs",
 		"tokens": "node scripts/figma-tokens.mjs",
 		"tokens:scan": "node scripts/figma-tokens.mjs --scan",
+		"visual": "node scripts/visual-diff.mjs",
 		"check": "node scripts/check.mjs"
 	},
 	"devDependencies": {
