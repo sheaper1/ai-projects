@@ -55,7 +55,8 @@
 				{ "slug": "r-48", "name": "48", "size": "3rem", "fluid": { "min": "2.25rem", "max": "3rem" } },
 				{ "slug": "r-56", "name": "56", "size": "3.5rem", "fluid": { "min": "2.5rem", "max": "3.5rem" } },
 				{ "slug": "r-64", "name": "64", "size": "4rem", "fluid": { "min": "2.75rem", "max": "4rem" } },
-				{ "slug": "r-80", "name": "80", "size": "5rem", "fluid": { "min": "2.75rem", "max": "5rem" } }
+				{ "slug": "r-80", "name": "80", "size": "5rem", "fluid": { "min": "2.75rem", "max": "5rem" } },
+				{ "slug": "r-96", "name": "96", "size": "6rem", "fluid": { "min": "3rem", "max": "6rem" } }
 			]
 		},
 		"spacing": {
