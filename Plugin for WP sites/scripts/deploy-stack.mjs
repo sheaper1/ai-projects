@@ -16,13 +16,16 @@ const root = resolve( dirname( fileURLToPath( import.meta.url ) ), '..' );
 // Opt-in: заливать только изменённые файлы (диф против локального кэша хэшей).
 // По умолчанию — полная заливка (поведение не меняется). Нет кэша → тоже полная.
 const onlyChanged = process.argv.includes( '--changed' );
-const cacheFile = resolve( root, '.deploy-cache.json' );
+const isProd = process.argv.includes( '--prod' );
+const envFile = isProd ? '.env.prod' : '.env';
+const cacheFile = resolve( root, isProd ? '.deploy-cache-prod.json' : '.deploy-cache.json' );
 
 const env = {};
-for ( const line of readFileSync( resolve( root, '.env' ), 'utf8' ).split( /\r?\n/ ) ) {
+for ( const line of readFileSync( resolve( root, envFile ), 'utf8' ).split( /\r?\n/ ) ) {
 	const m = line.match( /^([A-Z_]+)=(.*)$/ );
 	if ( m ) env[ m[ 1 ] ] = m[ 2 ];
 }
+if ( isProd ) console.log( '🚀 PRODUCTION deploy →', env.WP_URL );
 const BASE = env.WP_URL.replace( /\/$/, '' );
 const AUTH = 'Basic ' + Buffer.from( `${ env.WP_USER }:${ env.WP_APP_PASSWORD }` ).toString( 'base64' );
 
