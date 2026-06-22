@@ -6,12 +6,12 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
  * добавлять, удалять или переставлять блоки (templateLock: 'all').
  */
 const TEMPLATE = [
-	[ 'core/heading', { level: 1, placeholder: __( 'Заголовок первого экрана', 'library' ) } ],
-	[ 'core/paragraph', { placeholder: __( 'Короткое описание под заголовком…', 'library' ) } ],
+	[ 'core/heading', { level: 1, placeholder: __( 'First screen heading', 'library' ) } ],
+	[ 'core/paragraph', { placeholder: __( 'Short description below the heading…', 'library' ) } ],
 	[
 		'core/buttons',
 		{},
-		[ [ 'core/button', { text: __( 'Кнопка', 'library' ) } ] ],
+		[ [ 'core/button', { text: __( 'Button', 'library' ) } ] ],
 	],
 ];
 

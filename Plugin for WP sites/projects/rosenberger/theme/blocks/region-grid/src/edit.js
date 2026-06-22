@@ -21,19 +21,19 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Заголовок', 'library' ) }>
+				<PanelBody title={ __( 'Heading', 'library' ) }>
 					<TextControl
-						label={ __( 'Текст (обычный)', 'library' ) }
+						label={ __( 'Text (normal)', 'library' ) }
 						value={ heading }
 						onChange={ ( v ) => setAttributes( { heading: v } ) }
 					/>
 					<TextControl
-						label={ __( 'Текст (курсив)', 'library' ) }
+						label={ __( 'Text (italic)', 'library' ) }
 						value={ headingItalic }
 						onChange={ ( v ) => setAttributes( { headingItalic: v } ) }
 					/>
 					<TextControl
-						label={ __( 'Подзаголовок', 'library' ) }
+						label={ __( 'Subheading', 'library' ) }
 						value={ subtext }
 						onChange={ ( v ) => setAttributes( { subtext: v } ) }
 					/>
@@ -42,16 +42,16 @@ export default function Edit( { attributes, setAttributes } ) {
 				{ regions.map( ( region, i ) => (
 					<PanelBody
 						key={ i }
-						title={ region.label || `${ __( 'Регион', 'library' ) } ${ i + 1 }` }
+						title={ region.label || `${ __( 'Region', 'library' ) } ${ i + 1 }` }
 						initialOpen={ i === 0 }
 					>
 						<TextControl
-							label={ __( 'Название', 'library' ) }
+							label={ __( 'Name', 'library' ) }
 							value={ region.label }
 							onChange={ ( v ) => setRegion( i, 'label', v ) }
 						/>
 						<TextControl
-							label={ __( 'Ссылка (URL)', 'library' ) }
+							label={ __( 'Link (URL)', 'library' ) }
 							value={ region.url }
 							onChange={ ( v ) => setRegion( i, 'url', v ) }
 						/>
@@ -74,8 +74,8 @@ export default function Edit( { attributes, setAttributes } ) {
 										) }
 										<Button variant="secondary" onClick={ open } style={ { width: '100%' } }>
 											{ region.mediaUrl
-												? __( 'Заменить фото', 'library' )
-												: __( 'Выбрать фото', 'library' ) }
+												? __( 'Replace photo', 'library' )
+												: __( 'Select photo', 'library' ) }
 										</Button>
 									</>
 								) }

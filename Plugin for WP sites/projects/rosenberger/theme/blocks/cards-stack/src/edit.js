@@ -26,18 +26,18 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title="Заголовок">
-					<TextControl label="Заголовок" value={ attributes.titleMain } onChange={ ( titleMain ) => setAttributes( { titleMain } ) } />
-					<TextControl label="Курсив" value={ attributes.titleAccent } onChange={ ( titleAccent ) => setAttributes( { titleAccent } ) } />
-					<TextareaControl label="Подзаголовок" value={ attributes.subtitle } onChange={ ( subtitle ) => setAttributes( { subtitle } ) } />
+				<PanelBody title="Heading">
+					<TextControl label="Heading" value={ attributes.titleMain } onChange={ ( titleMain ) => setAttributes( { titleMain } ) } />
+					<TextControl label="Italic" value={ attributes.titleAccent } onChange={ ( titleAccent ) => setAttributes( { titleAccent } ) } />
+					<TextareaControl label="Subtitle" value={ attributes.subtitle } onChange={ ( subtitle ) => setAttributes( { subtitle } ) } />
 				</PanelBody>
-				<PanelBody title="Карточки">
+				<PanelBody title="Cards">
 					{ cards.map( ( card, index ) => (
 						<div key={ index } className="cards-stack__control">
-							<TextControl label={ `Карточка ${ index + 1 } — заголовок` } value={ card.title } onChange={ ( title ) => patchCard( index, { title } ) } />
-							<TextareaControl label="Описание" value={ card.text } onChange={ ( text ) => patchCard( index, { text } ) } />
-							<TextControl label="Текст кнопки" value={ card.buttonText } onChange={ ( buttonText ) => patchCard( index, { buttonText } ) } />
-							<TextControl label="Ссылка кнопки" value={ card.buttonUrl } onChange={ ( buttonUrl ) => patchCard( index, { buttonUrl } ) } />
+							<TextControl label={ `Card ${ index + 1 } — title` } value={ card.title } onChange={ ( title ) => patchCard( index, { title } ) } />
+							<TextareaControl label="Description" value={ card.text } onChange={ ( text ) => patchCard( index, { text } ) } />
+							<TextControl label="Button text" value={ card.buttonText } onChange={ ( buttonText ) => patchCard( index, { buttonText } ) } />
+							<TextControl label="Button URL" value={ card.buttonUrl } onChange={ ( buttonUrl ) => patchCard( index, { buttonUrl } ) } />
 							<MediaUploadCheck>
 								<MediaUpload
 									allowedTypes={ [ 'image' ] }
@@ -48,7 +48,7 @@ export default function Edit( { attributes, setAttributes } ) {
 											{ card.imageUrl && (
 												<img src={ card.imageUrl } alt="" onClick={ open } style={ { width: '100%', height: 150, objectFit: 'cover', borderRadius: 6, display: 'block', cursor: 'pointer', border: '1px solid #ddd', marginBottom: 8 } } />
 											) }
-											<Button variant="secondary" onClick={ open }>{ card.imageUrl ? 'Заменить фото' : 'Выбрать фото' }</Button>
+											<Button variant="secondary" onClick={ open }>{ card.imageUrl ? 'Replace photo' : 'Select photo' }</Button>
 										</div>
 									) }
 								/>
@@ -56,15 +56,15 @@ export default function Edit( { attributes, setAttributes } ) {
 							<Flex justify="flex-start" gap={ 2 } style={ { marginTop: 8 } }>
 								<FlexItem><Button size="small" onClick={ () => moveCard( index, -1 ) } disabled={ index === 0 }>↑</Button></FlexItem>
 								<FlexItem><Button size="small" onClick={ () => moveCard( index, 1 ) } disabled={ index === cards.length - 1 }>↓</Button></FlexItem>
-								<FlexItem><Button size="small" isDestructive onClick={ () => removeCard( index ) }>Удалить</Button></FlexItem>
+								<FlexItem><Button size="small" isDestructive onClick={ () => removeCard( index ) }>Delete</Button></FlexItem>
 							</Flex>
 						</div>
 					) ) }
-					<Button variant="secondary" onClick={ addCard }>+ Добавить карточку</Button>
+					<Button variant="secondary" onClick={ addCard }>+ Add card</Button>
 				</PanelBody>
-				<PanelBody title="Кнопка снизу">
-					<TextControl label="Текст" value={ attributes.ctaText } onChange={ ( ctaText ) => setAttributes( { ctaText } ) } />
-					<TextControl label="Ссылка" value={ attributes.ctaUrl } onChange={ ( ctaUrl ) => setAttributes( { ctaUrl } ) } />
+				<PanelBody title="Bottom CTA">
+					<TextControl label="Text" value={ attributes.ctaText } onChange={ ( ctaText ) => setAttributes( { ctaText } ) } />
+					<TextControl label="URL" value={ attributes.ctaUrl } onChange={ ( ctaUrl ) => setAttributes( { ctaUrl } ) } />
 				</PanelBody>
 			</InspectorControls>
 

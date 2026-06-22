@@ -18,30 +18,30 @@ export default function Edit( { attributes, setAttributes } ) {
 		<>
 			<InspectorControls>
 				<PanelBody title="Trust Bar">
-					<TextControl label="Рейтинг" value={ attributes.rating } onChange={ ( rating ) => setAttributes( { rating } ) } />
+					<TextControl label="Rating" value={ attributes.rating } onChange={ ( rating ) => setAttributes( { rating } ) } />
 					<MediaUploadCheck>
 						<MediaUpload allowedTypes={ [ 'image' ] } value={ attributes.badgeId } onSelect={ ( media ) => setAttributes( { badgeId: media.id, badgeUrl: media.url } ) } render={ ( { open } ) => (
 							<div>
 								{ attributes.badgeUrl && (
 									<img src={ attributes.badgeUrl } alt="" onClick={ open } style={ { width: '100%', height: 64, objectFit: 'contain', padding: 8, borderRadius: 6, display: 'block', cursor: 'pointer', background: '#f0f0f0', border: '1px solid #ddd', marginBottom: 8 } } />
 								) }
-								<Button variant="secondary" onClick={ open }>{ attributes.badgeUrl ? 'Заменить SVG рейтинга' : 'Выбрать SVG рейтинга' }</Button>
+								<Button variant="secondary" onClick={ open }>{ attributes.badgeUrl ? 'Replace rating SVG' : 'Select rating SVG' }</Button>
 							</div>
 						) } />
 					</MediaUploadCheck>
 				</PanelBody>
-				<PanelBody title="Преимущества">
+				<PanelBody title="Features">
 					{ items.map( ( item, index ) => (
 						<div key={ index } className="cards-stack__control">
-							<TextControl label={ `Преимущество ${ index + 1 }` } value={ item } onChange={ ( value ) => setItem( index, value ) } />
+							<TextControl label={ `Feature ${ index + 1 }` } value={ item } onChange={ ( value ) => setItem( index, value ) } />
 							<Flex justify="flex-start" gap={ 2 }>
 								<FlexItem><Button size="small" onClick={ () => moveItem( index, -1 ) } disabled={ index === 0 }>↑</Button></FlexItem>
 								<FlexItem><Button size="small" onClick={ () => moveItem( index, 1 ) } disabled={ index === items.length - 1 }>↓</Button></FlexItem>
-								<FlexItem><Button size="small" isDestructive onClick={ () => removeItem( index ) }>Удалить</Button></FlexItem>
+								<FlexItem><Button size="small" isDestructive onClick={ () => removeItem( index ) }>Delete</Button></FlexItem>
 							</Flex>
 						</div>
 					) ) }
-					<Button variant="secondary" onClick={ addItem }>+ Добавить преимущество</Button>
+					<Button variant="secondary" onClick={ addItem }>+ Add feature</Button>
 				</PanelBody>
 			</InspectorControls>
 			<div { ...useBlockProps() }>

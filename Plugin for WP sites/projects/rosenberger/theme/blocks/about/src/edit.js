@@ -20,13 +20,13 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title="Контент">
-					<TextControl label="Заголовок" value={ attributes.titleMain } onChange={ ( titleMain ) => setAttributes( { titleMain } ) } />
-					<TextareaControl label="Текст" value={ attributes.text } onChange={ ( text ) => setAttributes( { text } ) } />
-					<TextControl label="Текст кнопки" value={ attributes.buttonText } onChange={ ( buttonText ) => setAttributes( { buttonText } ) } />
-					<TextControl label="Ссылка кнопки" value={ attributes.buttonUrl } onChange={ ( buttonUrl ) => setAttributes( { buttonUrl } ) } />
+				<PanelBody title="Content">
+					<TextControl label="Heading" value={ attributes.titleMain } onChange={ ( titleMain ) => setAttributes( { titleMain } ) } />
+					<TextareaControl label="Text" value={ attributes.text } onChange={ ( text ) => setAttributes( { text } ) } />
+					<TextControl label="Button text" value={ attributes.buttonText } onChange={ ( buttonText ) => setAttributes( { buttonText } ) } />
+					<TextControl label="Button URL" value={ attributes.buttonUrl } onChange={ ( buttonUrl ) => setAttributes( { buttonUrl } ) } />
 				</PanelBody>
-				<PanelBody title="Фоновое фото">
+				<PanelBody title="Background photo">
 					<MediaUploadCheck>
 						<MediaUpload
 							allowedTypes={ [ 'image' ] }
@@ -37,25 +37,25 @@ export default function Edit( { attributes, setAttributes } ) {
 									{ attributes.backgroundUrl && (
 										<img src={ attributes.backgroundUrl } alt="" onClick={ open } style={ { width: '100%', height: 150, objectFit: 'cover', borderRadius: 6, display: 'block', cursor: 'pointer', border: '1px solid #ddd', marginBottom: 8 } } />
 									) }
-									<Button variant="secondary" onClick={ open }>{ attributes.backgroundUrl ? 'Заменить фото' : 'Выбрать фото' }</Button>
+									<Button variant="secondary" onClick={ open }>{ attributes.backgroundUrl ? 'Replace photo' : 'Select photo' }</Button>
 								</div>
 							) }
 						/>
 					</MediaUploadCheck>
 				</PanelBody>
-				<PanelBody title="Карточки">
+				<PanelBody title="Cards">
 					{ items.map( ( item, index ) => (
 						<div key={ index } className="cards-stack__control">
-							<TextControl label={ `Карточка ${ index + 1 } — заголовок` } value={ item.title } onChange={ ( title ) => patchItem( index, { title } ) } />
-							<TextareaControl label="Описание" value={ item.text } onChange={ ( text ) => patchItem( index, { text } ) } />
+							<TextControl label={ `Card ${ index + 1 } — title` } value={ item.title } onChange={ ( title ) => patchItem( index, { title } ) } />
+							<TextareaControl label="Description" value={ item.text } onChange={ ( text ) => patchItem( index, { text } ) } />
 							<Flex justify="flex-start" gap={ 2 }>
 								<FlexItem><Button size="small" onClick={ () => moveItem( index, -1 ) } disabled={ index === 0 }>↑</Button></FlexItem>
 								<FlexItem><Button size="small" onClick={ () => moveItem( index, 1 ) } disabled={ index === items.length - 1 }>↓</Button></FlexItem>
-								<FlexItem><Button size="small" isDestructive onClick={ () => removeItem( index ) }>Удалить</Button></FlexItem>
+								<FlexItem><Button size="small" isDestructive onClick={ () => removeItem( index ) }>Delete</Button></FlexItem>
 							</Flex>
 						</div>
 					) ) }
-					<Button variant="secondary" onClick={ addItem }>+ Добавить карточку</Button>
+					<Button variant="secondary" onClick={ addItem }>+ Add card</Button>
 				</PanelBody>
 			</InspectorControls>
 

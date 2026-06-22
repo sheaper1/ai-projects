@@ -20,15 +20,15 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title="Заголовок">
-					<TextControl label="Заголовок" value={ attributes.titleMain } onChange={ ( titleMain ) => setAttributes( { titleMain } ) } />
-					<TextControl label="Курсив" value={ attributes.titleAccent } onChange={ ( titleAccent ) => setAttributes( { titleAccent } ) } />
+				<PanelBody title="Heading">
+					<TextControl label="Heading" value={ attributes.titleMain } onChange={ ( titleMain ) => setAttributes( { titleMain } ) } />
+					<TextControl label="Italic" value={ attributes.titleAccent } onChange={ ( titleAccent ) => setAttributes( { titleAccent } ) } />
 				</PanelBody>
-				<PanelBody title="Пункты">
+				<PanelBody title="Items">
 					{ items.map( ( item, index ) => (
 						<div key={ index } className="pain-points__control">
-							<TextControl label={ `Пункт ${ index + 1 }` } value={ item.title } onChange={ ( title ) => patchItem( index, { title } ) } />
-							<TextareaControl label="Описание" value={ item.text } onChange={ ( text ) => patchItem( index, { text } ) } />
+							<TextControl label={ `Item ${ index + 1 }` } value={ item.title } onChange={ ( title ) => patchItem( index, { title } ) } />
+							<TextareaControl label="Description" value={ item.text } onChange={ ( text ) => patchItem( index, { text } ) } />
 							<MediaUploadCheck>
 								<MediaUpload
 									allowedTypes={ [ 'image' ] }
@@ -39,7 +39,7 @@ export default function Edit( { attributes, setAttributes } ) {
 											{ item.iconUrl && (
 												<img src={ item.iconUrl } alt="" onClick={ open } style={ { width: 80, height: 80, objectFit: 'contain', padding: 12, borderRadius: 6, display: 'block', cursor: 'pointer', background: '#f0f0f0', border: '1px solid #ddd', marginBottom: 8 } } />
 											) }
-											<Button variant="secondary" onClick={ open }>{ item.iconUrl ? 'Заменить SVG' : 'Выбрать SVG' }</Button>
+											<Button variant="secondary" onClick={ open }>{ item.iconUrl ? 'Replace SVG' : 'Select SVG' }</Button>
 										</div>
 									) }
 								/>
@@ -47,11 +47,11 @@ export default function Edit( { attributes, setAttributes } ) {
 							<Flex justify="flex-start" gap={ 2 } style={ { marginTop: 8 } }>
 								<FlexItem><Button size="small" onClick={ () => moveItem( index, -1 ) } disabled={ index === 0 }>↑</Button></FlexItem>
 								<FlexItem><Button size="small" onClick={ () => moveItem( index, 1 ) } disabled={ index === items.length - 1 }>↓</Button></FlexItem>
-								<FlexItem><Button size="small" isDestructive onClick={ () => removeItem( index ) }>Удалить</Button></FlexItem>
+								<FlexItem><Button size="small" isDestructive onClick={ () => removeItem( index ) }>Delete</Button></FlexItem>
 							</Flex>
 						</div>
 					) ) }
-					<Button variant="secondary" onClick={ addItem }>+ Добавить пункт</Button>
+					<Button variant="secondary" onClick={ addItem }>+ Add item</Button>
 				</PanelBody>
 			</InspectorControls>
 			<section { ...useBlockProps() }>

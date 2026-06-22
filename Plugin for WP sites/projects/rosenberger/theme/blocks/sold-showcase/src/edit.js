@@ -52,8 +52,8 @@ export default function Edit( { attributes, setAttributes } ) {
 						</h2>
 					</header>
 					<Notice status="info" isDismissible={ false }>
-						Карусель автоматически показывает объекты CPT <strong>Objekte</strong> со статусом <strong>Verkauft</strong>.
-						Стрелки задаются в панели «Navigation (SVG-Icons)».
+						The carousel automatically shows CPT <strong>Objekte</strong> items with status <strong>Verkauft</strong>.
+						Arrows are configured in the «Navigation (SVG-Icons)» panel.
 					</Notice>
 				</div>
 			</section>

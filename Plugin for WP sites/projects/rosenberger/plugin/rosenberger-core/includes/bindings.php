@@ -18,7 +18,7 @@ add_action(
 		register_block_bindings_source(
 			'rosenberger/setting',
 			array(
-				'label'              => 'Настройки сайта',
+				'label'              => 'Site Settings',
 				'get_value_callback' => function ( $source_args ) {
 					if ( empty( $source_args['key'] ) ) {
 						return null;

@@ -41,31 +41,31 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Контент', 'library' ) }>
-					<TextControl label={ __( 'Заголовок', 'library' ) } value={ titleMain }
+				<PanelBody title={ __( 'Content', 'library' ) }>
+					<TextControl label={ __( 'Heading', 'library' ) } value={ titleMain }
 						onChange={ ( v ) => setAttributes( { titleMain: v } ) } />
-					<TextControl label={ __( 'Акцентная строка (курсив)', 'library' ) } value={ titleAccent }
+					<TextControl label={ __( 'Italic accent line', 'library' ) } value={ titleAccent }
 						onChange={ ( v ) => setAttributes( { titleAccent: v } ) } />
-					<TextareaControl label={ __( 'Подзаголовок', 'library' ) } value={ subtitle }
+					<TextareaControl label={ __( 'Subheading', 'library' ) } value={ subtitle }
 						onChange={ ( v ) => setAttributes( { subtitle: v } ) } />
 				</PanelBody>
 
-				<PanelBody title={ __( 'Колонки текста', 'library' ) }>
+				<PanelBody title={ __( 'Text columns', 'library' ) }>
 					{ cols.map( ( text, i ) => (
 						<div key={ i } style={ { marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid #e0e0e0' } }>
-							<TextareaControl label={ `${ __( 'Колонка', 'library' ) } ${ i + 1 }` } value={ text }
+							<TextareaControl label={ `${ __( 'Column', 'library' ) } ${ i + 1 }` } value={ text }
 								onChange={ ( v ) => setCol( i, v ) } />
 							<Flex justify="flex-start" gap={ 2 }>
 								<FlexItem><Button size="small" onClick={ () => moveCol( i, -1 ) } disabled={ i === 0 }>↑</Button></FlexItem>
 								<FlexItem><Button size="small" onClick={ () => moveCol( i, 1 ) } disabled={ i === cols.length - 1 }>↓</Button></FlexItem>
-								<FlexItem><Button size="small" isDestructive onClick={ () => removeCol( i ) }>{ __( 'Удалить', 'library' ) }</Button></FlexItem>
+								<FlexItem><Button size="small" isDestructive onClick={ () => removeCol( i ) }>{ __( 'Delete', 'library' ) }</Button></FlexItem>
 							</Flex>
 						</div>
 					) ) }
-					<Button variant="secondary" onClick={ addCol }>{ __( '+ Добавить колонку', 'library' ) }</Button>
+					<Button variant="secondary" onClick={ addCol }>{ __( '+ Add column', 'library' ) }</Button>
 				</PanelBody>
 
-				<PanelBody title={ __( 'Фоновое изображение', 'library' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Background image', 'library' ) } initialOpen={ false }>
 					<MediaUploadCheck>
 						<MediaUpload
 							onSelect={ ( m ) => setAttributes( { backgroundUrl: m.url, backgroundId: m.id } ) }
@@ -73,7 +73,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							value={ attributes.backgroundId }
 							render={ ( { open } ) => (
 								<Button variant="secondary" onClick={ open }>
-									{ backgroundUrl ? __( 'Заменить фото', 'library' ) : __( 'Выбрать фото', 'library' ) }
+									{ backgroundUrl ? __( 'Replace photo', 'library' ) : __( 'Select photo', 'library' ) }
 								</Button>
 							) }
 						/>
@@ -81,7 +81,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					{ backgroundUrl && (
 						<Button variant="link" isDestructive style={ { marginTop: 8 } }
 							onClick={ () => setAttributes( { backgroundUrl: '', backgroundId: undefined } ) }>
-							{ __( 'Сбросить (вернуть дефолт)', 'library' ) }
+							{ __( 'Reset (restore default)', 'library' ) }
 						</Button>
 					) }
 				</PanelBody>

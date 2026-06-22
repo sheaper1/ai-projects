@@ -14,22 +14,22 @@ defined( 'ABSPATH' ) || exit;
  */
 function rosenberger_setting_groups() {
 	return array(
-		'Контакты' => array(
-			'phone'   => 'Телефон',
+		'Contacts' => array(
+			'phone'   => 'Phone',
 			'email'   => 'Email',
-			'address' => 'Адрес',
-			'hours'   => 'Часы работы',
+			'address' => 'Address',
+			'hours'   => 'Opening hours',
 		),
-		'Соцсети'  => array(
-			'facebook'  => 'Facebook (ссылка)',
-			'instagram' => 'Instagram (ссылка)',
+		'Social media' => array(
+			'facebook'  => 'Facebook (URL)',
+			'instagram' => 'Instagram (URL)',
 		),
-		'Шапка'    => array(
-			'cta_text' => 'Кнопка в шапке — текст',
-			'cta_url'  => 'Кнопка в шапке — ссылка',
+		'Header'   => array(
+			'cta_text' => 'Header button — text',
+			'cta_url'  => 'Header button — URL',
 		),
-		'Формы'    => array(
-			'form_email' => 'Email для заявок с форм',
+		'Forms'    => array(
+			'form_email' => 'Email for form submissions',
 		),
 	);
 }
@@ -89,8 +89,8 @@ add_action(
 	'admin_menu',
 	function () {
 		add_menu_page(
-			'Настройки сайта',
-			'Настройки сайта',
+			'Site Settings',
+			'Site Settings',
 			'manage_options',
 			'rosenberger-settings',
 			'rosenberger_render_settings_page',
@@ -107,10 +107,10 @@ function rosenberger_render_settings_page() {
 	$c = get_option( 'rosenberger_contacts', array() );
 	?>
 	<div class="wrap">
-		<h1>Настройки сайта</h1>
-		<p>Эти данные используются в шапке, подвале и блоках сайта.
-			Меню редактируется отдельно:
-			<a href="<?php echo esc_url( admin_url( 'nav-menus.php' ) ); ?>">Внешний вид → Меню</a>.</p>
+		<h1>Site Settings</h1>
+		<p>This data is used in the header, footer, and site blocks.
+			Menus are edited separately:
+			<a href="<?php echo esc_url( admin_url( 'nav-menus.php' ) ); ?>">Appearance → Menus</a>.</p>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'rosenberger_core_group' ); ?>
 			<?php foreach ( rosenberger_setting_groups() as $section => $fields ) : ?>
