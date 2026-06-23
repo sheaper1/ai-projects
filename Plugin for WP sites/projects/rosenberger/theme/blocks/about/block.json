@@ -16,6 +16,7 @@
 		"buttonUrl": { "type": "string", "default": "#" },
 		"backgroundId": { "type": "number", "default": 0 },
 		"backgroundUrl": { "type": "string", "default": "" },
+		"columns": { "type": "number", "default": 4 },
 		"items": { "type": "array", "default": [
 			{ "title": "Ehrliche Bewertung", "text": "Sie bekommen einen realistischen Preis, der zum Markt passt, keinen Wunschpreis, der nur den Auftrag bringen soll." },
 			{ "title": "Rückruf binnen 24 Stunden", "text": "Sie hören von mir, ohne nachfragen zu müssen." },

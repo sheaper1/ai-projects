@@ -17,7 +17,7 @@ $bg    = $attributes['backgroundUrl'] ?? '';
 				<a class="about__button" href="<?php echo esc_url( $attributes['buttonUrl'] ?? '#' ); ?>"><?php echo esc_html( $attributes['buttonText'] ); ?></a>
 			<?php endif; ?>
 		</div>
-		<div class="about__cards">
+		<div class="about__cards" style="--bw-cols:<?php echo (int)( $attributes['columns'] ?? 4 ); ?>">
 			<?php foreach ( $items as $item ) : ?>
 				<article class="about__card">
 					<h3><?php echo esc_html( $item['title'] ?? '' ); ?></h3>
