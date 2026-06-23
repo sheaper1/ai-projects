@@ -8,6 +8,7 @@
 		"build:library": "node scripts/build-blocks.mjs library",
 		"blocks": "node scripts/blocks-list.mjs",
 		"diff:blocks": "node scripts/diff-blocks.mjs",
+		"page": "node scripts/import-page.mjs",
 		"tokens": "node scripts/figma-tokens.mjs",
 		"tokens:scan": "node scripts/figma-tokens.mjs --scan",
 		"visual": "node scripts/visual-diff.mjs",
