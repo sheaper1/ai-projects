@@ -49,6 +49,18 @@
 		-webkit-overflow-scrolling: touch;
 
 		&::-webkit-scrollbar { display: none; }
+
+		// Drag мышью (десктоп).
+		@media (hover: hover) and (pointer: fine) { cursor: grab; }
+
+		&.is-dragging {
+			cursor: grabbing;
+			scroll-behavior: auto;
+			user-select: none;
+
+			.testimonials__card { pointer-events: none; }
+			img { -webkit-user-drag: none; }
+		}
 	}
 
 	.testimonials__card {

@@ -1,7 +1,9 @@
 /**
- * Testimonials — карусель отзывов: нативный свайп (scroll-snap) + точки-пагинация.
- * Точки = страницы по perView (3 desktop / 2 tablet / 1 mobile). Без JS — обычный
- * горизонтальный скролл.
+ * Testimonials — карусель отзывов: листание ПО ОДНОЙ карточке.
+ * - нативный свайп (scroll-snap) на тач;
+ * - drag мышью (pointer) на десктопе;
+ * - точки-пагинация = число позиций (cards - perView + 1), клик листает на 1.
+ * Без JS — обычный горизонтальный скролл.
  */
 ( function () {
 	document.querySelectorAll( '.testimonials__carousel' ).forEach( function ( root ) {
@@ -20,22 +22,29 @@
 			return w > 1024 ? 3 : w > 640 ? 2 : 1;
 		}
 
-		var pages = 1;
+		// Шаг = расстояние между началами соседних карточек (ширина + gap).
+		function step() {
+			return cards.length > 1
+				? cards[ 1 ].getBoundingClientRect().left - cards[ 0 ].getBoundingClientRect().left
+				: cards[ 0 ].getBoundingClientRect().width;
+		}
+
+		var positions = 1;
 
 		function buildDots() {
-			pages = Math.ceil( cards.length / perView() );
+			positions = Math.max( 1, cards.length - perView() + 1 );
 			dots.innerHTML = '';
-			if ( pages <= 1 ) {
+			if ( positions <= 1 ) {
 				dots.style.display = 'none';
 				return;
 			}
 			dots.style.display = '';
-			for ( var i = 0; i < pages; i++ ) {
+			for ( var i = 0; i < positions; i++ ) {
 				var b = document.createElement( 'button' );
 				b.type = 'button';
 				b.className = 'testimonials__dot';
 				b.setAttribute( 'role', 'tab' );
-				b.setAttribute( 'aria-label', 'Seite ' + ( i + 1 ) );
+				b.setAttribute( 'aria-label', 'Position ' + ( i + 1 ) );
 				( function ( idx ) {
 					b.addEventListener( 'click', function () { goTo( idx ); } );
 				} )( i );
@@ -44,27 +53,73 @@
 			updateActive();
 		}
 
-		function goTo( page ) {
-			var target = cards[ Math.min( page * perView(), cards.length - 1 ) ];
+		function goTo( i ) {
+			var target = cards[ Math.min( i, cards.length - 1 ) ];
 			var delta  = target.getBoundingClientRect().left - track.getBoundingClientRect().left;
 			track.scrollTo( { left: track.scrollLeft + delta, behavior: 'smooth' } );
 		}
 
 		function updateActive() {
-			var page = Math.round( track.scrollLeft / track.clientWidth );
-			page = Math.max( 0, Math.min( page, pages - 1 ) );
+			var idx = Math.round( track.scrollLeft / step() );
+			idx = Math.max( 0, Math.min( idx, positions - 1 ) );
 			dots.querySelectorAll( '.testimonials__dot' ).forEach( function ( d, i ) {
-				var on = i === page;
+				var on = i === idx;
 				d.classList.toggle( 'is-active', on );
 				d.setAttribute( 'aria-selected', String( on ) );
 			} );
 		}
 
+		// --- Синхронизация точек со скроллом/свайпом ---
 		var st;
 		track.addEventListener( 'scroll', function () {
 			clearTimeout( st );
 			st = setTimeout( updateActive, 80 );
 		} );
+
+		// --- Drag мышью (на тач — нативный свайп) ---
+		var down = false, startX = 0, startScroll = 0, moved = false;
+
+		track.addEventListener( 'pointerdown', function ( e ) {
+			if ( 'mouse' !== e.pointerType ) {
+				return;
+			}
+			down = true;
+			moved = false;
+			startX = e.clientX;
+			startScroll = track.scrollLeft;
+			track.style.scrollSnapType = 'none';
+			track.classList.add( 'is-dragging' );
+		} );
+
+		track.addEventListener( 'pointermove', function ( e ) {
+			if ( ! down ) {
+				return;
+			}
+			var dx = e.clientX - startX;
+			if ( Math.abs( dx ) > 3 ) {
+				moved = true;
+			}
+			track.scrollLeft = startScroll - dx;
+		} );
+
+		function endDrag() {
+			if ( ! down ) {
+				return;
+			}
+			down = false;
+			track.classList.remove( 'is-dragging' );
+			track.style.scrollSnapType = ''; // вернуть snap → защёлкнется к ближайшей
+		}
+		track.addEventListener( 'pointerup', endDrag );
+		track.addEventListener( 'pointerleave', endDrag );
+		track.addEventListener( 'pointercancel', endDrag );
+		// Не давать «клику» после перетягивания (если внутри появятся ссылки).
+		track.addEventListener( 'click', function ( e ) {
+			if ( moved ) {
+				e.preventDefault();
+				e.stopPropagation();
+			}
+		}, true );
 
 		var rt;
 		window.addEventListener( 'resize', function () {
