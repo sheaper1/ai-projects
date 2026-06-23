@@ -107,7 +107,7 @@ const pageContent = [
 	} ) } /-->`,
 
 	`<!-- wp:library/problem-cards ${ JSON.stringify( {
-		heading:       'Was einen Verkauf ',
+		heading:       'Was einen<br>Verkauf ',
 		headingItalic: 'zäh macht',
 		intro:         'Ein Verkauf kommt selten zum bequemsten Zeitpunkt. Erbe, Scheidung, Umzug im Alter oder ein neuer Job, der Anlass entscheidet selten der Eigentümer selbst. Und dann fängt der eigentliche Ärger oft erst an.',
 		items: [
