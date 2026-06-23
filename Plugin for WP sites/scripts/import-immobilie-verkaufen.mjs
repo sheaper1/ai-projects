@@ -173,6 +173,13 @@ const pageContent = [
 		ctaUrl:        '/referenzen/',
 	} ) } /-->`,
 
+	`<!-- wp:library/testimonials ${ JSON.stringify( {
+		heading:       'Das sagen Menschen,<br>',
+		headingItalic: 'die mit mir gearbeitet haben',
+		limit:         3,
+		minRating:     4,
+	} ) } /-->`,
+
 ].join( '\n\n' );
 
 // ---------------------------------------------------------------------------
