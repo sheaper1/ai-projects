@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "library/page-hero",
+  "title": "Page Hero",
+  "category": "design",
+  "description": "Центрированный Hero для внутренних страниц: заголовок + подзаголовок + CTA + изображение снизу.",
+  "keywords": ["hero", "page", "heading"],
+  "supports": { "html": false, "align": ["full"], "multiple": false },
+  "attributes": {
+    "headingStart":  { "type": "string",  "default": "" },
+    "headingItalic": { "type": "string",  "default": "" },
+    "headingEnd":    { "type": "string",  "default": "" },
+    "subtitle":      { "type": "string",  "default": "" },
+    "buttonText":    { "type": "string",  "default": "Jetzt Tipp einsenden" },
+    "buttonUrl":     { "type": "string",  "default": "#" },
+    "disclaimer":    { "type": "string",  "default": "Unverbindlich und kostenlos" },
+    "imageId":       { "type": "integer", "default": 0 },
+    "imageUrl":      { "type": "string",  "default": "" }
+  },
+  "editorScript": "file:./build/index.js",
+  "style":        "file:./build/style-index.css",
+  "render":       "file:./render.php"
+}

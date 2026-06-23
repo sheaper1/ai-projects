@@ -1,0 +1,107 @@
+.wp-block-library-page-hero {
+	background: var(--wp--preset--color--base);
+}
+
+.page-hero__content {
+	padding: 96px var(--wp--custom--layout--gutter) 48px;
+}
+
+.page-hero__inner {
+	max-width: 867px;
+	margin: 0 auto;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 32px;
+}
+
+.page-hero__heading {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-56);
+	font-weight: 400;
+	line-height: 1;
+	letter-spacing: -0.03em;
+	color: var(--wp--preset--color--contrast);
+
+	em {
+		font-style: italic;
+		font-weight: 300;
+	}
+}
+
+.page-hero__subtitle {
+	margin: 0;
+	max-width: 790px;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-18);
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--wp--preset--color--muted);
+}
+
+.page-hero__cta {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+}
+
+.page-hero__button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 24px;
+	height: 56px;
+	background: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--on-dark);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-18);
+	font-weight: 500;
+	text-decoration: none;
+	border-radius: var(--wp--custom--radius--pill);
+	white-space: nowrap;
+	transition: opacity var(--wp--custom--transition--base);
+
+	&:hover {
+		opacity: 0.85;
+	}
+}
+
+.page-hero__disclaimer {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-14);
+	font-weight: 400;
+	color: var(--wp--preset--color--contrast);
+	opacity: 0.5;
+}
+
+.page-hero__image {
+	width: 100%;
+	height: 669px;
+	overflow: hidden;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		display: block;
+	}
+}
+
+@media (max-width: 781px) {
+	.page-hero__content {
+		padding: 48px var(--wp--custom--layout--gutter) 32px;
+	}
+
+	.page-hero__heading {
+		font-size: var(--wp--preset--font-size--r-40);
+	}
+
+	.page-hero__image {
+		height: 280px;
+	}
+}

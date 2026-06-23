@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "library/tipper-types",
+  "title": "Tipper Types",
+  "category": "design",
+  "description": "«Wer als Tippgeber in Frage kommt» — заголовок слева + 2 фото-карточки справа.",
+  "keywords": ["tipper", "types", "who"],
+  "supports": { "html": false, "align": ["full"], "multiple": false },
+  "attributes": {
+    "headingStart":  { "type": "string", "default": "" },
+    "headingItalic": { "type": "string", "default": "" },
+    "headingLine2":  { "type": "string", "default": "" },
+    "lead":          { "type": "string", "default": "" },
+    "items":         { "type": "array",  "default": [] }
+  },
+  "editorScript": "file:./build/index.js",
+  "style":        "file:./build/style-index.css",
+  "render":       "file:./render.php"
+}

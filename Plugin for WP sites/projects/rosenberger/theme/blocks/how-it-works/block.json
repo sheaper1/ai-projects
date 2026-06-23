@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "library/how-it-works",
+  "title": "How It Works",
+  "category": "design",
+  "description": "3 карточки-шага с иконкой, заголовком и описанием.",
+  "keywords": ["steps", "how", "cards"],
+  "supports": { "html": false, "align": ["full"], "multiple": false },
+  "attributes": {
+    "heading": { "type": "string", "default": "So funktioniert es" },
+    "lead":    { "type": "string", "default": "" },
+    "items":   { "type": "array",  "default": [] }
+  },
+  "editorScript": "file:./build/index.js",
+  "style":        "file:./build/style-index.css",
+  "render":       "file:./render.php"
+}

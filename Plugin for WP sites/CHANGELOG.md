@@ -8,8 +8,21 @@
 
 ---
 
-- [Claude] 2026-06-23 — страница «Über mich»: скрипт `import-uber-mich.mjs` (WP REST API), 3 фото из Figma CDN загружены в медиатеку (bio-portrait/founder-photo/quote-cover), bio-hero 100vh + header.js распознаёт bio-hero как hero-страницу, founder-bio content max-width 550px, consultation-cta font-weight 300, `<br>` в заголовках (founder-story/promise-list) через wp_kses_post, trust-bar с badge — готово
-- [Claude] 2026-06-23 — staging полностью удалён: `.env` → rosenberger.digirelation.dev, `.env.prod` удалён, `deploy-stack.mjs` упрощён (убран флаг --prod), `import-homepage.mjs` упрощён (убраны STAGING_* переменные и remoteBuf с CDN) — готово
+- [Claude] 2026-06-23 — страница «Tippgeber» (сессия, ошибки и ходы):
+    ОШИБКА 1: угадал URL Figma-иконки телефона вместо того чтобы взять из get_design_context → WP отклонил файл "Du bist leider nicht berechtigt"; исправил: вызвал get_design_context(2005:2951), нашёл node 2005:3018 (mobile icon), взял screenshot PNG → загрузил успешно
+    ОШИБКА 2: использовал imgInformationPoint/imgCoin как image assets из Figma — те вернули SVG, WP отклонил; исправил: get_screenshot(node) для всех трёх иконок → PNG 64×64
+    ОШИБКА 3: опечатка в FAQ-тексте "ich klä das Weitere" → пропущено "re"; исправил перед финальным push
+    ОК: 5 новых блоков (page-hero, how-it-works, provision-callout, tipper-types, tipper-form); WPForms-воронка из архива пользователя адаптирована через CSS-переменные; page id=76 создана через import-tippgeber.mjs; все 10 медиа в медиатеке — готово
+- [Claude] 2026-06-23 — страница «Über mich» (сессия, ошибки и ходы):
+    ОШИБКА 1: создал HTML-шаблон `templates/page-uber-mich.html` → неверно, страницы создаются через скрипт REST API; удалил шаблон, создал `scripts/import-uber-mich.mjs`
+    ОШИБКА 2: в trust-bar не добавил Google badge → пользователь заметил по скриншоту; добавил `rosenberger-google-rating` в список медиа скрипта
+    ОШИБКА 3: founder-bio контент был 663px вместо 550px → не учёл padding при задании max-width; исправил на 646px (550 + 48×2)
+    ОШИБКА 4: consultation-cta font-weight остался 400 → не добавил явный font-weight в CSS; добавил 300
+    ОШИБКА 5: хедер на Über mich сразу тёмный, а на главной прозрачный → header.js проверял только `.hero-cover`, пропустил `.bio-hero`; добавил второй класс в querySelector
+    ОШИБКА 6: `<br>` в заголовках не рендерился → использовал esc_html вместо wp_kses_post; исправил в founder-bio и promise-list render.php
+    ОК: bio-hero сделал 100vh по правилу vw/vh; 3 фото загрузил из Figma CDN в медиатеку — готово
+- [Claude] 2026-06-23 — staging удалён (задача пользователя):
+    Убрал .env.prod, флаг --prod из deploy-stack, STAGING_* из import-homepage → одна среда rosenberger.digirelation.dev — готово
 - [Claude] 2026-06-23 — главная страница на продакшн: 48 медиа загружено, все блоки (hero→trust→pain→cards→about→regions→catalog→process→sold→referral→faq→cta), front page назначена, contacts seeded — готово
 - [Claude] 2026-06-23 — деплой на продакшн rosenberger.digirelation.dev: установлен Code Snippets, активирована тема rosenberger + rosenberger-core, деактивирован Elementor и связанные плагины; добавлен флаг --prod в deploy-stack.mjs — готово
 

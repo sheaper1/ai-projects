@@ -1,0 +1,308 @@
+﻿<style>
+  :root{
+    --teal:#0e8a80; --teal-dark:#0a6b63; --cta:#ff7a18; --cta-dark:#e96c0c;
+    --ink:#1f2d2b; --muted:#6b7c79; --line:#e2e9e7; --bg:#f4f7f6; --card:#fff;
+    --radius:14px; --shadow:0 8px 30px rgba(14,138,128,.10);
+  }
+  #irvFunnel *{box-sizing:border-box}
+  #irvFunnel{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.5}
+  #irvFunnel .demo-banner{background:#fff6e9;border:1px solid #ffd9a8;color:#8a4b00;font-size:13px;text-align:center;padding:8px 14px;border-radius:10px;margin-bottom:16px}
+  #irvFunnel .wrap{max-width:680px;margin:0 auto}
+  #irvFunnel .progress{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:26px}
+  #irvFunnel .progress > i{display:block;height:100%;width:0;background:var(--teal);border-radius:99px;transition:width .35s ease}
+  #irvFunnel .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px 26px}
+  #irvFunnel h1.q{font-size:23px;line-height:1.3;margin:0 0 22px;font-weight:700}
+  #irvFunnel .opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:520px){#irvFunnel .opts{grid-template-columns:1fr}}
+  #irvFunnel .opt{display:flex;align-items:center;gap:12px;border:2px solid var(--line);border-radius:12px;padding:16px;background:#fff;cursor:pointer;font-size:15.5px;font-weight:600;text-align:left;width:100%;font-family:inherit;color:var(--ink)}
+  #irvFunnel .opt:hover{border-color:var(--teal);background:#f3faf9}
+  #irvFunnel .opt.sel{border-color:var(--teal);background:#e9f6f4}
+  #irvFunnel .opt .ic{width:34px;height:34px;flex:0 0 34px;display:flex;align-items:center;justify-content:center;color:var(--teal)}
+  #irvFunnel .opt .ic svg{width:30px;height:30px}
+  #irvFunnel .opt .check{margin-left:auto;width:20px;height:20px;border:2px solid var(--line);border-radius:6px;flex:0 0 20px}
+  #irvFunnel .opt.sel .check{background:var(--teal);border-color:var(--teal);position:relative}
+  #irvFunnel .opt.sel .check:after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  #irvFunnel .range-box{text-align:center;padding:10px 0 4px}
+  #irvFunnel .range-val{font-size:34px;font-weight:800;color:var(--teal);margin:8px 0 18px}
+  #irvFunnel input[type=range]{width:100%;accent-color:var(--teal);height:30px}
+  #irvFunnel .range-minmax{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:-6px}
+  #irvFunnel .field{margin-bottom:16px;text-align:left}
+  #irvFunnel .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+  #irvFunnel .field input,#irvFunnel .field select{width:100%;padding:13px 14px;border:2px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;background:#fff;color:var(--ink)}
+  #irvFunnel .field input:focus,#irvFunnel .field select:focus{outline:none;border-color:var(--teal)}
+  #irvFunnel .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:520px){#irvFunnel .row2{grid-template-columns:1fr}}
+  #irvFunnel .legal{font-size:11.5px;color:var(--muted);margin:14px 0 4px;line-height:1.45}
+  #irvFunnel .legal a{color:var(--teal)}
+  #irvFunnel .btn{display:block;width:100%;border:0;border-radius:11px;background:var(--cta);color:#fff;font-size:17px;font-weight:700;padding:16px;cursor:pointer;margin-top:20px;font-family:inherit}
+  #irvFunnel .btn:hover{background:var(--cta-dark)}
+  #irvFunnel .btn:disabled{opacity:.6;cursor:not-allowed}
+  #irvFunnel .btn .sub{display:block;font-weight:400;font-size:12.5px;opacity:.9;margin-top:2px}
+  #irvFunnel .back{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;margin-bottom:14px;padding:4px 0;font-family:inherit}
+  #irvFunnel .back:hover{color:var(--ink)}
+  #irvFunnel .info-note{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
+  #irvFunnel .err{color:#d23; font-size:13px; margin-top:8px}
+  #irvFunnel .confirm{text-align:center;padding:14px 0}
+  #irvFunnel .confirm .ok{font-size:13px;font-weight:700;color:#0a8a3f;background:#e6f6ec;display:inline-block;padding:7px 16px;border-radius:99px;margin-bottom:18px}
+  #irvFunnel .confirm .mailic{width:64px;height:64px;margin:0 auto 16px;color:var(--teal)}
+  #irvFunnel .confirm h2{font-size:21px;margin:0 0 18px}
+  #irvFunnel .confirm ul{text-align:left;max-width:460px;margin:0 auto 18px;padding-left:0;list-style:none}
+  #irvFunnel .confirm li{padding:10px 0 10px 30px;position:relative;border-top:1px solid var(--line);font-size:14.5px}
+  #irvFunnel .confirm li:before{content:"";position:absolute;left:2px;top:14px;width:16px;height:16px;background:var(--teal);border-radius:50%}
+  #irvFunnel .confirm li:after{content:"";position:absolute;left:7px;top:18px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  #irvFunnel .dump{font-size:12px;color:var(--muted);background:#f4f7f6;border-radius:8px;padding:12px;margin-top:14px;text-align:left;white-space:pre-wrap;word-break:break-word}
+</style>
+</head>
+<body>
+<!-- ============================================================= -->
+<!-- FUNNEL  (auf der WP-Seite in einen Custom-HTML-Block kopieren) -->
+<!-- ============================================================= -->
+<div id="irvFunnel">
+  <div class="wrap">
+    <div class="demo-banner">Vorschau – verbinde WPForms (WPF.formId + Field-IDs im Script), dann werden echte Entries gesendet.</div>
+    <div class="progress"><i id="irvBar"></i></div>
+    <div class="card" id="irvCard"></div>
+  </div>
+</div>
+
+<!-- ============================================================= -->
+<!-- VERSTECKTES WPFORMS-FORMULAR  (auf der WP-Seite via Shortcode): -->
+<!-- <div aria-hidden="true" style="position:absolute;left:-99999px;top:0;width:1px;height:1px;overflow:hidden">[wpforms id="123"]</div> -->
+<!-- ============================================================= -->
+
+<script>
+
+/* =========================================================================
+   IRV FUNNEL  ->  WPForms (Pro) Bridge
+   Der Funnel ist die einzige sichtbare UI. Ein echtes, verstecktes WPForms-
+   Formular liegt auf derselben Seite. Beim Abschluss schreibt der Funnel jede
+   Antwort in das passende WPForms-Feld und loest den nativen AJAX-Submit aus.
+   => echte WPForms-Entries + native Lead-Mail. Keine Drittanbieter.
+
+   >>> NUR DIESE BEIDEN BLOECKE MUSS DER DEV ANPASSEN: <<<
+   ========================================================================= */
+const WPF = {
+  formId: null,            // <-- WPForms Form-ID eintragen (z.B. 123). null = lokale Vorschau.
+  field: {                 // <-- slug : WPForms Field-ID
+    anrede:null, vorname:null, nachname:null, email:null, telefon:null, plz:null,
+    immobilientyp:null, objektart:null, zustand:null, innenausstattung:null,
+    wertsteigernd:null, vermietung:null, nettokaltmiete:null, geschosse:null,
+    wohnflaeche:null, grundstuecksflaeche:null, nutzflaeche:null,
+    zimmer:null, baujahr:null, wohneinheiten:null,
+    verkaufszeitpunkt:null, verkaufsgrund:null, maklervertrag:null,
+    eigentuemer:null, teileigentuemer_ok:null, erschliessung:null, bebaubarkeit:null
+  }
+};
+/* ========================================================================= */
+
+const SLIDES = [{"id": "sB4DeLsZ3QzK962K2zZqa", "type": "QuestionSelectBasic", "topNext": null, "label": "Um was für eine Immobilie handelt es sich?", "dataName": "property_type", "multiple": false, "answers": [{"v": "house", "l": "Haus", "sub": null, "next": "3LT2uEkyafdMhZ2zowQIpt"}, {"v": "apartment", "l": "Wohnung", "sub": null, "next": "2CmrJHkSRB4KmOJ5N9cTWd"}, {"v": null, "l": "Gewerbe", "sub": null, "next": "4LPApSd0ychejbyd7fvf5K"}, {"v": null, "l": "Liegenschaft", "sub": null, "next": null}], "slug": "immobilientyp"}, {"id": "1eiY5GQIo4z1eKKBhcP9gF", "type": "QuestionRangeBasic", "topNext": null, "q": "Welche Fläche hat die Liegenschaft?", "dataName": null, "min": 100, "max": 3000, "init": 100, "step": 10, "suffix": " m²", "maxPrefix": ">", "slug": "grundstuecksflaeche"}, {"id": "4tByzwM8XPBIkFIxadluTa", "type": "QuestionSelectBasic", "topNext": null, "label": "Ist die Liegenschaft erschlossen?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Erschlossen", "sub": null, "next": null}, {"v": null, "l": "Teilerschlossen", "sub": null, "next": null}, {"v": null, "l": "Unerschlossen", "sub": null, "next": null}], "slug": "erschliessung"}, {"id": "4HrdP3OmXqR4EMzY4kv3FT", "type": "QuestionSelectBasic", "topNext": "4ZIEdzZFGlnXLXNo9jdNaD", "label": "Wie sind die Bebauungsmöglichkeiten?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Kurzfristig bebaubar", "sub": null, "next": null}, {"v": null, "l": "Eingeschränkt bebaubar", "sub": null, "next": null}, {"v": null, "l": "Nicht bebaubar", "sub": null, "next": null}, {"v": null, "l": "Abrissreif bebaut", "sub": null, "next": null}, {"v": null, "l": "Weiß nicht", "sub": null, "next": null}], "slug": "bebaubarkeit"}, {"id": "4LPApSd0ychejbyd7fvf5K", "type": "QuestionSelectBasic", "topNext": null, "label": "Um welche Gebäudeart handelt es sich?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Büro- oder Lagergebäude", "sub": null, "next": null}, {"v": null, "l": "Wohn- und Geschäftsgebäude", "sub": null, "next": null}, {"v": null, "l": "Industrie- oder Gewerbegebäude", "sub": null, "next": null}, {"v": null, "l": "Sonstiges", "sub": null, "next": null}], "slug": "objektart"}, {"id": "d1d22ZPMbhLLT9zXolndG", "type": "QuestionSelectBasic", "topNext": null, "label": "Wie ist der Zustand der Immobilie?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Neu", "sub": null, "next": null}, {"v": null, "l": "Kürzlich renoviert", "sub": null, "next": null}, {"v": null, "l": "Guter Zustand", "sub": null, "next": null}, {"v": null, "l": "Renovierungsbedürftig", "sub": null, "next": null}], "slug": "zustand"}, {"id": "6Yt4Rr0EPV6OUSoVORceVi", "type": "QuestionRangeBasic", "topNext": null, "q": "Wie ist die Nutzfläche des Gebäudes?", "dataName": null, "min": 100, "max": 500, "init": 100, "step": 10, "suffix": " m²", "maxPrefix": ">", "slug": "nutzflaeche"}, {"id": "7kQZjswl6jGbFARN5FmDh9", "type": "QuestionRangeBasic", "topNext": null, "q": "Welche Fläche hat das Grundstück des Gewerbes?", "dataName": null, "min": 100, "max": 3000, "init": 100, "step": 10, "suffix": " m²", "maxPrefix": "> ", "slug": "grundstuecksflaeche"}, {"id": "4uOtuFcQzsXPJzxZboFzMO", "type": "QuestionRangeBasic", "topNext": "4ZIEdzZFGlnXLXNo9jdNaD", "q": "Wann wurde das Gewerbegebäude gebaut?", "dataName": null, "min": 1850, "max": 2026, "init": 1970, "step": 1, "suffix": null, "maxPrefix": null, "slug": "baujahr"}, {"id": "4ZIEdzZFGlnXLXNo9jdNaD", "type": "QuestionSelectBasic", "topNext": null, "label": "Wann möchten Sie Ihre Immobilie verkaufen?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "1-3 Monate", "sub": null, "next": null}, {"v": null, "l": "4-6 Monate", "sub": null, "next": null}, {"v": null, "l": "7-12 Monate", "sub": null, "next": null}, {"v": null, "l": "Später als 1 Jahr", "sub": null, "next": null}], "slug": "verkaufszeitpunkt"}, {"id": "4Co297UI8NKQgV4HVH1OE0", "type": "QuestionSelectBasic", "topNext": null, "label": "Aus welchem Grund möchten Sie die Immobilie verkaufen?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Erbe", "sub": null, "next": null}, {"v": null, "l": "Marktsituation", "sub": null, "next": null}, {"v": null, "l": "Alter/Rente", "sub": null, "next": null}, {"v": null, "l": "Umzug", "sub": null, "next": null}, {"v": null, "l": "Sonstiges", "sub": null, "next": null}], "slug": "verkaufsgrund"}, {"id": "37X11NWoyz9MhQGWKF0XL5", "type": "QuestionSelectBasic", "topNext": null, "label": "Ist bereits ein Maklervertrag abgeschlossen?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Nein", "sub": null, "next": null}, {"v": null, "l": "Ja, laufender Vertrag", "sub": null, "next": "1JguH1iC6aNWKwGOhMUAcC"}], "slug": "maklervertrag"}, {"id": "2h85qYJicPoohiDb0YL8cW", "type": "QuestionSelectBasic", "topNext": null, "label": "Sind Sie Eigentümer/Entscheider über die Immobilie?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Ja", "sub": null, "next": "1pgrCcJt833idCenW2UEdw"}, {"v": null, "l": "Teileigentümer", "sub": null, "next": "3e5DE5DC9SM01qlY1ATVpe"}, {"v": null, "l": "Angehöriger", "sub": null, "next": "1pgrCcJt833idCenW2UEdw"}, {"v": null, "l": "Nein", "sub": null, "next": "1JguH1iC6aNWKwGOhMUAcC"}], "slug": "eigentuemer"}, {"id": "3e5DE5DC9SM01qlY1ATVpe", "type": "QuestionSelectBasic", "topNext": null, "label": "Sind die anderen Teileigentümer einverstanden?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Ja", "sub": null, "next": "1pgrCcJt833idCenW2UEdw"}, {"v": null, "l": "Nein", "sub": null, "next": "1JguH1iC6aNWKwGOhMUAcC"}], "slug": "teileigentuemer_ok"}, {"id": "3LT2uEkyafdMhZ2zowQIpt", "type": "QuestionSelectBasic", "topNext": null, "label": "Bitte wählen Sie die Art Ihres Hauses.", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Einfamilienhaus", "sub": null, "next": null}, {"v": null, "l": "Reihenhaus", "sub": null, "next": null}, {"v": null, "l": "Doppelhaushälfte", "sub": null, "next": null}, {"v": null, "l": "Zweifamilienhaus", "sub": null, "next": null}, {"v": null, "l": "Mehrfamilienhaus", "sub": null, "next": "50GMVSpRPfcKaZBuuDnFWx"}], "slug": "objektart"}, {"id": "5giEHk5tM1dKsNYWOKZKJe", "type": "QuestionRangeBasic", "topNext": null, "q": "Welche Fläche hat das Grundstück des Hauses?", "dataName": "land_area", "min": 100, "max": 3500, "init": 400, "step": 1, "suffix": " m²", "maxPrefix": ">", "slug": "grundstuecksflaeche"}, {"id": "8YhK6DHFodUyweGJG3uSo", "type": "QuestionRangeBasic", "topNext": null, "q": "Wie ist die gesamte Wohnfläche des Hauses?", "dataName": "living_area", "min": 20, "max": 500, "init": 160, "step": 1, "suffix": " m²", "maxPrefix": "> ", "slug": "wohnflaeche"}, {"id": "101yTgiPx8QsuE44tkUp3q", "type": "QuestionRangeBasic", "topNext": null, "q": "Wie viele Zimmer hat das Haus? (ohne Küche und Bad)", "dataName": "number_of_rooms", "min": 1, "max": 10, "init": 5, "step": 1, "suffix": " Zimmer", "maxPrefix": "> ", "slug": "zimmer"}, {"id": "b5j59VJ21Pjn7UtEVrBfk", "type": "QuestionSelectBasic", "topNext": "2g8tLuTLH1V8ZJyYyuppXs", "label": "Wie viele Geschoße hat das Haus?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Eine", "sub": null, "next": null}, {"v": null, "l": "Eineinhalb", "sub": null, "next": null}, {"v": null, "l": "Zwei", "sub": null, "next": null}, {"v": null, "l": "Mehr als zwei", "sub": null, "next": null}], "slug": "geschosse"}, {"id": "2CmrJHkSRB4KmOJ5N9cTWd", "type": "QuestionSelectBasic", "topNext": null, "label": "Bitte wählen Sie die Art der Wohnung.", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Erdgeschosswohnung", "sub": null, "next": null}, {"v": null, "l": "Etagenwohnung", "sub": null, "next": null}, {"v": null, "l": "Dachgeschosswohnung", "sub": null, "next": null}, {"v": null, "l": "Maisonette", "sub": null, "next": null}], "slug": "objektart"}, {"id": "2wmAN1WUy2p0OhLXVmNF9B", "type": "QuestionRangeBasic", "topNext": null, "q": "Wie ist die Wohnfläche der Wohnung?", "dataName": "living_area", "min": 20, "max": 500, "init": 80, "step": 1, "suffix": " m²", "maxPrefix": "> ", "slug": "wohnflaeche"}, {"id": "6hfAeveFWMil4l0ZVzJbjb", "type": "QuestionRangeBasic", "topNext": null, "q": "Wie viele Zimmer hat die Wohnung? (ohne Küche und Bad)", "dataName": "number_of_rooms", "min": 1, "max": 10, "init": 3, "step": 1, "suffix": " Zimmer", "maxPrefix": "> ", "slug": "zimmer"}, {"id": "2YtnzRrE8CCHnt98PXUhVr", "type": "QuestionSelectBasic", "topNext": null, "label": "Wie viele Geschoße hat die Wohnung?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Eine", "sub": null, "next": null}, {"v": null, "l": "Eineinhalb", "sub": null, "next": null}, {"v": null, "l": "Zwei", "sub": null, "next": null}, {"v": null, "l": "Mehr als zwei", "sub": null, "next": null}], "slug": "geschosse"}, {"id": "37NVJrKEKA0A523pT58UKO", "type": "QuestionRangeBasic", "topNext": null, "q": "Wann wurde das Wohnhaus gebaut?", "dataName": "building_year", "min": 1850, "max": 2026, "init": 1960, "step": 1, "suffix": null, "maxPrefix": null, "slug": "baujahr"}, {"id": "2Qs7sPyWQhGLvqn0evtJHM", "type": "QuestionSelectBasic", "topNext": null, "label": "Wie ist der Zustand der Wohnung?", "dataName": "condition", "multiple": false, "answers": [{"v": null, "l": "Neu", "sub": null, "next": null}, {"v": null, "l": "Kürzlich renoviert", "sub": null, "next": null}, {"v": null, "l": "Guter Zustand", "sub": null, "next": null}, {"v": null, "l": "Renovierungsbedürftig", "sub": null, "next": null}], "slug": "zustand"}, {"id": "3afdJeGMONqmzREuEca2d2", "type": "QuestionSelectBasic", "topNext": null, "label": "Wie ist die Innenausstattung Ihrer Wohnung?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Gehoben", "sub": null, "next": null}, {"v": null, "l": "Normal", "sub": null, "next": null}, {"v": null, "l": "Einfach", "sub": null, "next": null}], "slug": "innenausstattung"}, {"id": "3i6AnFBVKUQ2LlrHCrkaQR", "type": "QuestionSelectBasic", "topNext": null, "label": "Welche wertsteigernden Eigenschaften hat die Wohnung?", "dataName": null, "multiple": true, "answers": [{"v": null, "l": "Balkon/Terrasse", "sub": null, "next": null}, {"v": null, "l": "Einbauküche", "sub": null, "next": null}, {"v": null, "l": "Sonstiges", "sub": null, "next": null}, {"v": null, "l": "Keine", "sub": null, "next": null}], "slug": "wertsteigernd"}, {"id": "1q9zNuYFaxTGClVaWazVNi", "type": "QuestionSelectBasic", "topNext": "3m76N52LPfkUKBF0dnqJYp", "label": "Ist die Wohnung vermietet?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Eigennutzung", "sub": null, "next": null}, {"v": null, "l": "Vermietet", "sub": null, "next": null}, {"v": null, "l": "Leerstand", "sub": null, "next": null}], "slug": "vermietung"}, {"id": "50GMVSpRPfcKaZBuuDnFWx", "type": "QuestionRangeBasic", "topNext": null, "q": "Wie viele Wohneinheiten gibt es?", "dataName": null, "min": 3, "max": 25, "init": 6, "step": 1, "suffix": " Einheiten", "maxPrefix": ">", "slug": "wohneinheiten"}, {"id": "7b97xr7UOwxK4KMpiNmayI", "type": "QuestionRangeBasic", "topNext": null, "q": "Wie groß ist die gesamte Wohnfläche­ des Mehrfamilienhauses?", "dataName": "living_area", "min": 20, "max": 500, "init": 160, "step": 1, "suffix": " m²", "maxPrefix": ">", "slug": "wohnflaeche"}, {"id": "61mmyvtjlR66lYwpyrHd1t", "type": "QuestionRangeBasic", "topNext": null, "q": "Welche Fläche hat das Grundstück?", "dataName": "land_area", "min": 100, "max": 3500, "init": 400, "step": 1, "suffix": "  m²", "maxPrefix": ">", "slug": "grundstuecksflaeche"}, {"id": "6ufq51ZXab8tcD4DHI3ZjM", "type": "QuestionSelectBasic", "topNext": null, "label": "Wie viele Geschoße hat das Haus?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Eine", "sub": null, "next": null}, {"v": null, "l": "Eineinhalb", "sub": null, "next": null}, {"v": null, "l": "Zwei", "sub": null, "next": null}, {"v": null, "l": "Mehr als zwei", "sub": null, "next": null}], "slug": "geschosse"}, {"id": "2g8tLuTLH1V8ZJyYyuppXs", "type": "QuestionRangeBasic", "topNext": null, "q": "Wann wurde das Haus gebaut?", "dataName": "building_year", "min": 1850, "max": 2026, "init": 1960, "step": 1, "suffix": null, "maxPrefix": null, "slug": "baujahr"}, {"id": "2YUvqrf0ArPS1WOMIbiRDY", "type": "QuestionSelectBasic", "topNext": null, "label": "Wie ist der Zustand des Hauses?", "dataName": "condition", "multiple": false, "answers": [{"v": null, "l": "Neu", "sub": null, "next": null}, {"v": null, "l": "Kürzlich renoviert", "sub": null, "next": null}, {"v": null, "l": "Guter Zustand", "sub": null, "next": null}, {"v": null, "l": "Renovierungsbedürftig", "sub": null, "next": null}], "slug": "zustand"}, {"id": "5ctp79rAXbaPAHqRUSuMXP", "type": "QuestionSelectBasic", "topNext": null, "label": "Wie ist die Innenaustattung Ihrer Immobilie?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Gehoben", "sub": null, "next": null}, {"v": null, "l": "Normal", "sub": null, "next": null}, {"v": null, "l": "Einfach", "sub": null, "next": null}], "slug": "innenausstattung"}, {"id": "1XzA9sdbPYENsN4YXWAHJC", "type": "QuestionSelectBasic", "topNext": null, "label": "Welche wertsteigernden Eigenschaften hat Ihre Immobilie?", "dataName": null, "multiple": true, "answers": [{"v": null, "l": "Balkon/Terrasse", "sub": null, "next": null}, {"v": null, "l": "Einbauküche", "sub": null, "next": null}, {"v": null, "l": "Solaranlage/PV-Anlage", "sub": null, "next": null}, {"v": null, "l": "Wintergarten", "sub": null, "next": null}, {"v": null, "l": "Sonstiges", "sub": null, "next": null}, {"v": null, "l": "Keine", "sub": null, "next": null}], "slug": "wertsteigernd"}, {"id": "5qmqpxALR2vjKWqIDTtW2M", "type": "QuestionSelectBasic", "topNext": "3m76N52LPfkUKBF0dnqJYp", "label": "Ist die Immobilie vermietet?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Eigennutzung", "sub": null, "next": null}, {"v": null, "l": "Vermietet", "sub": null, "next": "6vIrhZHWdT2EegYE3DkEbR"}, {"v": null, "l": "Leerstand", "sub": null, "next": null}], "slug": "vermietung"}, {"id": "6vIrhZHWdT2EegYE3DkEbR", "type": "QuestionSelectBasic", "topNext": null, "label": "Wie hoch ist die gesamte Nettokaltmiete pro Monat?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Bis 500 €", "sub": null, "next": null}, {"v": null, "l": "500 € - 1.000 €", "sub": null, "next": null}, {"v": null, "l": "1.000 € - 2.000 €", "sub": null, "next": null}, {"v": null, "l": "2.000 € - 3.000 €", "sub": null, "next": null}, {"v": null, "l": "Über 3.000 €", "sub": null, "next": null}], "slug": "nettokaltmiete"}, {"id": "3m76N52LPfkUKBF0dnqJYp", "type": "QuestionSelectBasic", "topNext": null, "label": "Wann möchten Sie Ihre Immobilie verkaufen?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "1-3 Monate", "sub": null, "next": null}, {"v": null, "l": "4-6 Monate", "sub": null, "next": null}, {"v": null, "l": "7-12 Monate", "sub": null, "next": null}, {"v": null, "l": "Später als 1 Jahr", "sub": null, "next": null}, {"v": null, "l": "Kauf", "sub": null, "next": "5d0XKVQWHbRt9FsBXjCY7d"}], "slug": "verkaufszeitpunkt"}, {"id": "3MYLlD2HdWuGHJUuPqIgZl", "type": "QuestionSelectBasic", "topNext": null, "label": "Aus welchem Grund möchten Sie die Immobilie verkaufen?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Erbe", "sub": null, "next": null}, {"v": null, "l": "Marktsituation", "sub": null, "next": null}, {"v": null, "l": "Alter/Rente", "sub": null, "next": null}, {"v": null, "l": "Umzug", "sub": null, "next": null}, {"v": null, "l": "Sonstiges", "sub": null, "next": null}], "slug": "verkaufsgrund"}, {"id": "7EV45xMK4uffn4kJUS8SbP", "type": "QuestionSelectBasic", "topNext": null, "label": "Ist bereits ein Maklervertrag abgeschlossen?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Nein", "sub": null, "next": "3GPDpWzxPakSOqWkl7WPsl"}, {"v": null, "l": "Ja, laufender Vertrag", "sub": null, "next": "5d0XKVQWHbRt9FsBXjCY7d"}], "slug": "maklervertrag"}, {"id": "3GPDpWzxPakSOqWkl7WPsl", "type": "QuestionSelectBasic", "topNext": null, "label": "Sind Sie Eigentümer/Entscheider über die Immobilie?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Ja", "sub": null, "next": "3dJbW22BDSGyUlk1exwUUF"}, {"v": null, "l": "Teileigentümer", "sub": null, "next": "ygZj4Jl1bGcsMbrvUKnzq"}, {"v": null, "l": "Angehöriger", "sub": null, "next": "3dJbW22BDSGyUlk1exwUUF"}, {"v": null, "l": "Nein", "sub": null, "next": "5d0XKVQWHbRt9FsBXjCY7d"}], "slug": "eigentuemer"}, {"id": "ygZj4Jl1bGcsMbrvUKnzq", "type": "QuestionSelectBasic", "topNext": null, "label": "Sind die anderen Teileigentümer einverstanden?", "dataName": null, "multiple": false, "answers": [{"v": null, "l": "Ja", "sub": null, "next": "3dJbW22BDSGyUlk1exwUUF"}, {"v": null, "l": "Nein", "sub": null, "next": "5d0XKVQWHbRt9FsBXjCY7d"}], "slug": "teileigentuemer_ok"}, {"id": "1pgrCcJt833idCenW2UEdw", "type": "PostalCodeBasic", "topNext": null, "headline": "In welcher Region befindet sich die Immobilie?", "placeholder": "Postleitzahl", "info": "Für die Suche nach passenden Immobilienmaklern", "slug": "plz"}, {"id": "6KKToC8MEwh2HhZeFBNYhS", "type": "ContactSlideBasicInfo", "topNext": null, "headline": "Wer soll die Verkaufsempfehlungen erhalten?", "showFormFields": "all", "button": "Weiter", "buttonSub": null, "slug": null}, {"id": "3tYb2G6JiqhztrGssXz2A1", "type": "ContactSlideExtendedInfo", "topNext": "5COMY1TBNIBj8kZvetX7Jz", "button": "Weiter", "slug": null}, {"id": "5d0XKVQWHbRt9FsBXjCY7d", "type": "PostalCodeBasic", "topNext": null, "headline": "Wo befindet sich Ihre Immobilie?", "placeholder": "PLZ", "info": "Für die Suche nach passenden Immobilienmaklern", "slug": "plz"}, {"id": "6dRpmfeFxPLtxmq7yMkXx5", "type": "ContactBasic", "topNext": null, "headline": "Wer bekommt die kostenlose Immobilienbewertung?", "showFormFields": null, "button": "Bewertung erhalten", "buttonSub": "kostenlos & unverbindlich*", "slug": null}, {"id": "5OIGhULhrosHcPp3szkeFb", "type": "ConfirmBasic", "topNext": null, "headline": "Bitte bestätigen Sie Ihre E-Mail-Adresse.", "note": "Vielen Dank, Ihre Anfrage wurde übermittelt", "bullets": ["Wir haben Ihnen eine E-Mail gesendet, bitte überprüfen Sie Ihren Posteingang.", "Sie erhalten darin den direkten Zugang zu Ihrer Immobilienbewertung.", "Dieser Service ist kostenfrei und unverbindlich."], "slug": null}, {"id": "5COMY1TBNIBj8kZvetX7Jz", "type": "PhoneValidationWith2Fa", "topNext": "eki9PY9lRUWXkxRWpwHX6", "slug": null}, {"id": "3dJbW22BDSGyUlk1exwUUF", "type": "PostalCodeBasic", "topNext": null, "headline": "Wo befindet sich Ihre Immobilie?", "placeholder": "PLZ", "info": "Für die Suche nach passenden Immobilienmaklern", "slug": "plz"}, {"id": "3cJ0WL0EwfhGOv3q8kBirt", "type": "ContactBasic", "topNext": null, "headline": "Wer bekommt die kostenlose Immobilienbewertung?", "showFormFields": null, "button": "Weiter", "buttonSub": null, "slug": null}, {"id": "vodBwRsx9mAiUqWVSvEvS", "type": "ContactBasic", "topNext": "67ni3JWVdSjPGiqpiXoLsJ", "headline": "Zur Verifizierung Ihrer Angaben benötigen wir Ihre Telefonnummer:", "showFormFields": null, "button": "Weiter", "buttonSub": "kostenlos & unverbindlich", "slug": null}, {"id": "67ni3JWVdSjPGiqpiXoLsJ", "type": "PhoneValidationWith2Fa", "topNext": null, "slug": null}, {"id": "eki9PY9lRUWXkxRWpwHX6", "type": "FlowRedirection", "topNext": null, "slug": null}, {"id": "2wt4dyfnD3LnzWt62lYzeB", "type": "ConfirmBasic", "topNext": null, "headline": "Bitte bestätigen Sie Ihre E-Mail-Adresse.", "note": "Vielen Dank, Ihre Anfrage wurde übermittelt", "bullets": ["Wir haben Ihnen eine E-Mail gesendet, bitte bestätigen Sie diese", "Anschließend kontaktieren wir Sie, um Ihre Angaben zu verifizieren", "Im Anschluss erhalten Sie bis zu 3 Angebote zum Vergleichen von passenden Fachfirmen"], "slug": null}, {"id": "1GgJvFc0Fdu8fhGAVG8Rcf", "type": "ConfirmBasic", "topNext": null, "headline": "Bitte bestätigen Sie Ihre E-Mail-Adresse, damit wir Ihre Anfrage bearbeiten können.", "note": "E-Mail-Bestätigung erforderlich", "bullets": ["Klicken Sie auf den Button in der soeben gesendeten E-Mail.", "Schließen Sie Ihre Anfrage selbst online ab oder warten Sie auf unsere Kontaktaufnahme zur Verifizierung.", "Erhalten Sie kostenlose und unverbindliche Angebote."], "slug": null}, {"id": "1JguH1iC6aNWKwGOhMUAcC", "type": "ConfirmBasic", "topNext": null, "headline": null, "note": "Wir konnten aufgrund der von Ihnen gemachten Angaben keine passenden Fachfirmen für Ihr Anliegen finden. Wir danken Ihnen für Ihr Verständnis und bleiben bemüht, eine passende Lösung für Sie zu finden.", "bullets": null, "slug": null}];
+const CONFIRM_ID = '5OIGhULhrosHcPp3szkeFb';
+const byId = {}; SLIDES.forEach((s,i)=>{s._i=i; byId[s.id]=s;});
+const responses = {};      // slideId -> answer (label / number / array)
+let history = [];
+let path = [];
+let current = SLIDES[0].id;
+let lastAnswers = {};
+const APPROX_STEPS = 13;
+
+const ICON = {
+  house:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>',
+  apartment:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>',
+  default:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>'
+};
+function iconFor(v,label){
+  if(v==='house'||/haus|familienhaus|reihenhaus/i.test(label))return ICON.house;
+  if(v==='apartment'||/wohnung|etage|maison|dachgesch/i.test(label))return ICON.apartment;
+  return ICON.default;
+}
+const $ = id => document.getElementById(id);
+const val = id => { const e=$(id); return e ? e.value.trim() : ''; };
+
+function nextOf(slide, answerNext){
+  if(answerNext) return answerNext;
+  if(slide.topNext) return slide.topNext;
+  const n = SLIDES[slide._i + 1];
+  return n ? n.id : null;
+}
+function resolve(id){
+  let g=0;
+  while(id && byId[id] && ['PhoneValidationWith2Fa','FlowRedirection','ContactSlideExtendedInfo'].includes(byId[id].type) && g<20){
+    id = nextOf(byId[id], null); g++;
+  }
+  return id;
+}
+function go(id){
+  id = resolve(id) || CONFIRM_ID;
+  history.push(current); current = id; path.push(id); render();
+}
+function back(){ if(history.length){ current = history.pop(); path.pop(); render(); } }
+
+function setProgress(){
+  const pct = Math.min(95, Math.round(history.length / APPROX_STEPS * 100));
+  $('irvBar').style.width = (byId[current].type==='ConfirmBasic' ? 100 : pct) + '%';
+}
+
+function render(){
+  const s = byId[current];
+  let h = history.length ? '<button class="back" onclick="back()">← Zurück</button>' : '';
+  switch(s.type){
+    case 'QuestionSelectBasic': h+=renderSelect(s); break;
+    case 'QuestionRangeBasic':  h+=renderRange(s);  break;
+    case 'PostalCodeBasic':     h+=renderPostal(s); break;
+    case 'ContactSlideBasicInfo':
+    case 'ContactBasic':        h+=renderContact(s);break;
+    default:                    h+=renderConfirm(s);
+  }
+  $('irvCard').innerHTML = h;
+  setProgress();
+}
+
+function renderSelect(s){
+  const multi=!!s.multiple;
+  let h='<h1 class="q">'+s.label+'</h1><div class="opts">';
+  s.answers.forEach((a,i)=>{
+    h+='<button type="button" class="opt" data-i="'+i+'" onclick="pick('+i+','+multi+')">'
+     + '<span class="ic">'+iconFor(a.v,a.l)+'</span>'
+     + '<span>'+a.l+'</span>'
+     + (multi?'<span class="check"></span>':'') + '</button>';
+  });
+  h+='</div>';
+  if(multi) h+='<button type="button" class="btn" onclick="advanceMulti()">Weiter</button>';
+  return h;
+}
+function pick(i, multi){
+  const s=byId[current], a=s.answers[i];
+  if(multi){ document.querySelectorAll('#irvCard .opt')[i].classList.toggle('sel'); return; }
+  if(s.slug) responses[s.id]=a.l;
+  go(nextOf(s, a.next));
+}
+function advanceMulti(){
+  const s=byId[current];
+  const chosen=[...document.querySelectorAll('#irvCard .opt.sel')].map(b=>s.answers[b.dataset.i].l);
+  if(s.slug) responses[s.id]=chosen;
+  go(nextOf(s,null));
+}
+
+function renderRange(s){
+  const min=s.min, max=s.max, init=s.init||min, step=s.step||1, suf=s.suffix||'';
+  const maxLbl=(s.maxPrefix||'')+max+suf;
+  return '<h1 class="q">'+s.q+'</h1><div class="range-box">'
+    +'<div class="range-val"><span id="irvRv">'+init+'</span>'+suf+'</div>'
+    +'<input type="range" id="irvRg" min="'+min+'" max="'+max+'" step="'+step+'" value="'+init+'" '
+    +'oninput="document.getElementById(\'irvRv\').textContent=this.value">'
+    +'<div class="range-minmax"><span>'+min+suf+'</span><span>'+maxLbl+'</span></div></div>'
+    +'<button type="button" class="btn" onclick="advanceRange()">Weiter</button>';
+}
+function advanceRange(){
+  const s=byId[current];
+  if(s.slug) responses[s.id]=$('irvRg').value;
+  go(nextOf(s,null));
+}
+
+function renderPostal(s){
+  return '<h1 class="q">'+s.headline+'</h1>'
+    +'<div class="field"><label>'+(s.placeholder||'Postleitzahl')+'</label>'
+    +'<input id="irvPlz" type="text" inputmode="numeric" placeholder="'+(s.placeholder||'PLZ')+'"></div>'
+    +(s.info?'<div class="info-note">'+s.info+'</div>':'')
+    +'<div class="err" id="irvPlzErr" style="display:none">Bitte Postleitzahl eingeben.</div>'
+    +'<button type="button" class="btn" onclick="advancePostal()">Weiter</button>';
+}
+function advancePostal(){
+  const s=byId[current], v=val('irvPlz');
+  if(!v){ $('irvPlzErr').style.display='block'; return; }
+  responses[s.id]=v;
+  go(nextOf(s,null));
+}
+
+function renderContact(s){
+  return '<h1 class="q">'+s.headline+'</h1><form id="irvContact" onsubmit="submitContact(event)">'
+    +'<div class="field"><label>Anrede</label><select id="irvAnrede" required><option value="">Bitte wählen</option><option>Frau</option><option>Herr</option><option>Divers</option></select></div>'
+    +'<div class="row2">'
+    +'<div class="field"><label>Vorname</label><input id="irvVorname" required type="text"></div>'
+    +'<div class="field"><label>Nachname</label><input id="irvNachname" required type="text"></div></div>'
+    +'<div class="field"><label>E-Mail-Adresse</label><input id="irvEmail" required type="email" placeholder="name@beispiel.at"></div>'
+    +'<div class="field"><label>Telefonnummer</label><input id="irvTelefon" required type="tel" placeholder="+43 ..."></div>'
+    +'<div class="legal">Mit dem Klick auf den Button stellen Sie eine Vermittlungsanfrage, akzeptieren die <a href="#">AGB</a> und bestätigen, dass Sie die <a href="#">Datenschutzerklärung</a> zur Kenntnis genommen haben.</div>'
+    +'<button class="btn" type="submit" id="irvSubmit">'+(s.button||'Anfrage absenden')+(s.buttonSub?'<span class="sub">'+s.buttonSub+'</span>':'')+'</button>'
+    +'<div class="err" id="irvSubmitErr" style="display:none">Übermittlung fehlgeschlagen – bitte erneut versuchen.</div></form>';
+}
+
+/* ---- Antworten einsammeln (nur tatsaechlich beantwortete, pfadbasiert) ---- */
+function collectAnswers(){
+  const out={};
+  path.forEach(id=>{
+    const s=byId[id];
+    if(s && s.slug && responses[id]!=null && responses[id]!=='') out[s.slug]=responses[id];
+  });
+  out.anrede=val('irvAnrede'); out.vorname=val('irvVorname'); out.nachname=val('irvNachname');
+  out.email=val('irvEmail'); out.telefon=val('irvTelefon');
+  return out;
+}
+
+/* ---- WPForms Bridge ---- */
+function hasWPForms(){ return WPF.formId && document.getElementById('wpforms-submit-'+WPF.formId); }
+function wpfSet(fieldId, value){
+  if(fieldId==null) return;
+  const base='wpforms-'+WPF.formId+'-field_'+fieldId;
+  const el=document.getElementById(base);
+  if(el && (el.tagName==='SELECT'||el.tagName==='INPUT'||el.tagName==='TEXTAREA')){
+    el.value=value;
+    el.dispatchEvent(new Event('input',{bubbles:true}));
+    el.dispatchEvent(new Event('change',{bubbles:true}));
+    return;
+  }
+  const group=document.querySelectorAll('[id^="'+base+'_"]');
+  const wanted=Array.isArray(value)?value:[value];
+  group.forEach(inp=>{
+    const m=wanted.indexOf(inp.value)>-1;
+    if(inp.type==='checkbox') inp.checked=m;
+    if(inp.type==='radio' && m) inp.checked=true;
+    if(m) inp.dispatchEvent(new Event('change',{bubbles:true}));
+  });
+}
+function pushToWPForms(answers){
+  Object.keys(WPF.field).forEach(slug=>{
+    const v=answers[slug];
+    if(v!=null && v!=='' && !(Array.isArray(v)&&!v.length)) wpfSet(WPF.field[slug], v);
+  });
+  document.getElementById('wpforms-submit-'+WPF.formId).click(); // WPForms validiert + sendet per AJAX
+}
+
+function submitContact(e){
+  e.preventDefault();
+  lastAnswers=collectAnswers();
+  if(hasWPForms()){
+    $('irvSubmit').disabled=true; $('irvSubmit').textContent='Wird gesendet …';
+    pushToWPForms(lastAnswers);   // Bestaetigung erst beim Success-Event (siehe unten)
+  } else {
+    go(CONFIRM_ID);               // lokale Vorschau / Fallback ohne WPForms
+  }
+}
+
+/* WPForms-Events (jQuery wird von WPForms geladen) */
+if(window.jQuery && WPF.formId){
+  jQuery(document).on('wpformsAjaxSubmitSuccess', '#wpforms-form-'+WPF.formId, function(){ go(CONFIRM_ID); });
+  jQuery(document).on('wpformsAjaxSubmitFailed',  '#wpforms-form-'+WPF.formId, function(){
+    const b=$('irvSubmit'); if(b){ b.disabled=false; b.textContent='Anfrage absenden'; }
+    const er=$('irvSubmitErr'); if(er) er.style.display='block';
+  });
+}
+
+const MAIL='<svg class="mailic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
+function renderConfirm(s){
+  let h='<div class="confirm">';
+  if(s.note) h+='<div class="ok">'+s.note+'</div>';
+  h+=MAIL+'<h2>'+(s.headline||'Vielen Dank für Ihre Anfrage')+'</h2>';
+  if(s.bullets&&s.bullets.length){ h+='<ul>'; s.bullets.forEach(b=>h+='<li>'+b+'</li>'); h+='</ul>'; }
+  if(!hasWPForms()){
+    h+='<div class="dump"><b>Vorschau-Modus (kein WPForms verbunden).</b> Diese Daten würden übergeben:\n'
+      + JSON.stringify(lastAnswers,null,2) + '</div>';
+  }
+  h+='</div>';
+  return h;
+}
+
+path=[current];
+render();
+
+</script>
