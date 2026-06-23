@@ -113,7 +113,7 @@ const pageContent = [
 	`<!-- wp:library/testimonials ${ JSON.stringify( {
 		heading:       'Das sagen Menschen,<br>',
 		headingItalic: 'die mit mir gearbeitet haben',
-		limit:         3,
+		limit:         9,
 		minRating:     4,
 	} ) } /-->`,
 

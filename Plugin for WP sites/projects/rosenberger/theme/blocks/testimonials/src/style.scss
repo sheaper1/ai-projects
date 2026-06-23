@@ -34,13 +34,26 @@
 		em { font-style: italic; font-weight: 300; }
 	}
 
-	.testimonials__grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+	.testimonials__carousel {
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--r-32);
+	}
+
+	.testimonials__track {
+		display: flex;
 		gap: var(--wp--preset--spacing--r-16);
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		-webkit-overflow-scrolling: touch;
+
+		&::-webkit-scrollbar { display: none; }
 	}
 
 	.testimonials__card {
+		flex: 0 0 calc((100% - 2 * var(--wp--preset--spacing--r-16)) / 3);
+		scroll-snap-align: start;
 		display: flex;
 		flex-direction: column;
 		gap: var(--wp--preset--spacing--r-16);
@@ -48,6 +61,26 @@
 		background: var(--wp--preset--color--base);
 		border: 1px solid var(--wp--preset--color--border);
 		border-radius: var(--wp--custom--radius--medium);
+	}
+
+	.testimonials__dots {
+		display: flex;
+		justify-content: center;
+		gap: 8px;
+	}
+
+	.testimonials__dot {
+		width: 28px;
+		height: 6px;
+		padding: 0;
+		border: 0;
+		border-radius: var(--wp--custom--radius--pill);
+		background: var(--wp--preset--color--border);
+		cursor: pointer;
+		transition: background var(--wp--custom--transition--fast);
+
+		&.is-active { background: var(--wp--preset--color--contrast); }
+		&:hover:not(.is-active) { background: var(--wp--preset--color--muted); }
 	}
 
 	.testimonials__head {
@@ -124,13 +157,16 @@
 	}
 
 	@media (max-width: 1024px) {
-		.testimonials__grid { grid-template-columns: 1fr 1fr; }
+		.testimonials__card { flex-basis: calc((100% - var(--wp--preset--spacing--r-16)) / 2); }
 	}
 
 	@media (max-width: 782px) {
 		padding-block: var(--wp--preset--spacing--r-64);
 		padding-inline: 16px;
 		.testimonials__heading { font-size: var(--wp--preset--font-size--r-32); }
-		.testimonials__grid { grid-template-columns: 1fr; }
+	}
+
+	@media (max-width: 640px) {
+		.testimonials__card { flex-basis: 100%; }
 	}
 }

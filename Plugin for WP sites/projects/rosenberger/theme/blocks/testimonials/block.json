@@ -10,10 +10,11 @@
   "attributes": {
     "heading":       { "type": "string",  "default": "Das sagen Menschen," },
     "headingItalic": { "type": "string",  "default": "die mit mir gearbeitet haben" },
-    "limit":         { "type": "integer", "default": 3 },
+    "limit":         { "type": "integer", "default": 9 },
     "minRating":     { "type": "integer", "default": 4 }
   },
   "editorScript": "file:./build/index.js",
+  "viewScript":   "file:./view.js",
   "style":        "file:./build/style-index.css",
   "render":       "file:./render.php"
 }
