@@ -1,23 +1,20 @@
 .wp-block-library-tipper-types {
 	background: var(--wp--preset--color--base);
-	padding: 150px var(--wp--custom--layout--gutter);
+	padding: var(--wp--custom--layout--section-space) var(--wp--custom--layout--gutter);
 	overflow: hidden;
 }
 
 .tipper-types__inner {
-	max-width: 1440px;
+	max-width: 1344px;
 	margin: 0 auto;
-	display: grid;
-	grid-template-columns: 672px 1fr;
-	gap: 0 48px;
-	align-items: start;
 }
 
 .tipper-types__header {
+	max-width: 669px;
+	margin-bottom: 56px;
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
-	padding-top: 0;
 }
 
 .tipper-types__heading {
@@ -46,13 +43,19 @@
 .tipper-types__cards {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 0 48px;
+	gap: 0;
 }
 
 .tipper-types__card {
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: 20px;
+	padding-right: 32px;
+}
+
+.tipper-types__card:last-child {
+	padding-right: 0;
+	padding-left: 32px;
 }
 
 .tipper-types__card-image {
@@ -85,16 +88,13 @@
 	color: var(--wp--preset--color--muted);
 }
 
-@media (max-width: 1024px) {
-	.tipper-types__inner {
-		grid-template-columns: 1fr;
-		gap: 48px 0;
-	}
-}
-
 @media (max-width: 781px) {
 	.wp-block-library-tipper-types {
-		padding: 80px var(--wp--custom--layout--gutter);
+		padding: 60px var(--wp--custom--layout--gutter);
+	}
+
+	.tipper-types__header {
+		margin-bottom: 40px;
 	}
 
 	.tipper-types__heading {
@@ -103,7 +103,12 @@
 
 	.tipper-types__cards {
 		grid-template-columns: 1fr;
-		gap: 32px 0;
+		gap: 40px 0;
+	}
+
+	.tipper-types__card,
+	.tipper-types__card:last-child {
+		padding: 0;
 	}
 
 	.tipper-types__card-image {
