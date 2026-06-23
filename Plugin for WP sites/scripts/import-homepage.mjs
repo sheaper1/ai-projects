@@ -184,7 +184,7 @@ const pageContent = [
 		buttonText: 'Erfahren Sie mehr', buttonUrl: '#',
 		imageId: id( img ), imageUrl: u( img ),
 		mobileIconId: id( icon ), mobileIconUrl: u( icon ),
-	} ) ).join( ',' ) }} /-->`,
+	} ) ).join( ',' ) }]} /-->`,
 
 	`<!-- wp:library/about {"backgroundId":${ id( aboutBg ) },"backgroundUrl":"${ u( aboutBg ) }"} /-->`,
 
@@ -195,11 +195,7 @@ const pageContent = [
 		[ regionBregenz,   'Bregenz',    '/objekte-ort/bregenz/'   ],
 	].map( ( [ m, label, url ] ) => JSON.stringify( { mediaId: id( m ), mediaUrl: u( m ), label, url } ) ).join( ',' ) }]} /-->`,
 
-	`<!-- wp:library/property-catalog {"align":"full","postsPerPage":6,"archiveUrl":"/objekte/"} /-->`,
-
 	`<!-- wp:library/process-steps /-->`,
-
-	`<!-- wp:library/sold-showcase {"imageId":${ id( soldShowcaseImg ) },"imageUrl":"${ u( soldShowcaseImg ) }","ctaUrl":"/objekte/","navNextId":${ id( arrowNext ) },"navNextUrl":"${ u( arrowNext ) }","navPrevId":${ id( arrowPrev ) },"navPrevUrl":"${ u( arrowPrev ) }"} /-->`,
 
 	`<!-- wp:library/referral-cta {"imageId":${ id( referralImg ) },"imageUrl":"${ u( referralImg ) }","buttonUrl":"/tippgeber/"} /-->`,
 
