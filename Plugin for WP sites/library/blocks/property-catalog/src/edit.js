@@ -1,14 +1,23 @@
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, TextControl, TextareaControl } from '@wordpress/components';
+import { PanelBody, RangeControl, SelectControl, TextControl, TextareaControl } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { postsPerPage, archiveUrl, heading, headingItalic, subtext } = attributes;
+	const { postsPerPage, archiveUrl, heading, headingItalic, subtext, layout } = attributes;
 	const blockProps = useBlockProps( { className: 'property-catalog' } );
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title="Einstellungen">
+					<SelectControl
+						label="Layout"
+						value={ layout }
+						options={ [
+							{ label: 'Kompakt (Homepage)', value: 'compact' },
+							{ label: 'Katalog (Alle Immobilien)', value: 'catalog' },
+						] }
+						onChange={ ( value ) => setAttributes( { layout: value } ) }
+					/>
 					<TextControl
 						label="Haupttitel"
 						value={ heading }

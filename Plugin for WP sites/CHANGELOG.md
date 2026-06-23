@@ -3,6 +3,13 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-24 — Страница `alle-immobilien` собрана по плейбуку §6a. Блок
+  `property-catalog` расширен атрибутом `layout` (compact | catalog): catalog-режим
+  добавляет боковой фильтр (Kaufen/Mieten-тоггл, чекбоксы типов, range-инпуты),
+  сортировку, пагинацию и collapsed-border сетку (3 кол). PHP-хелперы `pc_url` и
+  `pc_page_url` защищены `if (!function_exists(...))`. Деплой + импорт страницы
+  выполнены, `/alle-immobilien/` доступна, все 5 секций рендерятся.
+
 - [Claude] 2026-06-23 — Страница `immobilienbewertung` собрана по плейбуку §6a: все
   10 секций переиспользуют существующие блоки (page-hero, trust-bar, split-cta×2,
   problem-cards, about, process-steps, consultation-cta, testimonials, faq-section).
