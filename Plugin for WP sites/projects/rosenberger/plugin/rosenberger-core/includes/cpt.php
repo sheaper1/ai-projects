@@ -81,25 +81,18 @@ add_action( 'init', function () {
 		)
 	);
 
-	// ── Meta-поля (show_in_rest для Block Bindings и REST-фильтрации) ────────
-	$meta_fields = array(
-		'property_price'     => 'Kaufpreis (z. B. «Auf Anfrage» oder «€ 450.000»)',
-		'property_area'      => 'Wohnfläche (z. B. «ca. 130 m²»)',
-		'property_plot_area' => 'Grundstücksfläche (z. B. «ca. 500 m²»)',
-		'property_rooms'     => 'Zimmer (z. B. «4» oder «4,5»)',
-		'property_status'    => 'Status: Verfügbar | Reserviert | Verkauft',
-	);
-
-	foreach ( $meta_fields as $key => $description ) {
+	// ── Meta-поля (схема — в property-fields.php; show_in_rest для REST/Bindings) ──
+	foreach ( rosenberger_property_fields() as $key => $def ) {
+		$type = $def['type'] ?? 'text';
 		register_post_meta(
 			'property',
 			$key,
 			array(
 				'type'              => 'string',
-				'description'       => $description,
-				'default'           => '',
+				'description'       => $def['label'] ?? $key,
+				'default'           => $def['default'] ?? '',
 				'single'            => true,
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => fn( $v ) => rosenberger_property_sanitize( $type, $v ),
 				'auth_callback'     => fn() => current_user_can( 'edit_posts' ),
 				'show_in_rest'      => true,
 			)
@@ -120,11 +113,12 @@ add_action( 'rest_api_init', function () {
 			),
 			'callback'            => function ( WP_REST_Request $req ) {
 				$id      = (int) $req['id'];
-				$allowed = array( 'property_price', 'property_area', 'property_plot_area', 'property_rooms', 'property_status' );
+				$allowed = array_keys( rosenberger_property_fields() );
 				$updated = array();
+				$fields  = rosenberger_property_fields();
 				foreach ( $allowed as $key ) {
 					if ( $req->has_param( $key ) ) {
-						$val = sanitize_text_field( $req->get_param( $key ) );
+						$val = rosenberger_property_sanitize( $fields[ $key ]['type'] ?? 'text', $req->get_param( $key ) );
 						update_post_meta( $id, $key, $val );
 						$updated[ $key ] = get_post_meta( $id, $key, true );
 					}

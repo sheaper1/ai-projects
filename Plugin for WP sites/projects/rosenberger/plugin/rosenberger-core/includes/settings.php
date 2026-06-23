@@ -20,6 +20,13 @@ function rosenberger_setting_groups() {
 			'address' => 'Address',
 			'hours'   => 'Opening hours',
 		),
+		'Makler / Ansprechpartner' => array(
+			'agent_name'     => 'Name',
+			'agent_role'     => 'Funktion (z. B. Ihr Ansprechpartner)',
+			'agent_phone'    => 'Telefon',
+			'agent_email'    => 'Email',
+			'agent_portrait' => 'Portrait (Bild-URL)',
+		),
 		'Social media' => array(
 			'facebook'  => 'Facebook (URL)',
 			'instagram' => 'Instagram (URL)',
@@ -73,9 +80,9 @@ function rosenberger_sanitize_contacts( $value ) {
 	foreach ( rosenberger_setting_groups() as $fields ) {
 		foreach ( array_keys( $fields ) as $key ) {
 			$raw = isset( $value[ $key ] ) ? $value[ $key ] : '';
-			if ( 'email' === $key || 'form_email' === $key ) {
+			if ( 'email' === $key || 'form_email' === $key || 'agent_email' === $key ) {
 				$out[ $key ] = sanitize_email( $raw );
-			} elseif ( in_array( $key, array( 'cta_url', 'facebook', 'instagram' ), true ) ) {
+			} elseif ( in_array( $key, array( 'cta_url', 'facebook', 'instagram', 'agent_portrait' ), true ) ) {
 				$out[ $key ] = esc_url_raw( $raw );
 			} else {
 				$out[ $key ] = sanitize_text_field( $raw );

@@ -1,0 +1,158 @@
+.property-overview {
+	background: var(--wp--preset--color--base);
+	padding-block: var(--wp--custom--layout--section-space);
+	padding-inline: var(--wp--custom--layout--gutter);
+}
+.property-overview__inner {
+	max-width: 1344px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 648fr 632fr;
+	gap: var(--wp--preset--spacing--r-64);
+	align-items: start;
+}
+.property-overview__col--left {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-48);
+}
+
+.property-overview__heading {
+	margin: 0 0 var(--wp--preset--spacing--r-24);
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 400;
+	font-size: var(--wp--preset--font-size--r-56);
+	line-height: 1.2;
+	letter-spacing: -0.03em;
+	color: var(--wp--preset--color--contrast);
+}
+.property-overview__intro { display: flex; flex-direction: column; }
+.property-overview__intro .property-overview__heading { margin-bottom: var(--wp--preset--spacing--r-24); }
+.property-overview__lead,
+.property-overview__desc {
+	font-family: var(--wp--preset--font-family--body);
+	font-weight: 300;
+	font-size: var(--wp--preset--font-size--r-16);
+	line-height: 1.5;
+	letter-spacing: -0.01em;
+	color: var(--wp--preset--color--muted);
+}
+.property-overview__lead { margin: 0; }
+.property-overview__desc > :first-child { margin-top: 0; }
+.property-overview__desc > :last-child { margin-bottom: 0; }
+
+/* ── Карточка маклера (тёмная) ───────────────────────────── */
+.property-overview__agent {
+	display: flex;
+	gap: var(--wp--preset--spacing--r-32);
+	padding: 16px;
+	background: var(--wp--preset--color--contrast);
+}
+.property-overview__agent-photo {
+	flex: 0 0 232px;
+	align-self: stretch;
+	min-height: 346px;
+	overflow: hidden;
+}
+.property-overview__agent-photo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+.property-overview__agent-body {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-32);
+	padding: var(--wp--preset--spacing--r-32) var(--wp--preset--spacing--r-16) var(--wp--preset--spacing--r-16) 0;
+}
+.property-overview__agent-id { display: flex; flex-direction: column; gap: 8px; }
+.property-overview__agent-name {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-24);
+	line-height: 1.2;
+	letter-spacing: -0.03em;
+	color: var(--wp--preset--color--on-dark);
+}
+.property-overview__agent-role {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-16);
+	line-height: 1.5;
+	color: var(--wp--preset--color--muted);
+}
+.property-overview__agent-contacts {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-16);
+}
+.property-overview__agent-contacts li {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-family: var(--wp--preset--font-family--body);
+	font-weight: 300;
+	font-size: var(--wp--preset--font-size--r-16);
+	line-height: 1.5;
+	letter-spacing: -0.01em;
+	color: var(--wp--preset--color--on-dark);
+}
+.property-overview__agent-contacts a { color: inherit; text-decoration: none; }
+.property-overview__agent-contacts a:hover { text-decoration: underline; }
+.property-overview__agent-icon {
+	flex: 0 0 24px;
+	width: 24px;
+	height: 24px;
+	border-radius: var(--wp--custom--radius--pill);
+	background: var(--wp--preset--color--base);
+	display: grid;
+	place-items: center;
+}
+.property-overview__agent-nr { gap: 12px; }
+.property-overview__agent-nr span:first-child { white-space: nowrap; }
+
+.property-overview__agent-actions {
+	margin-top: auto;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 9px;
+}
+.property-overview__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 48px;
+	padding-inline: 24px;
+	border-radius: var(--wp--custom--radius--pill);
+	font-family: var(--wp--preset--font-family--body);
+	font-weight: 500;
+	font-size: var(--wp--preset--font-size--r-14);
+	text-decoration: none;
+	transition: opacity var(--wp--custom--transition--fast), background var(--wp--custom--transition--fast), color var(--wp--custom--transition--fast);
+}
+.property-overview__btn--solid {
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+}
+.property-overview__btn--solid:hover { opacity: 0.88; }
+.property-overview__btn--ghost {
+	border: 1px solid var(--wp--preset--color--on-dark);
+	color: var(--wp--preset--color--on-dark);
+}
+.property-overview__btn--ghost:hover {
+	background: var(--wp--preset--color--on-dark);
+	color: var(--wp--preset--color--contrast);
+}
+
+@media (max-width: 1024px) {
+	.property-overview__inner { grid-template-columns: 1fr; gap: var(--wp--preset--spacing--r-48); }
+}
+@media (max-width: 600px) {
+	.property-overview__agent { flex-direction: column; }
+	.property-overview__agent-photo { flex-basis: auto; min-height: 280px; }
+	.property-overview__agent-body { padding: 0 var(--wp--preset--spacing--r-16) var(--wp--preset--spacing--r-16); }
+	.property-overview__heading { font-size: var(--wp--preset--font-size--r-40); }
+}

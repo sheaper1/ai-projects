@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rosenberger/property-hero",
+	"title": "Objekt-Hero",
+	"category": "theme",
+	"description": "Hero einer Objektseite: Titel, Adresse, Badges und Preis links, Bild-Karussell rechts. Server-Render, liest CPT-Meta.",
+	"supports": { "html": false, "align": [ "full" ] },
+	"render": "render.php",
+	"style": "file:./style.css",
+	"viewScript": "file:./view.js",
+	"textdomain": "rosenberger"
+}

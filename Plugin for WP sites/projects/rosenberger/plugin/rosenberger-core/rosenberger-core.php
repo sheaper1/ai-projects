@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once __DIR__ . '/includes/settings.php';
 require_once __DIR__ . '/includes/bindings.php';
+require_once __DIR__ . '/includes/property-fields.php';
 require_once __DIR__ . '/includes/cpt.php';
 require_once __DIR__ . '/includes/property-meta-box.php';
 require_once __DIR__ . '/includes/svg-media.php';

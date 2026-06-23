@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rosenberger/property-details",
+	"title": "Objektdaten",
+	"category": "theme",
+	"description": "Akkordeon-Liste der Objektdaten: offenes «Eckdaten & Flächen» (3-Spalten-Raster) plus frei editierbare Abschnitte. Server-Render, liest CPT-Meta.",
+	"supports": { "html": false, "align": [ "full" ] },
+	"render": "render.php",
+	"style": "file:./style.css",
+	"viewScript": "file:./view.js",
+	"textdomain": "rosenberger"
+}

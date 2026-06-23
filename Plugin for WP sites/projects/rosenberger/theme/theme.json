@@ -24,6 +24,8 @@
 				{ "slug": "muted", "name": "Muted text", "color": "#747c86" },
 				{ "slug": "border", "name": "Border", "color": "#b2b3b7" },
 				{ "slug": "placeholder", "name": "Media placeholder", "color": "#969696" },
+				{ "slug": "subtle", "name": "Subtle label", "color": "#89919a" },
+				{ "slug": "success", "name": "Success / available", "color": "#319f43" },
 				{ "slug": "on-dark", "name": "Text on dark", "color": "#ffffff" }
 			]
 		},

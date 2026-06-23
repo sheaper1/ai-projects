@@ -3,6 +3,22 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-24 — Шаблон CPT `single-property.html` собран по макету «single
+  object» (богатый дизайн). **Мета-модель property расширена** ~25 полями (схема —
+  один источник `includes/property-fields.php`: register_post_meta + мета-бокс +
+  REST из неё), мета-бокс переписан схемно (text/textarea/wysiwyg/select + пикер
+  галереи). 6 новых theme-блоков (читают мета записи через context['postId']):
+  `property-hero` (2 колонки + карусель), `property-stats` (6 показателей с иконками),
+  `property-overview` (Kurzbeschreibung + тёмная карточка маклера | Objektbeschreibung),
+  `property-gallery` (coverflow), `property-details` (аккордеоны: открытый «Eckdaten
+  & Flächen» 18 полей + 5 свободных WYSIWYG), `property-location` (Leaflet/OSM по
+  адресу + карточки достижимости). Финальный CTA — reuse `consultation-cta`.
+  Иконки/CTA-фон/фото — из Figma (SVG→theme assets, JPEG→WebP). Данные маклера —
+  глобально в «Настройках сайта» (новые agent_*). Токены `subtle`/`success` в
+  theme.json. Сид демо-объекта `scripts/seed-single-object.mjs` (id 88, Dornbirn).
+  Проверено на живом URL объекта — все 7 секций совпали (desktop + mobile). Черновики
+  (клиенту): тексты 5 аккордеонов, POI-список, координаты, slug `/kontakt/`, 2-я
+  кнопка CTA.
 - [Opus] 2026-06-24 — `property-catalog`: 2 фикса по фидбеку. (1) **Range-фильтры
   чинены** — мета хранится строками («ca. 130 m²», «€ 680.000»), NUMERIC давал 0 и
   фильтр показывал пусто; добавлены числовые спутники `*_num` (хук + сид), фильтр

@@ -3,55 +3,19 @@
 <!-- wp:group {"tagName":"main","layout":{"type":"default"}} -->
 <main class="wp-block-group">
 
-	<!-- Hero: featured image на всю ширину; прозрачный header накрывает сверху -->
-	<!-- wp:post-featured-image {"className":"property-single__hero","aspectRatio":"16/9","scale":"cover","width":"100%"} /-->
+	<!-- wp:rosenberger/property-hero /-->
 
-	<!-- Контент: центрированный контейнер -->
-	<!-- wp:group {"className":"property-single__body","layout":{"type":"constrained","contentSize":"800px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|r-64","bottom":"var:preset|spacing|r-64"}}}} -->
-	<div class="wp-block-group property-single__body" style="padding-top:var(--wp--preset--spacing--r-64);padding-bottom:var(--wp--preset--spacing--r-64)">
+	<!-- wp:rosenberger/property-stats /-->
 
-		<!-- Назад к архиву -->
-		<!-- wp:paragraph {"className":"property-single__back"} -->
-		<p class="wp-block-paragraph property-single__back"><a href="/objekte">← Alle Objekte</a></p>
-		<!-- /wp:paragraph -->
+	<!-- wp:rosenberger/property-overview /-->
 
-		<!-- Заголовок объекта -->
-		<!-- wp:post-title {"level":1,"className":"property-single__title"} /-->
+	<!-- wp:rosenberger/property-gallery /-->
 
-		<!-- Мета: Lage, Kaufpreis, Wohnfläche, Zimmer + статус-бейдж -->
-		<!-- wp:rosenberger/property-meta /-->
+	<!-- wp:rosenberger/property-details /-->
 
-		<!-- Разделитель -->
-		<!-- wp:separator {"className":"property-single__sep","style":{"color":{"background":"var:preset|color|border"}}} -->
-		<hr class="wp-block-separator property-single__sep has-background" style="background-color:var(--wp--preset--color--border)" />
-		<!-- /wp:separator -->
+	<!-- wp:rosenberger/property-location /-->
 
-		<!-- Описание из редактора -->
-		<!-- wp:post-content {"className":"property-single__content","layout":{"type":"constrained"}} /-->
-
-		<!-- CTA -->
-		<!-- wp:group {"className":"property-single__cta","layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center"}} -->
-		<div class="wp-block-group property-single__cta">
-
-			<!-- wp:heading {"level":3,"className":"property-single__cta-heading"} -->
-			<h3 class="wp-block-heading property-single__cta-heading">Interesse an diesem Objekt?</h3>
-			<!-- /wp:heading -->
-
-			<!-- wp:buttons -->
-			<div class="wp-block-buttons">
-				<!-- wp:button {"className":"property-single__cta-btn"} -->
-				<div class="wp-block-button property-single__cta-btn">
-					<a class="wp-block-button__link wp-element-button" href="/kontakt">Kontakt aufnehmen</a>
-				</div>
-				<!-- /wp:button -->
-			</div>
-			<!-- /wp:buttons -->
-
-		</div>
-		<!-- /wp:group -->
-
-	</div>
-	<!-- /wp:group -->
+	<!-- wp:library/consultation-cta {"heading":"","headingItalic":"Interesse an dieser Wohnung?","text":"Ich zeige Ihnen das Objekt gerne persönlich und beantworte Ihre Fragen.","buttonText":"Besichtigung anfragen","buttonUrl":"/kontakt/","backgroundUrl":"/wp-content/themes/rosenberger/assets/property/cta-bg.webp"} /-->
 
 </main>
 <!-- /wp:group -->

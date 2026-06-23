@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rosenberger/property-stats",
+	"title": "Objekt-Kennzahlen",
+	"category": "theme",
+	"description": "Полоса из 6 ключевых показателей объекта (Wohnfläche, Zimmer, Schlafzimmer …) с иконками. Server-Render, liest CPT-Meta.",
+	"supports": { "html": false, "align": [ "full" ] },
+	"render": "render.php",
+	"style": "file:./style.css",
+	"textdomain": "rosenberger"
+}

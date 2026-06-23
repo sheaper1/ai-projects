@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rosenberger/property-gallery",
+	"title": "Objekt-Galerie",
+	"category": "theme",
+	"description": "Galerie-Karussell des Objekts: zentrales Großbild, gedimmte Nachbarn, Punkte und CTA. Server-Render, liest CPT-Meta.",
+	"supports": { "html": false, "align": [ "full" ] },
+	"render": "render.php",
+	"style": "file:./style.css",
+	"viewScript": "file:./view.js",
+	"textdomain": "rosenberger"
+}

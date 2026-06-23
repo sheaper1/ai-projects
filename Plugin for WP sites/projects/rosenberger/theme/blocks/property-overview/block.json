@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rosenberger/property-overview",
+	"title": "Objekt-Übersicht",
+	"category": "theme",
+	"description": "Zwei Spalten: Kurzbeschreibung + Makler-Karte links, Objektbeschreibung rechts. Server-Render, liest CPT-Meta und Site-Settings.",
+	"supports": { "html": false, "align": [ "full" ] },
+	"render": "render.php",
+	"style": "file:./style.css",
+	"textdomain": "rosenberger"
+}

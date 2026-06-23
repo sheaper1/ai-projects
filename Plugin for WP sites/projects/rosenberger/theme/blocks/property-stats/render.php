@@ -1,0 +1,47 @@
+<?php
+/**
+ * Полоса ключевых показателей объекта: 6 карточек (иконка + лейбл + значение).
+ * Пустые поля пропускаются; сетка достраивается сама.
+ *
+ * @var WP_Block $block
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+$post_id = isset( $block->context['postId'] ) ? (int) $block->context['postId'] : get_the_ID();
+$icons   = get_stylesheet_directory_uri() . '/assets/property/icons/';
+
+$stats = array(
+	array( 'icon' => 'area.svg',      'label' => 'Wohnfläche',   'key' => 'property_area' ),
+	array( 'icon' => 'rooms.svg',     'label' => 'Zimmer',       'key' => 'property_rooms' ),
+	array( 'icon' => 'bedrooms.svg',  'label' => 'Schlafzimmer', 'key' => 'property_bedrooms' ),
+	array( 'icon' => 'bathrooms.svg', 'label' => 'Badezimmer',   'key' => 'property_bathrooms' ),
+	array( 'icon' => 'floor.svg',     'label' => 'Stock',        'key' => 'property_floor' ),
+	array( 'icon' => 'year.svg',      'label' => 'Baujahr',      'key' => 'property_year' ),
+);
+
+$cards = array();
+foreach ( $stats as $s ) {
+	$value = get_post_meta( $post_id, $s['key'], true );
+	if ( '' !== $value ) {
+		$s['value'] = $value;
+		$cards[]    = $s;
+	}
+}
+if ( ! $cards ) {
+	return;
+}
+?>
+<section <?php echo get_block_wrapper_attributes( array( 'class' => 'property-stats' ) ); ?>>
+	<div class="property-stats__inner">
+		<?php foreach ( $cards as $c ) : ?>
+		<div class="property-stats__card">
+			<img class="property-stats__icon" src="<?php echo esc_url( $icons . $c['icon'] ); ?>" alt="" width="40" height="40" />
+			<div class="property-stats__text">
+				<span class="property-stats__label"><?php echo esc_html( $c['label'] ); ?></span>
+				<span class="property-stats__value"><?php echo esc_html( $c['value'] ); ?></span>
+			</div>
+		</div>
+		<?php endforeach; ?>
+	</div>
+</section>
