@@ -57,36 +57,28 @@
 	color: var(--wp--preset--color--contrast);
 }
 
-.faq-section__item summary i {
-	position: relative;
+.faq-section__icon {
 	flex: none;
+	display: inline-flex;
 	width: 24px;
 	height: 24px;
-	border: 1px solid var(--wp--preset--color--border);
-	border-radius: 50%;
+	color: var(--wp--preset--color--muted);
+	transition: transform var(--wp--custom--transition--base);
 }
 
-.faq-section__item summary i::before,
-.faq-section__item summary i::after {
-	content: "";
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 10px;
-	height: 1px;
-	background: var(--wp--preset--color--border);
-	transform: translate(-50%, -50%);
+.faq-section__icon svg { display: block; width: 24px; height: 24px; }
+
+.faq-section__icon-v {
+	transform-origin: 12px 12px;
+	transition: transform var(--wp--custom--transition--base), opacity 160ms ease;
 }
 
-.faq-section__item summary i::after {
-	transform: translate(-50%, -50%) rotate(90deg);
-}
-
-.faq-section__item[open] summary i::after {
-	display: none;
-}
+.faq-section__item.is-open .faq-section__icon { transform: rotate(180deg); }
+.faq-section__item.is-open .faq-section__icon-v { transform: scaleY(0); opacity: 0; }
 
 .faq-section__answer {
+	box-sizing: border-box;
+	overflow: hidden;
 	padding: 0 16px 24px;
 	font-size: var(--wp--preset--font-size--r-16);
 	line-height: 1.5;
