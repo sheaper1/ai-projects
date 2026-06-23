@@ -6,7 +6,7 @@ $heading = wp_kses_post( $attributes['heading'] ?? 'Häufige Fragen' );
 $wrapper = get_block_wrapper_attributes( [ 'class' => 'faq-section' ] );
 
 // Иконка как в Figma (simple-line-icons:plus): тонкое кольцо + плюс с
-// закруглёнными штрихами. Вертикальный штрих анимируется при раскрытии.
+// закруглёнными штрихами. Вертикальный штрих скрывается при раскрытии (plus→minus).
 $icon = '<span class="faq-section__icon" aria-hidden="true">'
 	. '<svg viewBox="0 0 24 24" width="24" height="24" fill="none">'
 	. '<circle cx="12" cy="12" r="11.25" stroke="currentColor" stroke-width="1.5"/>'
@@ -19,13 +19,21 @@ $icon = '<span class="faq-section__icon" aria-hidden="true">'
 		<h2 class="faq-section__heading"><?php echo $heading; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h2>
 		<div class="faq-section__items">
 			<?php foreach ( $items as $item ) : ?>
-				<details class="faq-section__item<?php echo ! empty( $item['open'] ) ? ' is-open' : ''; ?>" <?php echo ! empty( $item['open'] ) ? 'open' : ''; ?>>
-					<summary>
+				<?php
+				$is_open = ! empty( $item['open'] );
+				$ans_id  = wp_unique_id( 'faq-answer-' );
+				?>
+				<div class="faq-section__item<?php echo $is_open ? ' is-open' : ''; ?>">
+					<button class="faq-section__q" type="button" aria-expanded="<?php echo $is_open ? 'true' : 'false'; ?>" aria-controls="<?php echo esc_attr( $ans_id ); ?>">
 						<span><?php echo esc_html( $item['question'] ?? '' ); ?></span>
 						<?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					</summary>
-					<div class="faq-section__answer"><?php echo esc_html( $item['answer'] ?? '' ); ?></div>
-				</details>
+					</button>
+					<div class="faq-section__answer-wrap" id="<?php echo esc_attr( $ans_id ); ?>" role="region">
+						<div class="faq-section__answer">
+							<div class="faq-section__answer-inner"><?php echo esc_html( $item['answer'] ?? '' ); ?></div>
+						</div>
+					</div>
+				</div>
 			<?php endforeach; ?>
 		</div>
 	</div>

@@ -31,25 +31,26 @@
 	border-bottom: 1px solid rgba(178, 179, 183, 0.55);
 }
 
-.faq-section__item summary {
+.faq-section__q {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 24px;
+	width: 100%;
+	margin: 0;
 	padding: 0 16px 24px;
-	list-style: none;
+	background: none;
+	border: 0;
+	text-align: left;
 	cursor: pointer;
+	color: inherit;
 }
 
-.faq-section__item summary::-webkit-details-marker {
-	display: none;
-}
-
-.faq-section__item + .faq-section__item summary {
+.faq-section__item + .faq-section__item .faq-section__q {
 	padding-top: 24px;
 }
 
-.faq-section__item summary span {
+.faq-section__q span {
 	font-family: var(--wp--preset--font-family--heading);
 	font-size: var(--wp--preset--font-size--r-24);
 	line-height: 1.4;
@@ -76,13 +77,39 @@
 .faq-section__item.is-open .faq-section__icon { transform: rotate(180deg); }
 .faq-section__item.is-open .faq-section__icon-v { transform: scaleY(0); opacity: 0; }
 
+// Анимация раскрытия: grid-template-rows 0fr → 1fr (плавно, без расчёта высоты).
+// Без JS обёртка открыта (1fr) — контент доступен. JS добавляет .is-ready, чтобы
+// первичное сворачивание закрытых пунктов прошло без анимации.
+.faq-section__answer-wrap {
+	display: grid;
+	grid-template-rows: 1fr;
+}
+
+.faq-section.is-ready .faq-section__answer-wrap {
+	transition: grid-template-rows var(--wp--custom--transition--base);
+}
+
+.faq-section.is-enhanced .faq-section__item:not(.is-open) .faq-section__answer-wrap {
+	grid-template-rows: 0fr;
+}
+
+// Анимируемый элемент без своих отступов (иначе 0fr не схлопнется в 0).
 .faq-section__answer {
-	box-sizing: border-box;
+	min-height: 0;
 	overflow: hidden;
+}
+
+.faq-section__answer-inner {
 	padding: 0 16px 24px;
 	font-size: var(--wp--preset--font-size--r-16);
 	line-height: 1.5;
 	color: var(--wp--preset--color--muted);
+	opacity: 1;
+	transition: opacity var(--wp--custom--transition--base);
+}
+
+.faq-section.is-enhanced .faq-section__item:not(.is-open) .faq-section__answer-inner {
+	opacity: 0;
 }
 
 @media (max-width: 1024px) {
@@ -101,12 +128,12 @@
 		font-size: var(--wp--preset--font-size--r-40);
 	}
 
-	.faq-section__item summary {
+	.faq-section__q {
 		padding-left: 0;
 		padding-right: 0;
 	}
 
-	.faq-section__answer {
+	.faq-section__answer-inner {
 		padding-left: 0;
 		padding-right: 0;
 	}
