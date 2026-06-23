@@ -357,6 +357,69 @@
 			&:focus { outline: none; }
 		}
 
+		// Кастомный дропдаун сортировки (нативный select скрыт).
+		.pc-select { position: relative; }
+		.pc-select__native { display: none; }
+
+		.pc-select__trigger {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			border: 0;
+			padding: 0;
+			background: transparent;
+			font-family: var(--wp--preset--font-family--body);
+			font-size: var(--wp--preset--font-size--r-14);
+			color: var(--wp--preset--color--muted);
+			cursor: pointer;
+		}
+
+		.pc-select__chev {
+			flex: 0 0 auto;
+			transition: transform var(--wp--custom--transition--fast);
+		}
+
+		.pc-select.is-open .pc-select__chev { transform: rotate(180deg); }
+
+		.pc-select__menu {
+			position: absolute;
+			top: calc(100% + 12px);
+			right: 0;
+			z-index: 20;
+			min-width: 220px;
+			display: none;
+			flex-direction: column;
+			gap: 2px;
+			padding: var(--wp--preset--spacing--r-8);
+			background: var(--wp--preset--color--base);
+			border: 1px solid var(--wp--preset--color--border);
+			border-radius: var(--wp--custom--radius--medium);
+			box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+		}
+
+		.pc-select.is-open .pc-select__menu { display: flex; }
+
+		.pc-select__option {
+			text-align: left;
+			border: 0;
+			background: transparent;
+			padding: 10px 14px;
+			border-radius: var(--wp--custom--radius--small);
+			font-family: var(--wp--preset--font-family--body);
+			font-size: var(--wp--preset--font-size--r-14);
+			color: var(--wp--preset--color--contrast);
+			white-space: nowrap;
+			cursor: pointer;
+			transition: background var(--wp--custom--transition--fast), color var(--wp--custom--transition--fast);
+
+			&:hover { background: var(--wp--preset--color--surface); }
+
+			&.is-selected {
+				background: var(--wp--preset--color--contrast);
+				color: var(--wp--preset--color--on-dark);
+			}
+		}
+
 		.pc-grid {
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);

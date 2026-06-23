@@ -12,6 +12,26 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Поддержка числовых спутников <key>_num для фильтруемых полей: исходная мета —
+ * человекочитаемая строка («ca. 130 m²», «€ 680.000»), а для range-фильтра нужно
+ * чистое число. Хук обновляет _num при ЛЮБОЙ записи меты (мета-бокс, сид, REST).
+ */
+function rosenberger_pc_sync_numeric( $meta_id, $post_id, $key, $value ): void {
+	static $fields = [ 'property_price' => 1, 'property_area' => 1, 'property_plot_area' => 1, 'property_rooms' => 1 ];
+	if ( ! isset( $fields[ $key ] ) ) {
+		return; // _num-ключи сюда не попадают — рекурсии нет.
+	}
+	if ( 'property_rooms' === $key ) {
+		$num = (float) str_replace( ',', '.', preg_replace( '/[^0-9,.]/', '', (string) $value ) );
+	} else {
+		$num = (int) preg_replace( '/[^0-9]/', '', (string) $value );
+	}
+	update_post_meta( $post_id, $key . '_num', $num );
+}
+add_action( 'added_post_meta', 'rosenberger_pc_sync_numeric', 10, 4 );
+add_action( 'updated_post_meta', 'rosenberger_pc_sync_numeric', 10, 4 );
+
+/**
  * Привести «сырой» источник (GET или REST-параметры) к каноничному набору фильтров.
  */
 function rosenberger_pc_params( array $src, int $per_page = 9 ): array {
@@ -49,11 +69,13 @@ function rosenberger_pc_query( array $p ): WP_Query {
 	if ( $p['art'] ) {
 		$meta_query[] = [ 'key' => 'property_listing_type', 'value' => $p['art'], 'compare' => '=' ];
 	}
+	// Фильтруем по числовым спутникам *_num (исходная мета — строки «ca. 130 m²»,
+	// «€ 680.000», их NUMERIC-сравнение даёт 0). См. rosenberger_pc_sync_numeric().
 	$ranges = [
-		'property_rooms'     => $p['zimmer'],
-		'property_area'      => $p['flaeche'],
-		'property_plot_area' => $p['grund'],
-		'property_price'     => $p['preis'],
+		'property_rooms_num'     => $p['zimmer'],
+		'property_area_num'      => $p['flaeche'],
+		'property_plot_area_num' => $p['grund'],
+		'property_price_num'     => $p['preis'],
 	];
 	foreach ( $ranges as $key => $r ) {
 		if ( $r[0] || $r[1] ) {

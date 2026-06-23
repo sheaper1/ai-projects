@@ -70,6 +70,11 @@ foreach ( $rows as $r ) {
 	update_post_meta( $r['id'], 'property_plot_area',  $r['plot'] );
 	update_post_meta( $r['id'], 'property_rooms',      $r['rooms'] );
 	update_post_meta( $r['id'], 'property_status',     $r['status'] );
+	// Числовые спутники для range-фильтра (явно, т.к. хук не сработает на неизменной мете).
+	update_post_meta( $r['id'], 'property_price_num',      (int) preg_replace( '/[^0-9]/', '', $r['price'] ) );
+	update_post_meta( $r['id'], 'property_area_num',       (int) preg_replace( '/[^0-9]/', '', $r['area'] ) );
+	update_post_meta( $r['id'], 'property_plot_area_num',  (int) preg_replace( '/[^0-9]/', '', $r['plot'] ) );
+	update_post_meta( $r['id'], 'property_rooms_num',      (float) str_replace( ',', '.', preg_replace( '/[^0-9,.]/', '', $r['rooms'] ) ) );
 	if ( ! empty( $r['thumb'] ) ) { set_post_thumbnail( $r['id'], (int) $r['thumb'] ); }
 }
 `;

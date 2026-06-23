@@ -4,6 +4,73 @@
  * Прогрессивное улучшение: без JS форма работает обычным GET.
  */
 ( function () {
+	// Кастомный дропдаун поверх нативного <select> (нативный остаётся для значения
+	// и no-JS). Выбор → меняет значение + dispatch change (→ AJAX) + подсветка.
+	function enhanceSelect( select ) {
+		if ( select.dataset.enhanced ) {
+			return;
+		}
+		select.dataset.enhanced = '1';
+
+		var wrap    = document.createElement( 'div' );
+		wrap.className = 'pc-select';
+		var trigger = document.createElement( 'button' );
+		trigger.type = 'button';
+		trigger.className = 'pc-select__trigger';
+		trigger.setAttribute( 'aria-haspopup', 'listbox' );
+		trigger.setAttribute( 'aria-expanded', 'false' );
+		trigger.innerHTML = '<span class="pc-select__value"></span><svg class="pc-select__chev" width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 7.5 5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+		var valueEl = trigger.querySelector( '.pc-select__value' );
+		var menu    = document.createElement( 'div' );
+		menu.className = 'pc-select__menu';
+		menu.setAttribute( 'role', 'listbox' );
+
+		function sync() {
+			valueEl.textContent = select.options[ select.selectedIndex ].textContent;
+			menu.querySelectorAll( '.pc-select__option' ).forEach( function ( o ) {
+				var on = o.dataset.value === select.value;
+				o.classList.toggle( 'is-selected', on );
+				o.setAttribute( 'aria-selected', String( on ) );
+			} );
+		}
+
+		Array.prototype.forEach.call( select.options, function ( opt ) {
+			var item = document.createElement( 'button' );
+			item.type = 'button';
+			item.className = 'pc-select__option';
+			item.setAttribute( 'role', 'option' );
+			item.dataset.value = opt.value;
+			item.textContent = opt.textContent;
+			item.addEventListener( 'click', function () {
+				select.value = opt.value;
+				wrap.classList.remove( 'is-open' );
+				trigger.setAttribute( 'aria-expanded', 'false' );
+				select.dispatchEvent( new Event( 'change', { bubbles: true } ) );
+			} );
+			menu.appendChild( item );
+		} );
+
+		trigger.addEventListener( 'click', function ( e ) {
+			e.stopPropagation();
+			var open = wrap.classList.toggle( 'is-open' );
+			trigger.setAttribute( 'aria-expanded', String( open ) );
+		} );
+		document.addEventListener( 'click', function ( e ) {
+			if ( ! wrap.contains( e.target ) ) {
+				wrap.classList.remove( 'is-open' );
+				trigger.setAttribute( 'aria-expanded', 'false' );
+			}
+		} );
+		// Программное изменение value (сброс) — пересинхронизировать UI.
+		select.addEventListener( 'change', sync );
+
+		select.classList.add( 'pc-select__native' );
+		select.parentNode.insertBefore( wrap, select );
+		wrap.appendChild( trigger );
+		wrap.appendChild( menu );
+		sync();
+	}
+
 	document.querySelectorAll( '.pc-catalog' ).forEach( function ( root ) {
 		var form    = root.querySelector( '.pc-filter-form' );
 		var sort    = root.querySelector( '.pc-sort-select' );
@@ -81,6 +148,7 @@
 		} );
 
 		if ( sort ) {
+			enhanceSelect( sort );
 			sort.addEventListener( 'change', function () { page = 1; refresh(); } );
 		}
 
@@ -108,10 +176,14 @@
 				form.querySelectorAll( 'input[type="number"]' ).forEach( function ( n ) { n.value = ''; } );
 				var kaufen = form.querySelector( '.pc-toggle__option input[value=""]' );
 				if ( kaufen ) { kaufen.checked = true; }
-				if ( sort ) { sort.value = 'newest'; }
 				page = 1;
 				syncToggle();
-				refresh();
+				if ( sort && 'newest' !== sort.value ) {
+					sort.value = 'newest';
+					sort.dispatchEvent( new Event( 'change', { bubbles: true } ) );
+				} else {
+					refresh();
+				}
 			} );
 		}
 
