@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "library/split-cta",
+  "title": "Split CTA",
+  "category": "design",
+  "description": "Две колонки: текст (заголовок + абзацы + кнопка) слева, изображение справа.",
+  "keywords": ["split", "cta", "text", "image", "две колонки"],
+  "supports": { "html": false, "align": ["full"], "multiple": true },
+  "attributes": {
+    "heading":       { "type": "string",  "default": "" },
+    "headingItalic": { "type": "string",  "default": "" },
+    "text":          { "type": "string",  "default": "" },
+    "buttonText":    { "type": "string",  "default": "" },
+    "buttonUrl":     { "type": "string",  "default": "#" },
+    "imageId":       { "type": "integer", "default": 0 },
+    "imageUrl":      { "type": "string",  "default": "" }
+  },
+  "editorScript": "file:./build/index.js",
+  "style":        "file:./build/style-index.css",
+  "render":       "file:./render.php"
+}

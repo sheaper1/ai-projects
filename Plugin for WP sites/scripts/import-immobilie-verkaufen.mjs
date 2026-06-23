@@ -71,8 +71,9 @@ const id = m => m ? m.id : 0;
 // ---------------------------------------------------------------------------
 console.log( '\n📦 Медиа...' );
 const M = 'projects/rosenberger/media';
-const [ heroBg, badge, icPrice, icCallback, icEffort, icTrust ] = await Promise.all( [
+const [ heroBg, splitImg, badge, icPrice, icCallback, icEffort, icTrust ] = await Promise.all( [
 	ensureMediaLocal( 'rosenberger-iv-hero',          `${ M }/iv-hero.webp`,             'webp' ),
+	ensureMediaLocal( 'rosenberger-iv-split',         `${ M }/iv-split.webp`,            'webp' ),
 	findMedia( 'rosenberger-google-rating' ),
 	ensureMediaLocal( 'rosenberger-iv-pain-price',    `${ M }/icons/iv-pain-price.svg`,    'svg' ),
 	ensureMediaLocal( 'rosenberger-iv-pain-callback', `${ M }/icons/iv-pain-callback.svg`, 'svg' ),
@@ -138,6 +139,40 @@ const pageContent = [
 		],
 	} ) } /-->`,
 
+	`<!-- wp:library/split-cta ${ JSON.stringify( {
+		heading:       'Sie verkaufen,<br>',
+		headingItalic: 'ich mache den Rest',
+		text:          'Ich übernehme den ganzen Verkauf. Die acht Schritte sehen Sie weiter unten, vom Erstgespräch bis zur Übergabe ist alles mein Teil.<br><br>Ihr Aufwand liegt am Ende bei rund einer Stunde, beim Erstgespräch und bei Ihrer Unterschrift.',
+		buttonText:    'Jetzt verkaufen',
+		buttonUrl:     '/kontakt/',
+		imageId:       id( splitImg ),
+		imageUrl:      u( splitImg ),
+	} ) } /-->`,
+
+	`<!-- wp:library/process-steps ${ JSON.stringify( {
+		heading:       'Ihr Verkauf<br>',
+		headingItalic: 'in acht Schritten',
+		subtext:       '',
+		buttonText:    '',
+		steps: [
+			{ number: '01', title: 'Erstgespräch',           text: 'Wir lernen uns kennen und sprechen über Ihre Immobilie und Ihre Situation, ohne Verpflichtung.' },
+			{ number: '02', title: 'Ehrliche Bewertung',     text: 'Ich schätze Ihre Immobilie vor Ort realistisch ein und erkläre nachvollziehbar, wie der Preis zustande kommt.' },
+			{ number: '03', title: 'Strategie',              text: 'Wir legen Zielpreis, Zielgruppe und Vermarktungsweg fest und besprechen, wie wir vorgehen.' },
+			{ number: '04', title: 'Aufbereitung',           text: 'Ich besorge die Unterlagen, bereite Ihr Objekt auf und erstelle ein vollständiges Exposé mit guten Fotos.' },
+			{ number: '05', title: 'Vermarktung',            text: 'Ihr Objekt erscheint dort, wo Käufer in Vorarlberg suchen, sauber und vollständig dargestellt.' },
+			{ number: '06', title: 'Besichtigungen',         text: 'Ich führe die Besichtigungen und prüfe vorher, wer es ernst meint und finanzieren kann.' },
+			{ number: '07', title: 'Verhandlung und Notar',  text: 'Ich verhandle für Sie und stimme den Kaufvertrag mit dem Notar ab.' },
+			{ number: '08', title: 'Übergabe und Ummeldung', text: 'Vom Übergabeprotokoll über die Schlüssel bis zu den Ab- und Ummeldungen begleite ich den letzten Schritt.' },
+		],
+	} ) } /-->`,
+
+	`<!-- wp:library/sold-showcase ${ JSON.stringify( {
+		heading:       'Erfolgreich verkauft ',
+		headingItalic: 'in Vorarlberg',
+		ctaText:       'Alle Referenzen ansehen',
+		ctaUrl:        '/referenzen/',
+	} ) } /-->`,
+
 ].join( '\n\n' );
 
 // ---------------------------------------------------------------------------
@@ -166,4 +201,4 @@ if ( Array.isArray( pages.body ) && pages.body[ 0 ] ) {
 	console.log( `  ✓ Создана id=${ pageId }` );
 }
 
-console.log( `\n✅ Этап 1 готов! ${ BASE }/immobilie-verkaufen/` );
+console.log( `\n✅ Готово! ${ BASE }/immobilie-verkaufen/` );
