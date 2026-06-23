@@ -9,9 +9,11 @@ $a = wp_parse_args( $attributes, [
 	'buttonText'    => '',
 	'buttonUrl'     => '#',
 	'imageUrl'      => '',
+	'imageLeft'     => false,
 ] );
+$classes = 'split-cta' . ( ! empty( $a['imageLeft'] ) ? ' split-cta--image-left' : '' );
 ?>
-<section <?php echo get_block_wrapper_attributes( [ 'class' => 'split-cta' ] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+<section <?php echo get_block_wrapper_attributes( [ 'class' => $classes ] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="split-cta__inner">
 		<div class="split-cta__text">
 			<div class="split-cta__copy">

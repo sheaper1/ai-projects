@@ -15,6 +15,13 @@
 		align-items: center;
 	}
 
+	// Вариант с фото слева: меняем порядок колонок.
+	&.split-cta--image-left .split-cta__inner {
+		grid-template-columns: 648px minmax(0, 1fr);
+	}
+	&.split-cta--image-left .split-cta__media { order: -1; }
+	&.split-cta--image-left .split-cta__text { margin-left: auto; }
+
 	.split-cta__text {
 		max-width: 615px;
 		display: flex;

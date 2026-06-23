@@ -1,5 +1,5 @@
 import { InspectorControls, MediaUpload, MediaUploadCheck, useBlockProps } from '@wordpress/block-editor';
-import { Button, PanelBody, TextControl, TextareaControl } from '@wordpress/components';
+import { Button, PanelBody, TextControl, TextareaControl, ToggleControl } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
 	return (
@@ -13,6 +13,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<TextControl label="Button URL" value={ attributes.buttonUrl } onChange={ ( buttonUrl ) => setAttributes( { buttonUrl } ) } />
 				</PanelBody>
 				<PanelBody title="Image">
+					<ToggleControl label="Bild links" checked={ !! attributes.imageLeft } onChange={ ( imageLeft ) => setAttributes( { imageLeft } ) } />
 					<MediaUploadCheck>
 						<MediaUpload
 							allowedTypes={ [ 'image' ] }
@@ -30,7 +31,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					</MediaUploadCheck>
 				</PanelBody>
 			</InspectorControls>
-			<section { ...useBlockProps( { className: 'split-cta' } ) }>
+			<section { ...useBlockProps( { className: 'split-cta' + ( attributes.imageLeft ? ' split-cta--image-left' : '' ) } ) }>
 				<div className="split-cta__inner">
 					<div className="split-cta__text">
 						<div className="split-cta__copy">
