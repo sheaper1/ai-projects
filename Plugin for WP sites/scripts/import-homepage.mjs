@@ -144,8 +144,16 @@ const card1       = await getMedia( 'rosenberger-card-1' );
 const card2       = await getMedia( 'rosenberger-card-2' );
 const card3       = await getMedia( 'rosenberger-card-3' );
 const aboutBg     = await getMedia( 'rosenberger-about-bg' );
-const referralImg = await getMedia( 'rosenberger-referral' );
-const ctaBg       = await getMedia( 'rosenberger-consultation-bg' );
+const referralImg = await ensureMedia(
+	'rosenberger-referral',
+	localBuf( resolve( root, 'projects/rosenberger/media/home/referral.webp' ) ),
+	'webp'
+);
+const ctaBg = await ensureMedia(
+	'rosenberger-consultation-bg',
+	localBuf( resolve( root, 'projects/rosenberger/media/home/cta-bg.webp' ) ),
+	'webp'
+);
 
 // Sold-showcase image — загружаем из local папки
 const soldShowcaseImg = await ensureMedia(
