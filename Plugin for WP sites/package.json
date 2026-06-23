@@ -11,6 +11,8 @@
 		"tokens": "node scripts/figma-tokens.mjs",
 		"tokens:scan": "node scripts/figma-tokens.mjs --scan",
 		"visual": "node scripts/visual-diff.mjs",
+		"shot": "node scripts/shot.mjs",
+		"figma:icon": "node scripts/figma-icon.mjs",
 		"check": "node scripts/check.mjs"
 	},
 	"devDependencies": {
