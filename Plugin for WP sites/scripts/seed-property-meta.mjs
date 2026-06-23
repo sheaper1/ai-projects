@@ -30,12 +30,12 @@ const api = async ( path, opts = {} ) => {
 
 // Желаемая мета по заголовку объекта. status: Verkauft → попадает в sold-showcase.
 const WANT = {
-	'Moderne 4-Zimmer-Wohnung in Feldkirch':   { price: 'Auf Anfrage',  area: 'ca. 130 m²', rooms: '4', status: 'Verkauft',   thumb: 'rosenberger-card-1' },
-	'Einfamilienhaus mit Garten in Dornbirn':  { price: '€ 680.000',    area: 'ca. 220 m²', rooms: '6', status: 'Verkauft',   thumb: 'rosenberger-card-2' },
-	'Ruhige 3-Zimmer-Wohnung in Bludenz':      { price: 'Auf Anfrage',  area: 'ca. 85 m²',  rooms: '3', status: 'Verkauft',   thumb: 'rosenberger-card-3' },
-	'Exklusives Penthouse am Bodensee':        { price: '€ 1.250.000',  area: 'ca. 180 m²', rooms: '5', status: 'Verfügbar',  thumb: 'rosenberger-card-1' },
-	'Erschlossenes Baugrundstück in Hohenems': { price: 'Auf Anfrage',  area: 'ca. 800 m²', rooms: '',  status: 'Verfügbar',  thumb: 'rosenberger-card-2' },
-	'Gepflegtes Reihenhaus in Feldkirch':      { price: '€ 520.000',    area: 'ca. 160 m²', rooms: '5', status: 'Reserviert', thumb: 'rosenberger-card-3' },
+	'Moderne 4-Zimmer-Wohnung in Feldkirch':   { price: 'Auf Anfrage',  area: 'ca. 130 m²', plot: 'ca. 250 m²', rooms: '4', status: 'Verkauft',   thumb: 'rosenberger-card-1' },
+	'Einfamilienhaus mit Garten in Dornbirn':  { price: '€ 680.000',    area: 'ca. 220 m²', plot: 'ca. 540 m²', rooms: '6', status: 'Verkauft',   thumb: 'rosenberger-card-2' },
+	'Ruhige 3-Zimmer-Wohnung in Bludenz':      { price: 'Auf Anfrage',  area: 'ca. 85 m²',  plot: 'ca. 180 m²', rooms: '3', status: 'Verkauft',   thumb: 'rosenberger-card-3' },
+	'Exklusives Penthouse am Bodensee':        { price: '€ 1.250.000',  area: 'ca. 180 m²', plot: 'ca. 300 m²', rooms: '5', status: 'Verfügbar',  thumb: 'rosenberger-card-1' },
+	'Erschlossenes Baugrundstück in Hohenems': { price: 'Auf Anfrage',  area: 'ca. 800 m²', plot: 'ca. 800 m²', rooms: '',  status: 'Verfügbar',  thumb: 'rosenberger-card-2' },
+	'Gepflegtes Reihenhaus in Feldkirch':      { price: '€ 520.000',    area: 'ca. 160 m²', plot: 'ca. 320 m²', rooms: '5', status: 'Reserviert', thumb: 'rosenberger-card-3' },
 };
 
 const mediaId = async ( slug ) => {
@@ -59,16 +59,17 @@ for ( const p of props.body ) {
 
 // PHP-сниппет: update_post_meta + set_post_thumbnail.
 const rowsJson = JSON.stringify( rows.map( r => ( {
-	id: r.id, price: r.price, area: r.area, rooms: r.rooms, status: r.status, thumb: r.thumbId,
+	id: r.id, price: r.price, area: r.area, plot: r.plot, rooms: r.rooms, status: r.status, thumb: r.thumbId,
 } ) ) ).replace( /'/g, "\\'" );
 const php = `<?php
 $rows = json_decode( '${ rowsJson }', true );
 if ( ! is_array( $rows ) ) { return; }
 foreach ( $rows as $r ) {
-	update_post_meta( $r['id'], 'property_price',  $r['price'] );
-	update_post_meta( $r['id'], 'property_area',   $r['area'] );
-	update_post_meta( $r['id'], 'property_rooms',  $r['rooms'] );
-	update_post_meta( $r['id'], 'property_status', $r['status'] );
+	update_post_meta( $r['id'], 'property_price',      $r['price'] );
+	update_post_meta( $r['id'], 'property_area',       $r['area'] );
+	update_post_meta( $r['id'], 'property_plot_area',  $r['plot'] );
+	update_post_meta( $r['id'], 'property_rooms',      $r['rooms'] );
+	update_post_meta( $r['id'], 'property_status',     $r['status'] );
 	if ( ! empty( $r['thumb'] ) ) { set_post_thumbnail( $r['id'], (int) $r['thumb'] ); }
 }
 `;

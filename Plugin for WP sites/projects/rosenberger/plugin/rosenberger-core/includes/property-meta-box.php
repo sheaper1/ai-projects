@@ -24,6 +24,7 @@ function rosenberger_property_meta_box_html( WP_Post $post ): void {
 
 	$price  = get_post_meta( $post->ID, 'property_price', true );
 	$area   = get_post_meta( $post->ID, 'property_area', true );
+	$plot   = get_post_meta( $post->ID, 'property_plot_area', true );
 	$rooms  = get_post_meta( $post->ID, 'property_rooms', true );
 	$status = get_post_meta( $post->ID, 'property_status', true ) ?: 'Verfügbar';
 	?>
@@ -53,6 +54,12 @@ function rosenberger_property_meta_box_html( WP_Post $post ): void {
 			       placeholder="z. B. ca. 130 m²" />
 		</div>
 		<div>
+			<label for="property_plot_area">Grundstücksfläche</label>
+			<input type="text" id="property_plot_area" name="property_plot_area"
+			       value="<?php echo esc_attr( $plot ); ?>"
+			       placeholder="z. B. ca. 500 m²" />
+		</div>
+		<div>
 			<label for="property_status">Status</label>
 			<select id="property_status" name="property_status">
 				<?php foreach ( array( 'Verfügbar', 'Reserviert', 'Verkauft' ) as $opt ) : ?>
@@ -78,10 +85,11 @@ add_action( 'save_post_property', function ( int $post_id ): void {
 	}
 
 	$map = array(
-		'property_price'  => 'property_price',
-		'property_area'   => 'property_area',
-		'property_rooms'  => 'property_rooms',
-		'property_status' => 'property_status',
+		'property_price'     => 'property_price',
+		'property_area'      => 'property_area',
+		'property_plot_area' => 'property_plot_area',
+		'property_rooms'     => 'property_rooms',
+		'property_status'    => 'property_status',
 	);
 
 	foreach ( $map as $meta_key => $field ) {

@@ -83,10 +83,11 @@ add_action( 'init', function () {
 
 	// ── Meta-поля (show_in_rest для Block Bindings и REST-фильтрации) ────────
 	$meta_fields = array(
-		'property_price'  => 'Kaufpreis (z. B. «Auf Anfrage» oder «€ 450.000»)',
-		'property_area'   => 'Wohnfläche (z. B. «ca. 130 m²»)',
-		'property_rooms'  => 'Zimmer (z. B. «4» oder «4,5»)',
-		'property_status' => 'Status: Verfügbar | Reserviert | Verkauft',
+		'property_price'     => 'Kaufpreis (z. B. «Auf Anfrage» oder «€ 450.000»)',
+		'property_area'      => 'Wohnfläche (z. B. «ca. 130 m²»)',
+		'property_plot_area' => 'Grundstücksfläche (z. B. «ca. 500 m²»)',
+		'property_rooms'     => 'Zimmer (z. B. «4» oder «4,5»)',
+		'property_status'    => 'Status: Verfügbar | Reserviert | Verkauft',
 	);
 
 	foreach ( $meta_fields as $key => $description ) {
@@ -119,7 +120,7 @@ add_action( 'rest_api_init', function () {
 			),
 			'callback'            => function ( WP_REST_Request $req ) {
 				$id      = (int) $req['id'];
-				$allowed = array( 'property_price', 'property_area', 'property_rooms', 'property_status' );
+				$allowed = array( 'property_price', 'property_area', 'property_plot_area', 'property_rooms', 'property_status' );
 				$updated = array();
 				foreach ( $allowed as $key ) {
 					if ( $req->has_param( $key ) ) {

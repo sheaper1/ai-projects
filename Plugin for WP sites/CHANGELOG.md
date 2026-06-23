@@ -3,6 +3,13 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Opus] 2026-06-24 — `property-catalog` каталог-режим переведён на **AJAX** (без
+  перезагрузки): REST `rosenberger/v1/properties` отдаёт сетку, `view.js` подменяет
+  результаты + `replaceState`. Общий рендер в плагине (`includes/property-catalog.php`)
+  — одна разметка для SSR и AJAX. Стили по Figma: диапазоны-пилюли, тёмная CTA
+  «Kostenlos beraten lassen» + reset (вместо «Filtern»), мобильный аккордеон «FILTER».
+  Добавлено поле `property_plot_area` (Grundstücksfläche) в CPT/мета-бокс/сид —
+  карточка показывала «—». Правило «фильтры/сортировки = AJAX» зафиксировано в §6a.
 - [Claude] 2026-06-24 — Страница `alle-immobilien` собрана по плейбуку §6a. Блок
   `property-catalog` расширен атрибутом `layout` (compact | catalog): catalog-режим
   добавляет боковой фильтр (Kaufen/Mieten-тоггл, чекбоксы типов, range-инпуты),

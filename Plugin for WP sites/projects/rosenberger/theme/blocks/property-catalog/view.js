@@ -1,100 +1,129 @@
-document.querySelectorAll( '.pc-filters' ).forEach( function( form ) {
-	var selects = form.querySelectorAll( 'select' );
-
-	function closeAllCustomSelects( except ) {
-		form.querySelectorAll( '.pc-filter.is-open' ).forEach( function( filter ) {
-			if ( filter !== except ) {
-				filter.classList.remove( 'is-open' );
-			}
-		} );
-	}
-
-	selects.forEach( function( sel ) {
-		var filter = sel.closest( '.pc-filter' );
-		if ( ! filter || filter.querySelector( '.pc-select' ) ) {
+/**
+ * Property Catalog — AJAX-фильтрация каталога (без перезагрузки).
+ * Изменение фильтра/сортировки/страницы → REST → подмена .pc-results.
+ * Прогрессивное улучшение: без JS форма работает обычным GET.
+ */
+( function () {
+	document.querySelectorAll( '.pc-catalog' ).forEach( function ( root ) {
+		var form    = root.querySelector( '.pc-filter-form' );
+		var sort    = root.querySelector( '.pc-sort-select' );
+		var results = root.querySelector( '.pc-results' );
+		if ( ! form || ! results ) {
 			return;
 		}
+		var endpoint = results.dataset.endpoint;
+		var perPage  = ( form.querySelector( '[name="pc_per_page"]' ) || {} ).value || 9;
+		var page     = 1;
+		var debounce;
 
-		sel.classList.add( 'pc-native-select' );
-
-		var custom = document.createElement( 'div' );
-		custom.className = 'pc-select';
-
-		var trigger = document.createElement( 'button' );
-		trigger.className = 'pc-select__trigger';
-		trigger.type = 'button';
-		trigger.setAttribute( 'aria-haspopup', 'listbox' );
-		trigger.setAttribute( 'aria-expanded', 'false' );
-		trigger.innerHTML = '<span class="pc-select__label"></span><span class="pc-select__icon" aria-hidden="true"></span>';
-
-		var list = document.createElement( 'div' );
-		list.className = 'pc-select__menu';
-		list.setAttribute( 'role', 'listbox' );
-
-		function syncLabel() {
-			var selectedOption = sel.options[ sel.selectedIndex ];
-			trigger.querySelector( '.pc-select__label' ).textContent = selectedOption ? selectedOption.textContent : '';
-		}
-
-		Array.prototype.forEach.call( sel.options, function( option, index ) {
-			var item = document.createElement( 'button' );
-			item.className = 'pc-select__option';
-			item.type = 'button';
-			item.setAttribute( 'role', 'option' );
-			item.setAttribute( 'data-value', option.value );
-			item.textContent = option.textContent;
-
-			if ( index === sel.selectedIndex ) {
-				item.classList.add( 'is-selected' );
-				item.setAttribute( 'aria-selected', 'true' );
-			} else {
-				item.setAttribute( 'aria-selected', 'false' );
+		// Параметры фильтра без пустых значений (для shareable URL).
+		function cleanParams() {
+			var p = new URLSearchParams();
+			new FormData( form ).forEach( function ( v, k ) {
+				if ( 'pc_per_page' === k || '' === v ) {
+					return;
+				}
+				p.append( k, v );
+			} );
+			if ( sort && 'newest' !== sort.value ) {
+				p.set( 'pc_sort', sort.value );
 			}
-
-			item.addEventListener( 'click', function() {
-				sel.value = option.value;
-				sel.dispatchEvent( new Event( 'change', { bubbles: true } ) );
-			} );
-
-			list.appendChild( item );
-		} );
-
-		trigger.addEventListener( 'click', function() {
-			var isOpen = filter.classList.contains( 'is-open' );
-			closeAllCustomSelects( filter );
-			filter.classList.toggle( 'is-open', ! isOpen );
-			trigger.setAttribute( 'aria-expanded', String( ! isOpen ) );
-		} );
-
-		sel.addEventListener( 'change', function() {
-			syncLabel();
-
-			list.querySelectorAll( '.pc-select__option' ).forEach( function( optionButton ) {
-				var isSelected = optionButton.getAttribute( 'data-value' ) === sel.value;
-				optionButton.classList.toggle( 'is-selected', isSelected );
-				optionButton.setAttribute( 'aria-selected', String( isSelected ) );
-			} );
-
-			filter.classList.remove( 'is-open' );
-			trigger.setAttribute( 'aria-expanded', 'false' );
-			form.submit();
-		} );
-
-		custom.appendChild( trigger );
-		custom.appendChild( list );
-		filter.appendChild( custom );
-		syncLabel();
-	} );
-
-	document.addEventListener( 'click', function( event ) {
-		if ( ! form.contains( event.target ) ) {
-			closeAllCustomSelects();
+			if ( page > 1 ) {
+				p.set( 'pc_page', page );
+			}
+			return p;
 		}
-	} );
 
-	document.addEventListener( 'keydown', function( event ) {
-		if ( event.key === 'Escape' ) {
-			closeAllCustomSelects();
+		function syncToggle() {
+			form.querySelectorAll( '.pc-toggle__option' ).forEach( function ( opt ) {
+				var input = opt.querySelector( 'input' );
+				opt.classList.toggle( 'is-active', !! ( input && input.checked ) );
+			} );
 		}
+
+		function refresh() {
+			var urlParams   = cleanParams();
+			var fetchParams = new URLSearchParams( urlParams.toString() );
+			fetchParams.set( 'pc_per_page', perPage );
+			fetchParams.set( 'pc_page', page );
+
+			results.classList.add( 'is-loading' );
+			fetch( endpoint + '?' + fetchParams.toString() )
+				.then( function ( r ) { return r.json(); } )
+				.then( function ( data ) {
+					results.innerHTML = data && data.html ? data.html : '';
+					results.classList.remove( 'is-loading' );
+				} )
+				.catch( function () { results.classList.remove( 'is-loading' ); } );
+
+			var qs = urlParams.toString();
+			history.replaceState( null, '', location.pathname + ( qs ? '?' + qs : '' ) );
+		}
+
+		// Чекбоксы / радио / прочее (кроме числовых — у них input ниже).
+		form.addEventListener( 'change', function ( e ) {
+			if ( 'number' === e.target.type ) {
+				return;
+			}
+			syncToggle();
+			page = 1;
+			refresh();
+		} );
+
+		// Числовые диапазоны — с задержкой, пока пользователь печатает.
+		form.addEventListener( 'input', function ( e ) {
+			if ( 'number' !== e.target.type ) {
+				return;
+			}
+			page = 1;
+			clearTimeout( debounce );
+			debounce = setTimeout( refresh, 450 );
+		} );
+
+		if ( sort ) {
+			sort.addEventListener( 'change', function () { page = 1; refresh(); } );
+		}
+
+		// Пагинация — делегирование (сетка перерисовывается).
+		results.addEventListener( 'click', function ( e ) {
+			var btn = e.target.closest( '.pc-page-btn' );
+			if ( ! btn ) {
+				return;
+			}
+			e.preventDefault();
+			page = parseInt( btn.getAttribute( 'data-page' ), 10 ) || 1;
+			refresh();
+			window.scrollTo( {
+				top: root.getBoundingClientRect().top + window.scrollY - 80,
+				behavior: 'smooth',
+			} );
+		} );
+
+		// Сброс фильтра.
+		var reset = form.querySelector( '.pc-filter-reset' );
+		if ( reset ) {
+			reset.addEventListener( 'click', function ( e ) {
+				e.preventDefault();
+				form.querySelectorAll( 'input[type="checkbox"]' ).forEach( function ( c ) { c.checked = false; } );
+				form.querySelectorAll( 'input[type="number"]' ).forEach( function ( n ) { n.value = ''; } );
+				var kaufen = form.querySelector( '.pc-toggle__option input[value=""]' );
+				if ( kaufen ) { kaufen.checked = true; }
+				if ( sort ) { sort.value = 'newest'; }
+				page = 1;
+				syncToggle();
+				refresh();
+			} );
+		}
+
+		// Мобильный аккордеон фильтра.
+		var toggle = form.querySelector( '.pc-filter-toggle' );
+		if ( toggle ) {
+			toggle.addEventListener( 'click', function () {
+				var open = form.classList.toggle( 'is-filter-open' );
+				toggle.setAttribute( 'aria-expanded', String( open ) );
+			} );
+		}
+
+		syncToggle();
 	} );
-} );
+} )();

@@ -19,3 +19,4 @@ require_once __DIR__ . '/includes/cpt.php';
 require_once __DIR__ . '/includes/property-meta-box.php';
 require_once __DIR__ . '/includes/svg-media.php';
 require_once __DIR__ . '/includes/google-reviews.php';
+require_once __DIR__ . '/includes/property-catalog.php';
