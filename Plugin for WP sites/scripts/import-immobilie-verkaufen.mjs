@@ -71,9 +71,10 @@ const id = m => m ? m.id : 0;
 // ---------------------------------------------------------------------------
 console.log( '\n📦 Медиа...' );
 const M = 'projects/rosenberger/media';
-const [ heroBg, splitImg, badge, icPrice, icCallback, icEffort, icTrust ] = await Promise.all( [
+const [ heroBg, splitImg, ctaBg, badge, icPrice, icCallback, icEffort, icTrust ] = await Promise.all( [
 	ensureMediaLocal( 'rosenberger-iv-hero',          `${ M }/iv-hero.webp`,             'webp' ),
 	ensureMediaLocal( 'rosenberger-iv-split',         `${ M }/iv-split.webp`,            'webp' ),
+	ensureMediaLocal( 'rosenberger-iv-cta-bg',        `${ M }/iv-cta-bg.webp`,           'webp' ),
 	findMedia( 'rosenberger-google-rating' ),
 	ensureMediaLocal( 'rosenberger-iv-pain-price',    `${ M }/icons/iv-pain-price.svg`,    'svg' ),
 	ensureMediaLocal( 'rosenberger-iv-pain-callback', `${ M }/icons/iv-pain-callback.svg`, 'svg' ),
@@ -178,6 +179,42 @@ const pageContent = [
 		headingItalic: 'die mit mir gearbeitet haben',
 		limit:         3,
 		minRating:     4,
+	} ) } /-->`,
+
+	`<!-- wp:library/faq-section ${ JSON.stringify( {
+		heading: 'Häufige Fragen<br>zum <em>Verkauf</em>',
+		items: [
+			{
+				question: 'Was kostet mich der Verkauf?',
+				answer:   'Die Provision hängt von Objekt und Aufwand ab. Was auf Sie zukommt, sage ich Ihnen offen, bevor Sie sich entscheiden. Keine versteckten Kosten und keine Überraschungen im Vertrag.',
+				open:     true,
+			},
+			{
+				question: 'Wie lange dauert ein Verkauf?',
+				answer:   'Das hängt von Objekt, Preis und Lage ab. Nach dem Erstgespräch gebe ich Ihnen eine realistische Einschätzung. Viele Objekte in Vorarlberg sind innerhalb weniger Wochen verkauft.',
+				open:     false,
+			},
+			{
+				question: 'Kann ich nicht einfach privat verkaufen und die Provision sparen?',
+				answer:   'Können Sie. In der Praxis bindet ein Privatverkauf aber schnell hundert Stunden und mehr, und ein falsch angesetzter Preis kostet oft mehr als die Provision. Ich nehme Ihnen den Aufwand ab und hole den realistisch besten Preis heraus.',
+				open:     false,
+			},
+			{
+				question: 'Wer kommt zu den Besichtigungen?',
+				answer:   'Ich führe die Besichtigungen persönlich und prüfe vorher, wer es ernst meint und finanzieren kann. Sie müssen nicht dabei sein, wenn Sie nicht möchten.',
+				open:     false,
+			},
+		],
+	} ) } /-->`,
+
+	`<!-- wp:library/consultation-cta ${ JSON.stringify( {
+		heading:       '',
+		headingItalic: 'Ihr kostenloses Erstgespräch',
+		text:          'Persönlich und völlig unverbindlich. Ich verkaufe in ganz Vorarlberg, von Feldkirch über Dornbirn und Bregenz bis Bludenz.',
+		buttonText:    'Kostenlos beraten lassen',
+		buttonUrl:     '/kontakt/',
+		backgroundId:  id( ctaBg ),
+		backgroundUrl: u( ctaBg ),
 	} ) } /-->`,
 
 ].join( '\n\n' );
