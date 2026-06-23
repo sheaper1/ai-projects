@@ -8,6 +8,7 @@
 
 ---
 
+- [Claude] 2026-06-23 — Смена Figma-источника: основной файл теперь `p1HKLfoMcOwtVUD5rI9V3P` (страница «UI Design» `142:3`) вместо устаревшего `3AzuInZ4YD95cLiQgiD24W`. Подключён Figma Remote MCP (`mcp.figma.com`, OAuth, `.mcp.json`) — работает по fileKey+nodeId из URL, без desktop-приложения и платного Dev Mode. Обновлены fileKey и карта страниц (desktop/mobile node-id, 19 страниц) в `AGENTS.md` §2/§10 и `CLAUDE.md`; карта перегенерирована штатным `figma-pages.mjs`. В новом файле появилась отдельная страница `contact` (`752:3714`). Только документация — без деплоя.
 - [Claude] 2026-06-23 — страница «Tippgeber» (сессия, ошибки и ходы):
     ОШИБКА 1: угадал URL Figma-иконки телефона вместо того чтобы взять из get_design_context → WP отклонил файл "Du bist leider nicht berechtigt"; исправил: вызвал get_design_context(2005:2951), нашёл node 2005:3018 (mobile icon), взял screenshot PNG → загрузил успешно
     ОШИБКА 2: использовал imgInformationPoint/imgCoin как image assets из Figma — те вернули SVG, WP отклонил; исправил: get_screenshot(node) для всех трёх иконок → PNG 64×64
