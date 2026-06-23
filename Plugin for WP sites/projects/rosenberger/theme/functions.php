@@ -60,5 +60,12 @@ add_action(
 			array(),
 			(string) filemtime( get_stylesheet_directory() . '/style.css' )
 		);
+		wp_enqueue_script(
+			'rosenberger-header',
+			get_theme_file_uri( '/assets/header.js' ),
+			array(),
+			(string) filemtime( get_stylesheet_directory() . '/assets/header.js' ),
+			true
+		);
 	}
 );

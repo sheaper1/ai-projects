@@ -12,7 +12,37 @@
 		<!-- /wp:button --></div>
 		<!-- /wp:buttons -->
 
-		<!-- wp:navigation {"overlayMenu":"always","className":"site-header__menu","layout":{"type":"flex","justifyContent":"right"}} /-->
+		<!-- wp:html -->
+		<button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+			<span class="site-menu-toggle__label">Menü</span>
+			<span class="site-menu-toggle__icon" aria-hidden="true"></span>
+		</button>
+		<div class="site-menu" id="site-menu" aria-hidden="true">
+			<div class="site-menu__panel" role="dialog" aria-modal="true" aria-label="Menü">
+				<p class="site-menu__eyebrow">Menü</p>
+				<button class="site-menu__close" type="button" aria-label="Menü schließen"></button>
+				<nav class="site-menu__nav" aria-label="Hauptnavigation">
+					<a href="/verkauf/">Verkauf</a>
+					<a href="/bewertung/">Bewertung</a>
+					<a href="/vermietung/">Vermietung</a>
+					<a href="/standorte/">Standorte</a>
+					<a href="/objekte/">Aktuelle Objekte</a>
+					<a href="/ueber-mich/">Über mich</a>
+					<a href="/referenzen/">Referenzen</a>
+					<a href="/tippgeber/">Tippgeber</a>
+					<a href="/kontakt/">Kontakt</a>
+					<a href="/blog/">Blog</a>
+				</nav>
+				<div class="site-menu__meta">
+					<address>ROSENBERGER Immobilien GmbH,<br>Drevesstraße 2/1, 6800 Feldkirch</address>
+					<a href="tel:+4369911777505">Telefon: +43 699 11 777 505</a>
+					<a href="mailto:office@rosenberger.immo">Email: office@rosenberger.immo</a>
+					<span class="site-menu__socials" aria-hidden="true"></span>
+				</div>
+				<span class="site-menu__mark" aria-hidden="true"></span>
+			</div>
+		</div>
+		<!-- /wp:html -->
 	</div>
 	<!-- /wp:group -->
 </header>

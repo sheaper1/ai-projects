@@ -7,6 +7,7 @@
 
 .founder-bio__content {
 	padding: 48px;
+	max-width: 646px; /* 550px контент + 48px padding с каждой стороны */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

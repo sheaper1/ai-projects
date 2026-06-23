@@ -8,6 +8,8 @@
 
 ---
 
+- [Claude] 2026-06-23 — страница «Über mich»: скрипт `import-uber-mich.mjs` (WP REST API), 3 фото из Figma CDN загружены в медиатеку (bio-portrait/founder-photo/quote-cover), bio-hero 100vh + header.js распознаёт bio-hero как hero-страницу, founder-bio content max-width 550px, consultation-cta font-weight 300, `<br>` в заголовках (founder-story/promise-list) через wp_kses_post, trust-bar с badge — готово
+- [Claude] 2026-06-23 — staging полностью удалён: `.env` → rosenberger.digirelation.dev, `.env.prod` удалён, `deploy-stack.mjs` упрощён (убран флаг --prod), `import-homepage.mjs` упрощён (убраны STAGING_* переменные и remoteBuf с CDN) — готово
 - [Claude] 2026-06-23 — главная страница на продакшн: 48 медиа загружено, все блоки (hero→trust→pain→cards→about→regions→catalog→process→sold→referral→faq→cta), front page назначена, contacts seeded — готово
 - [Claude] 2026-06-23 — деплой на продакшн rosenberger.digirelation.dev: установлен Code Snippets, активирована тема rosenberger + rosenberger-core, деактивирован Elementor и связанные плагины; добавлен флаг --prod в deploy-stack.mjs — готово
 

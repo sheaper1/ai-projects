@@ -1,5 +1,5 @@
-// Импорт главной страницы staging → production.
-// Загружает недостающие медиа, создаёт homepage, ставит front page.
+// Создаёт / обновляет главную страницу и ставит front page.
+// Загружает недостающие медиа, создаёт homepage.
 // Запуск: node scripts/import-homepage.mjs
 
 import { readFileSync, existsSync } from 'node:fs';
@@ -16,16 +16,13 @@ const readEnv = ( file ) => {
 	}
 	return env;
 };
-const staging = readEnv( '.env' );
-const prod    = readEnv( '.env.prod' );
+const prod = readEnv( '.env' );
 
 const authHeader = ( { WP_USER, WP_APP_PASSWORD } ) =>
 	'Basic ' + Buffer.from( `${ WP_USER }:${ WP_APP_PASSWORD }` ).toString( 'base64' );
 
-const STAGING_BASE = staging.WP_URL.replace( /\/$/, '' );
-const PROD_BASE    = prod.WP_URL.replace( /\/$/, '' );
-const STAGING_AUTH = authHeader( staging );
-const PROD_AUTH    = authHeader( prod );
+const PROD_BASE = prod.WP_URL.replace( /\/$/, '' );
+const PROD_AUTH = authHeader( prod );
 
 const MIME = { svg: 'image/svg+xml', webp: 'image/webp', jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png' };
 
@@ -108,23 +105,9 @@ const arrowPrev = await ensureMedia(
 	'svg'
 );
 
-// card-icons — загружаем со staging CDN (нет локально)
-const STAGING_CDN = `${ STAGING_BASE }/wp-content/uploads/2026/06`;
-const iconEvaluation = await ensureMedia(
-	'rosenberger-card-icon-evaluation',
-	remoteBuf( `${ STAGING_CDN }/rosenberger-card-icon-evaluation.svg` ),
-	'svg'
-);
-const iconValet = await ensureMedia(
-	'rosenberger-card-icon-valet',
-	remoteBuf( `${ STAGING_CDN }/rosenberger-card-icon-valet.svg` ),
-	'svg'
-);
-const iconHouse = await ensureMedia(
-	'rosenberger-card-icon-house',
-	remoteBuf( `${ STAGING_CDN }/rosenberger-card-icon-house.svg` ),
-	'svg'
-);
+const iconEvaluation = await getMedia( 'rosenberger-card-icon-evaluation' );
+const iconValet      = await getMedia( 'rosenberger-card-icon-valet' );
+const iconHouse      = await getMedia( 'rosenberger-card-icon-house' );
 
 // Уже загруженные при деплое — просто читаем ID
 const getMedia = async ( slug ) => {

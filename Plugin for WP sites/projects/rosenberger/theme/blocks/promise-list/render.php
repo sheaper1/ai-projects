@@ -28,7 +28,7 @@ $wrapper = get_block_wrapper_attributes( [ 'class' => 'promise-list' ] );
 					<span class="promise-list__number" aria-hidden="true"><?php echo esc_html( $number ); ?></span>
 					<div class="promise-list__item-body">
 						<?php if ( $title ) : ?>
-							<h3 class="promise-list__item-title"><?php echo esc_html( $title ); ?></h3>
+							<h3 class="promise-list__item-title"><?php echo wp_kses_post( $title ); ?></h3>
 						<?php endif; ?>
 						<?php if ( $text ) : ?>
 							<p class="promise-list__item-text"><?php echo esc_html( $text ); ?></p>

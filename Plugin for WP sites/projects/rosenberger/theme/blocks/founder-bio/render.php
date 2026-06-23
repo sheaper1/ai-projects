@@ -19,7 +19,7 @@ $wrapper    = get_block_wrapper_attributes( [ 'class' => 'founder-bio' ] );
 
 	<div class="founder-bio__content">
 		<?php if ( $a['heading'] ) : ?>
-			<h2 class="founder-bio__heading"><?php echo esc_html( $a['heading'] ); ?></h2>
+			<h2 class="founder-bio__heading"><?php echo wp_kses_post( $a['heading'] ); ?></h2>
 		<?php endif; ?>
 		<?php foreach ( $paragraphs as $para ) : ?>
 			<p class="founder-bio__para"><?php echo esc_html( $para ); ?></p>
