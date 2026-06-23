@@ -25,12 +25,13 @@
 				var startH = answer.scrollHeight;
 				var anim = answer.animate(
 					[ { height: startH + 'px', opacity: 1 }, { height: '0px', opacity: 0 } ],
-					{ duration: DURATION, easing: 'ease' }
+					{ duration: DURATION, easing: 'ease', fill: 'forwards' }
 				);
 				anim.onfinish = function () {
+					// Сначала скрываем контент, потом снимаем fill — без кадра-возврата.
 					item.open = false;
+					anim.cancel();
 					answer.style.height = '';
-					answer.style.opacity = '';
 					delete item.dataset.animating;
 				};
 			} else {
@@ -40,11 +41,11 @@
 				var endH = answer.scrollHeight;
 				var anim2 = answer.animate(
 					[ { height: '0px', opacity: 0 }, { height: endH + 'px', opacity: 1 } ],
-					{ duration: DURATION, easing: 'ease' }
+					{ duration: DURATION, easing: 'ease', fill: 'forwards' }
 				);
 				anim2.onfinish = function () {
+					anim2.cancel();
 					answer.style.height = '';
-					answer.style.opacity = '';
 					delete item.dataset.animating;
 				};
 			}
