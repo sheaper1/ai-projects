@@ -22,9 +22,9 @@ $city_slug  = get_post_field( 'post_name', $post_id );
 $city_name  = get_the_title( $post_id );
 $limit      = max( 1, (int) ( $attributes['limit'] ?? 6 ) );
 
-$heading    = wp_kses_post( $attributes['heading'] ?? '' );
-$append     = ! empty( $attributes['appendCity'] );
-$subtitle   = wp_kses_post( $attributes['subtitle'] ?? '' );
+$heading_italic = wp_kses_post( $attributes['headingItalic'] ?? '' );
+$heading        = str_replace( '{city}', $city_name, wp_kses_post( $attributes['heading'] ?? '' ) );
+$subtitle       = str_replace( '{city}', $city_name, wp_kses_post( $attributes['subtitle'] ?? '' ) );
 $btn_text   = wp_kses_post( $attributes['buttonText'] ?? '' );
 $btn_url    = esc_url( $attributes['buttonUrl'] ?? '#' );
 
@@ -83,14 +83,19 @@ foreach ( $query->posts as $p ) {
 }
 wp_reset_postdata();
 
-$full_heading = $heading . ( $append && $city_name ? ' ' . $city_name : '' );
-$multi        = count( $cards ) > 1;
+$has_heading = '' !== trim( wp_strip_all_tags( $heading_italic . $heading ) );
+$multi       = count( $cards ) > 1;
 ?>
 <section <?php echo get_block_wrapper_attributes( array( 'class' => 'region-properties' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="region-properties__inner">
-		<?php if ( '' !== trim( wp_strip_all_tags( $full_heading ) ) ) : ?>
+		<?php if ( $has_heading ) : ?>
 			<div class="region-properties__head">
-				<h2 class="region-properties__heading"><?php echo esc_html( $full_heading ); ?></h2>
+				<h2 class="region-properties__heading"><?php
+					if ( '' !== trim( wp_strip_all_tags( $heading_italic ) ) ) {
+						echo '<em>' . $heading_italic . '</em>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					}
+					echo esc_html( $heading );
+				?></h2>
 				<?php if ( $subtitle ) : ?><p class="region-properties__subtitle"><?php echo $subtitle; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p><?php endif; ?>
 			</div>
 		<?php endif; ?>

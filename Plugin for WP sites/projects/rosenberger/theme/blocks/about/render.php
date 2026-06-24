@@ -10,7 +10,7 @@ $bg    = $attributes['backgroundUrl'] ?? '';
 	<div class="about__inner">
 		<div class="about__intro">
 			<div class="about__intro-text">
-				<h2 class="about__heading"><?php echo esc_html( $attributes['titleMain'] ?? '' ); ?></h2>
+				<h2 class="about__heading"><?php echo wp_kses_post( $attributes['titleMain'] ?? '' ); ?></h2>
 				<p class="about__lead"><?php echo esc_html( $attributes['text'] ?? '' ); ?></p>
 			</div>
 			<?php if ( ! empty( $attributes['buttonText'] ) ) : ?>
@@ -20,7 +20,7 @@ $bg    = $attributes['backgroundUrl'] ?? '';
 		<div class="about__cards" style="--bw-cols:<?php echo (int)( $attributes['columns'] ?? 4 ); ?>">
 			<?php foreach ( $items as $item ) : ?>
 				<article class="about__card">
-					<h3><?php echo esc_html( $item['title'] ?? '' ); ?></h3>
+					<h3><?php echo wp_kses_post( $item['title'] ?? '' ); ?></h3>
 					<p><?php echo esc_html( $item['text'] ?? '' ); ?></p>
 				</article>
 			<?php endforeach; ?>

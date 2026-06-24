@@ -81,7 +81,7 @@ const CITIES = [
 const j = ( o ) => JSON.stringify( o );
 
 function content( city, media ) {
-	const introImg = media[ 'rosenberger-iv-split' ] || media[ 'rosenberger-vm-split1' ] || {};
+	const introImg = media[ 'rosenberger-region-intro' ] || media[ 'rosenberger-iv-split' ] || {};
 	const icon = ( s ) => ( media[ s ] || {} ).url || '';
 	const ctaBg = '/wp-content/themes/rosenberger/assets/property/cta-bg.webp';
 
@@ -98,20 +98,20 @@ function content( city, media ) {
 		imageUrl: introImg.url || '',
 	} ) } /-->`;
 
-	const services = `<!-- wp:library/problem-cards ${ j( {
-		heading: `Womit ich Sie in ${ city.name }`,
-		headingItalic: 'unterstütze',
-		intro: '',
+	const services = `<!-- wp:library/region-services ${ j( {
+		heading: `Womit ich Sie<br>in <em>${ city.name }</em> unterstütze`,
+		buttonText: 'Kostenlos beraten lassen',
+		buttonUrl: '/kontakt/',
 		items: [
-			{ title: 'Immobilie verkaufen', text: `Von der Bewertung über die Vermarktung bis zur Übergabe übernehme ich den ganzen Verkauf Ihrer Immobilie in ${ city.name }.`, iconId: 0, iconUrl: icon( 'rosenberger-card-icon-house' ) },
-			{ title: 'Immobilienbewertung', text: `Sie erfahren realistisch, was Ihre Immobilie in ${ city.name } wert ist, ohne überzogene Versprechen und ohne Verpflichtung.`, iconId: 0, iconUrl: icon( 'rosenberger-card-icon-evaluation' ) },
-			{ title: 'Immobilie vermieten', text: 'Sie bekommen sorgfältig ausgewählte Mieter, und ich kümmere mich um Bonität, Vertrag und Übergabe.', iconId: 0, iconUrl: icon( 'rosenberger-card-icon-valet' ) },
+			{ title: 'Immobilie verkaufen', text: `Von der Bewertung über die Vermarktung bis zur Übergabe übernehme ich den ganzen Verkauf Ihrer Immobilie in ${ city.name }.`, iconId: 0, iconUrl: icon( 'rosenberger-card-icon-house' ), linkUrl: '/immobilie-verkaufen/' },
+			{ title: 'Immobilienbewertung', text: `Sie erfahren realistisch, was Ihre Immobilie in ${ city.name } wert ist, ohne überzogene Versprechen und ohne Verpflichtung.`, iconId: 0, iconUrl: icon( 'rosenberger-card-icon-evaluation' ), linkUrl: '/immobilienbewertung/' },
+			{ title: 'Immobilie vermieten', text: 'Sie bekommen sorgfältig ausgewählte Mieter, und ich kümmere mich um Bonität, Vertrag und Übergabe.', iconId: 0, iconUrl: icon( 'rosenberger-card-icon-valet' ), linkUrl: '/immobilie-vermieten/' },
 		],
 	} ) } /-->`;
 
 	const aboutBg = media[ 'rosenberger-about-bg' ] || {};
 	const about = `<!-- wp:library/about ${ j( {
-		titleMain: 'Darauf können Sie sich verlassen',
+		titleMain: 'Darauf können<br>Sie sich verlassen',
 		text: 'Ich war selbst Käufer und habe erlebt, wie zäh und unehrlich der Ablauf sein kann. Genau das mache ich anders.',
 		buttonText: 'Mehr über mich',
 		buttonUrl: '/uber-mich/',
@@ -120,30 +120,33 @@ function content( city, media ) {
 		columns: 4,
 		items: [
 			{ title: 'Ehrliche Bewertung', text: 'Sie bekommen einen realistischen Preis, der zum Markt passt, keinen Wunschpreis, der nur den Auftrag bringen soll.' },
-			{ title: 'Schnelle, persönliche Rückmeldung', text: 'Sie hören von mir, ohne nachfragen zu müssen.' },
-			{ title: 'Kein Verkaufsdruck', text: 'Sie entscheiden in Ihrem Tempo, nicht in meinem.' },
-			{ title: 'Ein Ansprechpartner', text: 'Vom ersten Anruf bis zur Unterschrift sprechen Sie mit mir, nicht mit wechselnden Mitarbeitern.' },
+			{ title: 'Schnelle, persönliche<br>Rückmeldung', text: 'Sie hören von mir, ohne nachfragen zu müssen.' },
+			{ title: 'Kein<br>Verkaufsdruck', text: 'Sie entscheiden in Ihrem Tempo, nicht in meinem.' },
+			{ title: 'Ein<br>Ansprechpartner', text: 'Vom ersten Anruf bis zur Unterschrift sprechen Sie mit mir, nicht mit wechselnden Mitarbeitern.' },
 		],
 	} ) } /-->`;
 
 	const process = `<!-- wp:library/process-steps /-->`;
 
 	const sold = `<!-- wp:library/region-properties ${ j( {
-		source: 'reference', heading: 'Verkauft in', appendCity: true,
+		source: 'reference', headingItalic: 'Verkauft', heading: ' in {city} und Umgebung',
 		subtitle: '', buttonText: 'Alle Referenzen ansehen', buttonUrl: '/references/', limit: 6,
 	} ) } /-->`;
 
 	const reviews = `<!-- wp:library/testimonials /-->`;
 
 	const objects = `<!-- wp:library/region-properties ${ j( {
-		source: 'property', heading: 'Aktuelle Objekte in', appendCity: true,
-		subtitle: `Sie suchen in ${ city.name }? Hier sehen Sie, was ich gerade vermittle.`,
+		source: 'property', headingItalic: '', heading: 'Aktuelle Objekte in {city}',
+		subtitle: `Sie suchen in {city}? Hier sehen Sie, was ich gerade vermittle.`,
 		buttonText: 'Alle Objekte ansehen', buttonUrl: '/objekte/', limit: 6,
 	} ) } /-->`;
 
 	const faq = `<!-- wp:library/faq-section ${ j( { heading: `Häufige Fragen zu ${ city.name }` } ) } /-->`;
 
-	const cta = `<!-- wp:library/consultation-cta ${ j( { buttonUrl: '/kontakt/', backgroundUrl: ctaBg } ) } /-->`;
+	const cta = `<!-- wp:library/consultation-cta ${ j( {
+		text: 'Persönlich und völlig unverbindlich. Ich verkaufe in ganz Vorarlberg, von Feldkirch über Dornbirn und Bregenz bis Bludenz.',
+		buttonText: 'Kostenlos beraten lassen', buttonUrl: '/kontakt/', backgroundUrl: ctaBg,
+	} ) } /-->`;
 
 	return [ trust, intro, services, about, process, sold, reviews, objects, faq, cta ].join( '\n\n' );
 }
@@ -157,11 +160,16 @@ async function main() {
 	if ( ! BASE ) throw new Error( 'WP_URL не задан' );
 	const media = await mediaMap();
 	// Google-бейдж (SVG) может быть вне основной выборки — догружаем по slug.
-	for ( const slug of [ 'rosenberger-google-rating', 'rosenberger-about-bg' ] ) {
+	for ( const slug of [ 'rosenberger-google-rating', 'rosenberger-about-bg', 'rosenberger-card-icon-house', 'rosenberger-card-icon-evaluation', 'rosenberger-card-icon-valet' ] ) {
 		if ( ! media[ slug ] ) {
 			const b = await api( `/wp/v2/media?slug=${ slug }&_fields=id,source_url` );
 			if ( Array.isArray( b ) && b[ 0 ] ) media[ slug ] = { id: b[ 0 ].id, url: b[ 0 ].source_url };
 		}
+	}
+	// Фото intro (интерьер из дизайна) — загрузка в медиатеку.
+	const introFile = path.join( root, 'projects/rosenberger/media/regions/intro.webp' );
+	if ( fs.existsSync( introFile ) ) {
+		media[ 'rosenberger-region-intro' ] = await uploadMedia( 'rosenberger-region-intro', introFile );
 	}
 
 	for ( const city of CITIES ) {

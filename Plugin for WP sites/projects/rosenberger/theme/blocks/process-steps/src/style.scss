@@ -60,9 +60,11 @@
 
 .process-steps__number {
 	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--r-32);
-	line-height: 1;
+	font-size: var(--wp--preset--font-size--r-40);
+	line-height: 1.2;
 	font-weight: 300;
+	font-style: italic;
+	letter-spacing: -0.03em;
 	color: var(--wp--preset--color--accent);
 }
 

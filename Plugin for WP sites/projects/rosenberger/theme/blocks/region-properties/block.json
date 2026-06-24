@@ -10,8 +10,8 @@
 	"supports": { "html": false, "align": [ "full" ], "multiple": true },
 	"usesContext": [ "postId" ],
 	"attributes": {
-		"heading": { "type": "string", "default": "Aktuelle Objekte in" },
-		"appendCity": { "type": "boolean", "default": true },
+		"headingItalic": { "type": "string", "default": "" },
+		"heading": { "type": "string", "default": "Aktuelle Objekte in {city}" },
 		"subtitle": { "type": "string", "default": "" },
 		"source": { "type": "string", "default": "property" },
 		"buttonText": { "type": "string", "default": "Alle Objekte ansehen" },
