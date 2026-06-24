@@ -1,0 +1,92 @@
+/* Referenz-Kundenstimme — zentriertes Zitat (single reference). */
+
+.reference-testimonial {
+	background: var(--wp--preset--color--base);
+	padding-block: var(--wp--preset--spacing--r-64);
+}
+
+.reference-testimonial .reference-testimonial__inner {
+	max-width: 1344px;
+	margin: 0 auto;
+	padding-inline: var(--wp--custom--layout--gutter);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--wp--preset--spacing--r-48);
+}
+
+.reference-testimonial .reference-testimonial__heading {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-56);
+	line-height: 1.28;
+	color: var(--wp--preset--color--contrast);
+	text-align: center;
+	margin: 0;
+}
+
+.reference-testimonial .reference-testimonial__heading em {
+	font-style: italic;
+	font-weight: 300;
+}
+
+.reference-testimonial .reference-testimonial__card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--wp--preset--spacing--r-32);
+	margin: 0;
+	width: 100%;
+}
+
+.reference-testimonial .reference-testimonial__mark {
+	display: block;
+	width: 32px;
+	height: 32px;
+	color: var(--wp--preset--color--contrast);
+}
+
+.reference-testimonial .reference-testimonial__quote {
+	max-width: 924px;
+	margin: 0;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-16);
+	line-height: 1.5;
+	color: var(--wp--preset--color--muted);
+	text-align: center;
+}
+
+.reference-testimonial .reference-testimonial__author {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--r-16);
+}
+
+.reference-testimonial .reference-testimonial__name {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-24);
+	line-height: 1.28;
+	color: var(--wp--preset--color--contrast);
+}
+
+.reference-testimonial .reference-testimonial__divider {
+	width: 2px;
+	align-self: stretch;
+	background: var(--wp--preset--color--border);
+}
+
+.reference-testimonial .reference-testimonial__stars {
+	font-size: var(--wp--preset--font-size--r-24);
+	letter-spacing: 4px;
+	line-height: 1.28;
+}
+
+@media (max-width: 782px) {
+	.reference-testimonial .reference-testimonial__author {
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--r-8);
+	}
+	.reference-testimonial .reference-testimonial__divider {
+		display: none;
+	}
+}

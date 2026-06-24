@@ -21,3 +21,7 @@ require_once __DIR__ . '/includes/property-meta-box.php';
 require_once __DIR__ . '/includes/svg-media.php';
 require_once __DIR__ . '/includes/google-reviews.php';
 require_once __DIR__ . '/includes/property-catalog.php';
+require_once __DIR__ . '/includes/reference-fields.php';
+require_once __DIR__ . '/includes/reference-cpt.php';
+require_once __DIR__ . '/includes/reference-meta-box.php';
+require_once __DIR__ . '/includes/reference-catalog.php';

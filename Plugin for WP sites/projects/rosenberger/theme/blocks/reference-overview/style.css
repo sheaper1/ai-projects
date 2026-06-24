@@ -1,0 +1,85 @@
+/* Referenz-Beschreibung — Bild links + Objektbeschreibung rechts (single reference). */
+
+.reference-overview {
+	background: var(--wp--preset--color--base);
+	padding-block: var(--wp--preset--spacing--r-64);
+}
+
+.reference-overview .reference-overview__inner {
+	max-width: 1344px;
+	margin: 0 auto;
+	padding-inline: var(--wp--custom--layout--gutter);
+	display: grid;
+	grid-template-columns: minmax(0, 649fr) minmax(0, 551fr);
+	gap: clamp(2rem, 5vw, 92px);
+	align-items: start;
+}
+
+.reference-overview .reference-overview__media {
+	aspect-ratio: 649 / 778;
+	overflow: hidden;
+	background: var(--wp--preset--color--placeholder);
+}
+
+.reference-overview .reference-overview__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.reference-overview .reference-overview__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-24);
+}
+
+.reference-overview .reference-overview__heading {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-56);
+	line-height: 1.2;
+	letter-spacing: -1.68px;
+	color: var(--wp--preset--color--contrast);
+	margin: 0;
+}
+
+.reference-overview .reference-overview__desc {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-16);
+	font-weight: 300;
+	line-height: 1.5;
+	color: var(--wp--preset--color--muted);
+}
+
+.reference-overview .reference-overview__desc > :first-child {
+	margin-top: 0;
+}
+
+.reference-overview .reference-overview__desc > :last-child {
+	margin-bottom: 0;
+}
+
+.reference-overview .reference-overview__desc p {
+	margin: 0 0 var(--wp--preset--spacing--r-16);
+}
+
+.reference-overview .reference-overview__desc h2,
+.reference-overview .reference-overview__desc h3,
+.reference-overview .reference-overview__desc h4 {
+	font-family: var(--wp--preset--font-family--body);
+	font-weight: 400;
+	font-size: var(--wp--preset--font-size--r-24);
+	line-height: 1.5;
+	color: var(--wp--preset--color--contrast);
+	margin: 0 0 var(--wp--preset--spacing--r-16);
+}
+
+@media (max-width: 1024px) {
+	.reference-overview .reference-overview__inner {
+		grid-template-columns: 1fr;
+		gap: var(--wp--preset--spacing--r-32);
+	}
+	.reference-overview .reference-overview__media {
+		aspect-ratio: 16 / 10;
+	}
+}

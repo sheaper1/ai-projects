@@ -1,0 +1,54 @@
+/* Referenzen-Hero — Titel + Banner (Archiv-Kopf der References-Seite). */
+
+.references-hero {
+	background: var(--wp--preset--color--base);
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-48);
+	padding-top: clamp(7rem, 11vw, 160px);
+}
+
+.references-hero .references-hero__head {
+	display: flex;
+	justify-content: center;
+	padding-inline: var(--wp--custom--layout--gutter);
+}
+
+.references-hero .references-hero__title {
+	max-width: 867px;
+	margin: 0;
+	text-align: center;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-56);
+	line-height: 1.1;
+	letter-spacing: -1.68px;
+	color: var(--wp--preset--color--contrast);
+}
+
+.references-hero .references-hero__title em {
+	font-style: italic;
+	font-weight: 300;
+}
+
+.references-hero .references-hero__banner {
+	width: 100%;
+	height: 373px;
+	overflow: hidden;
+	background: var(--wp--preset--color--placeholder);
+}
+
+.references-hero .references-hero__banner img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+@media (max-width: 782px) {
+	.references-hero .references-hero__title {
+		font-size: var(--wp--preset--font-size--r-40);
+	}
+	.references-hero .references-hero__banner {
+		height: 220px;
+	}
+}

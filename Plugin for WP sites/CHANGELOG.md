@@ -3,6 +3,20 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-24 — **References + CPT `reference`**: новый тип записи
+  «Referenzen» (проданный объект + отзыв клиента) рядом с `property`. Плагин:
+  `reference-fields/-cpt/-meta-box/-catalog.php` (мета `property_*` переиспользуется
+  + `reference_*` для отзыва; таксономии `reference-type`/`reference-city`; REST
+  `/rosenberger/v1/references` для AJAX-каталога). Тема: блоки `reference-catalog`
+  (табы-Typ + Lage + Sortierung, AJAX, пагинация, 2-кол. сетка), `reference-overview`
+  (фото + Objektbeschreibung), `reference-testimonial` (Zufriedene Kundenstimmen),
+  `references-hero` (заголовок + баннер из Figma). Шаблоны `archive-reference.html`
+  (hero → trust-bar → catalog → testimonials → CTA) и `single-reference.html`
+  (property-hero/stats/gallery reuse + overview + testimonial + CTA). Сид
+  `seed-references.mjs` (4 записи). Собрано, check 0 нарушений, задеплоено,
+  перемалинки сброшены, обе страницы 200, визуальная сверка desktop+mobile —
+  совпадает с Figma (references `2009:6147`, single `2009:11430`). Тексты
+  Objektbeschreibung — черновик для клиента.
 - [Claude] 2026-06-24 — `single-property`: фиксы по фидбеку. (1) **Hero** — левая
   половина белая с текстом, правая — одно фото; добавлен `overflow:hidden`, фото
   больше не «течёт». (2) **Карусели переведены на общий движок**

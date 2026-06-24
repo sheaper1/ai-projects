@@ -1,0 +1,345 @@
+/* Reference Catalog — сетка референсов + фильтр (страница references). */
+
+.reference-catalog {
+	background: var(--wp--preset--color--base);
+	padding-block: var(--wp--preset--spacing--r-64);
+}
+
+.reference-catalog .rc-inner {
+	max-width: 1344px;
+	margin: 0 auto;
+	padding-inline: var(--wp--custom--layout--gutter);
+}
+
+.reference-catalog .rc-heading {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-48);
+	line-height: 1.1;
+	color: var(--wp--preset--color--contrast);
+	margin: 0 0 var(--wp--preset--spacing--r-32);
+}
+
+.reference-catalog .rc-heading em {
+	font-style: italic;
+	font-weight: 300;
+}
+
+/* ── Панель фильтра: табы слева, дропдауны справа ───────────────────────── */
+.reference-catalog .rc-bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--r-16);
+	margin-bottom: var(--wp--preset--spacing--r-32);
+}
+
+.reference-catalog .rc-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--r-24);
+}
+
+.reference-catalog .rc-tab {
+	position: relative;
+	cursor: pointer;
+	font-size: var(--wp--preset--font-size--r-16);
+	color: var(--wp--preset--color--muted);
+	padding-bottom: 4px;
+	transition: color var(--wp--custom--transition--fast);
+}
+
+.reference-catalog .rc-tab input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.reference-catalog .rc-tab:hover {
+	color: var(--wp--preset--color--contrast);
+}
+
+.reference-catalog .rc-tab.is-active {
+	color: var(--wp--preset--color--contrast);
+}
+
+.reference-catalog .rc-tab.is-active::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 50px;
+	max-width: 100%;
+	height: 2px;
+	background: var(--wp--preset--color--contrast);
+}
+
+.reference-catalog .rc-selects {
+	display: flex;
+	gap: var(--wp--preset--spacing--r-16);
+}
+
+/* Нативные селекты — фолбэк; их подменяет .rc-select (view.js). */
+.reference-catalog .rc-ort-select,
+.reference-catalog .rc-sort-select {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-16);
+	color: var(--wp--preset--color--contrast);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--pill);
+	padding: 14px 22px;
+	background: var(--wp--preset--color--base);
+}
+
+.reference-catalog .rc-select__native {
+	display: none;
+}
+
+.reference-catalog .rc-select {
+	position: relative;
+}
+
+.reference-catalog .rc-select__trigger {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-16);
+	color: var(--wp--preset--color--contrast);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--pill);
+	padding: 14px 22px;
+	background: var(--wp--preset--color--base);
+	cursor: pointer;
+}
+
+.reference-catalog .rc-select__chev {
+	transition: transform var(--wp--custom--transition--fast);
+}
+
+.reference-catalog .rc-select.is-open .rc-select__chev {
+	transform: rotate(180deg);
+}
+
+.reference-catalog .rc-select__menu {
+	position: absolute;
+	top: calc(100% + 6px);
+	right: 0;
+	min-width: 100%;
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--medium);
+	box-shadow: 0 12px 32px rgba(20, 35, 53, 0.12);
+	padding: 6px;
+	z-index: 20;
+	display: none;
+}
+
+.reference-catalog .rc-select.is-open .rc-select__menu {
+	display: block;
+}
+
+.reference-catalog .rc-select__option {
+	display: block;
+	width: 100%;
+	text-align: left;
+	white-space: nowrap;
+	font-size: var(--wp--preset--font-size--r-16);
+	color: var(--wp--preset--color--contrast);
+	background: none;
+	border: 0;
+	border-radius: var(--wp--custom--radius--small);
+	padding: 10px 14px;
+	cursor: pointer;
+}
+
+.reference-catalog .rc-select__option:hover,
+.reference-catalog .rc-select__option.is-selected {
+	background: var(--wp--preset--color--surface);
+}
+
+/* ── Сетка карточек ────────────────────────────────────────────────────── */
+.reference-catalog .rc-results.is-loading {
+	opacity: 0.5;
+	transition: opacity var(--wp--custom--transition--fast);
+}
+
+.reference-catalog .rc-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--wp--preset--spacing--r-24);
+}
+
+.reference-catalog .rc-card {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-16);
+	border: 1px solid var(--wp--preset--color--accent);
+	padding: var(--wp--preset--spacing--r-8);
+	text-decoration: none;
+	color: inherit;
+	transition: box-shadow var(--wp--custom--transition--base);
+}
+
+.reference-catalog .rc-card:hover {
+	box-shadow: 0 16px 40px rgba(20, 35, 53, 0.12);
+}
+
+.reference-catalog .rc-card__img-wrap {
+	aspect-ratio: 649 / 383;
+	overflow: hidden;
+	background: var(--wp--preset--color--placeholder);
+}
+
+.reference-catalog .rc-card__img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform var(--wp--custom--transition--base);
+}
+
+.reference-catalog .rc-card:hover .rc-card__img {
+	transform: scale(1.03);
+}
+
+.reference-catalog .rc-card__img-placeholder {
+	width: 100%;
+	height: 100%;
+}
+
+.reference-catalog .rc-card__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-24);
+	padding: 0 var(--wp--preset--spacing--r-16) var(--wp--preset--spacing--r-24);
+}
+
+.reference-catalog .rc-card__top {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-16);
+}
+
+.reference-catalog .rc-card__title {
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 600;
+	font-size: var(--wp--preset--font-size--r-24);
+	line-height: 1.2;
+	color: var(--wp--preset--color--contrast);
+	margin: 0;
+}
+
+.reference-catalog .rc-card__excerpt {
+	font-size: var(--wp--preset--font-size--r-16);
+	line-height: 1.5;
+	color: var(--wp--preset--color--muted);
+	margin: 0;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.reference-catalog .rc-card__meta {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--wp--preset--spacing--r-24) 31px;
+	margin: 0;
+}
+
+.reference-catalog .rc-meta-item dt {
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 700;
+	font-size: var(--wp--preset--font-size--r-12);
+	text-transform: uppercase;
+	letter-spacing: -0.36px;
+	color: var(--wp--preset--color--muted);
+	opacity: 0.6;
+	margin-bottom: var(--wp--preset--spacing--r-8);
+}
+
+.reference-catalog .rc-meta-item dd {
+	font-size: var(--wp--preset--font-size--r-16);
+	line-height: 1.5;
+	color: var(--wp--preset--color--contrast);
+	margin: 0;
+}
+
+.reference-catalog .rc-empty {
+	grid-column: 1 / -1;
+	text-align: center;
+	color: var(--wp--preset--color--muted);
+	padding: var(--wp--preset--spacing--r-64) 0;
+}
+
+/* ── Пагинация ─────────────────────────────────────────────────────────── */
+.reference-catalog .rc-pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--r-8);
+	margin-top: var(--wp--preset--spacing--r-48);
+}
+
+.reference-catalog .rc-page-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 40px;
+	height: 40px;
+	padding: 0 8px;
+	border-radius: var(--wp--custom--radius--small);
+	font-size: var(--wp--preset--font-size--r-16);
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+	transition: background var(--wp--custom--transition--fast);
+}
+
+.reference-catalog .rc-page-btn:hover {
+	background: var(--wp--preset--color--surface);
+}
+
+.reference-catalog .rc-page-btn.is-active {
+	position: relative;
+	font-weight: 600;
+}
+
+.reference-catalog .rc-page-btn.is-active::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -1px;
+	height: 2px;
+	background: var(--wp--preset--color--contrast);
+}
+
+.reference-catalog .rc-page-ellipsis {
+	color: var(--wp--preset--color--muted);
+	padding: 0 4px;
+}
+
+/* ── Адаптив ───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+	.reference-catalog .rc-bar {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.reference-catalog .rc-selects {
+		justify-content: flex-start;
+	}
+}
+
+@media (max-width: 782px) {
+	.reference-catalog .rc-grid {
+		grid-template-columns: 1fr;
+	}
+	.reference-catalog .rc-selects {
+		flex-direction: column;
+	}
+	.reference-catalog .rc-select,
+	.reference-catalog .rc-select__trigger {
+		width: 100%;
+	}
+}

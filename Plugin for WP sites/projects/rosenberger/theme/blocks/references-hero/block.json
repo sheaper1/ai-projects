@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rosenberger/references-hero",
+	"title": "Referenzen-Hero",
+	"category": "theme",
+	"description": "Kopf der References-Seite: zentrierter Titel + breites Banner-Bild. Server-Render.",
+	"supports": { "html": false, "align": [ "full" ] },
+	"attributes": {
+		"titleItalic": { "type": "string", "default": "Erfolgreiche" },
+		"title":       { "type": "string", "default": "Immobilientransaktionen" }
+	},
+	"render": "render.php",
+	"style": "file:./style.css",
+	"textdomain": "rosenberger"
+}

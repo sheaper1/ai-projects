@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rosenberger/reference-testimonial",
+	"title": "Referenz-Kundenstimme",
+	"category": "theme",
+	"description": "«Zufriedene Kundenstimmen»: zentriertes Zitat + Name | Sterne. Server-Render, liest reference_* Meta.",
+	"supports": { "html": false, "align": [ "full" ] },
+	"render": "render.php",
+	"style": "file:./style.css",
+	"textdomain": "rosenberger"
+}

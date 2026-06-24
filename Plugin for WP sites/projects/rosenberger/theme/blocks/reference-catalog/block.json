@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rosenberger/reference-catalog",
+	"title": "Referenz-Katalog",
+	"category": "theme",
+	"description": "Сетка референсов с фильтром по типу/Ort и сортировкой (AJAX), пагинация. Server-Render, CPT reference.",
+	"supports": { "html": false, "align": [ "full" ] },
+	"attributes": {
+		"heading":       { "type": "string", "default": "Objekte" },
+		"headingItalic": { "type": "string", "default": "in Vorarlberg" },
+		"postsPerPage":  { "type": "number", "default": 8 }
+	},
+	"viewScript": "file:./view.js",
+	"style": "file:./style.css",
+	"render": "render.php",
+	"textdomain": "rosenberger"
+}

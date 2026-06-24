@@ -84,7 +84,7 @@ add_action(
 add_filter(
 	'body_class',
 	function ( $classes ) {
-		if ( is_singular( 'property' ) ) {
+		if ( is_singular( 'property' ) || is_singular( 'reference' ) || is_post_type_archive( 'reference' ) ) {
 			$classes[] = 'has-light-hero';
 		}
 		return $classes;
