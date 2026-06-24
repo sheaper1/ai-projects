@@ -67,5 +67,26 @@ add_action(
 			(string) filemtime( get_stylesheet_directory() . '/assets/header.js' ),
 			true
 		);
+		// Общий движок каруселей (нужен блокам property-hero / property-gallery).
+		wp_enqueue_script(
+			'rb-carousel',
+			get_theme_file_uri( '/assets/js/rb-carousel.js' ),
+			array(),
+			(string) filemtime( get_stylesheet_directory() . '/assets/js/rb-carousel.js' ),
+			true
+		);
+	}
+);
+
+/**
+ * Класс на body для страниц со светлым Hero (single object) — шапка с тёмным меню.
+ */
+add_filter(
+	'body_class',
+	function ( $classes ) {
+		if ( is_singular( 'property' ) ) {
+			$classes[] = 'has-light-hero';
+		}
+		return $classes;
 	}
 );

@@ -19,15 +19,18 @@ if ( ! $address && ! ( $lat && $lng ) ) {
 	return;
 }
 
-// POI: одна строка = «Name | Zeit».
+// POI: одна строка = «Name | Zeit | icon». icon ∈ transit|highway|train|plane|pin.
+$icons_dir   = get_stylesheet_directory_uri() . '/assets/property/icons/poi/';
+$icon_allow  = array( 'transit', 'highway', 'train', 'plane', 'pin' );
 $pois = array();
 foreach ( preg_split( '/\r\n|\r|\n/', (string) $get( 'property_poi' ) ) as $line ) {
 	$line = trim( $line );
 	if ( '' === $line ) {
 		continue;
 	}
-	$parts = array_map( 'trim', explode( '|', $line, 2 ) );
-	$pois[] = array( 'label' => $parts[0], 'time' => $parts[1] ?? '' );
+	$parts = array_map( 'trim', explode( '|', $line, 3 ) );
+	$icon  = isset( $parts[2] ) && in_array( $parts[2], $icon_allow, true ) ? $parts[2] : 'pin';
+	$pois[] = array( 'label' => $parts[0], 'time' => $parts[1] ?? '', 'icon' => $icon );
 }
 ?>
 <section <?php echo get_block_wrapper_attributes( array( 'class' => 'property-location' ) ); ?>>
@@ -49,7 +52,10 @@ foreach ( preg_split( '/\r\n|\r|\n/', (string) $get( 'property_poi' ) ) as $line
 			<div class="property-location__pois">
 				<?php foreach ( $pois as $p ) : ?>
 				<div class="property-location__poi">
-					<?php if ( $p['label'] ) : ?><span class="property-location__poi-label"><?php echo esc_html( $p['label'] ); ?></span><?php endif; ?>
+					<div class="property-location__poi-top">
+						<img class="property-location__poi-icon" src="<?php echo esc_url( $icons_dir . $p['icon'] . '.svg' ); ?>" alt="" width="24" height="24" />
+						<?php if ( $p['label'] ) : ?><span class="property-location__poi-label"><?php echo esc_html( $p['label'] ); ?></span><?php endif; ?>
+					</div>
 					<?php if ( $p['time'] ) : ?><span class="property-location__poi-time"><?php echo esc_html( $p['time'] ); ?></span><?php endif; ?>
 				</div>
 				<?php endforeach; ?>

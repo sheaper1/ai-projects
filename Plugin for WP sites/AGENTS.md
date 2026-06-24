@@ -368,6 +368,15 @@ render={({ open }) => (
 - **Бренд/сторонние цвета** (золото звёзд, Google-логотип) пиши **инлайном в
   `render.php`**, не в SCSS: `tokens:scan` сканит только SCSS, а в макете эти
   цвета — часть ассета (как логотип). Токены остаются чисты.
+- **Карусели — ТОЛЬКО через общий движок `theme/assets/js/rb-carousel.js`
+  (`window.RbCarousel`).** Любая карусель ОБЯЗАНА иметь: drag мышью + свайп тачем
+  (pointer events) и **бесконечный цикл** (клоны набора слева/справа, бесшовный
+  rebase) — статичный «листатель без петли и драга» не принимается. Разметка:
+  контейнер с `[data-track]` (дети = слайды), опц. `[data-prev]/[data-next]/
+  [data-dots]`. Вызов из `view.js` блока: `RbCarousel(el, { frame, clickToGo,
+  autoplay })`. Скрипт подключён глобально в `functions.php`. Образцы: `property-hero`
+  (full-width, 1 слайд), `property-gallery` (coverflow: `frame` = viewport,
+  `clickToGo:true`, активный по центру через `.is-active`).
 - **Анимации — CSS, не JS-высота.** Аккордеон = `grid-template-rows: 0fr↔1fr`
   (плавно, без рывков); padding выноси во вложенный элемент, иначе `0fr` не
   схлопнется в 0. JS только переключает класс. Прогрессивное улучшение: без JS

@@ -3,6 +3,17 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-24 — `single-property`: фиксы по фидбеку. (1) **Hero** — левая
+  половина белая с текстом, правая — одно фото; добавлен `overflow:hidden`, фото
+  больше не «течёт». (2) **Карусели переведены на общий движок**
+  `assets/js/rb-carousel.js` (`RbCarousel`): drag/свайп + **бесконечный цикл**
+  (hero и gallery); правило зафиксировано в AGENTS §6a и памяти. (3) **Шапка** на
+  светлом Hero — тёмное меню/лого (body-класс `has-light-hero`). (4)
+  **Objektbeschreibung**: Lage/Ausstattung/Sonstiges — жирные подзаголовки. (5)
+  Кнопки карточки маклера — **в ряд** (были в столбик). (6) **Карта**: у POI-карточек
+  появились иконки (transit/highway/train/plane, theme-assets, черновик). (7)
+  **Мобайл по макету**: Hero — сначала контент, потом фото; Übersicht — порядок
+  Kurz→Objekt→карточка маклера (grid-areas). Проверено на живом URL (desktop+mobile).
 - [Claude] 2026-06-24 — Шаблон CPT `single-property.html` собран по макету «single
   object» (богатый дизайн). **Мета-модель property расширена** ~25 полями (схема —
   один источник `includes/property-fields.php`: register_post_meta + мета-бокс +

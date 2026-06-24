@@ -8,14 +8,16 @@
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 648fr 632fr;
-	gap: var(--wp--preset--spacing--r-64);
+	grid-template-areas:
+		"intro desc"
+		"agent desc";
+	column-gap: var(--wp--preset--spacing--r-64);
+	row-gap: var(--wp--preset--spacing--r-48);
 	align-items: start;
 }
-.property-overview__col--left {
-	display: flex;
-	flex-direction: column;
-	gap: var(--wp--preset--spacing--r-48);
-}
+.property-overview__intro { grid-area: intro; display: flex; flex-direction: column; }
+.property-overview__agent { grid-area: agent; }
+.property-overview__desc-col { grid-area: desc; }
 
 .property-overview__heading {
 	margin: 0 0 var(--wp--preset--spacing--r-24);
@@ -40,6 +42,16 @@
 .property-overview__lead { margin: 0; }
 .property-overview__desc > :first-child { margin-top: 0; }
 .property-overview__desc > :last-child { margin-bottom: 0; }
+.property-overview__desc h3,
+.property-overview__desc h4 {
+	margin: var(--wp--preset--spacing--r-24) 0 var(--wp--preset--spacing--r-8);
+	font-family: var(--wp--preset--font-family--body);
+	font-weight: 600;
+	font-size: var(--wp--preset--font-size--r-18);
+	line-height: 1.4;
+	color: var(--wp--preset--color--contrast);
+}
+.property-overview__desc p { margin: 0 0 var(--wp--preset--spacing--r-16); }
 
 /* ── Карточка маклера (тёмная) ───────────────────────────── */
 .property-overview__agent {
@@ -117,15 +129,16 @@
 .property-overview__agent-actions {
 	margin-top: auto;
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	gap: 9px;
 }
 .property-overview__btn {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	white-space: nowrap;
 	height: 48px;
-	padding-inline: 24px;
+	padding-inline: 20px;
 	border-radius: var(--wp--custom--radius--pill);
 	font-family: var(--wp--preset--font-family--body);
 	font-weight: 500;
@@ -148,11 +161,19 @@
 }
 
 @media (max-width: 1024px) {
-	.property-overview__inner { grid-template-columns: 1fr; gap: var(--wp--preset--spacing--r-48); }
+	.property-overview__inner {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"intro"
+			"desc"
+			"agent";
+		row-gap: var(--wp--preset--spacing--r-48);
+	}
 }
 @media (max-width: 600px) {
 	.property-overview__agent { flex-direction: column; }
 	.property-overview__agent-photo { flex-basis: auto; min-height: 280px; }
 	.property-overview__agent-body { padding: 0 var(--wp--preset--spacing--r-16) var(--wp--preset--spacing--r-16); }
+	.property-overview__agent-actions { flex-wrap: wrap; }
 	.property-overview__heading { font-size: var(--wp--preset--font-size--r-40); }
 }

@@ -27,15 +27,19 @@ $tel = preg_replace( '/[^+0-9]/', '', (string) $agent['phone'] );
 <section <?php echo get_block_wrapper_attributes( array( 'class' => 'property-overview' ) ); ?>>
 	<div class="property-overview__inner">
 
-		<div class="property-overview__col property-overview__col--left">
-			<?php if ( $short ) : ?>
-			<div class="property-overview__intro">
-				<h2 class="property-overview__heading">Kurzbeschreibung</h2>
-				<p class="property-overview__lead"><?php echo esc_html( $short ); ?></p>
-			</div>
-			<?php endif; ?>
+		<?php if ( $short ) : ?>
+		<div class="property-overview__intro">
+			<h2 class="property-overview__heading">Kurzbeschreibung</h2>
+			<p class="property-overview__lead"><?php echo esc_html( $short ); ?></p>
+		</div>
+		<?php endif; ?>
 
-			<aside class="property-overview__agent">
+		<div class="property-overview__desc-col">
+			<h2 class="property-overview__heading">Objektbeschreibung</h2>
+			<div class="property-overview__desc"><?php echo wp_kses_post( $desc_html ); ?></div>
+		</div>
+
+		<aside class="property-overview__agent">
 				<?php if ( $agent['portrait'] ) : ?>
 				<div class="property-overview__agent-photo">
 					<img src="<?php echo esc_url( $agent['portrait'] ); ?>" alt="<?php echo esc_attr( $agent['name'] ); ?>" loading="lazy" />
@@ -69,12 +73,6 @@ $tel = preg_replace( '/[^+0-9]/', '', (string) $agent['phone'] );
 					</div>
 				</div>
 			</aside>
-		</div>
-
-		<div class="property-overview__col property-overview__col--right">
-			<h2 class="property-overview__heading">Objektbeschreibung</h2>
-			<div class="property-overview__desc"><?php echo wp_kses_post( $desc_html ); ?></div>
-		</div>
 
 	</div>
 </section>

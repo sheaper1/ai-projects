@@ -28,6 +28,11 @@
 	align-items: center;
 	transition: transform var(--wp--custom--transition--base);
 	will-change: transform;
+	cursor: grab;
+}
+.property-gallery__carousel.is-dragging .property-gallery__track {
+	transition: none;
+	cursor: grabbing;
 }
 .property-gallery__slide {
 	flex: 0 0 min(796px, 84vw);

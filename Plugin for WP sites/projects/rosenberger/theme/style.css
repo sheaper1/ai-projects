@@ -117,6 +117,11 @@ main.wp-block-group { margin-block-start: 0 !important; }
 .site-header.is-scrolled .site-menu-toggle {
 	color: var(--wp--preset--color--contrast);
 }
+/* Светлый Hero (single object): меню/логотип тёмные уже в верхнем состоянии,
+   CTA остаётся белой пилюлей с тёмным текстом (дефолт non-scrolled). */
+body.has-light-hero .site-header:not(.is-scrolled) {
+	color: var(--wp--preset--color--contrast);
+}
 .site-menu {
 	position: fixed;
 	inset: 0;

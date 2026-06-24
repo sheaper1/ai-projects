@@ -92,7 +92,7 @@ const META = {
 	property_flooring: 'Parkett, Fliesen',
 	property_lat: '47.4125',
 	property_lng: '9.7417',
-	property_poi: 'Bahnhof Dornbirn | 8 Min\nVolksschule | 5 Min\nNahversorger | 3 Min\nFlughafen Altenrhein | 35 Min',
+	property_poi: 'Fußweg zu ÖPNV | 4 Min | transit\nnächste Autobahn | 6 Min | highway\nnächster HBF | 7 Min | train\nnächster Flughafen | 35 Min | plane',
 	// Аккордеоны — ЧЕРНОВИК (нет в Figma), клиент правит.
 	property_acc_condition: 'Baujahr 2019, neuwertiger Zustand. Aufzug vorhanden, barrierefrei zugänglich. Keller­abteil und Tiefgaragenstellplatz mit Wallbox-Vorrüstung inklusive.',
 	property_acc_equipment: 'Echtholzparkett, Fußbodenheizung, dreifachverglaste Fenster mit elektrischen Rollläden, hochwertige Einbauküche, Südbalkon.',
@@ -119,11 +119,22 @@ async function run() {
 	console.log( '   gallery ids:', galleryIds, '| portrait:', portrait.source_url );
 
 	console.log( '✏️  REST: Titel / Beschreibung / Beitragsbild…' );
+	// Подзаголовки Lage/Ausstattung/Sonstiges → отдельные heading-блоки (жирные).
+	const SUBHEADS = [ 'Lage', 'Ausstattung', 'Sonstiges' ];
+	const content = BESCHREIBUNG.split( '\n\n' ).map( block => {
+		const lines = block.split( '\n' );
+		if ( SUBHEADS.includes( lines[ 0 ].trim() ) ) {
+			const head = `<!-- wp:heading {"level":4} --><h4 class="wp-block-heading">${ lines[ 0 ].trim() }</h4><!-- /wp:heading -->`;
+			const body = lines.slice( 1 ).join( '<br>' );
+			return body ? `${ head }\n<!-- wp:paragraph --><p>${ body }</p><!-- /wp:paragraph -->` : head;
+		}
+		return `<!-- wp:paragraph --><p>${ block.replace( /\n/g, '<br>' ) }</p><!-- /wp:paragraph -->`;
+	} ).join( '\n' );
 	const upd = await api( `/wp-json/wp/v2/property/${ POST_ID }`, {
 		method: 'POST',
 		body: JSON.stringify( {
 			title: 'Helle 4-Zimmer-Wohnung mit Bergblick in Dornbirn',
-			content: BESCHREIBUNG.split( '\n\n' ).map( p => `<!-- wp:paragraph --><p>${ p.replace( /\n/g, '<br>' ) }</p><!-- /wp:paragraph -->` ).join( '\n' ),
+			content,
 			excerpt: META.property_short_desc,
 			featured_media: hero.id,
 		} ),
