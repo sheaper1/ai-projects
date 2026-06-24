@@ -3,6 +3,18 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-25 — **Tippgeber: многошаговый фаннел подключён к WPForms (работает).**
+  Раньше фаннел «Tipp einsenden» был демо без отправки (`WPF.formId=null`). Теперь:
+  (1) `scripts/setup-tipper-form.mjs` создаёт форму WPForms `tippgeber` (Anrede, Vorname,
+  Nachname, Email[req], Telefon, PLZ + textarea «Objektangaben») одноразовым Code Snippet,
+  письмо на office-email, подтверждение = редирект `/danke/`. (2) `render.php` авто-находит
+  форму по slug (как contact-section), инжектит `window.RB_TIPPER={formId,field}` и скрытую
+  `[wpforms]`. (3) `funnel.html` читает инжектнутый мост; все ответы опросника собираются в
+  читаемую сводку → в textarea, контактные поля — по отдельности. Грабли: `the_content`
+  (wptexturize) энтити-кодировал ` && ` с пробелами внутри инлайн-скрипта (HTML-строки в JS
+  путают токенайзер) → JS падал. Убрал пробельный `&&` из своей строки. E2E
+  (`scripts/test-tipper.mjs`) проходит: фаннел → контактный шаг → submit → редирект `/danke/`.
+  ВНИМАНИЕ: тест создаёт реальный лид (qa-tipp@example.com) и письмо на office.
 - [Claude] 2026-06-25 — **Аудит сайта + фиксы по итогам.** Прошёлся по всем 11 страницам
   (desktop+mobile). Найдено и исправлено: (1) `/impressum/` отдавал 404 — создал страницу
   со стандартным плейсхолдер-Impressum (AT: §5 ECG/§14 UGB); (2) `/datenschutz/` существовала,
