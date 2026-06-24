@@ -31,7 +31,7 @@ if ( ! $images ) {
 				<div class="property-gallery__track" data-track>
 					<?php foreach ( $images as $i => $src ) : ?>
 						<figure class="property-gallery__slide" data-index="<?php echo (int) $i; ?>">
-							<img src="<?php echo esc_url( $src ); ?>" alt="" loading="lazy" />
+							<img src="<?php echo esc_url( $src ); ?>" alt="" loading="lazy" draggable="false" oncontextmenu="return false" />
 						</figure>
 					<?php endforeach; ?>
 				</div>

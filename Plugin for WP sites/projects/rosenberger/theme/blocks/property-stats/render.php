@@ -20,6 +20,12 @@ $stats = array(
 	array( 'icon' => 'year.svg',      'label' => 'Baujahr',      'key' => 'property_year' ),
 );
 
+// Для референсов (часто Grundstück без жилых показателей) — добавляем Grundstücksfläche,
+// чтобы секция не была пустой.
+if ( 'reference' === get_post_type( $post_id ) ) {
+	$stats[] = array( 'icon' => 'area.svg', 'label' => 'Grundstücksfläche', 'key' => 'property_plot_area' );
+}
+
 $cards = array();
 foreach ( $stats as $s ) {
 	$value = get_post_meta( $post_id, $s['key'], true );

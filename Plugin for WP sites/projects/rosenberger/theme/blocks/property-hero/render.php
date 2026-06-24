@@ -10,6 +10,8 @@ defined( 'ABSPATH' ) || exit;
 
 $post_id = isset( $block->context['postId'] ) ? (int) $block->context['postId'] : get_the_ID();
 $get     = fn( $k ) => get_post_meta( $post_id, $k, true );
+// Referenz (проданная сделка) — в макете сингла нет кнопки CTA в hero.
+$is_reference = 'reference' === get_post_type( $post_id );
 
 $address   = $get( 'property_address' );
 $status    = $get( 'property_status' ) ?: 'Verfügbar';
@@ -91,7 +93,9 @@ if ( $nr ) {
 					<?php endif; ?>
 				</div>
 				<?php endif; ?>
+				<?php if ( ! $is_reference ) : ?>
 				<a class="property-hero__cta" href="/kontakt/">Besichtigung anfragen</a>
+				<?php endif; ?>
 			</div>
 
 		</div>

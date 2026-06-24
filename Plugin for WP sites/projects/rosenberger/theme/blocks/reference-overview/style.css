@@ -2,7 +2,7 @@
 
 .reference-overview {
 	background: var(--wp--preset--color--base);
-	padding-block: var(--wp--preset--spacing--r-64);
+	padding-block: var(--wp--custom--layout--section-space);
 }
 
 .reference-overview .reference-overview__inner {
@@ -10,8 +10,9 @@
 	margin: 0 auto;
 	padding-inline: var(--wp--custom--layout--gutter);
 	display: grid;
-	grid-template-columns: minmax(0, 649fr) minmax(0, 551fr);
-	gap: clamp(2rem, 5vw, 92px);
+	grid-template-columns: minmax(0, 649px) minmax(0, 551px);
+	justify-content: start;
+	gap: clamp(3rem, 7vw, 110px);
 	align-items: start;
 }
 

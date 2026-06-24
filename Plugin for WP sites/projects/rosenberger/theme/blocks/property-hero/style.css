@@ -182,6 +182,7 @@
 	line-height: 1.5;
 	letter-spacing: -0.01em;
 	color: var(--wp--preset--color--contrast);
+	white-space: nowrap;
 }
 .property-hero__price-sub {
 	font-family: var(--wp--preset--font-family--heading);

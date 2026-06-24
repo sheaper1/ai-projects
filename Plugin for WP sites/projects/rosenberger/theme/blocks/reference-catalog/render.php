@@ -38,6 +38,10 @@ $ort_terms  = get_terms( array( 'taxonomy' => 'reference-city', 'hide_empty' => 
 			<input type="hidden" name="rc_per_page" value="<?php echo esc_attr( $per_page ); ?>">
 
 			<div class="rc-tabs" role="group" aria-label="Objektart">
+				<label class="rc-tab rc-tab--all<?php echo '' === $params['typ'] ? ' is-active' : ''; ?>">
+					<input type="radio" name="rc_typ" value="" <?php checked( $params['typ'], '' ); ?>>
+					<span>Alle</span>
+				</label>
 				<?php if ( $typ_terms && ! is_wp_error( $typ_terms ) ) : ?>
 					<?php foreach ( $typ_terms as $term ) : ?>
 						<label class="rc-tab<?php echo $params['typ'] === $term->slug ? ' is-active' : ''; ?>">
@@ -45,10 +49,6 @@ $ort_terms  = get_terms( array( 'taxonomy' => 'reference-city', 'hide_empty' => 
 							<span><?php echo esc_html( $term->name ); ?></span>
 						</label>
 					<?php endforeach; ?>
-					<label class="rc-tab rc-tab--all<?php echo '' === $params['typ'] ? ' is-active' : ''; ?>">
-						<input type="radio" name="rc_typ" value="" <?php checked( $params['typ'], '' ); ?>>
-						<span>Alle</span>
-					</label>
 				<?php endif; ?>
 			</div>
 

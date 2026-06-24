@@ -265,6 +265,15 @@ body.site-menu-open { overflow: hidden; }
 	width: 100%;
 }
 
+/* Подвал всегда вплотную к предыдущей секции (CTA): убираем зазор от blockGap
+   корневого layout-а шаблона. Глобально — для всех страниц. */
+.wp-site-blocks > .site-footer,
+.wp-site-blocks > footer.wp-block-template-part,
+.wp-block-template-part:has(> .site-footer) {
+	margin-top: 0 !important;
+	margin-block-start: 0 !important;
+}
+
 .site-footer .wp-block-paragraph,
 .site-footer .wp-block-heading,
 .site-footer a {

@@ -132,7 +132,7 @@ const SAMPLES = [
 			property_bathrooms: '', property_floor: '', property_year: '',
 			property_plot_area: 'ca. 800 m²',
 		},
-		ref: { reference_quote: 'Der gesamte Ablauf war transparent und unkompliziert. Wir würden jederzeit wieder auf diese Betreuung setzen.', reference_author: 'Familie K.', reference_location: 'Bludenz', reference_rating: '4' },
+		ref: { reference_quote: 'Der gesamte Ablauf war transparent und unkompliziert. Wir würden jederzeit wieder auf diese Betreuung setzen.', reference_author: 'Familie K.', reference_location: 'Bludenz', reference_rating: '5' },
 	},
 ];
 
