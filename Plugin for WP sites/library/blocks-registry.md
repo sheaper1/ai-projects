@@ -41,3 +41,9 @@
 | Error 404 | `library/error-404` | Контент 404: заголовок «Seite / nicht gefunden» (80px) + лид + кнопка «Zur Startseite», ниже full-width фото с гигантским «404». Ставится в `templates/404.html`. Фото — медиа по slug `rosenberger-404-building`. | 404, error, not found, ошибка | stable |
 | Thank You | `library/thank-you` | Страница «Danke»: центрированный «Vielen Dank / für Ihre Anfrage!» + лид + кнопка, ниже surface-полоса с 3 карточками-шагами (иконка 64, заголовок, текст; репитер, accent-бордер). Страница через `scripts/import-danke.mjs`. | thank you, danke, success, спасибо | stable |
 | Contact Section | `library/contact-section` | Контакт: слева заголовок + лид + СВОЯ форма по дизайну (Tippgeber-принцип: видимая кастом-форма → JS-мост `view.js` заполняет скрытую WPForms `[wpforms id]` по field-ID и кликает её submit; валидация/почта/редирект на /danke/ — на WPForms). Справа Leaflet-карта с красным пином + карточка «Contact Information» (контакты из настроек). Форму находит по slug `kontakt` (создаётся `scripts/setup-contact-form.mjs`), страница — `scripts/import-kontakt.mjs`. | contact, kontakt, form, map, wpforms | stable |
+
+## Общие утилиты (не блоки)
+
+| Утилита | Путь | Описание | Статус |
+| --- | --- | --- | --- |
+| Scroll-reveal | `library/shared/reveal/` | Универсальная анимация появления при скролле для **всех** блоков (класс `wp-block-library-*`). Без правки отдельных блоков. Безопасно: без JS/краулерам контент виден всегда, уважает `prefers-reduced-motion`, без мигания (подключается в `<head>`). Подключение в проект — см. `reveal/README.md`. | stable |

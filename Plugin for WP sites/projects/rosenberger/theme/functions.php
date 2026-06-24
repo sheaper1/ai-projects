@@ -77,6 +77,21 @@ add_action(
 			(string) filemtime( get_stylesheet_directory() . '/assets/js/rb-carousel.js' ),
 			true
 		);
+		// Универсальный scroll-reveal для всех блоков библиотеки.
+		// В <head> (не в футере), чтобы скрытое состояние применилось до отрисовки.
+		wp_enqueue_style(
+			'rb-reveal',
+			get_theme_file_uri( '/assets/css/reveal.css' ),
+			array(),
+			(string) filemtime( get_stylesheet_directory() . '/assets/css/reveal.css' )
+		);
+		wp_enqueue_script(
+			'rb-reveal',
+			get_theme_file_uri( '/assets/js/reveal.js' ),
+			array(),
+			(string) filemtime( get_stylesheet_directory() . '/assets/js/reveal.js' ),
+			false
+		);
 	}
 );
 

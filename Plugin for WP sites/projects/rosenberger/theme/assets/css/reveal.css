@@ -1,0 +1,28 @@
+/**
+ * Универсальный scroll-reveal для всех блоков библиотеки.
+ *
+ * Скрытое состояние применяется ТОЛЬКО под .reveal-ready (ставит reveal.js),
+ * поэтому без JS / для краулеров контент виден всегда.
+ */
+.reveal-ready [class*="wp-block-library-"] {
+	opacity: 0;
+	transform: translateY( 28px );
+	transition:
+		opacity 700ms cubic-bezier( 0.22, 1, 0.36, 1 ),
+		transform 700ms cubic-bezier( 0.22, 1, 0.36, 1 );
+	will-change: opacity, transform;
+}
+
+.reveal-ready [class*="wp-block-library-"].is-revealed {
+	opacity: 1;
+	transform: none;
+	will-change: auto;
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	.reveal-ready [class*="wp-block-library-"] {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}

@@ -338,5 +338,11 @@
   через правку `object-position` под референс Figma; синхронизировано в `theme` и
   `library`, собрано (`npm run build`, `npm run build:library`), задеплоено, staging
   200 — готово.
+- [Claude] 2026-06-25 — Универсальный scroll-reveal для всех блоков библиотеки:
+  общий модуль `library/shared/reveal/` (IntersectionObserver, fade-up). Без правки
+  блоков, навешивается по классу `wp-block-library-*`; безопасно (no-JS/краулеры
+  видят контент, `prefers-reduced-motion`, без мигания — подключение в `<head>`).
+  Скопировано в тему rosenberger + enqueue в `functions.php`, задеплоено, проверено
+  в браузере (блоки проявляются по скроллу) — готово.
 
 
