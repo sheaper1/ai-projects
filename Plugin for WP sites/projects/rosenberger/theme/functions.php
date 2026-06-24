@@ -10,6 +10,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once get_theme_file_path( 'inc/blog.php' );
+
 /**
  * Регистрируем все блоки темы из /blocks/<slug>/ (каждый со своим block.json).
  */
@@ -50,7 +52,7 @@ add_action(
 	function () {
 		wp_enqueue_style(
 			'rosenberger-fonts',
-			'https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;1,300&family=Roboto+Flex:wght@400;500;600;800&display=swap',
+			'https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Roboto+Flex:wght@400;500;600;800&display=swap',
 			array(),
 			null
 		);
@@ -84,7 +86,8 @@ add_action(
 add_filter(
 	'body_class',
 	function ( $classes ) {
-		if ( is_singular( 'property' ) || is_singular( 'reference' ) || is_post_type_archive( 'reference' ) ) {
+		if ( is_singular( 'property' ) || is_singular( 'reference' ) || is_post_type_archive( 'reference' )
+				|| is_home() || is_singular( 'post' ) ) {
 			$classes[] = 'has-light-hero';
 		}
 		return $classes;

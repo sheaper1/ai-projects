@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/article-toc",
+	"title": "Article TOC",
+	"category": "design",
+	"icon": "list-view",
+	"description": "Inhaltsverzeichnis — авто-оглавление из заголовков статьи (аккордеон).",
+	"keywords": [ "toc", "inhaltsverzeichnis", "article", "outline" ],
+	"supports": { "html": false, "align": [ "full" ], "multiple": false },
+	"attributes": {
+		"heading": { "type": "string", "default": "Inhaltsverzeichnis" }
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

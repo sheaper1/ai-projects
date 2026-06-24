@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/article-related",
+	"title": "Article Related",
+	"category": "design",
+	"icon": "grid-view",
+	"description": "Похожие статьи — «Das könnte Ihnen auch gefallen» (3 карточки).",
+	"keywords": [ "related", "article", "posts", "empfehlung" ],
+	"supports": { "html": false, "align": [ "full" ], "multiple": false },
+	"usesContext": [ "postId" ],
+	"attributes": {
+		"heading": { "type": "string", "default": "Das könnte Ihnen auch gefallen" }
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}

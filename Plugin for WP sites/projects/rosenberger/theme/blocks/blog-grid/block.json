@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/blog-grid",
+	"title": "Blog Grid",
+	"category": "design",
+	"icon": "grid-view",
+	"description": "Сетка статей блога (3 колонки) с пагинацией.",
+	"keywords": [ "blog", "grid", "artikel", "posts" ],
+	"supports": { "html": false, "align": [ "full" ], "multiple": false },
+	"attributes": {
+		"heading": { "type": "string", "default": "Empfohlene Artikel" },
+		"postsPerPage": { "type": "number", "default": 9 }
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}

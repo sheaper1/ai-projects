@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/article-header",
+	"title": "Article Header",
+	"category": "design",
+	"icon": "heading",
+	"description": "Шапка статьи: заголовок, мета (дата/время/автор), обложка.",
+	"keywords": [ "article", "post", "header", "title" ],
+	"supports": { "html": false, "align": [ "full" ], "multiple": false },
+	"usesContext": [ "postId" ],
+	"attributes": {},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}
