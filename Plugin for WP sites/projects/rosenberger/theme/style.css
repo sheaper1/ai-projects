@@ -316,6 +316,14 @@ body.site-menu-open { overflow: hidden; }
 	margin-block-start: 0 !important;
 }
 
+/* Полноширинные секции страницы сами держат вертикальные отступы. Убираем 24px
+   blockGap корневого flow-layout между ними — иначе между двумя секциями одного
+   фона (напр. surface+surface: отзывы → FAQ) просвечивает белый фон body. */
+.entry-content.is-layout-flow > [class*="wp-block-library-"],
+.entry-content.is-layout-flow > [class*="wp-block-rosenberger-"] {
+	margin-block-start: 0;
+}
+
 .site-footer .wp-block-paragraph,
 .site-footer .wp-block-heading,
 .site-footer a {
