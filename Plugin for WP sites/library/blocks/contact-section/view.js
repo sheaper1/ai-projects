@@ -71,3 +71,65 @@
 		} );
 	} ).catch( function () {} );
 }() );
+
+/* ---- WPForms Bridge (Prinzip wie Tippgeber) ----
+ * Sichtbares Custom-Formular füllt das versteckte echte WPForms-Formular und
+ * löst dessen nativen AJAX-Submit aus → echte Entries, Lead-Mail, Redirect /danke/. */
+( function () {
+	var form = document.querySelector( '.contact-section__form[data-contact-form]' );
+	if ( ! form ) return;
+
+	var formId = parseInt( form.getAttribute( 'data-wpforms-id' ), 10 ) || 0;
+	var fields = {};
+	try { fields = JSON.parse( form.getAttribute( 'data-wpforms-fields' ) || '{}' ); } catch ( e ) { fields = {}; }
+
+	var submitBtn = form.querySelector( '.cs-field__submit' );
+	var errorEl = form.querySelector( '[data-cs-error]' );
+
+	function hiddenSubmit() { return document.getElementById( 'wpforms-submit-' + formId ); }
+
+	function wpfSet( fieldId, value ) {
+		if ( fieldId == null ) return;
+		var el = document.getElementById( 'wpforms-' + formId + '-field_' + fieldId );
+		if ( el && ( el.tagName === 'SELECT' || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' ) ) {
+			el.value = value;
+			el.dispatchEvent( new Event( 'input', { bubbles: true } ) );
+			el.dispatchEvent( new Event( 'change', { bubbles: true } ) );
+		}
+	}
+
+	function showError() {
+		if ( errorEl ) errorEl.hidden = false;
+		if ( submitBtn ) { submitBtn.disabled = false; submitBtn.textContent = 'JETZT ANFRAGEN'; }
+	}
+
+	form.addEventListener( 'submit', function ( e ) {
+		e.preventDefault();
+		if ( errorEl ) errorEl.hidden = true;
+
+		// einfache Pflichtprüfung (Name + Email)
+		var nameVal = ( form.querySelector( '[data-cs-field="name"]' ) || {} ).value || '';
+		var emailVal = ( form.querySelector( '[data-cs-field="email"]' ) || {} ).value || '';
+		if ( ! nameVal.trim() || ! emailVal.trim() ) {
+			form.reportValidity ? form.reportValidity() : showError();
+			return;
+		}
+
+		if ( ! formId || ! hiddenSubmit() ) { showError(); return; }
+
+		form.querySelectorAll( '[data-cs-field]' ).forEach( function ( input ) {
+			var slug = input.getAttribute( 'data-cs-field' );
+			if ( fields[ slug ] != null && input.value !== '' ) {
+				wpfSet( fields[ slug ], input.value );
+			}
+		} );
+
+		if ( submitBtn ) { submitBtn.disabled = true; submitBtn.textContent = 'Wird gesendet …'; }
+		hiddenSubmit().click(); // WPForms validiert, sendet per AJAX und macht den Redirect auf /danke/
+	} );
+
+	// WPForms-Fehler-Event → Button wieder freigeben und Hinweis zeigen
+	if ( window.jQuery && formId ) {
+		window.jQuery( document ).on( 'wpformsAjaxSubmitFailed', '#wpforms-form-' + formId, showError );
+	}
+}() );

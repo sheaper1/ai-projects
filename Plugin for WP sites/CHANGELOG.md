@@ -3,6 +3,17 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-25 — **Контактная форма переведена на Tippgeber-принцип (мост к WPForms).**
+  По просьбе: вместо стилизации вывода WPForms — СВОЯ кастомная форма точно по дизайну
+  (label 14px contrast@.4, инпут 48px бордер `--wp--custom--field--border`, телефон с
+  флагом-адорнментом 🇦🇹+caret, select со своей стрелкой, textarea 154, submit-пилюля),
+  а рядом скрытая (off-screen) настоящая WPForms-форма. `view.js`-мост (как `tipper-form`):
+  на submit заполняет скрытые поля по field-ID (`wpforms-{id}-field_{n}`, маппинг
+  name/email/phone/subject/message строится в render.php из `wpforms_decode`) и кликает
+  нативный `wpforms-submit-{id}` → WPForms валидирует, шлёт письмо и редиректит на /danke/.
+  Преимущество: полный контроль разметки/стилей под Figma, заявки всё равно в админке WP.
+  Пересобрано/задеплоено, мост проверен структурно (скрытая форма + field_1..5 + submit на
+  месте), desktop+mobile сверены с макетом. Готово.
 - [Claude] 2026-06-25 — **Контактная страница `/kontakt/` (WPForms) по Figma.** Новый блок
   `contact-section`: слева заголовок «*Jetzt Kontakt* aufnehmen» + лид + WPForms-форма
   (Name/Email/Phone-Smart с флагом/Subject-select/Nachricht/«JETZT ANFRAGEN»), стилизована

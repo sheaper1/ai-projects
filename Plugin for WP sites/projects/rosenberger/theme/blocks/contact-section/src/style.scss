@@ -44,24 +44,21 @@
 	letter-spacing: -0.02em;
 }
 
-.contact-section__form-missing {
-	color: var(--wp--preset--color--muted);
-	font-style: italic;
+/* --- Кастомная форма (точно по дизайну, мост к скрытой WPForms) --- */
+.contact-section__form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-16);
+	max-width: 541px;
 }
 
-/* --- WPForms-вывод под дизайн --- */
-.contact-section__form .wpforms-container {
-	margin: 0;
+.cs-field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-8);
 }
 
-.contact-section__form .wpforms-field {
-	padding: 0;
-	margin: 0 0 var(--wp--preset--spacing--r-16);
-}
-
-.contact-section__form .wpforms-field-label {
-	display: block;
-	margin: 0 0 var(--wp--preset--spacing--r-8);
+.cs-field__label {
 	color: var(--wp--preset--color--contrast);
 	font-family: var(--wp--preset--font-family--heading);
 	font-size: var(--wp--preset--font-size--r-14);
@@ -71,16 +68,7 @@
 	opacity: 0.4;
 }
 
-.contact-section__form .wpforms-required-label {
-	color: inherit;
-}
-
-.contact-section__form input[type="text"],
-.contact-section__form input[type="email"],
-.contact-section__form input[type="tel"],
-.contact-section__form input[type="number"],
-.contact-section__form select,
-.contact-section__form textarea {
+.cs-field__input {
 	box-sizing: border-box;
 	width: 100%;
 	height: 48px;
@@ -93,50 +81,75 @@
 	font-family: var(--wp--preset--font-family--heading);
 	font-size: var(--wp--preset--font-size--r-14);
 	line-height: 1.5;
-	box-shadow: none;
 }
 
-.contact-section__form textarea {
+.cs-field__input::placeholder {
+	color: var(--wp--preset--color--muted);
+	opacity: 1;
+}
+
+.cs-field__input:focus {
+	border-color: var(--wp--preset--color--contrast);
+	outline: none;
+}
+
+.cs-field__textarea {
 	height: 154px;
 	padding-block: 16px;
 	resize: vertical;
 }
 
-.contact-section__form input::placeholder,
-.contact-section__form textarea::placeholder {
-	color: var(--wp--preset--color--muted);
-	opacity: 1;
+/* Телефон: флаг-адорнмент слева */
+.cs-field__phone {
+	position: relative;
 }
 
-.contact-section__form input:focus,
-.contact-section__form select:focus,
-.contact-section__form textarea:focus {
-	border-color: var(--wp--preset--color--contrast);
-	outline: none;
+.cs-field__flag {
+	position: absolute;
+	left: 23px;
+	top: 50%;
+	transform: translateY(-50%);
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 18px;
+	line-height: 1;
+	pointer-events: none;
 }
 
-/* intl-tel-input (Smart-Phone-Feld) — flag слева, как в макете */
-.contact-section__form .iti {
-	width: 100%;
+.cs-field__input--phone {
+	padding-left: 62px;
 }
 
-.contact-section__form .iti input[type="tel"] {
-	padding-left: 60px;
+/* Select: своя стрелка */
+.cs-field__select {
+	position: relative;
 }
 
-/* Submit-кнопка как тёмная пилюля */
-.contact-section__form .wpforms-submit-container {
-	margin-top: var(--wp--preset--spacing--r-40);
-	padding: 0;
+.cs-field__select select {
+	appearance: none;
+	-webkit-appearance: none;
+	padding-right: 48px;
+	cursor: pointer;
 }
 
-.contact-section__form button.wpforms-submit {
+.cs-field__caret {
+	position: absolute;
+	right: 23px;
+	top: 50%;
+	transform: translateY(-50%);
+	pointer-events: none;
+}
+
+.cs-field__submit {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
+	align-self: flex-start;
 	min-width: 276px;
 	height: 56px;
+	margin-top: var(--wp--preset--spacing--r-24);
 	padding-inline: var(--wp--preset--spacing--r-24);
 	background: var(--wp--preset--color--contrast);
 	border: none;
@@ -151,9 +164,32 @@
 	transition: var(--wp--custom--transition--base);
 }
 
-.contact-section__form button.wpforms-submit:hover {
+.cs-field__submit:hover {
 	transform: translateY(-1px);
 	opacity: 0.92;
+}
+
+.cs-field__submit:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+	transform: none;
+}
+
+.cs-field__error {
+	margin: 0;
+	color: #d92d20;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-14);
+}
+
+/* скрытая настоящая WPForms-форма (мост) */
+.contact-section__wpf-hidden {
+	position: absolute;
+	left: -99999px;
+	top: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
 }
 
 /* --- Правая колонка: карта + карточка --- */
@@ -211,6 +247,10 @@
 		padding-block: calc(96px + var(--wp--preset--spacing--r-40)) var(--wp--preset--spacing--r-40);
 	}
 
+	.contact-section__form {
+		max-width: none;
+	}
+
 	.contact-section__map-col {
 		min-height: 0;
 	}
@@ -231,5 +271,9 @@
 	.contact-section__card-title,
 	.contact-section__card-body p {
 		font-size: var(--wp--preset--font-size--r-18);
+	}
+
+	.cs-field__submit {
+		width: 100%;
 	}
 }

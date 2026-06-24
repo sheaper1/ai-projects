@@ -28,7 +28,13 @@ export default function Edit( { attributes, setAttributes } ) {
 							<p className="contact-section__lead" dangerouslySetInnerHTML={ { __html: lead } } />
 						</div>
 						<div className="contact-section__form">
-							<p className="contact-section__form-missing">[ WPForms-Formular – erscheint im Frontend ]</p>
+							{ [ 'Name', 'Email', 'Phone', 'Subject of the request', 'Nachricht' ].map( ( label ) => (
+								<div className="cs-field" key={ label }>
+									<label className="cs-field__label">{ label }</label>
+									<div className="cs-field__input" style={ { display: 'flex', alignItems: 'center' } } />
+								</div>
+							) ) }
+							<button type="button" className="cs-field__submit">JETZT ANFRAGEN</button>
 						</div>
 					</div>
 					<div className="contact-section__map-col">
