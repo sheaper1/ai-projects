@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/thank-you",
+	"title": "Thank You",
+	"category": "design",
+	"icon": "yes-alt",
+	"description": "Страница «Danke»: центрированный заголовок «Vielen Dank / für Ihre Anfrage!» + лид + кнопка, ниже surface-полоса с 3 карточками-шагами (репитер).",
+	"keywords": [ "thank you", "danke", "success", "спасибо" ],
+	"supports": { "html": false, "align": [ "full" ], "multiple": false },
+	"attributes": {
+		"headingItalic": { "type": "string", "default": "Vielen Dank" },
+		"headingRest": { "type": "string", "default": "für Ihre Anfrage!" },
+		"lead": { "type": "string", "default": "Ihre Nachricht wurde erfolgreich versendet. Ich melde mich persönlich bei Ihnen." },
+		"buttonText": { "type": "string", "default": "Zur Startseite" },
+		"buttonUrl": { "type": "string", "default": "/" },
+		"cards": { "type": "array", "default": [] }
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}

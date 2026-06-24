@@ -226,6 +226,13 @@ const main = async () => {
 		cardMedia.push( await ensureMedia( `rosenberger-card-${ n }`, resolve( cardDir, `card-${ n }.jpg` ), 'jpg' ) );
 	}
 
+	// Страница 404 — фоновое фото; страница Danke — иконки карточек-шагов.
+	await ensureMedia( 'rosenberger-404-building', resolve( root, 'projects/rosenberger/media/404/building.webp' ), 'webp' );
+	const dankeDir = resolve( root, 'projects/rosenberger/media/danke' );
+	for ( const name of [ 'email', 'phone', 'steps' ] ) {
+		await ensureSvgMedia( `rosenberger-danke-icon-${ name }`, resolve( dankeDir, `${ name }.svg` ) );
+	}
+
 	const aboutMedia = await ensureMedia( 'rosenberger-about-bg', resolve( root, 'projects/rosenberger/media/about/about-bg.webp' ), 'webp' );
 	// РђСЃСЃРµС‚С‹ РёР· РјРµРґРёР°С‚РµРєРё WP (Р° РЅРµ РїСЂРѕС‚СѓС…Р°СЋС‰РёРµ Figma-CDN URL) вЂ” РїСЂР°РІРёР»Рѕ В«РєР°СЂС‚РёРЅРєРё С‚РѕР»СЊРєРѕ РёР· РјРµРґРёР°С‚РµРєРёВ».
 		const homeDir = resolve( root, 'projects/rosenberger/media/home' );

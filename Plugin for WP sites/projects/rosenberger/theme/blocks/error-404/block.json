@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/error-404",
+	"title": "Error 404",
+	"category": "design",
+	"icon": "warning",
+	"description": "Контент страницы 404: заголовок «Seite / nicht gefunden» + лид + кнопка, ниже full-width фото с гигантским «404».",
+	"keywords": [ "404", "error", "not found", "ошибка" ],
+	"supports": { "html": false, "align": [ "full" ], "multiple": false },
+	"attributes": {
+		"headingMain": { "type": "string", "default": "Seite" },
+		"headingItalic": { "type": "string", "default": "nicht gefunden" },
+		"lead": { "type": "string", "default": "Diese Seite existiert anscheinend nicht oder wurde verschoben. <br>Bitte überprüfen Sie die Adresse oder kehren Sie zur Startseite zurück." },
+		"buttonText": { "type": "string", "default": "Zur Startseite" },
+		"buttonUrl": { "type": "string", "default": "/" },
+		"imageId": { "type": "integer", "default": 0 },
+		"imageUrl": { "type": "string", "default": "" }
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"render": "file:./render.php"
+}

@@ -87,7 +87,8 @@ add_filter(
 	'body_class',
 	function ( $classes ) {
 		if ( is_singular( 'property' ) || is_singular( 'reference' ) || is_post_type_archive( 'reference' )
-				|| is_home() || is_singular( 'post' ) || is_singular( 'region' ) ) {
+				|| is_home() || is_singular( 'post' ) || is_singular( 'region' )
+				|| is_404() || is_page( 'danke' ) ) {
 			$classes[] = 'has-light-hero';
 		}
 		return $classes;
