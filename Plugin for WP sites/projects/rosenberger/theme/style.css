@@ -24,7 +24,7 @@ main.wp-block-group { margin-block-start: 0 !important; }
 .site-header {
 	position: fixed;
 	inset: 0 0 auto;
-	z-index: 100;
+	z-index: 10000;
 	box-sizing: border-box;
 	width: 100%;
 	height: 120px;
@@ -125,7 +125,7 @@ body.has-light-hero .site-header:not(.is-scrolled) {
 .site-menu {
 	position: fixed;
 	inset: 0;
-	z-index: 200;
+	z-index: 100000;
 	visibility: hidden;
 	pointer-events: none;
 	background: transparent;
