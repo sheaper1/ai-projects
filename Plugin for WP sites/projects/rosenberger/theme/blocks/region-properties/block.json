@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/region-properties",
+	"title": "Region Properties",
+	"category": "design",
+	"icon": "building",
+	"description": "Карусель объектов региона (фильтр по городу = slug записи region). source: property | reference.",
+	"keywords": [ "region", "objekte", "property", "carousel", "verkauft" ],
+	"supports": { "html": false, "align": [ "full" ], "multiple": true },
+	"usesContext": [ "postId" ],
+	"attributes": {
+		"heading": { "type": "string", "default": "Aktuelle Objekte in" },
+		"appendCity": { "type": "boolean", "default": true },
+		"subtitle": { "type": "string", "default": "" },
+		"source": { "type": "string", "default": "property" },
+		"buttonText": { "type": "string", "default": "Alle Objekte ansehen" },
+		"buttonUrl": { "type": "string", "default": "/objekte/" },
+		"limit": { "type": "number", "default": 6 }
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

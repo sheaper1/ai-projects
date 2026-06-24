@@ -3,6 +3,21 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-24 — **Регионы (Bludenz/Bregenz/Dornbirn/Feldkirch) как CPT
+  `region` без архива + `single-region.html`.** 4 структурно одинаковые страницы:
+  собрана раз, клиент правит 4 записи. Новый CPT `region` (no archive, slug
+  `/region/`, мета hero-полей + мета-бокс, одноразовый flush rewrite). 2 новых
+  блока темы: `region-hero` («Immobilienmakler in {Ort}», город курсивом из title,
+  подзаголовок/кнопка из меты, full-bleed фото) и `region-properties` (карусель
+  объектов с фильтром по городу = slug записи: source property→«Aktuelle Objekte»,
+  reference→«Verkauft», общий RbCarousel). Остальные секции — переиспользуемые
+  блоки в post-content (trust-bar, split-cta, problem-cards, process-steps,
+  testimonials, faq-section, consultation-cta), имя города предзаполнено паттерном.
+  `has-light-hero` для single region. Seed `scripts/seed-regions.mjs` (термины
+  property-city/reference-city, 4 записи, контент-черновик). Собрано, задеплоено,
+  все 4 региона отвечают 200, Bludenz сверен по секциям с макетом (hero, intro,
+  сервисы, шаги, Verkauft/Aktuelle карусели с фильтром по городу, отзывы, FAQ, CTA)
+  — совпадает. Тексты регионов — черновик для клиента. Готово.
 - [Claude] 2026-06-24 — **Blog + Single Article (core-посты, не CPT).** Сделаны по
   Figma (Blog `2009:3307`, Single Article `2009:10852`). 5 новых блоков темы:
   `blog-hero` (eyebrow + курсивный заголовок + featured-карточка последней статьи),

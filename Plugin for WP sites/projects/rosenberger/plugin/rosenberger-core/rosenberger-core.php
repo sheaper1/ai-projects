@@ -25,3 +25,4 @@ require_once __DIR__ . '/includes/reference-fields.php';
 require_once __DIR__ . '/includes/reference-cpt.php';
 require_once __DIR__ . '/includes/reference-meta-box.php';
 require_once __DIR__ . '/includes/reference-catalog.php';
+require_once __DIR__ . '/includes/region-cpt.php';
