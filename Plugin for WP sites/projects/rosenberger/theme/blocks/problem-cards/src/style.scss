@@ -43,7 +43,7 @@
 
 	.problem-cards__row {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(var(--pc-cols, 4), 1fr);
 		align-items: stretch;
 	}
 

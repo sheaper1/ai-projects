@@ -48,11 +48,13 @@ async function ensureTerm( tax, slug, name ) {
 	return c.id;
 }
 
+// Обложка hero = Beitragsbild записи (клиент заменит). Для демо — крупные
+// фото из медиатеки (высокое разрешение, чтобы full-bleed hero был чётким).
 const CITIES = [
-	{ slug: 'bludenz', name: 'Bludenz', cover: 'region-bludenz' },
-	{ slug: 'bregenz', name: 'Bregenz', cover: 'rosenberger-bw-hero' },
-	{ slug: 'dornbirn', name: 'Dornbirn', cover: 'region-dornbirn' },
-	{ slug: 'feldkirch', name: 'Feldkirch', cover: 'region-feldkirch' },
+	{ slug: 'bludenz', name: 'Bludenz', cover: 'rosenberger-bw-hero' },
+	{ slug: 'bregenz', name: 'Bregenz', cover: 'rosenberger-iv-hero' },
+	{ slug: 'dornbirn', name: 'Dornbirn', cover: 'rosenberger-prop-dornbirn-hero' },
+	{ slug: 'feldkirch', name: 'Feldkirch', cover: 'rosenberger-vm-hero' },
 ];
 
 const j = ( o ) => JSON.stringify( o );
@@ -62,13 +64,15 @@ function content( city, media ) {
 	const icon = ( s ) => ( media[ s ] || {} ).url || '';
 	const ctaBg = '/wp-content/themes/rosenberger/assets/property/cta-bg.webp';
 
-	const trust = `<!-- wp:library/trust-bar /-->`;
+	const badge = media[ 'rosenberger-google-rating' ] || {};
+	const trust = `<!-- wp:library/trust-bar ${ j( { badgeId: badge.id || 0, badgeUrl: badge.url || '' } ) } /-->`;
 
 	const intro = `<!-- wp:library/split-cta ${ j( {
-		heading: `Sie suchen einen Immobilienmakler in ${ city.name }?`,
+		heading: 'Sie suchen einen Immobilienmakler',
+		headingItalic: `in ${ city.name }?`,
 		text: `Ob Sie verkaufen, kaufen oder einfach wissen wollen, was Ihre Immobilie wert ist – Sie wollen jemanden, der den Markt in ${ city.name } wirklich kennt und ehrlich mit Ihnen umgeht. Ich kenne die Lagen vor Ort und sage Ihnen offen, was realistisch ist, beim Verkauf, beim Kauf oder bei der Bewertung – ohne Wunschzahl, die nur den Auftrag bringen soll.`,
-		buttonText: 'Mehr über mich',
-		buttonUrl: '/uber-mich/',
+		buttonText: 'Kostenlos beraten lassen',
+		buttonUrl: '/kontakt/',
 		imageId: introImg.id || 0,
 		imageUrl: introImg.url || '',
 	} ) } /-->`;
@@ -114,6 +118,11 @@ async function findRegion( slug ) {
 async function main() {
 	if ( ! BASE ) throw new Error( 'WP_URL не задан' );
 	const media = await mediaMap();
+	// Google-бейдж (SVG) может быть вне основной выборки — догружаем по slug.
+	if ( ! media[ 'rosenberger-google-rating' ] ) {
+		const b = await api( '/wp/v2/media?slug=rosenberger-google-rating&_fields=id,source_url' );
+		if ( Array.isArray( b ) && b[ 0 ] ) media[ 'rosenberger-google-rating' ] = { id: b[ 0 ].id, url: b[ 0 ].source_url };
+	}
 
 	for ( const city of CITIES ) {
 		await ensureTerm( 'property-city', city.slug, city.name );

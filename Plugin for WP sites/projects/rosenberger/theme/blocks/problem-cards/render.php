@@ -21,7 +21,7 @@ $items = is_array( $a['items'] ) ? $a['items'] : [];
 				<p class="problem-cards__intro"><?php echo wp_kses_post( $a['intro'] ); ?></p>
 			<?php endif; ?>
 		</div>
-		<div class="problem-cards__row">
+		<div class="problem-cards__row" style="--pc-cols:<?php echo (int) max( 1, count( $items ) ); ?>">
 			<?php foreach ( $items as $item ) : ?>
 				<article class="problem-cards__card">
 					<div class="problem-cards__icon">

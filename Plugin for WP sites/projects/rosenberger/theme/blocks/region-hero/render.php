@@ -19,7 +19,7 @@ if ( ! $post_id ) {
 $prefix   = wp_kses_post( $attributes['headingPrefix'] ?? 'Immobilienmakler in' );
 $city     = get_the_title( $post_id );
 $subtitle = get_post_meta( $post_id, 'region_subtitle', true )
-	?: sprintf( 'Ehrlich beraten in %s, ob Sie verkaufen, kaufen oder den Wert Ihrer Immobilie wissen wollen.', get_the_title( $post_id ) );
+	?: sprintf( 'Ehrlich beraten in %s, ob Sie verkaufen, kaufen oder den<br>Wert Ihrer Immobilie wissen wollen.', get_the_title( $post_id ) );
 $btn_text = get_post_meta( $post_id, 'region_button_text', true ) ?: 'Kostenlos beraten lassen';
 $btn_url  = get_post_meta( $post_id, 'region_button_url', true ) ?: '/kontakt/';
 $note     = get_post_meta( $post_id, 'region_note', true ) ?: 'Unverbindlich und kostenlos';
