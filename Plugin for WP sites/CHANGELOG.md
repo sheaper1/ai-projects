@@ -3,6 +3,15 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-25 — **Меню: шапка не затемняется + навигация по всем страницам + футер.**
+  (1) Скрим меню вынесен в `.site-menu::before` с `top:120px` (моб. 84px) — затемнение
+  больше НЕ заходит на шапку, логотип остаётся чистым (контент под шапкой затемняется как
+  прежде). (2) Ссылки меню и футера привязаны к реальным URL: Verkauf→/immobilie-verkaufen/,
+  Bewertung→/immobilienbewertung/, Vermietung→/immobilie-vermieten/, Aktuelle Objekte→
+  /alle-immobilien/, Referenzen→/references/, регионы→/region/{feldkirch,dornbirn,bregenz,
+  bludenz}/ (было /verkauf/, /bewertung/, /feldkirch/ и т.п. — 404). (3) «Standorte» в меню —
+  группа-категория с 4 регион-ссылками. Все nav-URL отвечают 200 (кроме /impressum/ — страницы
+  ещё нет). Задеплоено, открытое меню проверено в браузере: шапка чистая, Standorte на месте.
 - [Claude] 2026-06-25 — **Фикс z-index: меню проваливалось под Leaflet-карту.** На /kontakt/
   открытое мобильное/бургер-меню рисовалось ПОД картой — у Leaflet свои слои/контролы с
   z-index до 1000, а у `.site-menu` было 200, у `.site-header` — 100. Поднял `.site-header`

@@ -128,14 +128,24 @@ body.has-light-hero .site-header:not(.is-scrolled) {
 	z-index: 100000;
 	visibility: hidden;
 	pointer-events: none;
+	transition: visibility 0s linear 360ms;
+}
+/* Затемнение начинается НИЖЕ шапки — логотип/шапка не затемняются. */
+.site-menu::before {
+	content: "";
+	position: fixed;
+	inset: 120px 0 0 0;
 	background: transparent;
-	transition: background-color 360ms ease, visibility 0s linear 360ms;
+	transition: background-color 360ms ease;
+	pointer-events: none;
 }
 .site-menu.is-open {
 	visibility: visible;
 	pointer-events: auto;
-	background: color-mix(in srgb, var(--wp--preset--color--contrast) 38%, transparent);
 	transition-delay: 0s;
+}
+.site-menu.is-open::before {
+	background: color-mix(in srgb, var(--wp--preset--color--contrast) 38%, transparent);
 }
 .site-menu__panel {
 	position: absolute;
@@ -198,6 +208,37 @@ body.has-light-hero .site-header:not(.is-scrolled) {
 	transform: translateX(8px);
 	opacity: 0.65;
 }
+/* Группа «Standorte»: заголовок-категория + ряд ссылок на регионы */
+.site-menu__group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 14px;
+}
+.site-menu__group-label {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-24);
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1;
+	color: var(--wp--preset--color--contrast);
+}
+.site-menu__sublinks {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px 22px;
+}
+.site-menu__sublinks a {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-16);
+	font-style: normal;
+	color: var(--wp--preset--color--muted);
+	transition: color var(--wp--custom--transition--fast);
+}
+.site-menu__sublinks a:hover,
+.site-menu__sublinks a:focus-visible {
+	color: var(--wp--preset--color--contrast);
+}
 .site-menu__meta {
 	display: flex;
 	flex-direction: column;
@@ -243,6 +284,7 @@ body.site-menu-open { overflow: hidden; }
 		padding-block: var(--wp--preset--spacing--r-8);
 	}
 	.site-header.is-scrolled .site-header__brand { width: 128px; height: 44px; }
+	.site-menu::before { top: 84px; }
 	.site-menu__panel {
 		width: 100%;
 		padding: 0 16px 32px;
