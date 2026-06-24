@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "library/tip-form",
+  "title": "Tipp einsenden (3 Schritte)",
+  "category": "design",
+  "description": "Секция «Tipp einsenden» — 3-шаговая форма (Das Objekt → Die Situation → Ihre Daten) + скрытая WPForms.",
+  "keywords": ["form", "tipp", "wpforms", "steps", "wizard"],
+  "supports": { "html": false, "align": ["full"], "multiple": false },
+  "attributes": {
+    "heading":   { "type": "string", "default": "Tipp einsenden" },
+    "lead":      { "type": "string", "default": "Drei Schritte, drei Minuten. Ich melde mich innerhalb von 24 Stunden bei Ihnen." },
+    "formSlug":  { "type": "string", "default": "tippgeber" },
+    "wpformsId": { "type": "integer", "default": 0 }
+  },
+  "editorScript": "file:./build/index.js",
+  "style":        "file:./build/style-index.css",
+  "viewScript":   "file:./view.js",
+  "render":       "file:./render.php"
+}

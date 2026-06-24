@@ -3,6 +3,17 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-25 — **Tippgeber: правильная 3-шаговая форма по дизайну (новый блок `tip-form`).**
+  Раньше на Tippgeber стоял общий демо-фаннел оценки — не совпадал с макетом. Сделал
+  отдельный блок `library/tip-form` строго по Figma (`2009:4608`): степпер ① Das Objekt
+  (Adresse + Objektart) → ② Die Situation (Bezug + Текст) → ③ Ihre Daten (Anrede/Vorname/
+  Nachname/Email/Telefon). Шаг 1 один-в-один по макету, шаги 2-3 спроектированы разумно
+  (в Figma не было). Фронт-JS в `view.js` (статикой, не инлайн — без граблей wptexturize):
+  переключение шагов + валидация + мост к скрытой WPForms `tippgeber` (контакты по полям,
+  сводка шагов 1-2 → Objektangaben). Стили на токенах, мобилка проверена. Фикс: `[hidden]`
+  не скрывал панели (мой `display:flex` перебивал) — добавил `.tip-form__panel[hidden]{display:none}`.
+  E2E (`scripts/test-tipform.mjs`): 3 шага → submit → редирект /danke/. **Immobilienbewertung
+  оставлена на фаннеле** (по решению — дизайн тот же, смысл оценки подходит).
 - [Claude] 2026-06-25 — **Immobilienbewertung: многошаговая форма (переиспользован tipper-form).**
   На странице форма была отложена (заглушка consultation-cta) — теперь там реальный фаннел
   «Ihre kostenlose Bewertung anfragen» (нода Figma `2009:5527`). Блок `tipper-form`

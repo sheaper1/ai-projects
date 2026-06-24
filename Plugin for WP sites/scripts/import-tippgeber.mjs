@@ -211,9 +211,10 @@ const pageContent = [
 		],
 	} ) } /-->`,
 
-	`<!-- wp:library/tipper-form ${ JSON.stringify( {
+	`<!-- wp:library/tip-form ${ JSON.stringify( {
 		heading:   'Tipp einsenden',
 		lead:      'Drei Schritte, drei Minuten. Ich melde mich innerhalb von 24 Stunden bei Ihnen.',
+		formSlug:  'tippgeber',
 		wpformsId: 0,
 	} ) } /-->`,
 
