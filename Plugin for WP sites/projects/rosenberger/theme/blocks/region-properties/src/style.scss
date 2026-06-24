@@ -132,7 +132,9 @@
 }
 
 .rp-card__image {
+	align-self: start;
 	margin: var(--wp--preset--spacing--r-8);
+	aspect-ratio: 658 / 488;
 	overflow: hidden;
 	background: var(--wp--preset--color--placeholder);
 }
