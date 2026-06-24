@@ -93,6 +93,9 @@
 				"fast": "160ms ease",
 				"base": "240ms ease"
 			},
+			"field": {
+				"border": "#e4e4e4"
+			},
 			"thirdParty": {
 				"googleBlue": "#4285f4",
 				"googleGold": "#fbbc04"

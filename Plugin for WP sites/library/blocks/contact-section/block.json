@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "library/contact-section",
+	"title": "Contact Section",
+	"category": "design",
+	"icon": "email-alt",
+	"description": "Контактная секция: слева заголовок + лид + WPForms-форма, справа Leaflet-карта с пином и карточкой «Contact Information».",
+	"keywords": [ "contact", "kontakt", "form", "map", "wpforms" ],
+	"supports": { "html": false, "align": [ "full" ], "multiple": false },
+	"attributes": {
+		"headingItalic": { "type": "string", "default": "Jetzt Kontakt" },
+		"headingRest": { "type": "string", "default": " aufnehmen" },
+		"lead": { "type": "string", "default": "Schreiben Sie uns kurz, worum es geht. Wir melden uns schnell zurück <br>und besprechen gemeinsam den besten nächsten Schritt für Ihr Vorhaben." },
+		"cardTitle": { "type": "string", "default": "Contact Information" },
+		"formId": { "type": "integer", "default": 0 },
+		"lat": { "type": "number", "default": 47.2466 },
+		"lng": { "type": "number", "default": 9.5851 }
+	},
+	"editorScript": "file:./build/index.js",
+	"style": "file:./build/style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

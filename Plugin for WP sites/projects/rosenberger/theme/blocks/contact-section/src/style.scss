@@ -1,0 +1,235 @@
+.wp-block-library-contact-section,
+.contact-section {
+	background: var(--wp--preset--color--base);
+}
+
+.contact-section__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 583px) minmax(0, 696px);
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--r-48);
+	align-items: stretch;
+	max-width: 1344px;
+	margin: 0 auto;
+	padding-inline: var(--wp--custom--layout--gutter);
+	padding-block: calc(120px + var(--wp--preset--spacing--r-48)) var(--wp--preset--spacing--r-64);
+}
+
+/* --- Левая колонка: заголовок + лид + форма --- */
+.contact-section__head {
+	margin-bottom: var(--wp--preset--spacing--r-40);
+}
+
+.contact-section__heading {
+	margin: 0 0 var(--wp--preset--spacing--r-16);
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-48);
+	font-weight: 400;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+}
+
+.contact-section__heading em {
+	font-weight: 300;
+	font-style: italic;
+}
+
+.contact-section__lead {
+	margin: 0;
+	color: var(--wp--preset--color--muted);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-16);
+	line-height: 1.5;
+	letter-spacing: -0.02em;
+}
+
+.contact-section__form-missing {
+	color: var(--wp--preset--color--muted);
+	font-style: italic;
+}
+
+/* --- WPForms-вывод под дизайн --- */
+.contact-section__form .wpforms-container {
+	margin: 0;
+}
+
+.contact-section__form .wpforms-field {
+	padding: 0;
+	margin: 0 0 var(--wp--preset--spacing--r-16);
+}
+
+.contact-section__form .wpforms-field-label {
+	display: block;
+	margin: 0 0 var(--wp--preset--spacing--r-8);
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-14);
+	font-weight: 500;
+	line-height: 1.5;
+	letter-spacing: -0.02em;
+	opacity: 0.4;
+}
+
+.contact-section__form .wpforms-required-label {
+	color: inherit;
+}
+
+.contact-section__form input[type="text"],
+.contact-section__form input[type="email"],
+.contact-section__form input[type="tel"],
+.contact-section__form input[type="number"],
+.contact-section__form select,
+.contact-section__form textarea {
+	box-sizing: border-box;
+	width: 100%;
+	height: 48px;
+	margin: 0;
+	padding: 0 23px;
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--custom--field--border);
+	border-radius: 0;
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-14);
+	line-height: 1.5;
+	box-shadow: none;
+}
+
+.contact-section__form textarea {
+	height: 154px;
+	padding-block: 16px;
+	resize: vertical;
+}
+
+.contact-section__form input::placeholder,
+.contact-section__form textarea::placeholder {
+	color: var(--wp--preset--color--muted);
+	opacity: 1;
+}
+
+.contact-section__form input:focus,
+.contact-section__form select:focus,
+.contact-section__form textarea:focus {
+	border-color: var(--wp--preset--color--contrast);
+	outline: none;
+}
+
+/* intl-tel-input (Smart-Phone-Feld) — flag слева, как в макете */
+.contact-section__form .iti {
+	width: 100%;
+}
+
+.contact-section__form .iti input[type="tel"] {
+	padding-left: 60px;
+}
+
+/* Submit-кнопка как тёмная пилюля */
+.contact-section__form .wpforms-submit-container {
+	margin-top: var(--wp--preset--spacing--r-40);
+	padding: 0;
+}
+
+.contact-section__form button.wpforms-submit {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	min-width: 276px;
+	height: 56px;
+	padding-inline: var(--wp--preset--spacing--r-24);
+	background: var(--wp--preset--color--contrast);
+	border: none;
+	border-radius: var(--wp--custom--radius--pill);
+	color: var(--wp--preset--color--on-dark);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--r-18);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	cursor: pointer;
+	transition: var(--wp--custom--transition--base);
+}
+
+.contact-section__form button.wpforms-submit:hover {
+	transform: translateY(-1px);
+	opacity: 0.92;
+}
+
+/* --- Правая колонка: карта + карточка --- */
+.contact-section__map-col {
+	position: relative;
+	min-height: 600px;
+}
+
+.contact-section__map {
+	position: absolute;
+	inset: 0;
+	background: var(--wp--preset--color--surface-muted);
+}
+
+.contact-section__card {
+	position: absolute;
+	left: 48px;
+	bottom: 48px;
+	z-index: 2;
+	box-sizing: border-box;
+	max-width: 568px;
+	padding: var(--wp--preset--spacing--r-32);
+	background: var(--wp--preset--color--base);
+}
+
+.contact-section__card-title {
+	margin: 0 0 var(--wp--preset--spacing--r-16);
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-24);
+	font-weight: 500;
+	line-height: 1.5;
+	opacity: 0.5;
+}
+
+.contact-section__card-body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--r-16);
+}
+
+.contact-section__card-body p {
+	margin: 0;
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--r-24);
+	font-weight: 500;
+	line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+	.contact-section__inner {
+		grid-template-columns: 1fr;
+		gap: var(--wp--preset--spacing--r-40);
+		padding-block: calc(96px + var(--wp--preset--spacing--r-40)) var(--wp--preset--spacing--r-40);
+	}
+
+	.contact-section__map-col {
+		min-height: 0;
+	}
+
+	.contact-section__map {
+		position: relative;
+		height: 360px;
+	}
+
+	.contact-section__card {
+		position: relative;
+		inset: auto;
+		max-width: none;
+		margin: -80px 16px 0;
+		box-shadow: 0 -8px 24px rgba(20, 35, 53, 0.08);
+	}
+
+	.contact-section__card-title,
+	.contact-section__card-body p {
+		font-size: var(--wp--preset--font-size--r-18);
+	}
+}

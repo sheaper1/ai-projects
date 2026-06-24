@@ -3,6 +3,18 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-25 — **Контактная страница `/kontakt/` (WPForms) по Figma.** Новый блок
+  `contact-section`: слева заголовок «*Jetzt Kontakt* aufnehmen» + лид + WPForms-форма
+  (Name/Email/Phone-Smart с флагом/Subject-select/Nachricht/«JETZT ANFRAGEN»), стилизована
+  под макет (label 14px contrast@.4, инпут 48px бордер токен `--wp--custom--field--border`
+  #e4e4e4, submit — тёмная пилюля). Справа Leaflet-карта (OSM, красный divIcon-пин,
+  переиспользован паттерн `property-location`) + карточка «Contact Information» с контактами
+  из настроек сайта (`rosenberger_contact`). Форма создаётся программно одноразовым Code
+  Snippet (`scripts/setup-contact-form.mjs`, идемпотентно по slug `kontakt`): поля,
+  уведомление на office-email, подтверждение = редирект на `/danke/`. Блок находит форму по
+  slug автоматически (formId=0). Страница — `scripts/import-kontakt.mjs`; `has-light-hero`
+  + отступ под фикс-шапку. Собрано, задеплоено, форма создана, страница сверена desktop+mobile
+  (совпадает; форма рабочая: submit → письмо → /danke/). Готово.
 - [Claude] 2026-06-25 — **Страницы 404 + Danke (thank you) по Figma.** Два новых блока:
   `error-404` (заголовок «Seite / nicht gefunden» 80px + лид + кнопка, ниже full-width
   фото здания с гигантским курсивным «404»; фото-webp из Figma в медиа по slug
