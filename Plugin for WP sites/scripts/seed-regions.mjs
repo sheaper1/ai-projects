@@ -41,6 +41,27 @@ async function mediaMap() {
 	return map;
 }
 
+// Идемпотентная загрузка локального файла в медиатеку по slug.
+async function uploadMedia( slug, filePath, mime = 'image/webp' ) {
+	const found = await api( `/wp/v2/media?slug=${ slug }&_fields=id,source_url` );
+	if ( Array.isArray( found ) && found.length ) return { id: found[ 0 ].id, url: found[ 0 ].source_url };
+	const buf = fs.readFileSync( filePath );
+	const res = await fetch( BASE + '/wp-json/wp/v2/media', {
+		method: 'POST',
+		headers: {
+			Authorization: AUTH,
+			'Content-Type': mime,
+			'Content-Disposition': `attachment; filename="${ slug }.webp"`,
+		},
+		body: buf,
+	} );
+	const d = await res.json();
+	if ( d && d.id && d.slug !== slug ) {
+		await api( `/wp/v2/media/${ d.id }`, { method: 'POST', body: j( { slug } ) } );
+	}
+	return d && d.id ? { id: d.id, url: d.source_url } : {};
+}
+
 async function ensureTerm( tax, slug, name ) {
 	const found = await api( `/wp/v2/${ tax }?slug=${ slug }&_fields=id` );
 	if ( Array.isArray( found ) && found.length ) return found[ 0 ].id;
@@ -48,13 +69,13 @@ async function ensureTerm( tax, slug, name ) {
 	return c.id;
 }
 
-// Обложка hero = Beitragsbild записи (клиент заменит). Для демо — крупные
-// фото из медиатеки (высокое разрешение, чтобы full-bleed hero был чётким).
+// Обложка hero = Beitragsbild записи (клиент заменит). Демо-фото — реальные
+// панорамы городов из Figma-дизайна (media/regions/hero-<city>.webp).
 const CITIES = [
-	{ slug: 'bludenz', name: 'Bludenz', cover: 'rosenberger-bw-hero' },
-	{ slug: 'bregenz', name: 'Bregenz', cover: 'rosenberger-iv-hero' },
-	{ slug: 'dornbirn', name: 'Dornbirn', cover: 'rosenberger-prop-dornbirn-hero' },
-	{ slug: 'feldkirch', name: 'Feldkirch', cover: 'rosenberger-vm-hero' },
+	{ slug: 'bludenz', name: 'Bludenz' },
+	{ slug: 'bregenz', name: 'Bregenz' },
+	{ slug: 'dornbirn', name: 'Dornbirn' },
+	{ slug: 'feldkirch', name: 'Feldkirch' },
 ];
 
 const j = ( o ) => JSON.stringify( o );
@@ -88,6 +109,23 @@ function content( city, media ) {
 		],
 	} ) } /-->`;
 
+	const aboutBg = media[ 'rosenberger-about-bg' ] || {};
+	const about = `<!-- wp:library/about ${ j( {
+		titleMain: 'Darauf können Sie sich verlassen',
+		text: 'Ich war selbst Käufer und habe erlebt, wie zäh und unehrlich der Ablauf sein kann. Genau das mache ich anders.',
+		buttonText: 'Mehr über mich',
+		buttonUrl: '/uber-mich/',
+		backgroundId: aboutBg.id || 0,
+		backgroundUrl: aboutBg.url || '',
+		columns: 4,
+		items: [
+			{ title: 'Ehrliche Bewertung', text: 'Sie bekommen einen realistischen Preis, der zum Markt passt, keinen Wunschpreis, der nur den Auftrag bringen soll.' },
+			{ title: 'Schnelle, persönliche Rückmeldung', text: 'Sie hören von mir, ohne nachfragen zu müssen.' },
+			{ title: 'Kein Verkaufsdruck', text: 'Sie entscheiden in Ihrem Tempo, nicht in meinem.' },
+			{ title: 'Ein Ansprechpartner', text: 'Vom ersten Anruf bis zur Unterschrift sprechen Sie mit mir, nicht mit wechselnden Mitarbeitern.' },
+		],
+	} ) } /-->`;
+
 	const process = `<!-- wp:library/process-steps /-->`;
 
 	const sold = `<!-- wp:library/region-properties ${ j( {
@@ -107,7 +145,7 @@ function content( city, media ) {
 
 	const cta = `<!-- wp:library/consultation-cta ${ j( { buttonUrl: '/kontakt/', backgroundUrl: ctaBg } ) } /-->`;
 
-	return [ trust, intro, services, process, sold, reviews, objects, faq, cta ].join( '\n\n' );
+	return [ trust, intro, services, about, process, sold, reviews, objects, faq, cta ].join( '\n\n' );
 }
 
 async function findRegion( slug ) {
@@ -119,9 +157,11 @@ async function main() {
 	if ( ! BASE ) throw new Error( 'WP_URL не задан' );
 	const media = await mediaMap();
 	// Google-бейдж (SVG) может быть вне основной выборки — догружаем по slug.
-	if ( ! media[ 'rosenberger-google-rating' ] ) {
-		const b = await api( '/wp/v2/media?slug=rosenberger-google-rating&_fields=id,source_url' );
-		if ( Array.isArray( b ) && b[ 0 ] ) media[ 'rosenberger-google-rating' ] = { id: b[ 0 ].id, url: b[ 0 ].source_url };
+	for ( const slug of [ 'rosenberger-google-rating', 'rosenberger-about-bg' ] ) {
+		if ( ! media[ slug ] ) {
+			const b = await api( `/wp/v2/media?slug=${ slug }&_fields=id,source_url` );
+			if ( Array.isArray( b ) && b[ 0 ] ) media[ slug ] = { id: b[ 0 ].id, url: b[ 0 ].source_url };
+		}
 	}
 
 	for ( const city of CITIES ) {
@@ -130,7 +170,10 @@ async function main() {
 	}
 
 	for ( const city of CITIES ) {
-		const cover = ( media[ city.cover ] || {} ).id || 0;
+		const heroFile = path.join( root, `projects/rosenberger/media/regions/hero-${ city.slug }.webp` );
+		const hero     = fs.existsSync( heroFile ) ? await uploadMedia( `rosenberger-region-hero-${ city.slug }`, heroFile ) : {};
+		const cover    = hero.id || 0;
+		console.log( '  hero', city.slug, '→ media #' + ( hero.id || '—' ) );
 		const payload = {
 			title: city.name,
 			slug: city.slug,
