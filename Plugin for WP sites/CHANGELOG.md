@@ -3,6 +3,16 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-25 — **Immobilienbewertung: многошаговая форма (переиспользован tipper-form).**
+  На странице форма была отложена (заглушка consultation-cta) — теперь там реальный фаннел
+  «Ihre kostenlose Bewertung anfragen» (нода Figma `2009:5527`). Блок `tipper-form`
+  параметризован атрибутом `formSlug` (default `tippgeber`); render.php ищет форму по нему.
+  Своя WPForms-форма `bewertung` (`scripts/setup-bewertung-form.mjs`, subject «Neue
+  Bewertungsanfrage», редирект `/danke/`) — лиды Bewertung отделены от Tippgeber. Тексты из
+  Figma. E2E на `/immobilienbewertung/` проходит (фаннел→submit→/danke/, форма id 189).
+  **Мобилка обеих форм проверена** (375px): шаг-выбор и контактный шаг — карточки/поля в одну
+  колонку, Weiter на всю ширину, без переполнений (`scripts/shot-funnel-mobile.mjs`).
+  ВНИМАНИЕ: e2e/мобил-тесты создают реальные лиды (qa-tipp@example.com) на обеих формах.
 - [Claude] 2026-06-25 — **Tippgeber: многошаговый фаннел подключён к WPForms (работает).**
   Раньше фаннел «Tipp einsenden» был демо без отправки (`WPF.formId=null`). Теперь:
   (1) `scripts/setup-tipper-form.mjs` создаёт форму WPForms `tippgeber` (Anrede, Vorname,

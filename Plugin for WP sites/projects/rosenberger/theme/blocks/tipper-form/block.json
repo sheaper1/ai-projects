@@ -10,6 +10,7 @@
   "attributes": {
     "heading":    { "type": "string",  "default": "Tipp einsenden" },
     "lead":       { "type": "string",  "default": "Drei Schritte, drei Minuten. Ich melde mich innerhalb von 24 Stunden bei Ihnen." },
+    "formSlug":   { "type": "string",  "default": "tippgeber" },
     "wpformsId":  { "type": "integer", "default": 0 }
   },
   "editorScript": "file:./build/index.js",

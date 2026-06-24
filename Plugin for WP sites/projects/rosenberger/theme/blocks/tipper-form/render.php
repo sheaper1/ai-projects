@@ -1,14 +1,15 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-$a       = wp_parse_args( $attributes, [ 'heading' => '', 'lead' => '', 'wpformsId' => 0 ] );
+$a       = wp_parse_args( $attributes, [ 'heading' => '', 'lead' => '', 'formSlug' => 'tippgeber', 'wpformsId' => 0 ] );
 $funnel_file = __DIR__ . '/assets/funnel.html';
 $wrapper = get_block_wrapper_attributes( [ 'class' => 'tipper-form' ] );
 
-// WPForms-форма: явный wpformsId → форма по slug «tippgeber» → первая существующая.
-$form_id = (int) $a['wpformsId'];
+// WPForms-форма: явный wpformsId → форма по slug (formSlug) → первая существующая.
+$form_slug = $a['formSlug'] ? $a['formSlug'] : 'tippgeber';
+$form_id   = (int) $a['wpformsId'];
 if ( ! $form_id ) {
-	$f = get_posts( [ 'post_type' => 'wpforms', 'name' => 'tippgeber', 'posts_per_page' => 1, 'post_status' => 'publish' ] );
+	$f = get_posts( [ 'post_type' => 'wpforms', 'name' => $form_slug, 'posts_per_page' => 1, 'post_status' => 'publish' ] );
 	if ( empty( $f ) ) {
 		$f = get_posts( [ 'post_type' => 'wpforms', 'posts_per_page' => 1, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'ASC' ] );
 	}

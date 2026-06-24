@@ -173,15 +173,13 @@ const pageContent = [
 		],
 	} ) } /-->`,
 
-	// ⚠️ Секция 8 (многошаговая форма) — заменена на consultation-cta, сделать позже
-	`<!-- wp:library/consultation-cta ${ JSON.stringify( {
-		heading:       'Ihre kostenlose Bewertung',
-		headingItalic: 'anfragen',
-		text:          'In unter einer Minute. Ich melde mich danach persönlich bei Ihnen.',
-		buttonText:    'Jetzt anfragen',
-		buttonUrl:     '/kontakt/',
-		backgroundId:  id( ctaBg ),
-		backgroundUrl: u( ctaBg ),
+	// Секция 8 — многошаговая форма (фаннел оценки) через переиспользуемый tipper-form.
+	// Своя WPForms-форма по slug `bewertung` (scripts/setup-bewertung-form.mjs).
+	`<!-- wp:library/tipper-form ${ JSON.stringify( {
+		heading:  'Ihre kostenlose Bewertung anfragen',
+		lead:     'In unter einer Minute. Ich melde mich danach persönlich bei Ihnen.',
+		formSlug: 'bewertung',
+		wpformsId: 0,
 	} ) } /-->`,
 
 	`<!-- wp:library/testimonials ${ JSON.stringify( {
