@@ -91,8 +91,11 @@ const regionDornbirn = await ensureMedia(
 	localBuf( resolve( root, '.figma-tmp/region-dornbirn.webp' ) ),
 	'webp'
 );
-// Bregenz — нет отдельного фото, используем Feldkirch (как на staging)
-const regionBregenz = regionFeldkirch;
+const regionBregenz = await ensureMedia(
+	'region-bregenz',
+	localBuf( resolve( root, 'projects/rosenberger/media/regions/hero-bregenz.webp' ) ),
+	'webp'
+);
 
 const arrowNext = await ensureMedia(
 	'icon-arrow-next',
@@ -105,10 +108,6 @@ const arrowPrev = await ensureMedia(
 	'svg'
 );
 
-const iconEvaluation = await getMedia( 'rosenberger-card-icon-evaluation' );
-const iconValet      = await getMedia( 'rosenberger-card-icon-valet' );
-const iconHouse      = await getMedia( 'rosenberger-card-icon-house' );
-
 // Уже загруженные при деплое — просто читаем ID
 const getMedia = async ( slug ) => {
 	const r = await api( PROD_BASE, PROD_AUTH, `/wp-json/wp/v2/media?slug=${ encodeURIComponent( slug ) }&per_page=1` );
@@ -116,6 +115,10 @@ const getMedia = async ( slug ) => {
 	console.log( `  ✓ ${ slug } (id=${ r.body[ 0 ].id })` );
 	return r.body[ 0 ];
 };
+
+const iconEvaluation = await getMedia( 'rosenberger-card-icon-evaluation' );
+const iconValet      = await getMedia( 'rosenberger-card-icon-valet' );
+const iconHouse      = await getMedia( 'rosenberger-card-icon-house' );
 
 const badge       = await getMedia( 'rosenberger-google-rating' );
 const iconPrice   = await getMedia( 'rosenberger-icon-price' );

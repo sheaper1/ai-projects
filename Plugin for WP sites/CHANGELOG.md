@@ -3,6 +3,18 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-25 — **Аудит сайта + фиксы по итогам.** Прошёлся по всем 11 страницам
+  (desktop+mobile). Найдено и исправлено: (1) `/impressum/` отдавал 404 — создал страницу
+  со стандартным плейсхолдер-Impressum (AT: §5 ECG/§14 UGB); (2) `/datenschutz/` существовала,
+  но контент пустой — наполнил стандартной плейсхолдер-Datenschutzerklärung (DSGVO). Обе на
+  core-блоках (group constrained + heading/paragraph), верхний отступ 160px под fixed-шапку,
+  скрипт `scripts/import-legal.mjs`. (3) Карточка региона **Bregenz** показывала фото Feldkirch
+  (`region-bregenz.webp` не был залит) — залил реальное фото из `media/regions/hero-bregenz.webp`,
+  поправил `import-homepage.mjs` (Bregenz больше не подменяется Feldkirch). Попутно починил
+  пред­существующий TDZ-баг в `import-homepage.mjs` (`getMedia` звался до объявления — скрипт
+  падал). Проверено: оба URL 200 + контент, region-bregenz.webp 200, сетка регионов
+  feldkirch/bludenz/dornbirn/bregenz. Открытым остаётся текст 5-го пункта Pain Points «Übergang»
+  (дубль-плейсхолдер, нужен реальный текст от клиента).
 - [Claude] 2026-06-25 — **Фикс: белая полоса между секциями (blockGap).** На /immobilie-vermieten/
   между отзывами и FAQ (обе на surface-фоне) просвечивала белая полоса — 24px blockGap
   корневого flow-layout показывал белый фон body. Глобально убрал margin-block-start у
