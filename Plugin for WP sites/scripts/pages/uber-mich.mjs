@@ -3,7 +3,7 @@
 // Запуск: npm run page -- uber-mich        (или: npm run page -- uber-mich --dry)
 
 export const title = 'Über mich';
-export const slug = 'uber-mich';
+export const slug = 'ueber-mich';
 
 // Figma CDN URLs действительны 7 дней с момента get_design_context.
 export const media = {

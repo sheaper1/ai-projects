@@ -114,7 +114,7 @@ function content( city, media ) {
 		titleMain: 'Darauf können<br>Sie sich verlassen',
 		text: 'Ich war selbst Käufer und habe erlebt, wie zäh und unehrlich der Ablauf sein kann. Genau das mache ich anders.',
 		buttonText: 'Mehr über mich',
-		buttonUrl: '/uber-mich/',
+		buttonUrl: '/ueber-mich/',
 		backgroundId: aboutBg.id || 0,
 		backgroundUrl: aboutBg.url || '',
 		columns: 4,

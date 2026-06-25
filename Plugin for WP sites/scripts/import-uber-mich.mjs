@@ -184,7 +184,7 @@ const pageContent = [
 // ---------------------------------------------------------------------------
 console.log( '\n📝 Создаю / обновляю страницу «Über mich»...' );
 
-const pages = await api( '/wp-json/wp/v2/pages?slug=uber-mich&status=any&per_page=1' );
+const pages = await api( '/wp-json/wp/v2/pages?slug=ueber-mich&status=any&per_page=1' );
 let pageId;
 
 if ( Array.isArray( pages.body ) && pages.body[ 0 ] ) {
@@ -198,12 +198,12 @@ if ( Array.isArray( pages.body ) && pages.body[ 0 ] ) {
 } else {
 	const r = await api( '/wp-json/wp/v2/pages', {
 		method: 'POST',
-		body: JSON.stringify( { title: 'Über mich', slug: 'uber-mich', content: pageContent, status: 'publish' } ),
+		body: JSON.stringify( { title: 'Über mich', slug: 'ueber-mich', content: pageContent, status: 'publish' } ),
 	} );
 	if ( ! r.ok ) throw new Error( `Ошибка создания: ${ JSON.stringify( r.body ).slice( 0, 300 ) }` );
 	pageId = r.body.id;
 	console.log( `  ✓ Создана страница id=${ pageId }` );
 }
 
-console.log( `\n✅ Готово! Страница: ${ BASE }/${ 'uber-mich' }/` );
+console.log( `\n✅ Готово! Страница: ${ BASE }/${ 'ueber-mich' }/` );
 console.log( `   Редактор: ${ BASE }/wp-admin/post.php?post=${ pageId }&action=edit` );
