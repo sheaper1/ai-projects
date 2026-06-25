@@ -25,7 +25,7 @@ $icon = '<span class="faq-section__icon" aria-hidden="true">'
 				?>
 				<div class="faq-section__item<?php echo $is_open ? ' is-open' : ''; ?>">
 					<button class="faq-section__q" type="button" aria-expanded="<?php echo $is_open ? 'true' : 'false'; ?>" aria-controls="<?php echo esc_attr( $ans_id ); ?>">
-						<span><?php echo esc_html( $item['question'] ?? '' ); ?></span>
+						<span><?php echo wp_kses( $item['question'] ?? '', [ 'br' => [] ] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 						<?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</button>
 					<div class="faq-section__answer-wrap" id="<?php echo esc_attr( $ans_id ); ?>" role="region">

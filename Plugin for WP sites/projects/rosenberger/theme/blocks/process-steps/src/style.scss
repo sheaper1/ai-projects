@@ -13,7 +13,7 @@
 }
 
 .process-steps__heading {
-	margin: 0 0 24px;
+	margin: 0 0 16px;
 	font-family: var(--wp--preset--font-family--heading);
 	font-size: var(--wp--preset--font-size--r-56);
 	line-height: 1.2;
@@ -28,9 +28,10 @@
 
 .process-steps__subtext {
 	max-width: 511px;
-	margin: 0 0 32px;
+	margin: 0 0 40px;
 	font-size: var(--wp--preset--font-size--r-16);
 	line-height: 1.5;
+	letter-spacing: -0.01em;
 	color: var(--wp--preset--color--muted);
 }
 
@@ -48,14 +49,16 @@
 .process-steps__item {
 	display: grid;
 	grid-template-columns: 72px 1fr;
-	gap: 24px;
-	padding: 0 0 31px;
+	gap: 32px;
+	padding: 0 16px 31px;
 	margin-bottom: 31px;
 	border-bottom: 1px solid rgba(222, 206, 196, 0.75);
 }
 
 .process-steps__item:last-child {
 	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom: 0;
 }
 
 .process-steps__number {
@@ -72,8 +75,9 @@
 	margin: 0 0 8px;
 	font-family: var(--wp--preset--font-family--heading);
 	font-size: var(--wp--preset--font-size--r-24);
-	line-height: 1.4;
-	font-weight: 500;
+	line-height: 1.2;
+	font-weight: 600;
+	letter-spacing: -0.03em;
 	color: var(--wp--preset--color--contrast);
 }
 

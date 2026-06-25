@@ -17,8 +17,8 @@
 			"type": "array",
 			"default": [
 				{ "question": "Was kostet Sie die Zusammenarbeit?", "answer": "Die Provision hängt von Objekt und Leistungsumfang ab. Was auf Sie zukommt, bespreche ich offen, bevor Sie sich entscheiden.", "open": true },
-				{ "question": "Ich bin noch unentschlossen. Lohnt sich ein Gespräch trotzdem?", "answer": "Ja. Im Erstgespräch klären wir, welche Optionen sinnvoll sind und ob jetzt überhaupt der richtige Zeitpunkt ist.", "open": false },
-				{ "question": "Ich suche eine Immobilie in Vorarlberg. Können Sie mir helfen?", "answer": "Ja. Ich zeige Ihnen passende Objekte, erkläre die nächsten Schritte und sage offen, was realistisch verfügbar ist.", "open": false },
+				{ "question": "Ich bin noch unentschlossen.<br>Lohnt sich ein Gespräch trotzdem?", "answer": "Ja. Im Erstgespräch klären wir, welche Optionen sinnvoll sind und ob jetzt überhaupt der richtige Zeitpunkt ist.", "open": false },
+				{ "question": "Ich suche eine Immobilie in Vorarlberg.<br>Können Sie mir helfen?", "answer": "Ja. Ich zeige Ihnen passende Objekte, erkläre die nächsten Schritte und sage offen, was realistisch verfügbar ist.", "open": false },
 				{ "question": "Mit wem habe ich es zu tun?", "answer": "Sie sprechen direkt mit mir, nicht mit wechselnden Ansprechpartnern.", "open": false }
 			]
 		}

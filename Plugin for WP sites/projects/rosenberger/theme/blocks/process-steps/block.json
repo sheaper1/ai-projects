@@ -14,7 +14,7 @@
 	"attributes": {
 		"heading": { "type": "string", "default": "So läuft es" },
 		"headingItalic": { "type": "string", "default": "mit mir ab" },
-		"subtext": { "type": "string", "default": "In vier Schritten vom ersten Gespräch bis zur Übergabe. Ihr Aufwand bleibt überschaubar." },
+		"subtext": { "type": "string", "default": "In vier Schritten vom ersten Gespräch bis zur Übergabe. <br>Ihr Aufwand bleibt überschaubar." },
 		"buttonText": { "type": "string", "default": "Kostenlos beraten lassen" },
 		"buttonUrl": { "type": "string", "default": "#" },
 		"steps": {

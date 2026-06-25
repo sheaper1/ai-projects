@@ -18,10 +18,10 @@
 		"backgroundUrl": { "type": "string", "default": "" },
 		"columns": { "type": "number", "default": 4 },
 		"items": { "type": "array", "default": [
-			{ "title": "Ehrliche Bewertung", "text": "Sie bekommen einen realistischen Preis, der zum Markt passt, keinen Wunschpreis, der nur den Auftrag bringen soll." },
-			{ "title": "Rückruf binnen 24 Stunden", "text": "Sie hören von mir, ohne nachfragen zu müssen." },
-			{ "title": "Kein Verkaufsdruck", "text": "Sie entscheiden in Ihrem Tempo, nicht in meinem." },
-			{ "title": "Ein Ansprechpartner", "text": "Vom ersten Anruf bis zur Unterschrift sprechen Sie mit mir, nicht mit wechselnden Mitarbeitern." }
+			{ "title": "Ehrliche<br>Bewertung", "text": "Sie bekommen einen realistischen Preis, der zum Markt passt, keinen Wunschpreis, der nur den Auftrag bringen soll." },
+			{ "title": "Rückruf<br>binnen 24 Stunden", "text": "Sie hören von mir, ohne nachfragen zu müssen." },
+			{ "title": "Kein<br>Verkaufsdruck", "text": "Sie entscheiden in Ihrem Tempo, nicht in meinem." },
+			{ "title": "Ein<br>Ansprechpartner", "text": "Vom ersten Anruf bis zur Unterschrift sprechen Sie mit mir, nicht mit wechselnden Mitarbeitern." }
 		] }
 	},
 	"editorScript": "file:./build/index.js",

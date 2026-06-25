@@ -23,5 +23,25 @@
     "hash": "b3667b165e0c9924",
     "passedAt": "2026-06-25",
     "page": "home"
+  },
+  "about": {
+    "hash": "6d21b82c29407023",
+    "passedAt": "2026-06-25",
+    "page": "home"
+  },
+  "process-steps": {
+    "hash": "05c03c2268e15f80",
+    "passedAt": "2026-06-25",
+    "page": "home"
+  },
+  "faq-section": {
+    "hash": "99e71fb44bb56c4b",
+    "passedAt": "2026-06-25",
+    "page": "home"
+  },
+  "referral-cta": {
+    "hash": "597c31e74982ef71",
+    "passedAt": "2026-06-25",
+    "page": "home"
   }
 }
