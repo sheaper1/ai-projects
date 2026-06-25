@@ -28,6 +28,7 @@ const api = async ( path, opts = {} ) => {
 const FILES = [
 	'includes/class-api-client.php',
 	'includes/class-field-mapper.php',
+	'includes/class-sync-service.php',
 ];
 const pluginDir = resolve( root, 'projects/rosenberger/plugin/propstack-real-estate' );
 const entries = FILES.map( ( rel ) => `\t'${ rel }' => '${ readFileSync( resolve( pluginDir, rel ) ).toString( 'base64' ) }',` ).join( '\n' );

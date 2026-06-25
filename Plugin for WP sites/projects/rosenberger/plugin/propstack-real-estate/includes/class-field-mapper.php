@@ -180,9 +180,9 @@ class Propstack_RE_Field_Mapper {
      */
     private function normalize_expand( array $data ): array {
         $alias = [
-            'short_description'      => [ 'description_note' ],
+            'short_description'      => [ 'short_note' ],
             'description'            => [ 'long_description_note', 'description_note' ],
-            'long_description'       => [ 'long_description_note' ],
+            'long_description'       => [ 'long_description_note', 'description_note' ],
             'location_description'   => [ 'long_location_note', 'location_note' ],
             'equipment_description'  => [ 'long_furnishing_note', 'furnishing_note' ],
             'furnishing_description' => [ 'long_furnishing_note', 'furnishing_note' ],

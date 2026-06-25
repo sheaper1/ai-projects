@@ -138,10 +138,16 @@ class Propstack_RE_Sync_Service {
                 }
             }
 
-            // Bilder importieren
+            // Bilder importieren + Attachment-IDs als Galerie/Beitragsbild speichern
             $images = maybe_unserialize( $mapped['meta']['_property_gallery'] ?? '' );
             if ( is_array( $images ) && ! empty( $images ) ) {
-                $this->images->import_images( $post_id, $images );
+                $attachment_ids = $this->images->import_images( $post_id, $images );
+                if ( is_array( $attachment_ids ) && ! empty( $attachment_ids ) ) {
+                    update_post_meta( $post_id, '_property_gallery_ids', array_values( array_map( 'absint', $attachment_ids ) ) );
+                    if ( ! has_post_thumbnail( $post_id ) ) {
+                        set_post_thumbnail( $post_id, (int) $attachment_ids[0] );
+                    }
+                }
             }
 
             Propstack_RE_Logger::info(
