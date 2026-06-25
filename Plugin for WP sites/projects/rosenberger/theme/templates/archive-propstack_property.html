@@ -1,0 +1,77 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"default"}} -->
+<main class="wp-block-group">
+
+	<!-- Шапка архива (заголовок + подпись) -->
+	<!-- wp:group {"className":"property-archive__header","layout":{"type":"constrained","contentSize":"640px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|r-64","bottom":"var:preset|spacing|r-48"}}}} -->
+	<div class="wp-block-group property-archive__header" style="padding-top:var(--wp--preset--spacing--r-64);padding-bottom:var(--wp--preset--spacing--r-48)">
+
+		<!-- wp:heading {"level":1,"className":"property-archive__title","textAlign":"center"} -->
+		<h1 class="wp-block-heading property-archive__title has-text-align-center">Aktuelle Objekte <em>in Vorarlberg</em></h1>
+		<!-- /wp:heading -->
+
+		<!-- wp:paragraph {"align":"center","className":"property-archive__lead"} -->
+		<p class="wp-block-paragraph property-archive__lead has-text-align-center">Sie suchen ein Zuhause oder ein Grundstück in Vorarlberg? Hier finden Sie unsere aktuellen Angebote. Der Bestand wird laufend aktualisiert.</p>
+		<!-- /wp:paragraph -->
+
+	</div>
+	<!-- /wp:group -->
+
+	<!-- Сетка объектов -->
+	<!-- wp:group {"layout":{"type":"constrained","contentSize":"1344px"},"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|r-64"}}}} -->
+	<div class="wp-block-group" style="padding-bottom:var(--wp--preset--spacing--r-64)">
+
+		<!-- wp:query {"query":{"perPage":12,"postType":"propstack_property","inherit":true},"className":"property-query"} -->
+		<div class="wp-block-query property-query">
+
+			<!-- wp:post-template {"className":"property-grid","layout":{"type":"grid","columnCount":3}} -->
+
+				<!-- wp:group {"className":"property-card","tagName":"article"} -->
+				<article class="wp-block-group property-card">
+
+					<!-- wp:post-featured-image {"isLink":true,"className":"property-card__image","aspectRatio":"3/4"} /-->
+
+					<!-- wp:group {"className":"property-card__body"} -->
+					<div class="wp-block-group property-card__body">
+
+						<!-- wp:post-title {"level":3,"isLink":true,"className":"property-card__title"} /-->
+
+						<!-- wp:post-excerpt {"className":"property-card__excerpt","moreText":""} /-->
+
+						<!-- wp:rosenberger/property-meta /-->
+
+						<!-- wp:read-more {"content":"Erfahren Sie mehr →","className":"property-card__more"} /-->
+
+					</div>
+					<!-- /wp:group -->
+
+				</article>
+				<!-- /wp:group -->
+
+			<!-- /wp:post-template -->
+
+			<!-- wp:query-no-results -->
+				<!-- wp:paragraph {"align":"center"} -->
+				<p class="wp-block-paragraph has-text-align-center" style="padding:var(--wp--preset--spacing--r-64) 0;color:var(--wp--preset--color--muted)">Aktuell sind keine Objekte verfügbar. Schauen Sie bald wieder vorbei.</p>
+				<!-- /wp:paragraph -->
+			<!-- /wp:query-no-results -->
+
+			<!-- wp:query-pagination {"className":"property-pagination","layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|r-48"}}}} -->
+			<div class="wp-block-query-pagination property-pagination" style="display:flex;justify-content:center;padding-top:var(--wp--preset--spacing--r-48)">
+				<!-- wp:query-pagination-previous /-->
+				<!-- wp:query-pagination-numbers /-->
+				<!-- wp:query-pagination-next /-->
+			</div>
+			<!-- /wp:query-pagination -->
+
+		</div>
+		<!-- /wp:query -->
+
+	</div>
+	<!-- /wp:group -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
