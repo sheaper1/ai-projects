@@ -75,9 +75,22 @@ function rosenberger_propstack_map_value( int $post_id, string $key ) {
 			return 'Verfügbar';
 
 		case 'property_object_type':
+			// Propstack /units не отдаёт Objektart отдельным полем — оставляем как есть.
 			return (string) $raw( '_property_type' );
 		case 'property_category':
-			return (string) $raw( '_property_category' );
+			$cat = (string) $raw( '_property_category' );
+			if ( '' !== $cat ) {
+				return $cat;
+			}
+			// Из marketing_type (BUY/RENT) собираем человекочитаемую категорию.
+			$mt = strtoupper( (string) $raw( '_property_marketing_type' ) );
+			if ( str_contains( $mt, 'BUY' ) || str_contains( $mt, 'KAUF' ) || str_contains( $mt, 'PURCHASE' ) ) {
+				return 'Kauf';
+			}
+			if ( str_contains( $mt, 'RENT' ) || str_contains( $mt, 'MIETE' ) ) {
+				return 'Miete';
+			}
+			return '';
 		case 'property_object_nr':
 			return (string) $raw( '_property_object_number' );
 
@@ -129,13 +142,17 @@ function rosenberger_propstack_map_value( int $post_id, string $key ) {
 		case 'property_acc_energy':
 			return (string) $raw( '_property_energy_hwb' );
 
-		// Галерея: ID вложений, импортированных плагином (если он их сложил в эту мету).
+		// Галерея: ID вложений, импортированных плагином; иначе — featured image.
 		case 'property_gallery':
 			$g = $raw( '_property_gallery_ids' );
-			if ( is_array( $g ) ) {
+			if ( is_array( $g ) && $g ) {
 				return implode( ',', array_map( 'absint', $g ) );
 			}
-			return is_string( $g ) ? $g : '';
+			if ( is_string( $g ) && '' !== $g ) {
+				return $g;
+			}
+			$thumb = get_post_thumbnail_id( $post_id );
+			return $thumb ? (string) $thumb : '';
 	}
 
 	return null; // не маппим → обычное чтение (блок покажет «—»/пусто).
