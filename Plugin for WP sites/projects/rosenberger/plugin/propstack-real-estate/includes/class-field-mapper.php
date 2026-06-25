@@ -54,7 +54,7 @@ class Propstack_RE_Field_Mapper {
 
             // Flächen & Kennzahlen (Units-API-Felder)
             '_property_living_area'          => $this->safe( $data, 'living_space' ) ?? $this->safe( $data, 'living_area' ),
-            '_property_plot_area'            => $this->safe( $data, 'property_space_value' ) ?? $this->safe( $data, 'plot_area' ),
+            '_property_plot_area'            => $this->safe( $data, 'plot_area' ),
             '_property_usable_area'          => $this->safe( $data, 'usable_area' ),
             '_property_rooms'                => $this->safe( $data, 'number_of_rooms' ) ?? $this->safe( $data, 'rooms' ),
             '_property_bedrooms'             => $this->safe( $data, 'number_of_bed_rooms' ) ?? $this->safe( $data, 'number_of_bedrooms' ) ?? $this->safe( $data, 'bedrooms' ),
