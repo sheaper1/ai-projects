@@ -45,6 +45,17 @@ const browser = await puppeteer.launch( { headless: 'new', args: [ '--no-sandbox
 const page = await browser.newPage();
 await page.setViewport( { width, height: mobile ? 800 : 1000, deviceScaleFactor: mobile ? 2 : 1.5, isMobile: mobile, hasTouch: mobile } );
 await page.goto( url, { waitUntil: 'networkidle2', timeout: 60000 } );
+
+// Прокрутить всю страницу до низа и обратно — иначе scroll-reveal (opacity:0 до
+// IntersectionObserver) и lazy-фоны не подгрузятся, и секции ниже первого экрана
+// снимутся ПУСТЫМИ. Без этого Phase-2 снимок региона/карточек был серым.
+await page.evaluate( async () => {
+	const sleep = ( ms ) => new Promise( ( r ) => setTimeout( r, ms ) );
+	const step = Math.max( 400, window.innerHeight * 0.8 );
+	for ( let y = 0; y < document.body.scrollHeight; y += step ) { window.scrollTo( 0, y ); await sleep( 120 ); }
+	window.scrollTo( 0, 0 );
+	await sleep( 200 );
+} );
 await new Promise( ( r ) => setTimeout( r, 900 ) );
 
 const raw = resolve( outDir, `.${ name }-raw.png` );
