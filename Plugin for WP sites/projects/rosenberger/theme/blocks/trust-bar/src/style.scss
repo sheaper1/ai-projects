@@ -26,7 +26,7 @@
 	.trust-bar__stars { position: relative; display: inline-block; white-space: nowrap; font-size: var(--wp--preset--font-size--r-20); line-height: 1; letter-spacing: 2px; }
 	.trust-bar__stars-empty { color: var(--wp--preset--color--border); }
 	.trust-bar__stars-full { position: absolute; left: 0; top: 0; overflow: hidden; }
-	.trust-bar__items { display: flex; align-items: center; gap: var(--wp--preset--spacing--r-32); font-family: var(--wp--preset--font-family--heading); font-size: var(--wp--preset--font-size--r-18); font-weight: 600; }
+	.trust-bar__items { display: flex; align-items: center; gap: var(--wp--preset--spacing--r-24); font-family: var(--wp--preset--font-family--body); font-size: var(--wp--preset--font-size--r-18); font-weight: 500; }
 	.trust-bar__items span + span::before { content: "•"; margin-right: var(--wp--preset--spacing--r-32); }
 
 	@media (max-width: 900px) {
