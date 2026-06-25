@@ -32,6 +32,28 @@ add_action( 'added_post_meta', 'rosenberger_pc_sync_numeric', 10, 4 );
 add_action( 'updated_post_meta', 'rosenberger_pc_sync_numeric', 10, 4 );
 
 /**
+ * Числовые спутники для объектов из Propstack (CPT propstack_property): плагин
+ * хранит чистые числа в `_property_*`, а каталог фильтрует по `property_*_num`.
+ */
+function rosenberger_pc_propstack_numeric( $meta_id, $post_id, $key, $value ): void {
+	static $map = [
+		'_property_price'        => 'property_price_num',
+		'_property_living_area'  => 'property_area_num',
+		'_property_plot_area'    => 'property_plot_area_num',
+		'_property_rooms'        => 'property_rooms_num',
+	];
+	if ( ! isset( $map[ $key ] ) ) {
+		return;
+	}
+	$raw = str_replace( ',', '.', (string) $value );
+	$num = (float) preg_replace( '/[^0-9.]/', '', $raw );
+	$num = ( '_property_rooms' === $key ) ? $num : (int) $num;
+	update_post_meta( $post_id, $map[ $key ], $num );
+}
+add_action( 'added_post_meta', 'rosenberger_pc_propstack_numeric', 10, 4 );
+add_action( 'updated_post_meta', 'rosenberger_pc_propstack_numeric', 10, 4 );
+
+/**
  * Привести «сырой» источник (GET или REST-параметры) к каноничному набору фильтров.
  */
 function rosenberger_pc_params( array $src, int $per_page = 9 ): array {
@@ -91,13 +113,14 @@ function rosenberger_pc_query( array $p ): WP_Query {
 	$order_map = [
 		'newest'     => [ 'orderby' => 'date',           'order' => 'DESC' ],
 		'oldest'     => [ 'orderby' => 'date',           'order' => 'ASC' ],
-		'price_asc'  => [ 'orderby' => 'meta_value_num', 'order' => 'ASC',  'meta_key' => 'property_price' ],
-		'price_desc' => [ 'orderby' => 'meta_value_num', 'order' => 'DESC', 'meta_key' => 'property_price' ],
+		'price_asc'  => [ 'orderby' => 'meta_value_num', 'order' => 'ASC',  'meta_key' => 'property_price_num' ],
+		'price_desc' => [ 'orderby' => 'meta_value_num', 'order' => 'DESC', 'meta_key' => 'property_price_num' ],
 	];
 
 	return new WP_Query( array_merge(
 		[
-			'post_type'      => 'property',
+			// property — старый CPT, propstack_property — объекты из Propstack-синка.
+			'post_type'      => [ 'property', 'propstack_property' ],
 			'posts_per_page' => $p['per_page'],
 			'paged'          => $p['page'],
 			'tax_query'      => $tax_query,
