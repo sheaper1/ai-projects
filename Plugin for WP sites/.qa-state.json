@@ -25,9 +25,9 @@
     "page": "home"
   },
   "about": {
-    "hash": "6d21b82c29407023",
+    "hash": "28222a88f0516fde",
     "passedAt": "2026-06-25",
-    "page": "home"
+    "page": "immobilienbewertung"
   },
   "process-steps": {
     "hash": "05c03c2268e15f80",
@@ -55,7 +55,12 @@
     "page": "immobilienbewertung"
   },
   "problem-cards": {
-    "hash": "df59362c8ae2637b",
+    "hash": "1469d6a602a683dd",
+    "passedAt": "2026-06-25",
+    "page": "immobilienbewertung"
+  },
+  "testimonials": {
+    "hash": "b1a99e07b0d5057a",
     "passedAt": "2026-06-25",
     "page": "immobilienbewertung"
   }

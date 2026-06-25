@@ -85,7 +85,9 @@
 		gap: 16px;
 	}
 	.about__card {
-		min-height: 218px;
+		// Высота от контента (grid-stretch выравнивает ряд) — без фикс. 218px,
+		// иначе на страницах с коротким текстом (напр. immobilienbewertung) карточки
+		// зияют пустотой снизу. На главной контент ~218px и так даёт ту же высоту.
 		padding: var(--wp--preset--spacing--r-24);
 		display: flex;
 		flex-direction: column;

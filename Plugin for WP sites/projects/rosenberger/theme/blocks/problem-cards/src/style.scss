@@ -70,6 +70,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: var(--wp--preset--spacing--r-16);
+		margin-top: auto; // прижать текст к низу карточки (иконка сверху), как в Figma
 	}
 
 	.problem-cards__title {
