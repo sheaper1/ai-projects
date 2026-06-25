@@ -223,6 +223,11 @@ class Propstack_RE_Field_Mapper {
             }
         }
 
+        // Статус: expand отдаёт его в property_status (объект {id,name}).
+        if ( ! isset( $data['status'] ) && isset( $data['property_status'] ) ) {
+            $data['status'] = $data['property_status'];
+        }
+
         // Энергопаспорт (AT): aut_* → структура, которую читает map().
         $data['energy_certificate'] = array_merge(
             is_array( $data['energy_certificate'] ?? null ) ? $data['energy_certificate'] : [],

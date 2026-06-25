@@ -39,6 +39,16 @@ window.RbCarousel = function ( carousel, opts ) {
 	cloneSet().forEach( function ( c ) { track.appendChild( c ); } );
 
 	var all = Array.prototype.slice.call( track.children );
+
+	// Картинки слайдов делаем инертными: без нативного перетаскивания картинки и
+	// без клика по ней — тащим саму карусель, а не изображение (фикс для всех каруселей).
+	Array.prototype.slice.call( track.querySelectorAll( 'img' ) ).forEach( function ( im ) {
+		im.setAttribute( 'draggable', 'false' );
+		im.style.pointerEvents = 'none';
+		im.style.userSelect = 'none';
+		im.style.webkitUserDrag = 'none';
+	} );
+
 	var base = n;          // индекс первого реального слайда в all
 	var curDom = base;     // текущий слайд (в all)
 	var currentX = 0;

@@ -20,8 +20,38 @@
 }
 
 /* Coverflow */
-.property-gallery__carousel { width: 100%; }
+.property-gallery__carousel { width: 100%; position: relative; }
 .property-gallery__viewport { width: 100%; overflow: hidden; }
+
+/* Стрелки — круглые, как в Hero (бренд-токены) */
+.property-gallery__nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+	width: 56px;
+	height: 56px;
+	border: none;
+	border-radius: var(--wp--custom--radius--pill);
+	background: var(--wp--preset--color--base);
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	box-shadow: 0 4px 16px rgba(20, 35, 53, 0.16);
+	transition: background var(--wp--custom--transition--fast), transform var(--wp--custom--transition--fast);
+}
+.property-gallery__nav::before {
+	content: "";
+	width: 12px;
+	height: 12px;
+	border-top: 2px solid var(--wp--preset--color--contrast);
+	border-right: 2px solid var(--wp--preset--color--contrast);
+}
+.property-gallery__nav--prev { left: clamp(8px, 4vw, 64px); }
+.property-gallery__nav--prev::before { transform: rotate(-135deg); margin-left: 5px; }
+.property-gallery__nav--next { right: clamp(8px, 4vw, 64px); }
+.property-gallery__nav--next::before { transform: rotate(45deg); margin-right: 5px; }
+.property-gallery__nav:hover { background: var(--wp--preset--color--surface); transform: translateY(-50%) scale(1.06); }
 .property-gallery__track {
 	display: flex;
 	gap: 30px;

@@ -176,9 +176,10 @@ class Propstack_RE_Sync_Service {
             $public_status_ids = [];
         }
 
-        // Units-API: Status als Objekt {"id": ..., "name": "..."} oder direkt als ID
-        $status_id = isset( $data['status']['id'] )
-            ? (int) $data['status']['id']
+        // Status: /units → "status", /units?expand=1 → "property_status" (Objekt {id,name}).
+        $status    = $data['status'] ?? $data['property_status'] ?? [];
+        $status_id = isset( $status['id'] )
+            ? (int) $status['id']
             : (int) ( $data['rs_status_id'] ?? $data['status_id'] ?? 0 );
 
         // Wenn public_status_ids konfiguriert sind → prüfen
@@ -188,7 +189,7 @@ class Propstack_RE_Sync_Service {
             }
         } else {
             // Keine Konfiguration → anhand Status-Name "Vermarktung" / "reserviert" publizieren
-            $status_name = strtolower( $data['status']['name'] ?? $data['status_name'] ?? '' );
+            $status_name = strtolower( $status['name'] ?? $data['status_name'] ?? '' );
             if ( str_contains( $status_name, 'vermarktung' ) || str_contains( $status_name, 'reserviert' ) || str_contains( $status_name, 'aktiv' ) ) {
                 return 'publish';
             }

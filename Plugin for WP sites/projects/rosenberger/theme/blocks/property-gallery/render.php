@@ -37,6 +37,8 @@ if ( ! $images ) {
 				</div>
 			</div>
 			<?php if ( count( $images ) > 1 ) : ?>
+				<button class="property-gallery__nav property-gallery__nav--prev" data-prev type="button" aria-label="Vorheriges Bild"></button>
+				<button class="property-gallery__nav property-gallery__nav--next" data-next type="button" aria-label="Nächstes Bild"></button>
 				<div class="property-gallery__dots" data-dots></div>
 			<?php endif; ?>
 		</div>
