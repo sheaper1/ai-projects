@@ -96,6 +96,24 @@ add_action(
 );
 
 /**
+ * Favicon: один SVG-знак бренда, цвет переключается по теме ОС
+ * (тёмно-синий на светлой, белый на тёмной — через prefers-color-scheme
+ * внутри самого SVG). Перебивает дефолтную иконку WP.
+ */
+add_action(
+	'wp_head',
+	function () {
+		$href = get_theme_file_uri( '/assets/favicon.svg' )
+			. '?v=' . filemtime( get_stylesheet_directory() . '/assets/favicon.svg' );
+		printf(
+			'<link rel="icon" href="%s" type="image/svg+xml" sizes="any">' . "\n",
+			esc_url( $href )
+		);
+	},
+	5
+);
+
+/**
  * Класс на body для страниц со светлым Hero (single object) — шапка с тёмным меню.
  */
 add_filter(
