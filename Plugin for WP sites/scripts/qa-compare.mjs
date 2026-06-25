@@ -155,12 +155,23 @@ const domW = Object.entries( wCount ).sort( ( a, b ) => b[ 1 ] - a[ 1 ] )[ 0 ]?.
 const weightOutliers = body.filter( ( t ) => t.fontWeight !== domW && +t.fontWeight > +domW )   // только ЖИРНЕЕ — это и есть «толще дизайна»
 	.map( ( t ) => { const f = figBy.get( key( t.text ) ); return { sec: f ? secOf( f.y ) : 'прочее', weight: t.fontWeight, expected: domW, size: t.fontSize, text: t.text.slice( 0, 45 ) }; } );
 
+// ── 3b. Вес ЗАГОЛОВКОВ: выброс среди крупных h1–h3 ────────────────────────────
+// Заголовки секций держат единый вес (обычно 400). Заголовок легче ИЛИ тяжелее
+// остальных = дефект (часто хардкод font-weight в SCSS блока). Ловит то, что
+// body-проверка (только <p>) пропускает — напр. consultation-cta 300 vs сиблинги 400.
+const heads = live1440.texts.filter( ( t ) => /^h[1-3]$/.test( t.tag ) && t.fontSize >= 40 && ! isChrome( t ) );
+const hCount = {};
+for ( const t of heads ) hCount[ t.fontWeight ] = ( hCount[ t.fontWeight ] || 0 ) + 1;
+const domHW = Object.entries( hCount ).sort( ( a, b ) => b[ 1 ] - a[ 1 ] )[ 0 ]?.[ 0 ];
+const headWeightOutliers = ! domHW ? [] : heads.filter( ( t ) => t.fontWeight !== domHW )
+	.map( ( t ) => ( { sec: ( t.cls.match( /([a-z][a-z-]*)__/ ) || [ , 'прочее' ] )[ 1 ], weight: t.fontWeight, expected: domHW, size: t.fontSize, text: t.text.slice( 0, 40 ) } ) );
+
 // ── 4. Картинки full-bleed: подозрение только если в дизайне НЕТ band'ов ──────
 const imgFlags = live1440.images.filter( ( im ) => im.fullBleed ).map( ( im ) =>
 	( { src: im.src, widthPct: im.widthPct, designBands: fig.bands.length } ) );
 
 // ── Отчёт ────────────────────────────────────────────────────────────────────
-const out = { figma: { frameW: fig.frameW, frameH: fig.frameH, texts: fig.texts.length, bands: fig.bands.length }, liveDocH: live1440.docHeight, matchedN, vwDrift, brMiss, geom, orderFlags, weightOutliers, liveOnly, figmaOnly, imgFlags };
+const out = { figma: { frameW: fig.frameW, frameH: fig.frameH, texts: fig.texts.length, bands: fig.bands.length }, liveDocH: live1440.docHeight, matchedN, vwDrift, brMiss, geom, orderFlags, weightOutliers, headWeightOutliers, liveOnly, figmaOnly, imgFlags };
 if ( jsonOut ) writeFileSync( jsonOut, JSON.stringify( out, null, 2 ) );
 
 const P = ( ...a ) => console.log( ...a );
@@ -188,6 +199,7 @@ if ( byBlock.has( 'прочее' ) ) { P( `\n  ▸ Прочее (вне секц
 if ( ! nDef && ! byBlock.has( 'прочее' ) ) P( '  — измеримых дефектов внутри блоков нет' );
 
 const sec = ( title, arr, fn ) => { P( `\n## ${ title }` ); arr.length ? arr.slice( 0, 25 ).forEach( ( x ) => P( '  ' + fn( x ) ) ) : P( '  — нет' ); };
+sec( `🔴 ВЕС ЗАГОЛОВКОВ (выброс vs большинство ${ domHW }):`, headWeightOutliers, ( d ) => `[${ d.sec }] «${ d.text }» weight ${ d.weight } вместо ${ d.expected } (size ${ d.size })` );
 sec( '🟠 ПОРЯДОК блоков (на лайве переехал выше дизайна):', orderFlags, ( d ) => `"${ d.text }" выше "${ d.after }" (figY ${ d.figY } → liveY ${ d.liveY })` );
 sec( '🟠 LIVE-ONLY (на лайве есть, в Figma НЕТ — лишняя секция / реальный контент vs плейсхолдер):', liveOnly, ( t ) => t );
 sec( '🟠 FIGMA-ONLY (в дизайне есть, на лайве НЕТ — потеряно / свёрнутый аккордеон):', figmaOnly, ( t ) => `"${ t }"` );
