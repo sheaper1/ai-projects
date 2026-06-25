@@ -11,6 +11,7 @@
 defined( 'ABSPATH' ) || exit;
 
 require_once get_theme_file_path( 'inc/blog.php' );
+require_once get_theme_file_path( 'inc/propstack-bridge.php' );
 
 /**
  * Регистрируем все блоки темы из /blocks/<slug>/ (каждый со своим block.json).
@@ -144,7 +145,7 @@ add_action(
 add_filter(
 	'body_class',
 	function ( $classes ) {
-		if ( is_singular( 'property' ) || is_singular( 'reference' ) || is_post_type_archive( 'reference' )
+		if ( is_singular( 'property' ) || is_singular( 'propstack_property' ) || is_singular( 'reference' ) || is_post_type_archive( 'reference' )
 				|| is_home() || is_singular( 'post' ) || is_singular( 'region' )
 				|| is_404() || is_page( 'danke' ) || is_page( 'kontakt' ) ) {
 			$classes[] = 'has-light-hero';

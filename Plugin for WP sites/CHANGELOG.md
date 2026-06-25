@@ -3,6 +3,16 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-25 — **Propstack: стили объекта под Rosenberger (вариант B) + конвейер проверен.**
+  Создан тестовый объект в Propstack (Höchsterstraße 24, Dornbirn, Vermarktung, 450k, 85m², 3 Zi),
+  синкнут и опубликован на staging. Попутно фикс: «Öffentliche Status-IDs» плагина были `1,2`
+  (заглушка) — реальный Vermarktung=`243237`, без правки все объекты висели бы черновиками;
+  поставил `243237,243238`. Стили БЕЗ правок плагина: тема перехватывает чтение `property_*` у
+  постов `propstack_property` фильтром `get_post_metadata` (`inc/propstack-bridge.php`) и отдаёт
+  значения из плагинных `_property_*` в нужном формате; блочный шаблон `single-propstack_property.html`
+  переиспользует наши блоки property-hero/stats/overview/gallery/details/location. Объект рендерится
+  в полном дизайне Rosenberger (проверено в браузере). Зазоры: нет фото у тест-объекта (пустой
+  hero/галерея), Objektart/Kategorie из `/units` приходят пустыми (мелкий маппинг). См. [[propstack-integration-state]].
 - [Claude] 2026-06-25 — **Propstack: интеграция плагина-синка (v1 от Alex) в проект.**
   Плагин `propstack-real-estate` (sync объектов из Propstack CRM: CPT, крон, импорт фото,
   лиды обратно, вебхуки) добавлен в `projects/rosenberger/plugin/`. Установлен и активен на
