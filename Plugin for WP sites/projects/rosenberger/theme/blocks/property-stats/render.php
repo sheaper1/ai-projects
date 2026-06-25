@@ -20,19 +20,30 @@ $stats = array(
 	array( 'icon' => 'year.svg',      'label' => 'Baujahr',      'key' => 'property_year' ),
 );
 
-// Для референсов (часто Grundstück без жилых показателей) — добавляем Grundstücksfläche,
-// чтобы секция не была пустой.
-if ( 'reference' === get_post_type( $post_id ) ) {
+$is_ref = 'reference' === get_post_type( $post_id );
+
+// Для референсов (часто Grundstück без жилых показателей) — добавляем Grundstücksfläche.
+if ( $is_ref ) {
 	$stats[] = array( 'icon' => 'area.svg', 'label' => 'Grundstücksfläche', 'key' => 'property_plot_area' );
 }
 
 $cards = array();
 foreach ( $stats as $s ) {
 	$value = get_post_meta( $post_id, $s['key'], true );
-	if ( '' !== $value ) {
+	if ( $is_ref ) {
+		// Референс: только заполненные показатели.
+		if ( '' === $value ) {
+			continue;
+		}
 		$s['value'] = $value;
-		$cards[]    = $s;
+	} else {
+		// Объекты: ровная сетка 3×2 — всегда 6 ячеек, пустые как «—».
+		$s['value'] = ( '' !== $value ) ? $value : '—';
 	}
+	$cards[] = $s;
+}
+if ( ! $is_ref ) {
+	$cards = array_slice( $cards, 0, 6 );
 }
 if ( ! $cards ) {
 	return;

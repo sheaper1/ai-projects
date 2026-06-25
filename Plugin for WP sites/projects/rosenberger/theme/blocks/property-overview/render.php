@@ -36,7 +36,7 @@ $tel = preg_replace( '/[^+0-9]/', '', (string) $agent['phone'] );
 
 		<div class="property-overview__desc-col">
 			<h2 class="property-overview__heading">Objektbeschreibung</h2>
-			<div class="property-overview__desc"><?php echo wp_kses_post( $desc_html ); ?></div>
+			<div class="property-overview__desc"><?php echo $desc_html ? wp_kses_post( $desc_html ) : '<p>Gerne gebe ich Ihnen persönlich einen ausführlichen Einblick in dieses Objekt – kontaktieren Sie mich für ein unverbindliches Gespräch oder eine Besichtigung.</p>'; ?></div>
 		</div>
 
 		<aside class="property-overview__agent">
