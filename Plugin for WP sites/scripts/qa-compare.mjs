@@ -34,7 +34,7 @@ function parseFigma( file ) {
 	let txt = readFileSync( file, 'utf8' );
 	try { const a = JSON.parse( txt ); if ( Array.isArray( a ) ) txt = a.map( ( p ) => p.text || '' ).join( '' ); } catch { /* raw */ }
 
-	const texts = [], bands = [];   // bands = полноширинные рамки/прямоугольники (image-band'ы дизайна)
+	const texts = [], bands = [], sections = [];   // sections = верхнеуровневые секции-блоки
 	let frameW = 0, frameH = 0, rootSeen = false;
 	const stack = [ { cx: 0, cy: 0 } ];
 
@@ -50,7 +50,10 @@ function parseFigma( file ) {
 		const w = parseFloat( ws ), h = parseFloat( hs );
 		const selfClosed = /\/>\s*$/.test( line );
 
-		if ( ! rootSeen ) { rootSeen = true; frameW = w; frameH = h; if ( ! selfClosed ) stack.push( { cx: 0, cy: 0 } ); continue; }
+		if ( ! rootSeen ) { rootSeen = true; frameW = w; frameH = h; if ( ! selfClosed ) stack.push( { cx: 0, cy: 0, root: true } ); continue; }
+
+		// Верхнеуровневый блок (родитель = корень) = секция страницы.
+		if ( top.root && /frame|instance/.test( tag ) ) sections.push( { name, y0: ay, y1: ay + h, label: '' } );
 
 		if ( tag === 'text' ) texts.push( { text: norm( name ), x: ax, y: ay, w, h } );
 		else if ( w >= frameW * 0.9 && h >= 200 ) bands.push( { y: ay, h } );   // полноширинная секция-band
@@ -62,7 +65,13 @@ function parseFigma( file ) {
 			stack.push( transparent ? { cx: top.cx, cy: top.cy } : { cx: ax, cy: ay } );
 		}
 	}
-	return { frameW, frameH, texts, bands };
+	// Метка секции = её первый (верхний) текст; иначе имя фрейма.
+	sections.sort( ( a, b ) => a.y0 - b.y0 );
+	for ( const s of sections ) {
+		const inside = texts.filter( ( t ) => t.y >= s.y0 - 1 && t.y < s.y1 ).sort( ( a, b ) => a.y - b.y );
+		s.label = inside[ 0 ] ? inside[ 0 ].text.slice( 0, 38 ) : s.name;
+	}
+	return { frameW, frameH, texts, bands, sections };
 }
 
 const fig = parseFigma( figmaFile );
@@ -75,6 +84,7 @@ const live19By = live1920 ? idx( live1920.texts ) : new Map();
 const figBy = idx( fig.texts );
 const lhPx = ( t ) => { const v = parseFloat( t.lineHeight ); return Number.isFinite( v ) ? v : ( t.fontSize || 16 ) * 1.2; };
 const HERO_H = 900;   // высота hero-фрейма в дизайне Rosenberger
+const secOf = ( y ) => ( fig.sections.find( ( s ) => y >= s.y0 - 1 && y < s.y1 )?.label ) || 'прочее';
 
 // ── 1. Совпавшие → дельты ────────────────────────────────────────────────────
 const brMiss = [], geom = [], vwDrift = [], order = [];
@@ -92,19 +102,19 @@ for ( const [ k, ft ] of figBy ) {
 	// В дизайне N строк, на лайве меньше и нет явного <br> → потерян брейк.
 	const isHead = /^h[1-6]$/.test( lt.tag ) || lt.tag === 'blockquote';
 	if ( isHead && figLines > 1 && lt.lines < figLines && lt.brCount === 0 )
-		brMiss.push( { text: ft.text.slice( 0, 45 ), figLines, liveLines: lt.lines } );
+		brMiss.push( { sec: secOf( ft.y ), text: ft.text.slice( 0, 45 ), figLines, liveLines: lt.lines } );
 
 	// ширина: значима только для многострочных (бокс реально ограничивает перенос)
 	const dW = Math.round( lt.w - ft.w );
 	if ( multiline && Math.abs( dW ) > 12 )
-		geom.push( { text: ft.text.slice( 0, 45 ), figW: Math.round( ft.w ), liveW: Math.round( lt.w ), dW } );
+		geom.push( { sec: secOf( ft.y ), text: ft.text.slice( 0, 45 ), figW: Math.round( ft.w ), liveW: Math.round( lt.w ), dW } );
 
 	// vw-дрейф: hero-элемент (figma y<HERO_H) должен масштабироваться. Сигнал —
 	// x НЕ меняется между 1440 и 1920 (захардкожен px вместо vw).
 	if ( ft.y < HERO_H && live19By.has( k ) ) {
 		const lt19 = live19By.get( k );
 		if ( Math.abs( lt19.x - lt.x ) < 2 && lt.x > 8 )
-			vwDrift.push( { text: ft.text.slice( 0, 40 ), figLeftPct: +figLeftPct.toFixed( 1 ), x: Math.round( lt.x ), live1440: lt.leftPct, live1920: lt19.leftPct } );
+			vwDrift.push( { sec: secOf( ft.y ), text: ft.text.slice( 0, 40 ), figLeftPct: +figLeftPct.toFixed( 1 ), x: Math.round( lt.x ), live1440: lt.leftPct, live1920: lt19.leftPct } );
 	}
 }
 
@@ -141,7 +151,7 @@ const wCount = {};
 for ( const t of body ) wCount[ t.fontWeight ] = ( wCount[ t.fontWeight ] || 0 ) + 1;
 const domW = Object.entries( wCount ).sort( ( a, b ) => b[ 1 ] - a[ 1 ] )[ 0 ]?.[ 0 ];
 const weightOutliers = body.filter( ( t ) => t.fontWeight !== domW && +t.fontWeight > +domW )   // только ЖИРНЕЕ — это и есть «толще дизайна»
-	.map( ( t ) => ( { weight: t.fontWeight, expected: domW, size: t.fontSize, text: t.text.slice( 0, 45 ) } ) );
+	.map( ( t ) => { const f = figBy.get( key( t.text ) ); return { sec: f ? secOf( f.y ) : 'прочее', weight: t.fontWeight, expected: domW, size: t.fontSize, text: t.text.slice( 0, 45 ) }; } );
 
 // ── 4. Картинки full-bleed: подозрение только если в дизайне НЕТ band'ов ──────
 const imgFlags = live1440.images.filter( ( im ) => im.fullBleed ).map( ( im ) =>
@@ -152,14 +162,32 @@ const out = { figma: { frameW: fig.frameW, frameH: fig.frameH, texts: fig.texts.
 if ( jsonOut ) writeFileSync( jsonOut, JSON.stringify( out, null, 2 ) );
 
 const P = ( ...a ) => console.log( ...a );
-P( `\n# QA-COMPARE  (figma ${ fig.frameW }×${ fig.frameH }, ${ fig.texts.length } тек.слоёв, ${ fig.bands.length } band ↔ live docH ${ live1440.docHeight }, совпало ${ matchedN })` );
+P( `\n# QA-COMPARE по блокам  (figma ${ fig.frameW }×${ fig.frameH } ↔ live docH ${ live1440.docHeight }; слоёв ${ fig.texts.length }, совпало ${ matchedN })` );
+
+// Все находки-«по блоку» с секцией → группируем по label секции.
+const byBlock = new Map();
+const add = ( sec, line ) => { if ( ! byBlock.has( sec ) ) byBlock.set( sec, [] ); byBlock.get( sec ).push( line ); };
+vwDrift.forEach( ( d ) => add( d.sec, `vw-отступ: hero «${ d.text }» x=${ d.x }px фикс (Figma ${ d.figLeftPct }% → на 1920 ${ d.live1920 }%) — должен быть vw` ) );
+brMiss.forEach( ( d ) => add( d.sec, `перенос: «${ d.text }» Figma ${ d.figLines } стр. → лайв ${ d.liveLines } (нет <br>)` ) );
+geom.forEach( ( d ) => add( d.sec, `ширина: «${ d.text }» Figma ${ d.figW } → лайв ${ d.liveW } (Δ${ d.dW > 0 ? '+' : '' }${ d.dW })` ) );
+weightOutliers.forEach( ( d ) => add( d.sec, `вес: «${ d.text }» weight ${ d.weight } вместо ${ d.expected }` ) );
+
+// Печать по порядку секций сверху вниз; секции без дефектов помечаем «ок».
+P( `\n## Дефекты по блокам (сверху вниз):` );
+let nDef = 0;
+for ( const s of fig.sections ) {
+	const items = byBlock.get( s.label );
+	if ( ! items || ! items.length ) continue;
+	nDef += items.length;
+	P( `\n  ▸ Блок «${ s.label }»  (y ${ Math.round( s.y0 ) }):` );
+	items.forEach( ( l ) => P( `      🔴 ${ l }` ) );
+}
+if ( byBlock.has( 'прочее' ) ) { P( `\n  ▸ Прочее (вне секций / футер):` ); byBlock.get( 'прочее' ).forEach( ( l ) => P( `      🔴 ${ l }` ) ); }
+if ( ! nDef && ! byBlock.has( 'прочее' ) ) P( '  — измеримых дефектов внутри блоков нет' );
+
 const sec = ( title, arr, fn ) => { P( `\n## ${ title }` ); arr.length ? arr.slice( 0, 25 ).forEach( ( x ) => P( '  ' + fn( x ) ) ) : P( '  — нет' ); };
-sec( '🔴 vw-ДРЕЙФ (hero-инсет захардкожен px, не vw):', vwDrift, ( d ) => `"${ d.text }" x=${ d.x }px фикс | Figma ${ d.figLeftPct }% | 1440 ${ d.live1440 }% → 1920 ${ d.live1920 }%` );
-sec( '🔴 ПЕРЕНОСЫ (Figma N строк → лайв меньше, <br>×0):', brMiss, ( d ) => `"${ d.text }": ${ d.figLines } → ${ d.liveLines } стр.` );
-sec( '🔴 ШИРИНА блока (многострочные, Δ>8px):', geom, ( d ) => `"${ d.text }": Figma ${ d.figW } → лайв ${ d.liveW } (Δ${ d.dW > 0 ? '+' : '' }${ d.dW })` );
-sec( '🔴 ПОРЯДОК секций (на лайве блок переехал выше, чем в дизайне):', orderFlags, ( d ) => `"${ d.text }" оказался выше "${ d.after }" (figY ${ d.figY } → liveY ${ d.liveY })` );
-sec( '🔴 ВЕС шрифта (контентный абзац жирнее обычного):', weightOutliers, ( d ) => `weight ${ d.weight } вместо ${ d.expected } (size ${ d.size }): "${ d.text }"` );
-sec( '🟠 LIVE-ONLY (на лайве есть, в Figma НЕТ — лишняя секция/иной текст):', liveOnly, ( t ) => t );
-sec( '🟠 FIGMA-ONLY (в дизайне есть, на лайве НЕТ — потеряно/заменено):', figmaOnly, ( t ) => `"${ t }"` );
+sec( '🟠 ПОРЯДОК блоков (на лайве переехал выше дизайна):', orderFlags, ( d ) => `"${ d.text }" выше "${ d.after }" (figY ${ d.figY } → liveY ${ d.liveY })` );
+sec( '🟠 LIVE-ONLY (на лайве есть, в Figma НЕТ — лишняя секция / реальный контент vs плейсхолдер):', liveOnly, ( t ) => t );
+sec( '🟠 FIGMA-ONLY (в дизайне есть, на лайве НЕТ — потеряно / свёрнутый аккордеон):', figmaOnly, ( t ) => `"${ t }"` );
 sec( '🟠 КАРТИНКИ full-bleed:', imgFlags, ( im ) => `${ im.src } (${ im.widthPct }%) — band'ов в дизайне: ${ im.designBands }${ im.designBands === 0 ? ' → ПОДОЗРЕНИЕ на растяжение' : ' (вероятно штатный band)' }` );
-P( `\n## СТРУКТУРА: Figma H ${ fig.frameH } vs live docH ${ live1440.docHeight } (Δ${ live1440.docHeight - fig.frameH }) | live-only ${ liveOnly.length }, figma-only ${ figmaOnly.length }` );
+P( `\n## СТРУКТУРА: Figma H ${ fig.frameH } vs live docH ${ live1440.docHeight } (Δ${ live1440.docHeight - fig.frameH }) | секций в дизайне ${ fig.sections.length }, live-only ${ liveOnly.length }, figma-only ${ figmaOnly.length }` );
