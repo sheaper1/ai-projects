@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once get_theme_file_path( 'inc/blog.php' );
 require_once get_theme_file_path( 'inc/propstack-bridge.php' );
+require_once get_theme_file_path( 'inc/propstack-leads.php' );
 
 /**
  * Регистрируем все блоки темы из /blocks/<slug>/ (каждый со своим block.json).
