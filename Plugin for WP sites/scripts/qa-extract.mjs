@@ -47,6 +47,11 @@ const data = await page.evaluate( ( vw ) => {
 		// вложенным <span>/<br> обрезается и не джойнится с Figma.
 		const text = norm( el.textContent );
 		if ( ! text || text.length < 2 ) return;
+		// Берём самый ВНУТРЕННИЙ носитель текста: если есть вложенный элемент с
+		// тем же текстом (кнопка>span, обёртка>заголовок) — пропускаем обёртку,
+		// иначе меряем ширину контейнера (648), а не текста (568) → ложный дефект.
+		const inner = el.querySelector( 'h1,h2,h3,h4,h5,h6,p,span,a,li,blockquote,figcaption,button,label' );
+		if ( inner && norm( inner.textContent ) === text ) return;
 		const key = el.tagName + '|' + text + '|' + Math.round( r.top );
 		if ( seen.has( key ) ) return; seen.add( key );
 		const cs = getComputedStyle( el );
