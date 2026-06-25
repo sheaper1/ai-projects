@@ -1,0 +1,22 @@
+/* Propstack Admin CSS */
+.propstack-re-admin h1 { margin-bottom: 1.5rem; }
+.propstack-re-dashboard { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.propstack-re-card {
+  background: #fff;
+  border: 1px solid #e2e4e7;
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  min-width: 280px;
+  flex: 1;
+}
+.propstack-re-card h2 { font-size: 1rem; margin: 0 0 1rem; font-weight: 600; }
+.propstack-re-stats { border-collapse: collapse; width: 100%; }
+.propstack-re-stats th, .propstack-re-stats td { padding: .4rem .5rem; border-bottom: 1px solid #f0f0f0; font-size: .9rem; }
+.propstack-re-stats th { font-weight: 500; color: #646970; text-align: left; }
+.propstack-re-ok   { color: #00a32a; font-weight: 600; }
+.propstack-re-warn { color: #d63638; font-weight: 600; }
+
+/* Log levels */
+.propstack-re-log-error   td { color: #8b1e1e; background: #fff8f8; }
+.propstack-re-log-warning td { background: #fffbf0; }
+.propstack-re-log-info    td { color: #1d4e89; }
