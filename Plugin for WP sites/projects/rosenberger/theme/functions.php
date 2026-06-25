@@ -79,6 +79,29 @@ add_action(
 			(string) filemtime( get_stylesheet_directory() . '/assets/js/rb-carousel.js' ),
 			true
 		);
+		// Гейт карты под DSGVO: Leaflet/OSM грузятся только после согласия.
+		wp_enqueue_style(
+			'rb-map',
+			get_theme_file_uri( '/assets/css/rb-map.css' ),
+			array(),
+			(string) filemtime( get_stylesheet_directory() . '/assets/css/rb-map.css' )
+		);
+		wp_enqueue_script(
+			'rb-map',
+			get_theme_file_uri( '/assets/js/rb-map.js' ),
+			array(),
+			(string) filemtime( get_stylesheet_directory() . '/assets/js/rb-map.js' ),
+			true
+		);
+		wp_localize_script(
+			'rb-map',
+			'RB_MAP',
+			array(
+				'js'          => get_theme_file_uri( '/assets/vendor/leaflet/leaflet.js' ),
+				'css'         => get_theme_file_uri( '/assets/vendor/leaflet/leaflet.css' ),
+				'datenschutz' => home_url( '/datenschutz/' ),
+			)
+		);
 		// Универсальный scroll-reveal для всех блоков библиотеки.
 		// В <head> (не в футере), чтобы скрытое состояние применилось до отрисовки.
 		wp_enqueue_style(

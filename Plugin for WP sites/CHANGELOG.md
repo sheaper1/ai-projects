@@ -3,6 +3,16 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-25 — **DSGVO: карта (Leaflet/OSM) под согласие + локальный Leaflet.**
+  Карта на /kontakt/ и в объектах тянула Leaflet с `unpkg.com` + плитки OpenStreetMap +
+  Nominatim до всякого согласия — нарушение. Сделал общий гейт `assets/js/rb-map.js`
+  (`window.RbMap.gate`): до согласия рисует немецкий плейсхолдер «Zum Schutz Ihrer Daten …
+  Karte laden» + ссылку на Datenschutz (стили `assets/css/rb-map.css`, токены), карта
+  грузится только по клику ИЛИ по согласию через WP Consent API (`wp_has_consent`,
+  `wp_listen_for_consent_change`) / событие Complianz `cmplz_event_marketing` (категория
+  `marketing`). Сам Leaflet 1.9.4 самохостится (`assets/vendor/leaflet/`, убран unpkg).
+  `contact-section` и `property-location` view.js переведены на гейт. Проверено: на /kontakt/
+  0 обращений к unpkg, плейсхолдер рендерится, leaflet локальный 200.
 - [Claude] 2026-06-25 — **DSGVO: самохостинг шрифтов (убран Google CDN).** Главный риск для
   AT/DE — передача IP в Google Fonts без согласия. Перевёл Nunito Sans + Roboto Flex на
   локальные woff2: `scripts/selfhost-fonts.mjs` качает нужные подмножества (latin + latin-ext,

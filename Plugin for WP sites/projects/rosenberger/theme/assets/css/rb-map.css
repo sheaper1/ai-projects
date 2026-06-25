@@ -1,0 +1,44 @@
+/* Плейсхолдер согласия для карты (DSGVO). Только токены темы. */
+.rb-map-consent {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--wp--preset--spacing--r-24);
+	text-align: center;
+	background: var(--wp--preset--color--surface);
+}
+.rb-map-consent__inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--wp--preset--spacing--r-16);
+	max-width: 360px;
+}
+.rb-map-consent__text {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--r-14);
+	line-height: 1.5;
+	color: var(--wp--preset--color--muted);
+}
+.rb-map-consent__btn {
+	cursor: pointer;
+	border: none;
+	border-radius: var(--wp--custom--radius--pill);
+	padding: 0.75rem 1.75rem;
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 600;
+	color: var(--wp--preset--color--on-dark);
+	background: var(--wp--preset--color--contrast);
+	transition: var(--wp--custom--transition--base);
+}
+.rb-map-consent__btn:hover {
+	opacity: 0.88;
+}
+.rb-map-consent__link {
+	font-size: var(--wp--preset--font-size--r-12);
+	color: var(--wp--preset--color--muted);
+	text-decoration: underline;
+}

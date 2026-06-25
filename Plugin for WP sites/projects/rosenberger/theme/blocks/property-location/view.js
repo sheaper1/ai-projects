@@ -4,33 +4,6 @@
 	var maps = document.querySelectorAll( '.property-location__map[data-map]' );
 	if ( ! maps.length ) return;
 
-	var LEAFLET_CSS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-	var LEAFLET_JS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-
-	function loadCss( href ) {
-		if ( document.querySelector( 'link[href="' + href + '"]' ) ) return;
-		var l = document.createElement( 'link' );
-		l.rel = 'stylesheet';
-		l.href = href;
-		document.head.appendChild( l );
-	}
-
-	function loadJs( src ) {
-		return new Promise( function ( resolve, reject ) {
-			if ( window.L ) return resolve();
-			var existing = document.querySelector( 'script[src="' + src + '"]' );
-			if ( existing ) {
-				existing.addEventListener( 'load', function () { resolve(); } );
-				return;
-			}
-			var s = document.createElement( 'script' );
-			s.src = src;
-			s.onload = resolve;
-			s.onerror = reject;
-			document.head.appendChild( s );
-		} );
-	}
-
 	function geocode( address ) {
 		var q = address.replace( /·/g, ',' );
 		return fetch( 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent( q ) )
@@ -50,16 +23,25 @@
 		setTimeout( function () { map.invalidateSize(); }, 200 );
 	}
 
-	loadCss( LEAFLET_CSS );
-	loadJs( LEAFLET_JS ).then( function () {
+	// Карта грузится только после согласия (DSGVO) — через общий гейт RbMap.
+	function start() {
 		maps.forEach( function ( el ) {
-			var lat = parseFloat( el.getAttribute( 'data-lat' ) );
-			var lng = parseFloat( el.getAttribute( 'data-lng' ) );
-			if ( ! isNaN( lat ) && ! isNaN( lng ) ) {
-				init( el, [ lat, lng ] );
-			} else {
-				geocode( el.getAttribute( 'data-address' ) || '' ).then( function ( c ) { init( el, c ); } );
-			}
+			window.RbMap.gate( el, function () {
+				var lat = parseFloat( el.getAttribute( 'data-lat' ) );
+				var lng = parseFloat( el.getAttribute( 'data-lng' ) );
+				if ( ! isNaN( lat ) && ! isNaN( lng ) ) {
+					init( el, [ lat, lng ] );
+				} else {
+					geocode( el.getAttribute( 'data-address' ) || '' ).then( function ( c ) { init( el, c ); } );
+				}
+			} );
 		} );
-	} ).catch( function () {} );
+	}
+
+	if ( window.RbMap ) {
+		start();
+	} else {
+		var t = setInterval( function () { if ( window.RbMap ) { clearInterval( t ); start(); } }, 50 );
+		setTimeout( function () { clearInterval( t ); }, 5000 );
+	}
 }() );
