@@ -145,8 +145,10 @@ const liveOnly = live1440.texts
 // ── 3. Вес шрифта: выброс среди КОНТЕНТНЫХ абзацев (без хрома) ────────────────
 // только длинная контентная копия (>55 симв.) — отсекает лейблы/контакты/подписи,
 // где weight 400/600 легитимен. Среди длинных абзацев тело статьи = 300, выброс = жирнее.
-const isChrome = ( t ) => /footer|header|site-|menu|nav|widget|logo/i.test( t.cls );
-const body = live1440.texts.filter( ( t ) => t.tag === 'p' && t.fontSize >= 15 && t.fontSize <= 26 && t.text.length > 55 && ! isChrome( t ) );
+// Hero-зона (y < высоты hero-фрейма) ИСКЛЮЧЕНА: hero-копия по дизайну Medium/500,
+// а не body-300 — иначе ложный выброс. Вес hero сверяет критик/Фаза 2.
+const isChrome = ( t ) => /footer|header|site-|menu|nav|widget|logo|hero/i.test( t.cls );
+const body = live1440.texts.filter( ( t ) => t.tag === 'p' && t.fontSize >= 15 && t.fontSize <= 26 && t.text.length > 55 && t.y > 1009 && ! isChrome( t ) );
 const wCount = {};
 for ( const t of body ) wCount[ t.fontWeight ] = ( wCount[ t.fontWeight ] || 0 ) + 1;
 const domW = Object.entries( wCount ).sort( ( a, b ) => b[ 1 ] - a[ 1 ] )[ 0 ]?.[ 0 ];
