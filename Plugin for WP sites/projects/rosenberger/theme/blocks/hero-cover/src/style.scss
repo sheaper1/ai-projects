@@ -5,7 +5,6 @@
 	--hc-fg: var(--wp--preset--color--on-dark);
 	--hc-font-head: var(--wp--preset--font-family--heading);
 	--hc-font-body: var(--wp--preset--font-family--body);
-	--hc-pad-x: var(--wp--custom--layout--gutter);
 	--hc-pad-y: var(--wp--preset--spacing--r-32);
 	--hc-max: var(--wp--custom--layout--hero-content);
 
@@ -26,7 +25,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: center;
+		object-position: bottom;
 		pointer-events: none;
 		user-select: none;
 	}
@@ -47,7 +46,9 @@
 		flex-direction: column;
 		flex: 1;
 		gap: var(--wp--preset--spacing--r-24);
-		padding: 34.236vw var(--hc-pad-x) 3.333vw;
+		// Боковой отступ в чистых vw (без cap токена gutter) — Hero масштабируется
+		// пропорцией Figma-фрейма: 48px @1440 = 3.333vw. На mobile задаётся явно ниже.
+		padding: 34.236vw 3.333vw 3.333vw;
 	}
 
 	// --- Контент по центру ---
@@ -106,7 +107,7 @@
 	@media (max-width: 782px) {
 		min-height: 100svh;
 
-		.hero-cover__inner { padding-top: clamp(220px, 34vh, 320px); padding-bottom: 32px; }
+		.hero-cover__inner { padding: clamp(220px, 34vh, 320px) 16px 32px; }
 		.hero-cover__content, .hero-cover__subtitle { max-width: none; }
 		.hero-cover__title { font-size: var(--wp--preset--font-size--r-48); }
 		.hero-cover__subtitle { font-size: var(--wp--preset--font-size--r-20); }
