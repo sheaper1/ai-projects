@@ -3,6 +3,14 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-25 — **DSGVO: самохостинг шрифтов (убран Google CDN).** Главный риск для
+  AT/DE — передача IP в Google Fonts без согласия. Перевёл Nunito Sans + Roboto Flex на
+  локальные woff2: `scripts/selfhost-fonts.mjs` качает нужные подмножества (latin + latin-ext,
+  18 файлов ~516К) и генерит `assets/css/fonts.css` с `@font-face`. `functions.php` теперь
+  подключает локальный `fonts.css` вместо `fonts.googleapis.com`. Убрал ещё одну утечку —
+  Google-`@import` в `hero-cover/src/style.scss` (тема + эталон library). Проверено: на
+  главной 0 обращений к googleapis/gstatic, woff2 отдаётся 200 (font/woff2). Шаг к запуску
+  без cookie-согласия для шрифтов.
 - [Claude] 2026-06-25 — **Favicon заменён на официальный знак бренда.** Пользователь дал
   готовые иконки (`favicon/w256-Icon-dark.svg` #142335 / `-beige.svg` #DECEC4). Пересобрал
   `assets/favicon.svg` из их путей (отцентрован в 256×256), переключение по теме оставил:

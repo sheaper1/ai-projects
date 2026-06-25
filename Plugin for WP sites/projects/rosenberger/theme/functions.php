@@ -50,11 +50,13 @@ add_action(
 add_action(
 	'wp_enqueue_scripts',
 	function () {
+		// Шрифты бренда — локально (DSGVO: без передачи IP в Google CDN).
+		// Файлы и fonts.css генерятся scripts/selfhost-fonts.mjs.
 		wp_enqueue_style(
 			'rosenberger-fonts',
-			'https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Roboto+Flex:wght@400;500;600;800&display=swap',
+			get_theme_file_uri( '/assets/css/fonts.css' ),
 			array(),
-			null
+			(string) filemtime( get_stylesheet_directory() . '/assets/css/fonts.css' )
 		);
 		wp_enqueue_style(
 			'rosenberger-style',
