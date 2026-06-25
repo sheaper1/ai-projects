@@ -38,21 +38,14 @@ const data = await page.evaluate( ( vw ) => {
 	const norm = ( s ) => ( s || '' ).replace( /\s+/g, ' ' ).trim();
 	const round = ( n ) => Math.round( n * 10 ) / 10;
 
-	// Текстовые узлы: элемент, у которого есть СОБСТВЕННЫЙ текст (не только дети).
-	const ownText = ( el ) => {
-		let t = '';
-		for ( const n of el.childNodes ) if ( n.nodeType === 3 ) t += n.textContent;
-		return norm( t );
-	};
-
 	const texts = [];
 	const seen = new Set();
 	document.querySelectorAll( 'h1,h2,h3,h4,h5,h6,p,span,a,li,blockquote,figcaption,button,label' ).forEach( ( el ) => {
 		const r = el.getBoundingClientRect();
 		if ( r.width === 0 || r.height === 0 ) return;          // невидимое
-		const own = ownText( el );
-		const full = norm( el.textContent );
-		const text = own || full;
+		// Полный textContent (а не только прямой текст): иначе заголовок с
+		// вложенным <span>/<br> обрезается и не джойнится с Figma.
+		const text = norm( el.textContent );
 		if ( ! text || text.length < 2 ) return;
 		const key = el.tagName + '|' + text + '|' + Math.round( r.top );
 		if ( seen.has( key ) ) return; seen.add( key );

@@ -96,7 +96,7 @@ for ( const [ k, ft ] of figBy ) {
 
 	// ширина: значима только для многострочных (бокс реально ограничивает перенос)
 	const dW = Math.round( lt.w - ft.w );
-	if ( multiline && Math.abs( dW ) > 8 )
+	if ( multiline && Math.abs( dW ) > 12 )
 		geom.push( { text: ft.text.slice( 0, 45 ), figW: Math.round( ft.w ), liveW: Math.round( lt.w ), dW } );
 
 	// vw-дрейф: hero-элемент (figma y<HERO_H) должен масштабироваться. Сигнал —
