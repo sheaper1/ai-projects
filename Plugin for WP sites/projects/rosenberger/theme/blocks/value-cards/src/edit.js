@@ -78,7 +78,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								</div>
 							) }
 							<div className="value-cards__body">
-								{ card.title && <h3 className="value-cards__title">{ card.title }</h3> }
+								{ card.title && <h3 className="value-cards__title" dangerouslySetInnerHTML={ { __html: card.title } } /> }
 								{ card.text && <p className="value-cards__text">{ card.text }</p> }
 							</div>
 						</article>

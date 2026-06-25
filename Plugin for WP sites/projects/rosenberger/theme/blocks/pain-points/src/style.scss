@@ -10,11 +10,11 @@
 		max-width: 1344px;
 		margin: 0 auto;
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) 648px;
+		grid-template-columns: minmax(0, 1fr) 632px;
 		gap: var(--wp--preset--spacing--r-48);
 		align-items: start;
 	}
-	.pain-points__heading { max-width: 550px; margin: 0; font-size: var(--wp--preset--font-size--r-56); line-height: 1.2; }
+	.pain-points__heading { max-width: 511px; margin: 0; font-size: var(--wp--preset--font-size--r-56); line-height: 1.2; }
 	.pain-points__heading em { font-weight: 300; }
 	.pain-points__list { display: flex; flex-direction: column; gap: var(--wp--preset--spacing--r-24); }
 	.pain-points__item { display: grid; grid-template-columns: 56px 1fr; gap: var(--wp--preset--spacing--r-24); padding-bottom: var(--wp--preset--spacing--r-24); border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--accent), transparent 25%); }

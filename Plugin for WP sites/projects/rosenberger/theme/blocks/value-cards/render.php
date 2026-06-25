@@ -25,7 +25,7 @@ $wrapper = get_block_wrapper_attributes( [ 'class' => 'value-cards' ] );
 				<?php endif; ?>
 				<div class="value-cards__body">
 					<?php if ( $title ) : ?>
-						<h3 class="value-cards__title"><?php echo esc_html( $title ); ?></h3>
+						<h3 class="value-cards__title"><?php echo wp_kses_post( $title ); ?></h3>
 					<?php endif; ?>
 					<?php if ( $text ) : ?>
 						<p class="value-cards__text"><?php echo esc_html( $text ); ?></p>

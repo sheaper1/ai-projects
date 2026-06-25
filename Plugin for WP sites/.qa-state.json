@@ -8,5 +8,20 @@
     "hash": "0865a27be6d1506b",
     "passedAt": "2026-06-25",
     "page": "home"
+  },
+  "pain-points": {
+    "hash": "ee831808f1547a64",
+    "passedAt": "2026-06-25",
+    "page": "home"
+  },
+  "cards-stack": {
+    "hash": "683f1ff3cdcc6802",
+    "passedAt": "2026-06-25",
+    "page": "home"
+  },
+  "consultation-cta": {
+    "hash": "b3667b165e0c9924",
+    "passedAt": "2026-06-25",
+    "page": "home"
   }
 }
