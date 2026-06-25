@@ -87,7 +87,20 @@ const data = await page.evaluate( ( vw ) => {
 		} );
 	} );
 
-	return { url: location.href, vw, docHeight: document.body.scrollHeight, texts, images };
+	// Контролы каруселей/слайдеров: ловим скрытую пагинацию/стрелки (частый дефект
+	// «отзывы не листаются»). Числа/скриншот этого не дают — нужен DOM.
+	const controls = [];
+	document.querySelectorAll( '[class*="dots"],[class*="pagination"],[class*="arrow"],[class*="__nav"],[class*="prev"],[class*="next"]' ).forEach( ( el ) => {
+		const cs = getComputedStyle( el ); const r = el.getBoundingClientRect();
+		controls.push( {
+			cls: ( typeof el.className === 'string' ? el.className : '' ).slice( 0, 50 ),
+			display: cs.display,
+			hidden: cs.display === 'none' || cs.visibility === 'hidden' || r.width === 0,
+			kids: el.children.length,
+		} );
+	} );
+
+	return { url: location.href, vw, docHeight: document.body.scrollHeight, texts, images, controls };
 }, width );
 
 await browser.close();
@@ -107,6 +120,8 @@ data.texts.filter( ( t ) => t.tag === 'blockquote' || t.cls.includes( 'quote' ) 
 e( `\nКАРТИНКИ:` );
 data.images.forEach( ( im ) =>
 	e( `  ${ im.src } | ${ im.w }×${ im.h } widthPct ${ im.widthPct }% fit ${ im.objectFit } ${ im.fullBleed ? 'FULL-BLEED' : 'box' }` ) );
+e( `\nКОНТРОЛЫ каруселей (скрытые = подозрение на «не листается»):` );
+( data.controls || [] ).forEach( ( c ) => e( `  ${ c.hidden ? '⚠ СКРЫТ' : 'видим' } [${ c.cls }] display:${ c.display } kids:${ c.kids }` ) );
 e( `\nВес шрифта по абзацам (p) — ищем где жирнее ожидаемого:` );
 data.texts.filter( ( t ) => t.tag === 'p' ).slice( 0, 20 ).forEach( ( t ) =>
 	e( `  weight ${ t.fontWeight } size ${ t.fontSize } | "${ t.text.slice( 0, 50 ) }"` ) );
