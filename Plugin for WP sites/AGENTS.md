@@ -496,7 +496,9 @@ node scripts/scaffold-cpt.mjs scripts/cpt-templates/<slug>.json
 Для любой задачи, меняющей код/тему/плагин/контент — **без напоминаний**:
 
 1. **Проверка**: `npm run build` (без ошибок) + `npm run check` (php -l изменённых
-   PHP + запрет секретов/артефактов + `tokens:scan` хардкодов).
+   PHP + запрет секретов/артефактов + `tokens:scan` хардкодов + `lint:blocks`
+   структурный линтер: динамический save, import style.scss, валидный block.json,
+   варнинги по inline-svg/png/каруселям). Падает `check` → push заблокирован.
 2. **Деплой**: `node scripts/deploy-stack.mjs`; убедись, что тема и плагин активны
    и staging отвечает (HTTP 200).
 2a. **Визуальная сверка с Figma (правки вида) — ОБЯЗАТЕЛЬНО**, не на глаз:
@@ -532,7 +534,9 @@ npm run diff:blocks -- --patch <slug>   # построчный дифф блок
 npm run page -- <spec>          # генератор страниц из спеки scripts/pages/<spec>.mjs (--dry = собрать офлайн без записи)
 npm run shot -- <url> --sel ".wp-block-library-<slug>" --name <slug>  # скрин секции (моб.: --mobile --full)
 npm run figma:icon -- <файл.svg>          # почистить SVG-экспорт иконки из Figma
-npm run check           # предполётные проверки (php -l + запрет секретов/артефактов)
+npm run check           # предполётные проверки (php -l + секреты/артефакты + tokens:scan + lint:blocks)
+npm run lint:blocks     # структурный линтер блоков (save/scss-import/block.json + варнинги)
+# /review-block <блок|страница>  # критик block-reviewer по REVIEW.md + Figma (судейские правила)
 node scripts/deploy-stack.mjs            # полный деплой темы + плагина на сервер
 node scripts/deploy-stack.mjs --changed  # залить только изменённые файлы (диф-кэш)
 ```

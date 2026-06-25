@@ -3,6 +3,15 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-26 — **QA-гейт: структурный линтер блоков + критик (по research-отчёту).**
+  Слой 1: `scripts/lint-blocks.mjs` (`npm run lint:blocks`) — динамический save (`()=>null`/
+  `InnerBlocks.Content`), `import './style.scss'`, валидный block.json (`render`+`html:false`);
+  варнинги: inline-svg/png/карусель без RbCarousel. Встроен в `npm run check` → попадает в
+  pre-push. Прогон на 75 блоках: 0 ошибок, 21 варнинг (существующий код не трогал). Слой 3:
+  read-only критик `block-reviewer` + команда/скилл `/review-block` + `REVIEW.md` (судейские
+  правила: переносы `<br>`, значения из Figma, hover, адаптив, иконки/фото). Слой 2 (Claude-хуки
+  `scripts/hook-lint.mjs`) — установка в `.claude/settings.local.json` ждёт согласия пользователя.
+  `.claude/` в git не идёт → детерминизм в `scripts/` (коммит), критик/хуки per-machine. См. [[qa-gate-layers]].
 - [Claude] 2026-06-25 — **Propstack: стили объекта под Rosenberger (вариант B) + конвейер проверен.**
   Создан тестовый объект в Propstack (Höchsterstraße 24, Dornbirn, Vermarktung, 450k, 85m², 3 Zi),
   синкнут и опубликован на staging. Попутно фикс: «Öffentliche Status-IDs» плагина были `1,2`

@@ -11,6 +11,7 @@
 		"page": "node scripts/import-page.mjs",
 		"tokens": "node scripts/figma-tokens.mjs",
 		"tokens:scan": "node scripts/figma-tokens.mjs --scan",
+		"lint:blocks": "node scripts/lint-blocks.mjs",
 		"visual": "node scripts/visual-diff.mjs",
 		"shot": "node scripts/shot.mjs",
 		"figma:icon": "node scripts/figma-icon.mjs",

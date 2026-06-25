@@ -66,6 +66,13 @@ try {
 	fail( 'хардкод-цвета в SCSS блоков (см. вывод выше; правь на токены theme.json)' );
 }
 
+// --- 4. Структурный линтер блоков (save/scss-import/block.json) ------------
+try {
+	execSync( `node "${ resolve( scriptsDir, 'lint-blocks.mjs' ) }"`, { stdio: 'inherit' } );
+} catch {
+	fail( 'структурные нарушения в блоках (см. вывод выше)' );
+}
+
 if ( problems ) {
 	console.error( `\n❌ Проверки не пройдены (${ problems }). Push/commit лучше остановить.` );
 	process.exit( 1 );
