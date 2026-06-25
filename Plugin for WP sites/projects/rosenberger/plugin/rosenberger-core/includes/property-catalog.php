@@ -119,8 +119,8 @@ function rosenberger_pc_query( array $p ): WP_Query {
 
 	return new WP_Query( array_merge(
 		[
-			// property — старый CPT, propstack_property — объекты из Propstack-синка.
-			'post_type'      => [ 'property', 'propstack_property' ],
+			// Объекты идут из Propstack-синка (старый демо-CPT property не показываем).
+			'post_type'      => 'propstack_property',
 			'posts_per_page' => $p['per_page'],
 			'paged'          => $p['page'],
 			'tax_query'      => $tax_query,
