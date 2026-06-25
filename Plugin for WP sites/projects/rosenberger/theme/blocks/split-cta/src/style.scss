@@ -54,6 +54,9 @@
 		font-weight: 300;
 		line-height: 1.5;
 		color: var(--wp--preset--color--muted);
+
+		p { margin: 0; }
+		p + p { margin-top: var(--wp--preset--spacing--r-24); }
 	}
 
 	.split-cta__button {
@@ -90,13 +93,19 @@
 	}
 
 	@media (max-width: 1024px) {
-		.split-cta__inner { grid-template-columns: 1fr; gap: var(--wp--preset--spacing--r-40); }
-		.split-cta__text { max-width: none; order: 2; }
-		.split-cta__media { order: 1; aspect-ratio: 16 / 10; }
+		.split-cta__inner,
+		&.split-cta--image-left .split-cta__inner {
+			grid-template-columns: 1fr;
+			gap: var(--wp--preset--spacing--r-64);
+		}
+		// На мобиле обе версии стопкой: текст сверху, фото снизу (как в Figma 375).
+		.split-cta__text { max-width: none; order: 1; margin-left: 0; }
+		.split-cta__media,
+		&.split-cta--image-left .split-cta__media { order: 2; aspect-ratio: 648 / 733; }
 	}
 
 	@media (max-width: 782px) {
-		padding-block: var(--wp--preset--spacing--r-64);
+		padding-block: var(--wp--preset--spacing--r-80);
 		padding-inline: 16px;
 		.split-cta__heading { font-size: var(--wp--preset--font-size--r-32); }
 		.split-cta__button { width: 100%; max-width: 100%; }

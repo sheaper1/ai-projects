@@ -125,9 +125,9 @@ const pageContent = [
 		headingItalic: '',
 		intro:         '',
 		items: [
-			{ title: 'Eine Spanne,\ndie zum Markt passt', text: 'Ein Wert auf Basis vergleichbarer Objekte in Vorarlberg, nicht auf Basis Ihrer oder meiner Wunschvorstellung.', iconId: id( icSpanne ), iconUrl: u( icSpanne ) },
+			{ title: 'Eine Spanne,<br>die zum Markt passt', text: 'Ein Wert auf Basis vergleichbarer Objekte in Vorarlberg, nicht auf Basis Ihrer oder meiner Wunschvorstellung.', iconId: id( icSpanne ), iconUrl: u( icSpanne ) },
 			{ title: 'Eine nachvollziehbare Erklärung', text: 'Sie verstehen, wie der Wert zustande kommt, statt eine Zahl ohne Begründung in der Hand zu halten.', iconId: id( icErklaerung ), iconUrl: u( icErklaerung ) },
-			{ title: 'Keine\nVerpflichtung', text: 'Sie sind danach zu nichts verpflichtet. Die Bewertung steht für sich.', iconId: id( icVerpflichtung ), iconUrl: u( icVerpflichtung ) },
+			{ title: 'Keine<br>Verpflichtung', text: 'Sie sind danach zu nichts verpflichtet. Die Bewertung steht für sich.', iconId: id( icVerpflichtung ), iconUrl: u( icVerpflichtung ) },
 			{ title: 'Ein Ansprechpartner, keine Datenweitergabe', text: 'Sie sprechen mit mir, nicht mit einem Formular, das Ihre Daten weiterverkauft.', iconId: id( icDatenschutz ), iconUrl: u( icDatenschutz ) },
 		],
 	} ) } /-->`,

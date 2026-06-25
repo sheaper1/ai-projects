@@ -61,7 +61,9 @@
   <div class="wrap">
     <div class="demo-banner">Vorschau – verbinde WPForms (WPF.formId + Field-IDs im Script), dann werden echte Entries gesendet.</div>
     <div class="progress"><i id="irvBar"></i></div>
+    <div class="step" id="irvStep"></div>
     <div class="card" id="irvCard"></div>
+    <p class="footnote">Unverbindlich und kostenlos. Ihre Daten bleiben bei mir.</p>
   </div>
 </div>
 
@@ -135,6 +137,12 @@ function back(){ if(history.length){ current = history.pop(); path.pop(); render
 function setProgress(){
   const pct = Math.min(95, Math.round(history.length / APPROX_STEPS * 100));
   $('irvBar').style.width = (byId[current].type==='ConfirmBasic' ? 100 : pct) + '%';
+  const step = $('irvStep');
+  if(step){
+    const TOTAL = 4;
+    const n = Math.min(TOTAL, history.length + 1);
+    step.textContent = byId[current].type==='ConfirmBasic' ? '' : ('Schritt ' + n + ' von ' + TOTAL);
+  }
 }
 
 function render(){

@@ -49,7 +49,7 @@ $has_form = $form_id && function_exists( 'wpforms' ) && ! empty( $field_map );
 <section <?php echo $wrapper; ?>>
 	<div class="tipper-form__header">
 		<?php if ( $a['heading'] ) : ?>
-			<h2 class="tipper-form__heading"><?php echo esc_html( $a['heading'] ); ?></h2>
+			<h2 class="tipper-form__heading"><?php echo wp_kses_post( $a['heading'] ); ?></h2>
 		<?php endif; ?>
 		<?php if ( $a['lead'] ) : ?>
 			<p class="tipper-form__lead"><?php echo esc_html( $a['lead'] ); ?></p>

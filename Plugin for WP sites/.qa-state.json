@@ -43,5 +43,20 @@
     "hash": "597c31e74982ef71",
     "passedAt": "2026-06-25",
     "page": "home"
+  },
+  "page-hero": {
+    "hash": "365e3578b6500653",
+    "passedAt": "2026-06-25",
+    "page": "immobilienbewertung"
+  },
+  "split-cta": {
+    "hash": "61c1c82d95e2298a",
+    "passedAt": "2026-06-25",
+    "page": "immobilienbewertung"
+  },
+  "problem-cards": {
+    "hash": "df59362c8ae2637b",
+    "passedAt": "2026-06-25",
+    "page": "immobilienbewertung"
   }
 }

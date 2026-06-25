@@ -13,7 +13,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 32px;
+	gap: 16px;
 }
 
 .page-hero__heading {
@@ -42,6 +42,7 @@
 }
 
 .page-hero__cta {
+	margin-top: 32px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -53,6 +54,7 @@
 	align-items: center;
 	justify-content: center;
 	padding: 0 24px;
+	min-width: 250px;
 	height: 56px;
 	background: var(--wp--preset--color--contrast);
 	color: var(--wp--preset--color--on-dark);
@@ -101,7 +103,11 @@
 		font-size: var(--wp--preset--font-size--r-40);
 	}
 
+	.page-hero__cta {
+		margin-top: 16px;
+	}
+
 	.page-hero__image {
-		height: 280px;
+		height: 456px;
 	}
 }

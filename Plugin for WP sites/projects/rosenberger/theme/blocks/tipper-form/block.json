@@ -8,8 +8,8 @@
   "keywords": ["form", "tipp", "wpforms", "funnel"],
   "supports": { "html": false, "align": ["full"], "multiple": false },
   "attributes": {
-    "heading":    { "type": "string",  "default": "Tipp einsenden" },
-    "lead":       { "type": "string",  "default": "Drei Schritte, drei Minuten. Ich melde mich innerhalb von 24 Stunden bei Ihnen." },
+    "heading":    { "type": "string",  "default": "Ihre kostenlose Bewertung <em>anfragen</em>" },
+    "lead":       { "type": "string",  "default": "In unter einer Minute. Ich melde mich danach persönlich bei Ihnen." },
     "formSlug":   { "type": "string",  "default": "tippgeber" },
     "wpformsId":  { "type": "integer", "default": 0 }
   },

@@ -22,7 +22,7 @@ $classes = 'split-cta' . ( ! empty( $a['imageLeft'] ) ? ' split-cta--image-left'
 					<?php if ( $a['headingItalic'] ) : ?><em><?php echo wp_kses_post( $a['headingItalic'] ); ?></em><?php endif; ?>
 				</h2>
 				<?php if ( $a['text'] ) : ?>
-					<div class="split-cta__desc"><?php echo wp_kses_post( $a['text'] ); ?></div>
+					<div class="split-cta__desc"><?php echo wp_kses_post( wpautop( $a['text'] ) ); ?></div>
 				<?php endif; ?>
 			</div>
 			<?php if ( $a['buttonText'] ) : ?>

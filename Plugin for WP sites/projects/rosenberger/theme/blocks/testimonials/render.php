@@ -34,7 +34,7 @@ $stars = static function ( $rating ) {
 	<div class="testimonials__inner">
 		<h2 class="testimonials__heading">
 			<?php echo wp_kses_post( $a['heading'] ); ?>
-			<?php if ( $a['headingItalic'] ) : ?><em><?php echo wp_kses_post( $a['headingItalic'] ); ?></em><?php endif; ?>
+			<?php if ( $a['headingItalic'] ) : ?><br><em><?php echo wp_kses_post( $a['headingItalic'] ); ?></em><?php endif; ?>
 		</h2>
 		<div class="testimonials__carousel">
 			<div class="testimonials__track">

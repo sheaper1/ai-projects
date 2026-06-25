@@ -3,6 +3,18 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-26 — **QA immobilienbewertung: 5 FULL-блоков мультиагентом (qa-page-parallel).**
+  Воркфлоу qa-page-parallel (5 фикс ∥ → деплой → 5 верифик ∥). Подтверждены:
+  page-hero (зазоры заголовок↔подзаголовок 32→16, отступ CTA, min-width кнопки,
+  моб. высота фото), split-cta (абзацы через wpautop, моб. порядок текст↑/фото↓,
+  моб. пропорция 648/733, паддинг). problem-cards: `<br>` заголовков карточек —
+  правка в сидере (\\n→<br> для «Eine Spanne»/«Keine Verpflichtung»), проверено
+  lines=2/br=1. testimonials: код (прямые углы, тень, <br>) задеплоен — финальный
+  глаз. tipper-form: стилизация задеплоена, но чипы/логика воронки (funnel.html:
+  Haus/Wohnung/Gewerbe/Liegenschaft + авто-переход vs Figma Wohnung/Haus/Grundstück
+  + «Weiter») — продуктовое решение, не стайлинг. qa-state: page-hero/split-cta/
+  problem-cards пройдены. Воркфлоу звать по scriptPath после правок (вызов по name
+  кэширует старую версию). ~764k токенов/прогон.
 - [Claude] 2026-06-26 — **Главная: добавлена секция Google-отзывов + переиспользуемый qa-page-parallel.**
   В import-homepage добавлен блок `library/testimonials` (после about) — рендерит 6
   реальных Google-отзывов через grw (карусель, звёзды, лого). Мульти-агентный QA
