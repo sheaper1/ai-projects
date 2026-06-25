@@ -8,6 +8,8 @@ class Propstack_RE_Field_Mapper {
      * Gibt [ 'post' => [...], 'meta' => [...], 'taxonomies' => [...] ] zurück.
      */
     public function map( array $data ): array {
+        $data = $this->normalize_expand( $data );
+
         $post = [
             'post_type'    => 'propstack_property',
             'post_title'   => $this->get_title( $data ),
@@ -120,13 +122,14 @@ class Propstack_RE_Field_Mapper {
     }
 
     public function compute_hash( array $data ): string {
+        // safe() разворачивает expand-обёртки {label,value} — иначе «Array to string».
         $relevant = [
             $data['id'] ?? '',
             $data['updated_at'] ?? '',
-            $data['price'] ?? $data['purchase_price'] ?? '',
-            $data['base_rent'] ?? $data['rent_gross'] ?? '',
+            $this->safe( $data, 'price' ) ?? $this->safe( $data, 'purchase_price' ) ?? '',
+            $this->safe( $data, 'base_rent' ) ?? $this->safe( $data, 'rent_gross' ) ?? '',
             $data['status']['id'] ?? $data['rs_status_id'] ?? $data['status_id'] ?? '',
-            $data['living_space'] ?? $data['living_area'] ?? '',
+            $this->safe( $data, 'living_space' ) ?? $this->safe( $data, 'living_area' ) ?? '',
             count( $data['images'] ?? [] ),
         ];
         return md5( implode( '|', $relevant ) );
@@ -160,7 +163,78 @@ class Propstack_RE_Field_Mapper {
     // -------------------------------------------------------------------------
 
     private function safe( array $data, string $key ): mixed {
-        return $data[ $key ] ?? null;
+        if ( ! array_key_exists( $key, $data ) ) {
+            return null;
+        }
+        $val = $data[ $key ];
+        // Propstack-expand: скалярные поля приходят как { "label": ..., "value": ... }.
+        if ( is_array( $val ) && array_key_exists( 'value', $val ) && array_key_exists( 'label', $val ) ) {
+            return $val['value'];
+        }
+        return $val;
+    }
+
+    /**
+     * Propstack `expand=1` отдаёт богатый объект, но имена многих полей отличаются
+     * от «тонкого» /units. Приводим к именам, которые уже читает map().
+     */
+    private function normalize_expand( array $data ): array {
+        $alias = [
+            'short_description'      => [ 'description_note' ],
+            'description'            => [ 'long_description_note', 'description_note' ],
+            'long_description'       => [ 'long_description_note' ],
+            'location_description'   => [ 'long_location_note', 'location_note' ],
+            'equipment_description'  => [ 'long_furnishing_note', 'furnishing_note' ],
+            'furnishing_description' => [ 'long_furnishing_note', 'furnishing_note' ],
+            'other_description'      => [ 'long_other_note', 'other_note' ],
+            'usable_area'            => [ 'net_floor_space', 'usable_floor_space' ],
+            'condition'              => [ 'condition' ],
+            'flooring'               => [ 'flooring_type' ],
+        ];
+        foreach ( $alias as $target => $sources ) {
+            if ( '' === (string) ( $data[ $target ] ?? '' ) ) {
+                foreach ( $sources as $s ) {
+                    $v = $this->safe( $data, $s );
+                    if ( null !== $v && '' !== $v ) {
+                        $data[ $target ] = $v;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Objektart: rs_type/object_type — коды → немецкие подписи.
+        if ( '' === (string) ( $data['property_type'] ?? '' ) ) {
+            $code = strtoupper( (string) ( $this->safe( $data, 'rs_type' ) ?: $this->safe( $data, 'object_type' ) ) );
+            $de   = [
+                'APARTMENT'      => 'Wohnung',
+                'LIVING'         => 'Wohnen',
+                'HOUSE'          => 'Haus',
+                'GROUND'         => 'Grundstück',
+                'PLOT'           => 'Grundstück',
+                'OFFICE'         => 'Büro',
+                'COMMERCIAL'     => 'Gewerbe',
+                'TRADE_SITE'     => 'Gewerbegrundstück',
+                'GARAGE'         => 'Garage / Stellplatz',
+                'INTEREST_HOUSE' => 'Zinshaus',
+            ];
+            if ( '' !== $code ) {
+                $data['property_type'] = $de[ $code ] ?? ucfirst( strtolower( $code ) );
+            }
+        }
+
+        // Энергопаспорт (AT): aut_* → структура, которую читает map().
+        $data['energy_certificate'] = array_merge(
+            is_array( $data['energy_certificate'] ?? null ) ? $data['energy_certificate'] : [],
+            [
+                'hwb_value'  => $this->safe( $data, 'aut_hwb' ),
+                'hwb_class'  => $this->safe( $data, 'aut_hwb_class' ),
+                'fgee_value' => $this->safe( $data, 'aut_fgee' ),
+                'fgee_class' => $this->safe( $data, 'aut_fgee_class' ),
+            ]
+        );
+
+        return $data;
     }
 
     private function get_title( array $data ): string {

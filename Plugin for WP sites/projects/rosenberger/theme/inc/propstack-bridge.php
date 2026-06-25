@@ -102,8 +102,11 @@ function rosenberger_propstack_map_value( int $post_id, string $key ) {
 			$p = (float) $raw( '_property_price' );
 			return $p > 0 ? number_format( $p, 0, ',', '.' ) . ' €' : 'Auf Anfrage';
 		case 'property_price_sub':
-			$pps = (string) $raw( '_property_price_per_sqm' );
-			return '' !== $pps ? $pps : '';
+			$pps = $raw( '_property_price_per_sqm' );
+			if ( '' === (string) $pps || (float) $pps <= 0 ) {
+				return '';
+			}
+			return number_format( (float) $pps, 0, ',', '.' ) . ' €/m²';
 
 		case 'property_area':
 			return rosenberger_propstack_area( $post_id, '_property_living_area' );

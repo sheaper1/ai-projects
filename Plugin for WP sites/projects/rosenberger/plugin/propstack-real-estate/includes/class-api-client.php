@@ -25,7 +25,9 @@ class Propstack_RE_API_Client {
     }
 
     public function get_properties( int $page = 1, int $per_page = 50, array $filters = [] ): array|WP_Error {
-        $params = array_merge( [ 'page' => $page, 'per_page' => $per_page ], $filters );
+        // expand=1 — Propstack отдаёт полный объект (описания, энергопаспорт,
+        // оснащение, Objektart, маклер), а не урезанные ~33 поля.
+        $params = array_merge( [ 'page' => $page, 'per_page' => $per_page, 'expand' => 1 ], $filters );
         return $this->get( '/units', $params );
     }
 
