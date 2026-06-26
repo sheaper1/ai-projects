@@ -138,5 +138,30 @@
     "hash": "9147d0c0be8ff70a",
     "passedAt": "2026-06-26",
     "page": "single-reference"
+  },
+  "property-details": {
+    "hash": "ea41936b6aac1057",
+    "passedAt": "2026-06-26",
+    "page": "single-property"
+  },
+  "property-location": {
+    "hash": "755183a92ff22c8d",
+    "passedAt": "2026-06-26",
+    "page": "single-property"
+  },
+  "property-gallery": {
+    "hash": "57f4cea9007717b0",
+    "passedAt": "2026-06-26",
+    "page": "single-property"
+  },
+  "reference-testimonial": {
+    "hash": "f26e444a408a3a33",
+    "passedAt": "2026-06-26",
+    "page": "single-reference"
+  },
+  "region-hero": {
+    "hash": "521ecd3a0209240f",
+    "passedAt": "2026-06-26",
+    "page": "region"
   }
 }

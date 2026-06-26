@@ -65,7 +65,7 @@ if ( $nr ) {
 		<div class="property-hero__col">
 
 			<div class="property-hero__head">
-				<h1 class="property-hero__title"><?php echo wp_kses_post( get_the_title( $post_id ) ); ?></h1>
+				<h1 class="property-hero__title"><?php echo wp_kses_post( $get( 'property_heading' ) ?: get_the_title( $post_id ) ); ?></h1>
 
 				<?php if ( $address ) : ?>
 				<p class="property-hero__location">

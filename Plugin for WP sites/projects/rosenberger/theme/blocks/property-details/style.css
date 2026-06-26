@@ -36,7 +36,7 @@
 }
 .property-details__label {
 	font-family: var(--wp--preset--font-family--heading);
-	font-weight: 600;
+	font-weight: 400;
 	font-size: var(--wp--preset--font-size--r-24);
 	line-height: 1.2;
 	letter-spacing: -0.03em;
@@ -81,6 +81,7 @@
 }
 .property-details__field-label {
 	font-family: var(--wp--preset--font-family--body);
+	font-weight: 400;
 	font-size: var(--wp--preset--font-size--r-16);
 	line-height: 1.5;
 	letter-spacing: -0.01em;

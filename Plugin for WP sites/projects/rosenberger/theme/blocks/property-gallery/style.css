@@ -23,8 +23,9 @@
 .property-gallery__carousel { width: 100%; position: relative; }
 .property-gallery__viewport { width: 100%; overflow: hidden; }
 
-/* Стрелки — круглые, как в Hero (бренд-токены) */
+/* Навигация — только точки + боковые пики (в Figma 2009:11293 стрелок нет). */
 .property-gallery__nav {
+	display: none;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
@@ -126,6 +127,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	box-sizing: border-box;
 	min-width: 250px;
 	height: 56px;
 	padding-inline: 24px;
