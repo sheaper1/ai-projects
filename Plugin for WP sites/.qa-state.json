@@ -163,5 +163,30 @@
     "hash": "521ecd3a0209240f",
     "passedAt": "2026-06-26",
     "page": "region"
+  },
+  "blog-hero": {
+    "hash": "caa5ed3010c4b611",
+    "passedAt": "2026-06-26",
+    "page": "blog"
+  },
+  "blog-grid": {
+    "hash": "d9c21a2d6a258a17",
+    "passedAt": "2026-06-26",
+    "page": "blog"
+  },
+  "article-header": {
+    "hash": "bfe50aa7a0918108",
+    "passedAt": "2026-06-26",
+    "page": "single-article"
+  },
+  "article-toc": {
+    "hash": "a147fb3cbf59dcb4",
+    "passedAt": "2026-06-26",
+    "page": "single-article"
+  },
+  "article-related": {
+    "hash": "6f795c49f4d840a9",
+    "passedAt": "2026-06-26",
+    "page": "single-article"
   }
 }

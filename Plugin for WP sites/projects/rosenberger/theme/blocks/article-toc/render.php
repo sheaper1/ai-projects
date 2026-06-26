@@ -16,7 +16,7 @@ $heading = wp_kses_post( $attributes['heading'] ?? 'Inhaltsverzeichnis' );
 		<div class="article-toc__card">
 			<button type="button" class="article-toc__toggle" aria-expanded="true">
 				<span class="article-toc__title"><?php echo $heading; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-				<span class="article-toc__icon" aria-hidden="true"><?php echo rosenberger_blog_icon( 'chevron' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+				<span class="article-toc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2954 7.84315L5.63845 13.5001L7.05245 14.9141L12.0024 9.96411L16.9524 14.9141L18.3664 13.5001L12.7094 7.84315C12.5219 7.65565 12.2676 7.55029 12.0024 7.55029C11.7373 7.55029 11.483 7.65565 11.2954 7.84315Z" fill="currentColor"/></svg></span>
 			</button>
 			<div class="article-toc__body">
 				<div class="article-toc__body-inner">

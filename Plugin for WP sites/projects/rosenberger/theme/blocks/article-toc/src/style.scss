@@ -52,7 +52,7 @@
 }
 
 .is-collapsed .article-toc__icon {
-	transform: rotate(-90deg);
+	transform: rotate(180deg);
 }
 
 .article-toc__body {
@@ -98,6 +98,7 @@
 
 .toc-item > a {
 	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 400;
 	font-size: var(--wp--preset--font-size--r-16);
 	line-height: 1.1;
 	color: var(--wp--preset--color--contrast);

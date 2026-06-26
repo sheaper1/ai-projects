@@ -841,6 +841,7 @@ body.site-menu-open { overflow: hidden; }
 	gap: var(--wp--preset--spacing--r-8);
 	color: var(--wp--preset--color--muted);
 	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 400;
 	font-size: var(--wp--preset--font-size--r-14);
 	line-height: 1.5;
 	white-space: nowrap;
