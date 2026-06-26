@@ -17,7 +17,9 @@
 		"figma:icon": "node scripts/figma-icon.mjs",
 		"check": "node scripts/check.mjs",
 		"qa:snap": "node scripts/qa-gate.mjs snapshot",
-		"qa:check": "node scripts/qa-gate.mjs check"
+		"qa:check": "node scripts/qa-gate.mjs check",
+		"qa:all": "node scripts/qa-all.mjs check",
+		"qa:all:snap": "node scripts/qa-all.mjs snapshot"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.0.0",

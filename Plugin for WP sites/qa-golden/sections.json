@@ -1,0 +1,12 @@
+{
+  "_comment": "Реестр секций для qa-all.mjs (snapshot-all / check-all). Добавляй блок строкой {slug,url,sel} по мере прохождения QA — заморозка эталона и регресс-проверка станут на него бесплатными. base — общий префикс URL.",
+  "base": "https://rosenberger.digirelation.dev",
+  "sections": [
+    { "slug": "contact-section",  "url": "/kontakt/",                    "sel": ".contact-section" },
+    { "slug": "thank-you",        "url": "/danke/",                      "sel": ".thank-you" },
+    { "slug": "quote-cover",      "url": "/ueber-mich/",                 "sel": ".quote-cover" },
+    { "slug": "property-catalog", "url": "/alle-immobilien/",            "sel": ".property-catalog" },
+    { "slug": "error-404",        "url": "/nichtexistiert-404-test/",    "sel": ".error-404" },
+    { "slug": "references-hero",  "url": "/references/",                 "sel": ".references-hero" }
+  ]
+}
