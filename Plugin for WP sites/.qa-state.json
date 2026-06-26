@@ -113,5 +113,10 @@
     "hash": "7e27d2b367a23d27",
     "passedAt": "2026-06-26",
     "page": "immobilie-verkaufen"
+  },
+  "tipper-form": {
+    "hash": "5ad0dc5de44ad0d1",
+    "passedAt": "2026-06-26",
+    "page": "immobilienbewertung"
   }
 }

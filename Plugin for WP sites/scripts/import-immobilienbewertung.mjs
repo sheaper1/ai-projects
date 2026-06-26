@@ -176,7 +176,7 @@ const pageContent = [
 	// Секция 8 — многошаговая форма (фаннел оценки) через переиспользуемый tipper-form.
 	// Своя WPForms-форма по slug `bewertung` (scripts/setup-bewertung-form.mjs).
 	`<!-- wp:library/tipper-form ${ JSON.stringify( {
-		heading:  'Ihre kostenlose Bewertung anfragen',
+		heading:  'Ihre kostenlose Bewertung <em>anfragen</em>',
 		lead:     'In unter einer Minute. Ich melde mich danach persönlich bei Ihnen.',
 		formSlug: 'bewertung',
 		wpformsId: 0,
