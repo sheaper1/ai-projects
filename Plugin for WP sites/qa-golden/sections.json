@@ -9,6 +9,7 @@
     { "slug": "error-404",        "url": "/nichtexistiert-404-test/",    "sel": ".error-404" },
     { "slug": "references-hero",  "url": "/references/",                 "sel": ".references-hero" },
     { "slug": "founder-story",    "url": "/ueber-mich/",                 "sel": ".founder-story" },
-    { "slug": "reference-related", "url": "/references/sonniges-baugrundstueck-in-bludenz/", "sel": ".reference-related" }
+    { "slug": "reference-related", "url": "/references/sonniges-baugrundstueck-in-bludenz/", "sel": ".reference-related" },
+    { "slug": "property-meta",    "url": "/objekte/",                    "sel": ".property-meta" }
   ]
 }
