@@ -13,8 +13,10 @@
 
 .reference-catalog .rc-heading {
 	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--r-48);
-	line-height: 1.1;
+	font-weight: 400;
+	font-size: var(--wp--preset--font-size--r-56);
+	line-height: 1.2;
+	letter-spacing: -1.68px;
 	color: var(--wp--preset--color--contrast);
 	margin: 0 0 var(--wp--preset--spacing--r-32);
 }
@@ -37,16 +39,20 @@
 .reference-catalog .rc-tabs {
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--wp--preset--spacing--r-24);
+	gap: var(--wp--preset--spacing--r-40);
 }
 
 .reference-catalog .rc-tab {
 	position: relative;
 	cursor: pointer;
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 500;
 	font-size: var(--wp--preset--font-size--r-16);
-	color: var(--wp--preset--color--muted);
+	text-transform: uppercase;
+	color: var(--wp--preset--color--contrast);
+	opacity: 0.7;
 	padding-bottom: 4px;
-	transition: color var(--wp--custom--transition--fast);
+	transition: color var(--wp--custom--transition--fast), opacity var(--wp--custom--transition--fast);
 }
 
 .reference-catalog .rc-tab input {
@@ -56,11 +62,12 @@
 }
 
 .reference-catalog .rc-tab:hover {
-	color: var(--wp--preset--color--contrast);
+	opacity: 1;
 }
 
 .reference-catalog .rc-tab.is-active {
-	color: var(--wp--preset--color--contrast);
+	font-weight: 800;
+	opacity: 1;
 }
 
 .reference-catalog .rc-tab.is-active::after {

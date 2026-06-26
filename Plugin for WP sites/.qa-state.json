@@ -193,5 +193,20 @@
     "hash": "9bbb6e58ae4f5ce3",
     "passedAt": "2026-06-26",
     "page": "kontakt"
+  },
+  "thank-you": {
+    "hash": "4a5bda1212183d68",
+    "passedAt": "2026-06-26",
+    "page": "danke"
+  },
+  "quote-cover": {
+    "hash": "a2ba3511f9214e94",
+    "passedAt": "2026-06-26",
+    "page": "ueber-mich"
+  },
+  "property-catalog": {
+    "hash": "d0462fcdf1742d15",
+    "passedAt": "2026-06-26",
+    "page": "alle-immobilien"
   }
 }

@@ -68,11 +68,15 @@
 @media (max-width: 781px) {
 	.founder-story__inner {
 		grid-template-columns: 1fr;
-		gap: 40px;
+		gap: var(--wp--preset--spacing--r-48);
 	}
 
 	.founder-story__heading {
 		position: static;
-		font-size: var(--wp--preset--font-size--r-40);
+		font-size: var(--wp--preset--font-size--r-32);
+	}
+
+	.founder-story__quote {
+		margin-top: var(--wp--preset--spacing--r-24);
 	}
 }

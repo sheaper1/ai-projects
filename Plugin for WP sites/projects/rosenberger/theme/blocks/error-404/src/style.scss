@@ -102,20 +102,20 @@
 	}
 
 	.error-404__heading {
-		font-size: var(--wp--preset--font-size--r-40);
+		font-size: var(--wp--preset--font-size--r-48);
 	}
 
 	.error-404__lead {
-		font-size: var(--wp--preset--font-size--r-18);
+		font-size: var(--wp--preset--font-size--r-16);
 	}
 
 	.error-404__banner {
-		height: clamp(280px, 80vw, 420px);
+		height: clamp(280px, 80vw, 447px);
 	}
 
 	.error-404__num {
 		left: var(--wp--custom--layout--gutter);
 		transform: translateY(-50%);
-		font-size: 33vw;
+		font-size: 53.3vw;
 	}
 }

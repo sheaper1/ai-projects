@@ -31,7 +31,7 @@ $ort_terms  = get_terms( array( 'taxonomy' => 'reference-city', 'hide_empty' => 
 
 		<h2 class="rc-heading">
 			<?php echo $heading; ?>
-			<?php if ( $heading_italic ) : ?><em><?php echo $heading_italic; ?></em><?php endif; ?>
+			<?php if ( $heading_italic ) : ?><br><em><?php echo $heading_italic; ?></em><?php endif; ?>
 		</h2>
 
 		<form class="rc-bar" method="get" action="<?php echo esc_url( get_permalink() ); ?>">

@@ -578,7 +578,7 @@
 
 	.pc-card__meta {
 		display: grid;
-		grid-template-columns: 1fr auto;
+		grid-template-columns: 1fr 104px;
 		column-gap: var(--wp--preset--spacing--r-24);
 		row-gap: var(--wp--preset--spacing--r-24);
 		margin: 0;

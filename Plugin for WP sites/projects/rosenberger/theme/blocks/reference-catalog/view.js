@@ -18,7 +18,10 @@
 		trigger.className = 'rc-select__trigger';
 		trigger.setAttribute( 'aria-haspopup', 'listbox' );
 		trigger.setAttribute( 'aria-expanded', 'false' );
-		trigger.innerHTML = '<span class="rc-select__value"></span><svg class="rc-select__chev" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 7.5 5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+		var lead = select.classList.contains( 'rc-sort-select' )
+			? '<svg class="rc-select__lead" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h11M4 12h7M4 17h4M17 5v12m0 0 3-3m-3 3-3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+			: '';
+		trigger.innerHTML = lead + '<span class="rc-select__value"></span><svg class="rc-select__chev" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 7.5 5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 		var valueEl = trigger.querySelector( '.rc-select__value' );
 		var menu = document.createElement( 'div' );
 		menu.className = 'rc-select__menu';

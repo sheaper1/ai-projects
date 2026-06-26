@@ -43,10 +43,13 @@
 
 @media (max-width: 781px) {
 	.wp-block-library-quote-cover {
-		min-height: 400px;
+		min-height: 0;
+		padding: 128px 0;
 	}
 
 	.quote-cover__text {
-		font-size: var(--wp--preset--font-size--r-40);
+		/* Figma mobile (2009:4437): 40px = r-40 nominal; fluid clamp pulls it to ~32px at 375px, so pin the design value. */
+		font-size: 2.5rem;
+		padding: 0 16px;
 	}
 }
