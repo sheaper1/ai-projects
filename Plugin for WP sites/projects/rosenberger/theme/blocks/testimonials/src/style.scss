@@ -1,17 +1,10 @@
 .wp-block-library-testimonials {
 	box-sizing: border-box;
-	padding: var(--wp--custom--layout--section-space) var(--wp--custom--layout--gutter) 0;
+	padding: var(--wp--custom--layout--section-space) var(--wp--custom--layout--gutter);
 	background: var(--wp--preset--color--surface);
 	color: var(--wp--preset--color--contrast);
 
 	* { box-sizing: border-box; }
-
-	// Нижний отступ нужен, только когда сразу под отзывами идёт тёмная CTA-секция
-	// вплотную (как на all-immobilien). На главной ниже FAQ со своим верхним
-	// отступом — там низ оставляем 0, чтобы не было двойного пробела.
-	&:has( + .wp-block-library-consultation-cta ) {
-		padding-bottom: var(--wp--custom--layout--section-space);
-	}
 
 	.testimonials__inner {
 		max-width: 1344px;
