@@ -63,5 +63,15 @@
     "hash": "b1a99e07b0d5057a",
     "passedAt": "2026-06-25",
     "page": "immobilienbewertung"
+  },
+  "promise-list": {
+    "hash": "2fa94d6e58b7025b",
+    "passedAt": "2026-06-26",
+    "page": "ueber-mich"
+  },
+  "value-cards": {
+    "hash": "7559dd2863ad3785",
+    "passedAt": "2026-06-26",
+    "page": "ueber-mich"
   }
 }

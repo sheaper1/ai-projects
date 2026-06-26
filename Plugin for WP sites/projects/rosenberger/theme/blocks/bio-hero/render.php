@@ -43,7 +43,7 @@ $wrapper = get_block_wrapper_attributes( [ 'class' => 'bio-hero' ] );
 			/>
 		<?php endif; ?>
 		<?php if ( $a['nameCredit'] ) : ?>
-			<p class="bio-hero__credit" aria-hidden="true"><?php echo esc_html( $a['nameCredit'] ); ?></p>
+			<p class="bio-hero__credit" aria-hidden="true"><?php echo wp_kses( $a['nameCredit'], [ 'br' => [] ] ); ?></p>
 		<?php endif; ?>
 	</div>
 

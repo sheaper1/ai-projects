@@ -60,8 +60,8 @@ export const blocks = ( m ) => [
 
 	{ name: 'value-cards', attrs: {
 		cards: [
-			{ title: 'Ehrliche Bewertung',            text: 'Ich sage Ihnen, was der Markt für Ihre Immobilie zahlt. Nicht was ich sagen müsste, um den Auftrag zu bekommen.',        iconId: m.iconHouse.id,      iconUrl: m.iconHouse.url      },
-			{ title: 'Direkte Erreichbarkeit',         text: 'Sie erreichen mich auf meiner persönlichen Mobilnummer. Ich melde mich, ohne dass Sie nachfragen müssen.',               iconId: m.iconEvaluation.id, iconUrl: m.iconEvaluation.url },
+			{ title: 'Ehrliche <br>Bewertung',         text: 'Ich sage Ihnen, was der Markt für Ihre Immobilie zahlt. Nicht was ich sagen müsste, um den Auftrag zu bekommen.',        iconId: m.iconHouse.id,      iconUrl: m.iconHouse.url      },
+			{ title: 'Direkte <br>Erreichbarkeit',      text: 'Sie erreichen mich auf meiner persönlichen Mobilnummer. Ich melde mich, ohne dass Sie nachfragen müssen.',               iconId: m.iconEvaluation.id, iconUrl: m.iconEvaluation.url },
 			{ title: 'Rund eine Stunde Aufwand für Sie', text: 'Das Erstgespräch. Den Rest übernehme ich. Von der Bewertung bis zur Ummeldung nach der Übergabe.',                    iconId: m.iconValet.id,      iconUrl: m.iconValet.url      },
 		],
 	} },
