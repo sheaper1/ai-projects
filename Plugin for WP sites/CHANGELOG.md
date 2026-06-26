@@ -3,6 +3,15 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-26 — **Блог/статьи: 5 блоков pass + правило префлайта.** Перед запуском зашил
+  правило «3 проверки» (память [[qa-workflow-preflight]] + шапка воркфлоу + MEMORY.md): запуск через
+  scriptPath (не {name}), curl+grep что URL содержит селектор, нода по тексту метаданных. Все 3
+  пройдены → батч blog-hero/blog-grid/article-header/article-toc/article-related (/blog/ + /nachhaltiges-
+  bauen/) отработал без бага URL, агенты били точно по страницам. Pass все 5: blog-hero/article-related
+  (агенты), blog-grid (заголовок 56, row-gap 32), article-header (острые углы обложки), article-toc
+  (вес списка 400) + общий фикс `.blog-meta__item` font-weight 400 в theme/style.css (мета шарится).
+  Контент-остаток (не дефект): badge 'Empfohlener Beitrag' только для sticky-постов (нет на staging).
+
 - [Claude] 2026-06-26 — **CPT-блоки: добивка хвоста руками — 9/11 pass.** После двух агент-проходов
   закрыл остаток точечным CSS (без агентов, дешевле): property-details (веса лейблов 400),
   property-location (полоска карты под POI), property-gallery (CTA 250 + убрал стрелки, в Figma их
