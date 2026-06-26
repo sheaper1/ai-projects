@@ -1,6 +1,12 @@
 // Переиспользуемый мульти-агентный QA страницы: наложение ДО + параллельный фикс →
 // один деплой → наложение ПОСЛЕ + параллельная верификация.
-// Вызов: Workflow({ name: 'qa-page-parallel', args: {...} }).
+//
+// ⛔ PREFLIGHT (память qa-workflow-preflight) — 3 проверки ПЕРЕД запуском:
+//   1. Запускать через Workflow({ scriptPath: '<этот файл>', args }), НЕ {name}
+//      ({name} кэширует старую версию). После launch — grep снапшота на `urlOf`.
+//   2. Каждый section.url реально содержит секцию: curl <url> | grep <sel> > 0, код 200.
+//   3. Figma-нода = нода СЕКЦИИ (не страницы), выверена по тексту сидера; страница
+//      контентом совпадает с Figma-демо (region/bludenz ↔ Figma Bludenz).
 //
 // args = {
 //   url: 'https://rosenberger.digirelation.dev/',
