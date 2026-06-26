@@ -36,7 +36,7 @@
 	max-width: 820px;
 	margin: 0 auto;
 	background: var(--wp--preset--color--base);
-	padding: 48px;
+	padding: 40px;
 	border-radius: var(--wp--custom--radius--medium);
 }
 
@@ -59,7 +59,7 @@
 	flex: 0 0 auto;
 	padding: 0 56px;
 	font-family: var(--wp--preset--font-family--body);
-	font-size: var(--wp--preset--font-size--r-14);
+	font-size: var(--wp--preset--font-size--r-12);
 	color: var(--wp--preset--color--muted);
 }
 
@@ -87,22 +87,27 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: var(--wp--preset--font-size--r-12);
-	color: var(--wp--preset--color--muted);
+	font-size: var(--wp--preset--font-size--r-14);
+	color: var(--wp--preset--color--accent);
 	background: var(--wp--preset--color--base);
 	position: relative;
 	z-index: 1;
+	opacity: .5;
 }
 
 .tip-form__step.is-active .tip-form__dot,
 .tip-form__step.is-done .tip-form__dot {
 	background: var(--wp--preset--color--accent);
 	border-color: var(--wp--preset--color--accent);
-	color: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--on-dark);
+	opacity: 1;
 }
 
+.tip-form__step-label { opacity: .5; font-weight: 400; }
 .tip-form__step.is-active .tip-form__step-label {
-	color: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--muted);
+	opacity: 1;
+	font-weight: 500;
 }
 
 /* --- Fields --- */
@@ -130,8 +135,8 @@
 .tip-form__label {
 	font-family: var(--wp--preset--font-family--body);
 	font-size: var(--wp--preset--font-size--r-14);
-	font-weight: 500;
-	color: var(--wp--preset--color--contrast);
+	font-weight: 400;
+	color: var(--wp--preset--color--muted);
 }
 
 .tip-form__input {
@@ -187,6 +192,7 @@
 	margin-top: var(--wp--preset--spacing--r-8);
 }
 .tip-form__actions--end { justify-content: flex-end; }
+.tip-form__actions--center { justify-content: center; }
 
 .tip-form__btn {
 	display: inline-flex;

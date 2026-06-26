@@ -42,20 +42,21 @@
 
 .tipper-types__cards {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 0;
+	grid-template-columns: minmax(0, 672px) minmax(0, 672px);
+	gap: 16px;
+	justify-content: center;
+	margin: 0 -8px;
 }
 
 .tipper-types__card {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
-	padding-right: 32px;
+	gap: 16px;
+	min-width: 0;
 }
 
-.tipper-types__card:last-child {
-	padding-right: 0;
-	padding-left: 32px;
+.tipper-types__card-body {
+	padding: 0 4px;
 }
 
 .tipper-types__card-image {
@@ -104,11 +105,7 @@
 	.tipper-types__cards {
 		grid-template-columns: 1fr;
 		gap: 40px 0;
-	}
-
-	.tipper-types__card,
-	.tipper-types__card:last-child {
-		padding: 0;
+		margin: 0;
 	}
 
 	.tipper-types__card-image {

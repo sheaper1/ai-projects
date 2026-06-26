@@ -98,7 +98,7 @@ $bezug       = [ 'Nachbar / Bekannter', 'Familie / Angehöriger', 'Beruflicher K
 					<svg class="tip-form__caret" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
 				</div>
 			</div>
-			<div class="tip-form__actions tip-form__actions--end">
+			<div class="tip-form__actions tip-form__actions--center">
 				<button class="tip-form__btn tip-form__btn--primary" type="button" data-next>Weiter →</button>
 			</div>
 		</div>

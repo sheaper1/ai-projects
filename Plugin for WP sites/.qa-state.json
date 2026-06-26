@@ -83,5 +83,25 @@
     "hash": "8027549bd1f20200",
     "passedAt": "2026-06-26",
     "page": "ueber-mich"
+  },
+  "how-it-works": {
+    "hash": "a387639c12aec5bd",
+    "passedAt": "2026-06-26",
+    "page": "tippgeber"
+  },
+  "provision-callout": {
+    "hash": "a8fe1a38c310b492",
+    "passedAt": "2026-06-26",
+    "page": "tippgeber"
+  },
+  "tipper-types": {
+    "hash": "79ada558018a1ea7",
+    "passedAt": "2026-06-26",
+    "page": "tippgeber"
+  },
+  "tip-form": {
+    "hash": "121e81fb8d406d99",
+    "passedAt": "2026-06-26",
+    "page": "tippgeber"
   }
 }

@@ -56,7 +56,9 @@
 	width: 64px;
 	height: 64px;
 	flex-shrink: 0;
-	margin-bottom: auto;
+	/* Фикс-зазор (не auto): тело карточки стартует на Y≈199 как в Figma у ВСЕХ карточек.
+	   auto бил вниз → у короткой 2-й карточки заголовок съезжал, ряд тайтлов ломался. */
+	margin-bottom: 88px;
 
 	img {
 		width: 100%;
