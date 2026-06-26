@@ -128,5 +128,15 @@
     "hash": "661cc462ba82d073",
     "passedAt": "2026-06-26",
     "page": "region"
+  },
+  "region-properties": {
+    "hash": "183a6bbbfb2a483a",
+    "passedAt": "2026-06-26",
+    "page": "region"
+  },
+  "reference-overview": {
+    "hash": "9147d0c0be8ff70a",
+    "passedAt": "2026-06-26",
+    "page": "single-reference"
   }
 }

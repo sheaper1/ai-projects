@@ -1,7 +1,7 @@
 .property-hero {
 	position: relative;
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 	min-height: 90vh;
 	background: var(--wp--preset--color--base);
 	overflow: hidden;
@@ -108,7 +108,8 @@
 	flex-direction: column;
 	gap: var(--wp--preset--spacing--r-64);
 	max-width: 616px;
-	padding-block: var(--wp--preset--spacing--r-64);
+	/* Контент прижат к низу медиа (Figma 2009:11174: низ CTA ~y800 из 900, зазор снизу ~100px). */
+	padding-block: var(--wp--preset--spacing--r-64) clamp(4rem, 7vw, 6.25rem);
 	pointer-events: auto;
 }
 
@@ -147,6 +148,7 @@
 	border: 1px solid;
 	border-radius: var(--wp--custom--radius--pill);
 	font-family: var(--wp--preset--font-family--body);
+	font-weight: 400;
 	font-size: var(--wp--preset--font-size--r-14);
 	white-space: nowrap;
 }
@@ -196,6 +198,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	box-sizing: border-box;
 	min-width: 250px;
 	height: 56px;
 	padding-inline: 24px;
@@ -217,7 +220,8 @@
 		min-height: 0;
 	}
 	/* Мобайл (по макету): сначала контент, ПОТОМ фото. Отступ сверху — под фикс-шапку 84px. */
-	.property-hero__content { order: 1; padding-top: calc(84px + var(--wp--preset--spacing--r-40)); }
+	/* Поля 16px по макету 375 (gutter clamp min = 20px). */
+	.property-hero__content { order: 1; padding-inline: 16px; padding-top: calc(84px + var(--wp--preset--spacing--r-40)); }
 	.property-hero__media {
 		position: relative;
 		top: auto;

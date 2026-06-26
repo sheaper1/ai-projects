@@ -136,7 +136,7 @@
 
 .rp-card__image {
 	align-self: start;
-	margin: var(--wp--preset--spacing--r-8);
+	margin: var(--wp--preset--spacing--r-8) 0 0;
 	aspect-ratio: 658 / 488;
 	overflow: hidden;
 	background: var(--wp--preset--color--placeholder);
@@ -228,6 +228,7 @@
 
 	.rp-card__image {
 		order: -1;
+		margin: var(--wp--preset--spacing--r-8);
 		aspect-ratio: 16 / 10;
 	}
 

@@ -29,10 +29,12 @@ $thumb_src = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'full' ) : '';
 ?>
 <section <?php echo get_block_wrapper_attributes( array( 'class' => 'region-hero' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="region-hero__head">
-		<h1 class="region-hero__title"><?php echo esc_html( $prefix ); ?> <em><?php echo esc_html( $city ); ?></em></h1>
-		<?php if ( $subtitle ) : ?>
-			<p class="region-hero__subtitle"><?php echo wp_kses_post( $subtitle ); ?></p>
-		<?php endif; ?>
+		<div class="region-hero__intro">
+			<h1 class="region-hero__title"><?php echo esc_html( $prefix ); ?> <em><?php echo esc_html( $city ); ?></em></h1>
+			<?php if ( $subtitle ) : ?>
+				<p class="region-hero__subtitle"><?php echo wp_kses_post( $subtitle ); ?></p>
+			<?php endif; ?>
+		</div>
 		<div class="region-hero__cta">
 			<a class="region-hero__button" href="<?php echo esc_url( $btn_url ); ?>"><?php echo esc_html( $btn_text ); ?></a>
 			<?php if ( $note ) : ?>

@@ -34,6 +34,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--wp--preset--spacing--r-24);
+	/* Figma 2009:11543: картинка top=100, текст-колонка top=142 → stagger 42px. */
+	padding-top: 42px;
 }
 
 .reference-overview .reference-overview__heading {
@@ -84,5 +86,8 @@
 	}
 	.reference-overview .reference-overview__media {
 		aspect-ratio: 16 / 10;
+	}
+	.reference-overview .reference-overview__body {
+		padding-top: 0;
 	}
 }
