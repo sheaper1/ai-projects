@@ -3,6 +3,13 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-26 — **immobilie-verkaufen: sold-showcase pass + testimonials br.** sold-showcase
+  сверен с нодой 2009:4975 — карточка светлая (base) с тёмным текстом, как в Figma. ВАЖНО: shot.mjs
+  показывал её тёмной (артефакт scroll-reveal/тайминга); вскрыл кросс-проверкой слоёв CSS +
+  computed-стилями (slideBg=#fff, h3=#142335) — код корректен, инвертировать не стал. Урок в память
+  (shot-color-artifact). testimonials: убрал двойной br в заголовке (heading «…,<br>» → «…,»), ре-сид.
+  qa-state pass: sold-showcase.
+
 - [Claude] 2026-06-26 — **home: закрыты 2 оставшихся блока (testimonials, region-grid).** Главная
   была пройдена на 9/11; добил остаток. **testimonials**: нашёл реальный дефект, проморгнутый
   в начале сессии — заголовок дублировал курсивную строку («…gearbeitet haben / die mit mir

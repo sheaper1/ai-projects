@@ -175,7 +175,7 @@ const pageContent = [
 	} ) } /-->`,
 
 	`<!-- wp:library/testimonials ${ JSON.stringify( {
-		heading:       'Das sagen Menschen,<br>',
+		heading:       'Das sagen Menschen,',
 		headingItalic: 'die mit mir gearbeitet haben',
 		limit:         3,
 		minRating:     4,
