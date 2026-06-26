@@ -20,7 +20,7 @@
 	text-align: center;
 	font-family: var(--wp--preset--font-family--heading);
 	font-size: var(--wp--preset--font-size--r-56);
-	line-height: 1.1;
+	line-height: 1;
 	letter-spacing: -1.68px;
 	color: var(--wp--preset--color--contrast);
 }
@@ -46,9 +46,10 @@
 
 @media (max-width: 782px) {
 	.references-hero .references-hero__title {
-		font-size: var(--wp--preset--font-size--r-40);
+		font-size: var(--wp--preset--font-size--r-32);
+		letter-spacing: -0.96px;
 	}
 	.references-hero .references-hero__banner {
-		height: 220px;
+		height: 341px;
 	}
 }

@@ -136,7 +136,11 @@
 	}
 
 	.thank-you__heading {
-		font-size: var(--wp--preset--font-size--r-40);
+		font-size: var(--wp--preset--font-size--r-48);
+	}
+
+	.thank-you__lead {
+		font-size: var(--wp--preset--font-size--r-16);
 	}
 
 	.thank-you__cards {
@@ -145,11 +149,22 @@
 
 	.ty-card {
 		min-height: 0;
+		padding: var(--wp--preset--spacing--r-24);
 	}
 
 	.ty-card:not(:first-child) {
 		margin-left: 0;
 		margin-top: -1px;
+	}
+
+	.ty-card__icon,
+	.ty-card__icon img {
+		width: 48px;
+		height: 48px;
+	}
+
+	.ty-card__title {
+		font-size: var(--wp--preset--font-size--r-24);
 	}
 
 	.ty-card__body {
