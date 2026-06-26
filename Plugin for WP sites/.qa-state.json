@@ -228,5 +228,10 @@
     "hash": "fe6c06996303581c",
     "passedAt": "2026-06-26",
     "page": "single-reference"
+  },
+  "reference-catalog": {
+    "hash": "163456e3a0019c39",
+    "passedAt": "2026-06-26",
+    "page": "references"
   }
 }

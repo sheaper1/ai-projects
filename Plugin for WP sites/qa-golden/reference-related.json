@@ -20,7 +20,7 @@
         "x": 48
       },
       {
-        "text": "Moderne 3-Zimmer-Wohnung in Bregenz Neuwertige Drei-Zimmer-Wohnung mit Seeblick ",
+        "text": "Gewerbehalle mit Lagerfläche in Bludenz Vielseitig nutzbare Gewerbehalle mit gro",
         "tag": "a",
         "fontSize": 16,
         "fontWeight": "300",
@@ -34,7 +34,7 @@
         "x": 48
       },
       {
-        "text": "Moderne 3-Zimmer-Wohnung in Bregenz",
+        "text": "Gewerbehalle mit Lagerfläche in Bludenz",
         "tag": "h3",
         "fontSize": 24,
         "fontWeight": "600",
@@ -48,7 +48,7 @@
         "x": 73
       },
       {
-        "text": "Neuwertige Drei-Zimmer-Wohnung mit Seeblick und Tiefgaragenstellplatz. Diskret u",
+        "text": "Vielseitig nutzbare Gewerbehalle mit großzügiger Lager- und Produktionsfläche. E",
         "tag": "p",
         "fontSize": 16,
         "fontWeight": "300",
@@ -62,7 +62,7 @@
         "x": 73
       },
       {
-        "text": "Einfamilienhaus mit Garten in Feldkirch Gepflegtes Einfamilienhaus mit großem Ga",
+        "text": "Großzügiges Baugrundstück in Bregenz Sonniges, voll erschlossenes Baugrundstück ",
         "tag": "a",
         "fontSize": 16,
         "fontWeight": "300",
@@ -76,7 +76,7 @@
         "x": 504
       },
       {
-        "text": "Einfamilienhaus mit Garten in Feldkirch",
+        "text": "Großzügiges Baugrundstück in Bregenz",
         "tag": "h3",
         "fontSize": 24,
         "fontWeight": "600",
@@ -90,7 +90,7 @@
         "x": 529
       },
       {
-        "text": "Gepflegtes Einfamilienhaus mit großem Garten und Doppelgarage in beliebter Wohnl",
+        "text": "Sonniges, voll erschlossenes Baugrundstück in begehrter Aussichtslage. Diskret v",
         "tag": "p",
         "fontSize": 16,
         "fontWeight": "300",
@@ -104,7 +104,7 @@
         "x": 529
       },
       {
-        "text": "Helle 4-Zimmer-Wohnung mit Bergblick in Dornbirn Sonnendurchflutete Vier-Zimmer-",
+        "text": "Penthouse-Wohnung mit Dachterrasse in Bregenz Exklusive Penthouse-Wohnung mit um",
         "tag": "a",
         "fontSize": 16,
         "fontWeight": "300",
@@ -118,7 +118,7 @@
         "x": 960
       },
       {
-        "text": "Helle 4-Zimmer-Wohnung mit Bergblick in Dornbirn",
+        "text": "Penthouse-Wohnung mit Dachterrasse in Bregenz",
         "tag": "h3",
         "fontSize": 24,
         "fontWeight": "600",
@@ -132,7 +132,7 @@
         "x": 985
       },
       {
-        "text": "Sonnendurchflutete Vier-Zimmer-Wohnung in ruhiger Lage von Dornbirn, mit großzüg",
+        "text": "Exklusive Penthouse-Wohnung mit umlaufender Dachterrasse und Seeblick. Diskret u",
         "tag": "p",
         "fontSize": 16,
         "fontWeight": "300",
@@ -148,11 +148,11 @@
     ],
     "images": [
       {
-        "src": "rosenberger-ref-cards-card-2-jpg-1024x1024.jpg",
-        "alt": "Moderne 3-Zimmer-Wohnung in Bregenz",
+        "src": "rosenberger-ref-cards-card-3-jpg-1024x1024.jpg",
+        "alt": "Gewerbehalle mit Lagerfläche in Bludenz",
         "x": 57,
         "w": 414,
-        "h": 244.3,
+        "h": 414,
         "natW": 1024,
         "natH": 1024,
         "widthPct": 28.7,
@@ -160,11 +160,47 @@
         "fullBleed": false
       },
       {
-        "src": "rosenberger-ref-cards-card-1-jpg-1024x1002.jpg",
-        "alt": "Einfamilienhaus mit Garten in Feldkirch",
+        "src": "rosenberger-ref-property-gallery-hero-webp-1024x68",
+        "alt": "Gewerbehalle mit Lagerfläche in Bludenz",
+        "x": 57,
+        "w": 414,
+        "h": 275.7,
+        "natW": 1024,
+        "natH": 682,
+        "widthPct": 28.7,
+        "objectFit": "cover",
+        "fullBleed": false
+      },
+      {
+        "src": "rosenberger-ref-property-gallery-img-3-webp-1024x8",
+        "alt": "Gewerbehalle mit Lagerfläche in Bludenz",
+        "x": 57,
+        "w": 414,
+        "h": 331.1,
+        "natW": 1024,
+        "natH": 819,
+        "widthPct": 28.7,
+        "objectFit": "cover",
+        "fullBleed": false
+      },
+      {
+        "src": "rosenberger-ref-property-gallery-img-3-webp-1024x8",
+        "alt": "Großzügiges Baugrundstück in Bregenz",
         "x": 513,
         "w": 414,
-        "h": 244.3,
+        "h": 331.1,
+        "natW": 1024,
+        "natH": 819,
+        "widthPct": 28.7,
+        "objectFit": "cover",
+        "fullBleed": false
+      },
+      {
+        "src": "rosenberger-ref-cards-card-1-jpg-1024x1002.jpg",
+        "alt": "Großzügiges Baugrundstück in Bregenz",
+        "x": 513,
+        "w": 414,
+        "h": 405.1,
         "natW": 1024,
         "natH": 1002,
         "widthPct": 28.7,
@@ -173,24 +209,85 @@
       },
       {
         "src": "rosenberger-ref-property-gallery-hero-webp-1024x68",
-        "alt": "Helle 4-Zimmer-Wohnung mit Bergblick in ",
+        "alt": "Penthouse-Wohnung mit Dachterrasse in Br",
         "x": 969,
         "w": 414,
-        "h": 244.3,
+        "h": 275.7,
         "natW": 1024,
         "natH": 682,
         "widthPct": 28.7,
         "objectFit": "cover",
         "fullBleed": false
+      },
+      {
+        "src": "rosenberger-ref-property-gallery-img-1-webp.webp",
+        "alt": "Penthouse-Wohnung mit Dachterrasse in Br",
+        "x": 969,
+        "w": 414,
+        "h": 274.9,
+        "natW": 866,
+        "natH": 575,
+        "widthPct": 28.7,
+        "objectFit": "cover",
+        "fullBleed": false
+      },
+      {
+        "src": "rosenberger-ref-property-gallery-img-3-webp-1024x8",
+        "alt": "Penthouse-Wohnung mit Dachterrasse in Br",
+        "x": 969,
+        "w": 414,
+        "h": 331.1,
+        "natW": 1024,
+        "natH": 819,
+        "widthPct": 28.7,
+        "objectFit": "cover",
+        "fullBleed": false
       }
     ],
-    "controls": []
+    "controls": [
+      {
+        "cls": "rc-card__nav rc-card__nav--prev",
+        "display": "inline-block",
+        "hidden": false,
+        "kids": 1
+      },
+      {
+        "cls": "rc-card__nav rc-card__nav--next",
+        "display": "inline-block",
+        "hidden": false,
+        "kids": 1
+      },
+      {
+        "cls": "rc-card__nav rc-card__nav--prev",
+        "display": "inline-block",
+        "hidden": false,
+        "kids": 1
+      },
+      {
+        "cls": "rc-card__nav rc-card__nav--next",
+        "display": "inline-block",
+        "hidden": false,
+        "kids": 1
+      },
+      {
+        "cls": "rc-card__nav rc-card__nav--prev",
+        "display": "inline-block",
+        "hidden": false,
+        "kids": 1
+      },
+      {
+        "cls": "rc-card__nav rc-card__nav--next",
+        "display": "inline-block",
+        "hidden": false,
+        "kids": 1
+      }
+    ]
   },
   "heroDrift": {
     "Ähnliche Referenzen": 11.7,
-    "Moderne 3-Zimmer-Wohnung in Bregenz": 11.2,
-    "Einfamilienhaus mit Garten in Feldkirch": 3.4,
-    "Helle 4-Zimmer-Wohnung mit Bergblick in Dornbirn": 4.6
+    "Gewerbehalle mit Lagerfläche in Bludenz": 11.2,
+    "Großzügiges Baugrundstück in Bregenz": 3.4,
+    "Penthouse-Wohnung mit Dachterrasse in Bregenz": 4.6
   },
   "mobile": {
     "texts": [
@@ -209,7 +306,7 @@
         "x": 20
       },
       {
-        "text": "Moderne 3-Zimmer-Wohnung in Bregenz Neuwertige Drei-Zimmer-Wohnung mit Seeblick ",
+        "text": "Gewerbehalle mit Lagerfläche in Bludenz Vielseitig nutzbare Gewerbehalle mit gro",
         "tag": "a",
         "fontSize": 16,
         "fontWeight": "300",
@@ -223,7 +320,7 @@
         "x": 20
       },
       {
-        "text": "Moderne 3-Zimmer-Wohnung in Bregenz",
+        "text": "Gewerbehalle mit Lagerfläche in Bludenz",
         "tag": "h3",
         "fontSize": 20.215,
         "fontWeight": "600",
@@ -237,7 +334,7 @@
         "x": 45
       },
       {
-        "text": "Neuwertige Drei-Zimmer-Wohnung mit Seeblick und Tiefgaragenstellplatz. Diskret u",
+        "text": "Vielseitig nutzbare Gewerbehalle mit großzügiger Lager- und Produktionsfläche. E",
         "tag": "p",
         "fontSize": 16,
         "fontWeight": "300",
@@ -251,7 +348,7 @@
         "x": 45
       },
       {
-        "text": "Einfamilienhaus mit Garten in Feldkirch Gepflegtes Einfamilienhaus mit großem Ga",
+        "text": "Großzügiges Baugrundstück in Bregenz Sonniges, voll erschlossenes Baugrundstück ",
         "tag": "a",
         "fontSize": 16,
         "fontWeight": "300",
@@ -265,7 +362,7 @@
         "x": 20
       },
       {
-        "text": "Einfamilienhaus mit Garten in Feldkirch",
+        "text": "Großzügiges Baugrundstück in Bregenz",
         "tag": "h3",
         "fontSize": 20.215,
         "fontWeight": "600",
@@ -279,7 +376,7 @@
         "x": 45
       },
       {
-        "text": "Gepflegtes Einfamilienhaus mit großem Garten und Doppelgarage in beliebter Wohnl",
+        "text": "Sonniges, voll erschlossenes Baugrundstück in begehrter Aussichtslage. Diskret v",
         "tag": "p",
         "fontSize": 16,
         "fontWeight": "300",
@@ -293,7 +390,7 @@
         "x": 45
       },
       {
-        "text": "Helle 4-Zimmer-Wohnung mit Bergblick in Dornbirn Sonnendurchflutete Vier-Zimmer-",
+        "text": "Penthouse-Wohnung mit Dachterrasse in Bregenz Exklusive Penthouse-Wohnung mit um",
         "tag": "a",
         "fontSize": 16,
         "fontWeight": "300",
@@ -307,7 +404,7 @@
         "x": 20
       },
       {
-        "text": "Helle 4-Zimmer-Wohnung mit Bergblick in Dornbirn",
+        "text": "Penthouse-Wohnung mit Dachterrasse in Bregenz",
         "tag": "h3",
         "fontSize": 20.215,
         "fontWeight": "600",
@@ -321,7 +418,7 @@
         "x": 45
       },
       {
-        "text": "Sonnendurchflutete Vier-Zimmer-Wohnung in ruhiger Lage von Dornbirn, mit großzüg",
+        "text": "Exklusive Penthouse-Wohnung mit umlaufender Dachterrasse und Seeblick. Diskret u",
         "tag": "p",
         "fontSize": 16,
         "fontWeight": "300",
@@ -337,11 +434,11 @@
     ],
     "images": [
       {
-        "src": "rosenberger-ref-cards-card-2-jpg-1024x1024.jpg",
-        "alt": "Moderne 3-Zimmer-Wohnung in Bregenz",
+        "src": "rosenberger-ref-cards-card-3-jpg-1024x1024.jpg",
+        "alt": "Gewerbehalle mit Lagerfläche in Bludenz",
         "x": 29,
         "w": 317,
-        "h": 187.1,
+        "h": 317,
         "natW": 1024,
         "natH": 1024,
         "widthPct": 84.5,
@@ -349,11 +446,47 @@
         "fullBleed": false
       },
       {
-        "src": "rosenberger-ref-cards-card-1-jpg-1024x1002.jpg",
-        "alt": "Einfamilienhaus mit Garten in Feldkirch",
+        "src": "rosenberger-ref-property-gallery-hero-webp-1024x68",
+        "alt": "Gewerbehalle mit Lagerfläche in Bludenz",
         "x": 29,
         "w": 317,
-        "h": 187.1,
+        "h": 211.1,
+        "natW": 1024,
+        "natH": 682,
+        "widthPct": 84.5,
+        "objectFit": "cover",
+        "fullBleed": false
+      },
+      {
+        "src": "rosenberger-ref-property-gallery-img-3-webp-1024x8",
+        "alt": "Gewerbehalle mit Lagerfläche in Bludenz",
+        "x": 29,
+        "w": 317,
+        "h": 253.5,
+        "natW": 1024,
+        "natH": 819,
+        "widthPct": 84.5,
+        "objectFit": "cover",
+        "fullBleed": false
+      },
+      {
+        "src": "rosenberger-ref-property-gallery-img-3-webp-1024x8",
+        "alt": "Großzügiges Baugrundstück in Bregenz",
+        "x": 29,
+        "w": 317,
+        "h": 253.5,
+        "natW": 1024,
+        "natH": 819,
+        "widthPct": 84.5,
+        "objectFit": "cover",
+        "fullBleed": false
+      },
+      {
+        "src": "rosenberger-ref-cards-card-1-jpg-1024x1002.jpg",
+        "alt": "Großzügiges Baugrundstück in Bregenz",
+        "x": 29,
+        "w": 317,
+        "h": 310.2,
         "natW": 1024,
         "natH": 1002,
         "widthPct": 84.5,
@@ -362,12 +495,36 @@
       },
       {
         "src": "rosenberger-ref-property-gallery-hero-webp-1024x68",
-        "alt": "Helle 4-Zimmer-Wohnung mit Bergblick in ",
+        "alt": "Penthouse-Wohnung mit Dachterrasse in Br",
         "x": 29,
         "w": 317,
-        "h": 187.1,
+        "h": 211.1,
         "natW": 1024,
         "natH": 682,
+        "widthPct": 84.5,
+        "objectFit": "cover",
+        "fullBleed": false
+      },
+      {
+        "src": "rosenberger-ref-property-gallery-img-1-webp.webp",
+        "alt": "Penthouse-Wohnung mit Dachterrasse in Br",
+        "x": 29,
+        "w": 317,
+        "h": 210.5,
+        "natW": 866,
+        "natH": 575,
+        "widthPct": 84.5,
+        "objectFit": "cover",
+        "fullBleed": false
+      },
+      {
+        "src": "rosenberger-ref-property-gallery-img-3-webp-1024x8",
+        "alt": "Penthouse-Wohnung mit Dachterrasse in Br",
+        "x": 29,
+        "w": 317,
+        "h": 253.5,
+        "natW": 1024,
+        "natH": 819,
         "widthPct": 84.5,
         "objectFit": "cover",
         "fullBleed": false
