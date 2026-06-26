@@ -58,7 +58,7 @@ await page.evaluate( async () => {
 } );
 await new Promise( ( r ) => setTimeout( r, 900 ) );
 
-const raw = resolve( outDir, `.${ name }-raw.png` );
+const raw = resolve( outDir, `.${ name.replace( /[\\/]/g, '_' ) }-raw.png` );
 
 if ( sel ) {
 	const el = await page.$( sel );
@@ -79,12 +79,14 @@ if ( meta.height > CHUNK * 1.3 ) {
 		const top = i * CHUNK;
 		const h = Math.min( CHUNK, meta.height - top );
 		const out = resolve( outDir, `${ name }-${ i }.png` );
+		mkdirSync( dirname( out ), { recursive: true } );
 		await sharp( raw ).extract( { left: 0, top, width: meta.width, height: h } )
 			.resize( { width: Math.min( meta.width, MAXW ) } ).toFile( out );
 		written.push( out );
 	}
 } else {
 	const out = resolve( outDir, `${ name }.png` );
+	mkdirSync( dirname( out ), { recursive: true } );
 	let img = sharp( raw );
 	if ( meta.width > MAXW ) img = img.resize( { width: MAXW } );
 	await img.toFile( out );
