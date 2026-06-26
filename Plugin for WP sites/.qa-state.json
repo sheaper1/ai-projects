@@ -73,5 +73,15 @@
     "hash": "7559dd2863ad3785",
     "passedAt": "2026-06-26",
     "page": "ueber-mich"
+  },
+  "bio-hero": {
+    "hash": "0674e576a9d31c78",
+    "passedAt": "2026-06-26",
+    "page": "ueber-mich"
+  },
+  "founder-bio": {
+    "hash": "8027549bd1f20200",
+    "passedAt": "2026-06-26",
+    "page": "ueber-mich"
   }
 }

@@ -17,6 +17,16 @@
   Также: verify-агенты в воркфлоу теперь пишут overlay/live/figma по фикс-путям и отдают
   в `artifacts` — оркестратор сам сверяет картинки.
 
+- [Claude] 2026-06-26 — **/ueber-mich: добивка хвостов (seeder-first маппинг).** Свёрил
+  блоки с верными нодами по сидеру. **founder-bio** оказался уже корректным (нода 2991:
+  заголовок body/r-40/400, абзацы Light/muted, фото 47.3%) → pass без правок. **bio-hero**:
+  поднял нижний инсет текст-блока 48px→8.6vw (Figma: низ на 124px от низа кадра) → pass.
+  **quote-cover**: мобильная min-height 320→400 (Figma mobile 400). Pass: bio-hero,
+  founder-bio (всего по /ueber-mich: bio-hero, founder-bio, promise-list, value-cards).
+  Открытые хвосты (системные, не хардкодить): quote-cover мобильный шрифт (токен r-40
+  флюид→32px vs дизайн 40px), мобильный gutter vw vs 16px, quote-cover bg jpg→webp.
+  founder-story оставлен как есть (нет дизайна в Figma-фрейме — кастомная секция).
+
 - [Claude] 2026-06-26 — **testimonials: нижний отступ секции.** На главной точки
   пагинации прилипали к нижней кромке surface-полосы (низ был `0`, 150px добавлялись
   только перед `consultation-cta`). Сверка с Figma (`Home 1440` → `Frame 27` 2009:2506,
