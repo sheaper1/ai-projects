@@ -193,9 +193,32 @@
 }
 
 .reference-catalog .rc-card__img-wrap {
+	position: relative;
 	aspect-ratio: 649 / 383;
 	overflow: hidden;
 	background: var(--wp--preset--color--placeholder);
+}
+
+/* Карусель фото объекта (общий RbCarousel: track + клоны, transform). */
+.reference-catalog .rc-card__carousel {
+	position: absolute;
+	inset: 0;
+}
+
+.reference-catalog .rc-card__track {
+	display: flex;
+	height: 100%;
+	will-change: transform;
+}
+
+.reference-catalog .rc-card__carousel.is-dragging {
+	cursor: grabbing;
+}
+
+.reference-catalog .rc-card__slide {
+	flex: 0 0 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .reference-catalog .rc-card__img {
@@ -203,11 +226,39 @@
 	height: 100%;
 	object-fit: cover;
 	display: block;
-	transition: transform var(--wp--custom--transition--base);
 }
 
-.reference-catalog .rc-card:hover .rc-card__img {
-	transform: scale(1.03);
+/* Chevron-кнопки 48×48 по верт.центру фото (Figma: blur + translucent white). */
+.reference-catalog .rc-card__nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	padding: 0;
+	border: 1px solid var(--wp--preset--color--on-dark);
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(20.9px);
+	-webkit-backdrop-filter: blur(20.9px);
+	color: var(--wp--preset--color--on-dark);
+	cursor: pointer;
+	transition: background var(--wp--custom--transition--fast);
+}
+
+.reference-catalog .rc-card__nav--prev {
+	left: 23px;
+}
+
+.reference-catalog .rc-card__nav--next {
+	right: 23px;
+}
+
+.reference-catalog .rc-card__nav:hover {
+	background: rgba(255, 255, 255, 0.35);
 }
 
 .reference-catalog .rc-card__img-placeholder {

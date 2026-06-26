@@ -25,6 +25,18 @@ $results    = rosenberger_rc_results_html( $params );
 $endpoint   = esc_url( rest_url( 'rosenberger/v1/references' ) );
 $typ_terms  = get_terms( array( 'taxonomy' => 'reference-type', 'hide_empty' => true ) );
 $ort_terms  = get_terms( array( 'taxonomy' => 'reference-city', 'hide_empty' => true ) );
+
+// Порядок табов как в Figma: Haus / Wohnung / Grundstück / Gewerbe (остальные — в конец).
+if ( $typ_terms && ! is_wp_error( $typ_terms ) ) {
+	$typ_order = array( 'haus', 'wohnung', 'grundstueck', 'gewerbe' );
+	usort( $typ_terms, static function ( $a, $b ) use ( $typ_order ) {
+		$ia = array_search( $a->slug, $typ_order, true );
+		$ib = array_search( $b->slug, $typ_order, true );
+		$ia = false === $ia ? PHP_INT_MAX : $ia;
+		$ib = false === $ib ? PHP_INT_MAX : $ib;
+		return $ia <=> $ib;
+	} );
+}
 ?>
 <section <?php echo get_block_wrapper_attributes( array( 'class' => 'reference-catalog' ) ); ?>>
 	<div class="rc-inner">

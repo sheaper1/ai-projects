@@ -72,12 +72,33 @@
 		sync();
 	}
 
+	// Карусель фото на карточке (общий RbCarousel: drag + бесконечный цикл).
+	// Карточка — <a>: гасим переход по клику на стрелки и по завершении драга.
+	function initCardCarousels( scope ) {
+		scope.querySelectorAll( '.rc-card__carousel' ).forEach( function ( car ) {
+			if ( car.dataset.rbInit ) {
+				return;
+			}
+			car.dataset.rbInit = '1';
+			car.querySelectorAll( '[data-prev], [data-next]' ).forEach( function ( btn ) {
+				btn.addEventListener( 'click', function ( e ) {
+					e.preventDefault();
+					e.stopPropagation();
+				} );
+			} );
+			if ( window.RbCarousel ) {
+				window.RbCarousel( car, { frame: car } );
+			}
+		} );
+	}
+
 	document.querySelectorAll( '.reference-catalog' ).forEach( function ( root ) {
 		var form    = root.querySelector( '.rc-bar' );
 		var results = root.querySelector( '.rc-results' );
 		if ( ! form || ! results ) {
 			return;
 		}
+		initCardCarousels( results );
 		var endpoint = results.dataset.endpoint;
 		var perPage  = ( form.querySelector( '[name="rc_per_page"]' ) || {} ).value || 8;
 		var sort     = form.querySelector( '.rc-sort-select' );
@@ -116,6 +137,7 @@
 				.then( function ( data ) {
 					results.innerHTML = data && data.html ? data.html : '';
 					results.classList.remove( 'is-loading' );
+					initCardCarousels( results );
 				} )
 				.catch( function () { results.classList.remove( 'is-loading' ); } );
 

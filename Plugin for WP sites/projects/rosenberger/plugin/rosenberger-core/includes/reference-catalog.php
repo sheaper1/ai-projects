@@ -72,17 +72,42 @@ function rosenberger_rc_card_html( int $post_id ): string {
 	$lage_str  = ( $lage_tax && ! is_wp_error( $lage_tax ) )
 		? implode( ', ', wp_list_pluck( $lage_tax, 'name' ) )
 		: ( get_post_meta( $post_id, 'property_address', true ) ?: 'Vorarlberg | Österreich' );
-	$thumb_id  = get_post_thumbnail_id( $post_id );
-	$thumb_src = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'large' ) : '';
 	$excerpt   = get_the_excerpt( $post_id );
 	$link      = get_permalink( $post_id );
+
+	// Слайды галереи объекта (property_gallery — CSV media-ID); фолбэк — featured image.
+	$gallery_ids = array_filter( array_map( 'absint', explode( ',', (string) get_post_meta( $post_id, 'property_gallery', true ) ) ) );
+	if ( ! $gallery_ids ) {
+		$thumb_id    = get_post_thumbnail_id( $post_id );
+		$gallery_ids = $thumb_id ? array( $thumb_id ) : array();
+	}
+	$alt = esc_attr( get_the_title( $post_id ) );
+
+	$chevron = static function ( string $dir ) {
+		// iwwa:arrow-up, повёрнутая на -90° → влево / на 90° → вправо.
+		$rot = 'prev' === $dir ? '-90' : '90';
+		return '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="transform:rotate(' . $rot . 'deg)"><path d="M10 16V4m0 0-5 5m5-5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+	};
 
 	ob_start();
 	?>
 	<a class="rc-card" href="<?php echo esc_url( $link ); ?>">
 		<div class="rc-card__img-wrap">
-			<?php if ( $thumb_src ) : ?>
-				<img class="rc-card__img" src="<?php echo esc_url( $thumb_src ); ?>" alt="<?php echo esc_attr( get_the_title( $post_id ) ); ?>" loading="lazy">
+			<?php if ( $gallery_ids ) : ?>
+				<div class="rc-card__carousel">
+					<div class="rc-card__track" data-track>
+						<?php foreach ( $gallery_ids as $i => $gid ) : ?>
+							<?php $src = wp_get_attachment_image_url( $gid, 'large' ); ?>
+							<?php if ( $src ) : ?>
+								<div class="rc-card__slide"><img class="rc-card__img" src="<?php echo esc_url( $src ); ?>" alt="<?php echo $alt; ?>" loading="<?php echo 0 === $i ? 'eager' : 'lazy'; ?>"></div>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</div>
+					<?php if ( count( $gallery_ids ) > 1 ) : ?>
+						<button type="button" class="rc-card__nav rc-card__nav--prev" data-prev aria-label="Vorheriges Bild"><?php echo $chevron( 'prev' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
+						<button type="button" class="rc-card__nav rc-card__nav--next" data-next aria-label="Nächstes Bild"><?php echo $chevron( 'next' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
+					<?php endif; ?>
+				</div>
 			<?php else : ?>
 				<div class="rc-card__img-placeholder"></div>
 			<?php endif; ?>
