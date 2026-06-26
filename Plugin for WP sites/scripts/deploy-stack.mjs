@@ -100,7 +100,7 @@ if ( false === get_option( 'rosenberger_contacts' ) ) {
 		'email'    => 'office@rosenberger.immo',
 		'address'  => 'ROSENBERGER Immobilien GmbH, Drevesstraße 2/1, 6800 Feldkirch',
 		'hours'    => 'Mo-Fr 9:00-17:00',
-		'cta_text' => 'Termin vereinbaren',
+		'cta_text' => 'Kontakt',
 		'cta_url'  => '/kontakt/',
 	) );
 }
@@ -113,8 +113,8 @@ if ( isset( $contacts_fix['address'] ) && 'Bregenz, Vorarlberg' === $contacts_fi
 if ( $contacts_changed ) { update_option( 'rosenberger_contacts', $contacts_fix ); }
 // РњРёРіСЂР°С†РёСЏ СЃС‚Р°СЂРѕРіРѕ РґРµРјРѕРЅСЃС‚СЂР°С†РёРѕРЅРЅРѕРіРѕ CTA; РїСЂРѕРёР·РІРѕР»СЊРЅС‹Р№ С‚РµРєСЃС‚ РєР»РёРµРЅС‚Р° РЅРµ С‚СЂРѕРіР°РµРј.
 $contacts = get_option( 'rosenberger_contacts', array() );
-if ( isset( $contacts['cta_text'] ) && 'Kontakt' === $contacts['cta_text'] ) {
-	$contacts['cta_text'] = 'Termin vereinbaren';
+if ( isset( $contacts['cta_text'] ) && 'Termin vereinbaren' === $contacts['cta_text'] ) {
+	$contacts['cta_text'] = 'Kontakt';   // шапка по Figma 2009:3068 = «Kontakt»
 	update_option( 'rosenberger_contacts', $contacts );
 }
 // СЃРЅРѕСЃРёРј СЃС‚Р°СЂС‹Р№ РѕР±С‰РёР№ РїР»Р°РіРёРЅ (РјРѕРґРµР»СЊ СЃРјРµРЅРёР»Р°СЃСЊ РЅР° В«РІСЃС‘ РІ РїСЂРѕРµРєС‚РµВ»)

@@ -259,7 +259,7 @@ if ( false === get_option('rosenberger_contacts') ) {
         'email'    => 'office@rosenberger.immo',
         'address'  => 'ROSENBERGER Immobilien GmbH, Drevesstraße 2/1, 6800 Feldkirch',
         'hours'    => 'Mo–Fr 9:00–17:00',
-        'cta_text' => 'Termin vereinbaren',
+        'cta_text' => 'Kontakt',
         'cta_url'  => '/kontakt/',
     ]);
 }`;
