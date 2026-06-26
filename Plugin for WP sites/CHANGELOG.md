@@ -3,6 +3,16 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-26 — **CPT-блоки: добивка хвоста руками — 9/11 pass.** После двух агент-проходов
+  закрыл остаток точечным CSS (без агентов, дешевле): property-details (веса лейблов 400),
+  property-location (полоска карты под POI), property-gallery (CTA 250 + убрал стрелки, в Figma их
+  нет), reference-testimonial (вес цитаты 400), property-hero (опц. мета `property_heading` под `<br>`).
+  Все подтверждены наложением, задеплоены. qa-state pass +5 (property-details/-location/-gallery,
+  reference-testimonial, region-hero). ОСТАЁТСЯ 2 (данные, не CSS): property-hero `<br>` (заполнить
+  `property_heading`), property-stats «2. Obergeschoss»→«2. OG» (формат floor Propstack). Вывод
+  кампании: враждебный verify даёт всё более мелкие нити — после 2 проходов выгоднее добить руками,
+  чем гонять ещё 1M токенов.
+
 - [Claude] 2026-06-26 — **CPT-блоки: мульти-агентный батч на 11 блоков (23 агента, 1.47M ток.).**
   Прогнал `qa-page-parallel` на single-property (6), region (3), reference (2). Воркфлоу
   расширил под **URL-на-секцию** (`urlOf`/`numbers`, один деплой, замер по каждой странице).
