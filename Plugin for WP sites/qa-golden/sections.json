@@ -7,6 +7,7 @@
     { "slug": "quote-cover",      "url": "/ueber-mich/",                 "sel": ".quote-cover" },
     { "slug": "property-catalog", "url": "/alle-immobilien/",            "sel": ".property-catalog" },
     { "slug": "error-404",        "url": "/nichtexistiert-404-test/",    "sel": ".error-404" },
-    { "slug": "references-hero",  "url": "/references/",                 "sel": ".references-hero" }
+    { "slug": "references-hero",  "url": "/references/",                 "sel": ".references-hero" },
+    { "slug": "founder-story",    "url": "/ueber-mich/",                 "sel": ".founder-story" }
   ]
 }

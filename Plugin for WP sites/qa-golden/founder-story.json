@@ -1,0 +1,132 @@
+{
+  "slug": "founder-story",
+  "url": "https://rosenberger.digirelation.dev/ueber-mich/",
+  "sel": ".founder-story",
+  "savedAt": "(stamp-after)",
+  "desktop": {
+    "texts": [
+      {
+        "text": "Warum ich Maklergeworden bin",
+        "tag": "h2",
+        "fontSize": 56,
+        "fontWeight": "400",
+        "fontFamily": "Nunito Sans",
+        "lineHeight": "67.2px",
+        "letterSpacing": "-1.68px",
+        "color": "rgb(20, 35, 53)",
+        "textAlign": "start",
+        "brCount": 1,
+        "w": 632,
+        "x": 48
+      },
+      {
+        "text": "Bevor ich 2021 ROSENBERGER Immobilien gegründet habe, war ich selbst auf der Suc",
+        "tag": "p",
+        "fontSize": 24,
+        "fontWeight": "400",
+        "fontFamily": "Roboto Flex",
+        "lineHeight": "36px",
+        "letterSpacing": "normal",
+        "color": "rgb(20, 35, 53)",
+        "textAlign": "start",
+        "brCount": 0,
+        "w": 632,
+        "x": 760
+      },
+      {
+        "text": "Was ich dabei erlebt habe, hat mich mehr geformt als jede Ausbildung danach. Ich",
+        "tag": "p",
+        "fontSize": 16,
+        "fontWeight": "300",
+        "fontFamily": "Roboto Flex",
+        "lineHeight": "24px",
+        "letterSpacing": "-0.16px",
+        "color": "rgb(116, 124, 134)",
+        "textAlign": "start",
+        "brCount": 0,
+        "w": 632,
+        "x": 760
+      },
+      {
+        "text": "Das war keine Ausnahme. Das war die Regel.",
+        "tag": "p",
+        "fontSize": 24,
+        "fontWeight": "400",
+        "fontFamily": "Roboto Flex",
+        "lineHeight": "28.8px",
+        "letterSpacing": "-0.24px",
+        "color": "rgb(116, 124, 134)",
+        "textAlign": "start",
+        "brCount": 1,
+        "w": 607,
+        "x": 785
+      }
+    ],
+    "images": [],
+    "controls": []
+  },
+  "heroDrift": {
+    "Warum ich Maklergeworden bin": 11.7
+  },
+  "mobile": {
+    "texts": [
+      {
+        "text": "Warum ich Maklergeworden bin",
+        "tag": "h2",
+        "fontSize": 26.3223,
+        "fontWeight": "400",
+        "fontFamily": "Nunito Sans",
+        "lineHeight": "31.5868px",
+        "letterSpacing": "-0.789669px",
+        "color": "rgb(20, 35, 53)",
+        "textAlign": "start",
+        "brCount": 1,
+        "w": 335,
+        "x": 20
+      },
+      {
+        "text": "Bevor ich 2021 ROSENBERGER Immobilien gegründet habe, war ich selbst auf der Suc",
+        "tag": "p",
+        "fontSize": 20.215,
+        "fontWeight": "400",
+        "fontFamily": "Roboto Flex",
+        "lineHeight": "30.3226px",
+        "letterSpacing": "normal",
+        "color": "rgb(20, 35, 53)",
+        "textAlign": "start",
+        "brCount": 0,
+        "w": 335,
+        "x": 20
+      },
+      {
+        "text": "Was ich dabei erlebt habe, hat mich mehr geformt als jede Ausbildung danach. Ich",
+        "tag": "p",
+        "fontSize": 16,
+        "fontWeight": "300",
+        "fontFamily": "Roboto Flex",
+        "lineHeight": "24px",
+        "letterSpacing": "-0.16px",
+        "color": "rgb(116, 124, 134)",
+        "textAlign": "start",
+        "brCount": 0,
+        "w": 335,
+        "x": 20
+      },
+      {
+        "text": "Das war keine Ausnahme. Das war die Regel.",
+        "tag": "p",
+        "fontSize": 20.215,
+        "fontWeight": "400",
+        "fontFamily": "Roboto Flex",
+        "lineHeight": "24.2581px",
+        "letterSpacing": "-0.20215px",
+        "color": "rgb(116, 124, 134)",
+        "textAlign": "start",
+        "brCount": 1,
+        "w": 310,
+        "x": 45
+      }
+    ],
+    "images": []
+  }
+}
