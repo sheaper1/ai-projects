@@ -75,6 +75,22 @@ add_action( 'init', function () {
 		)
 	);
 
+	// ── Фиксированные термины «Objektart» (Property type) ───────────────────
+	// Спека: House / Apartment / Plot-Land / Commercial. Создаём один раз
+	// (идемпотентно), чтобы клиент сразу видел типы без участия разработчика.
+	// Lage / Ort (reference-city) клиент заполняет сам — там термины открытые.
+	$fixed_types = array(
+		'haus'        => 'Haus',
+		'wohnung'     => 'Wohnung',
+		'grundstueck' => 'Grundstück',
+		'gewerbe'     => 'Gewerbe',
+	);
+	foreach ( $fixed_types as $slug => $name ) {
+		if ( ! term_exists( $slug, 'reference-type' ) ) {
+			wp_insert_term( $name, 'reference-type', array( 'slug' => $slug ) );
+		}
+	}
+
 	// ── Meta-поля (схема — в reference-fields.php) ───────────────────────────
 	foreach ( rosenberger_reference_fields() as $key => $def ) {
 		$type = $def['type'] ?? 'text';

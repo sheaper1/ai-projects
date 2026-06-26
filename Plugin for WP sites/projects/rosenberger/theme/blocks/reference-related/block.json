@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rosenberger/reference-related",
+	"title": "Ähnliche Referenzen",
+	"category": "theme",
+	"description": "Блок «похожие референсы» на single-reference: до 3 других записей по той же Objektart/Lage. Server-Render, CPT reference.",
+	"supports": { "html": false, "align": [ "full" ] },
+	"attributes": {
+		"heading":       { "type": "string", "default": "Ähnliche" },
+		"headingItalic": { "type": "string", "default": "Referenzen" },
+		"count":         { "type": "number", "default": 3 }
+	},
+	"usesContext": [ "postId" ],
+	"style": "file:./style.css",
+	"render": "render.php",
+	"textdomain": "rosenberger"
+}
