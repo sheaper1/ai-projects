@@ -96,14 +96,21 @@ if ( ! is_plugin_active( 'rosenberger-core/rosenberger-core.php' ) ) { activate_
 // Р Р°Р·РѕРІС‹Р№ РїРѕСЃРµРІ РїСЂРёРјРµСЂР° РєРѕРЅС‚Р°РєС‚РѕРІ (РЅРµ РїРµСЂРµР·Р°С‚РёСЂР°РµС‚ РїСЂР°РІРєРё РєР»РёРµРЅС‚Р°).
 if ( false === get_option( 'rosenberger_contacts' ) ) {
 	add_option( 'rosenberger_contacts', array(
-		'phone'    => '+43 5572 123456',
-		'email'    => 'office@rosenberger.at',
-		'address'  => 'Bregenz, Vorarlberg',
+		'phone'    => '+43 699 11 777 505',
+		'email'    => 'office@rosenberger.immo',
+		'address'  => 'ROSENBERGER Immobilien GmbH, Drevesstraße 2/1, 6800 Feldkirch',
 		'hours'    => 'Mo-Fr 9:00-17:00',
 		'cta_text' => 'Termin vereinbaren',
 		'cta_url'  => '/kontakt/',
 	) );
 }
+// РњРёРіСЂР°С†РёСЏ СЃС‚Р°СЂС‹С… placeholder-РєРѕРЅС‚Р°РєС‚РѕРІ РЅР° СЂРµР°Р»СЊРЅС‹Рµ (С‚РѕР»СЊРєРѕ Р·Р°РІРѕРґСЃРєРёРµ Р·РЅР°С‡РµРЅРёСЏ, РЅРµ РїСЂР°РІРєРё РєР»РёРµРЅС‚Р°).
+$contacts_fix = get_option( 'rosenberger_contacts', array() );
+$contacts_changed = false;
+if ( isset( $contacts_fix['phone'] ) && '+43 5572 123456' === $contacts_fix['phone'] ) { $contacts_fix['phone'] = '+43 699 11 777 505'; $contacts_changed = true; }
+if ( isset( $contacts_fix['email'] ) && 'office@rosenberger.at' === $contacts_fix['email'] ) { $contacts_fix['email'] = 'office@rosenberger.immo'; $contacts_changed = true; }
+if ( isset( $contacts_fix['address'] ) && 'Bregenz, Vorarlberg' === $contacts_fix['address'] ) { $contacts_fix['address'] = 'ROSENBERGER Immobilien GmbH, Drevesstraße 2/1, 6800 Feldkirch'; $contacts_changed = true; }
+if ( $contacts_changed ) { update_option( 'rosenberger_contacts', $contacts_fix ); }
 // РњРёРіСЂР°С†РёСЏ СЃС‚Р°СЂРѕРіРѕ РґРµРјРѕРЅСЃС‚СЂР°С†РёРѕРЅРЅРѕРіРѕ CTA; РїСЂРѕРёР·РІРѕР»СЊРЅС‹Р№ С‚РµРєСЃС‚ РєР»РёРµРЅС‚Р° РЅРµ С‚СЂРѕРіР°РµРј.
 $contacts = get_option( 'rosenberger_contacts', array() );
 if ( isset( $contacts['cta_text'] ) && 'Kontakt' === $contacts['cta_text'] ) {

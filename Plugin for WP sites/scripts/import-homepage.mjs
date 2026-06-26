@@ -255,9 +255,9 @@ console.log( '\n⚙️  Настройки сайта (seeding contacts)...' );
 const settingsSnippet = `
 if ( false === get_option('rosenberger_contacts') ) {
     add_option('rosenberger_contacts', [
-        'phone'    => '+43 5572 20900',
-        'email'    => 'office@rosenberger-immobilien.at',
-        'address'  => 'Bregenz, Vorarlberg',
+        'phone'    => '+43 699 11 777 505',
+        'email'    => 'office@rosenberger.immo',
+        'address'  => 'ROSENBERGER Immobilien GmbH, Drevesstraße 2/1, 6800 Feldkirch',
         'hours'    => 'Mo–Fr 9:00–17:00',
         'cta_text' => 'Termin vereinbaren',
         'cta_url'  => '/kontakt/',
