@@ -1,0 +1,158 @@
+{
+  "slug": "error-404",
+  "url": "https://rosenberger.digirelation.dev/nichtexistiert-404-test/",
+  "sel": ".error-404",
+  "savedAt": "(stamp-after)",
+  "desktop": {
+    "texts": [
+      {
+        "text": "Seitenicht gefunden",
+        "tag": "h1",
+        "fontSize": 80,
+        "fontWeight": "400",
+        "fontFamily": "Nunito Sans",
+        "lineHeight": "80px",
+        "letterSpacing": "-2.4px",
+        "color": "rgb(20, 35, 53)",
+        "textAlign": "start",
+        "brCount": 1,
+        "w": 493.5,
+        "x": 48
+      },
+      {
+        "text": "Diese Seite existiert anscheinend nicht oder wurde verschoben. Bitte überprüfen ",
+        "tag": "p",
+        "fontSize": 24,
+        "fontWeight": "400",
+        "fontFamily": "Roboto Flex",
+        "lineHeight": "36px",
+        "letterSpacing": "normal",
+        "color": "rgb(116, 124, 134)",
+        "textAlign": "start",
+        "brCount": 1,
+        "w": 741.6,
+        "x": 48
+      },
+      {
+        "text": "Zur Startseite",
+        "tag": "a",
+        "fontSize": 18,
+        "fontWeight": "500",
+        "fontFamily": "Roboto Flex",
+        "lineHeight": "27px",
+        "letterSpacing": "normal",
+        "color": "rgb(255, 255, 255)",
+        "textAlign": "start",
+        "brCount": 0,
+        "w": 157.6,
+        "x": 48
+      },
+      {
+        "text": "404",
+        "tag": "span",
+        "fontSize": 362.88,
+        "fontWeight": "600",
+        "fontFamily": "Nunito Sans",
+        "lineHeight": "362.88px",
+        "letterSpacing": "-10.8864px",
+        "color": "rgb(255, 255, 255)",
+        "textAlign": "start",
+        "brCount": 0,
+        "w": 620.5,
+        "x": 732.4
+      }
+    ],
+    "images": [
+      {
+        "src": "rosenberger-404-building.webp",
+        "alt": "",
+        "x": 0,
+        "w": 1440,
+        "h": 529.9,
+        "natW": 1440,
+        "natH": 530,
+        "widthPct": 100,
+        "objectFit": "cover",
+        "fullBleed": true
+      }
+    ],
+    "controls": []
+  },
+  "heroDrift": {
+    "Seitenicht gefunden": 11.7
+  },
+  "mobile": {
+    "texts": [
+      {
+        "text": "Seitenicht gefunden",
+        "tag": "h1",
+        "fontSize": 36.6446,
+        "fontWeight": "400",
+        "fontFamily": "Nunito Sans",
+        "lineHeight": "36.6446px",
+        "letterSpacing": "-1.09934px",
+        "color": "rgb(20, 35, 53)",
+        "textAlign": "start",
+        "brCount": 1,
+        "w": 226,
+        "x": 20
+      },
+      {
+        "text": "Diese Seite existiert anscheinend nicht oder wurde verschoben. Bitte überprüfen ",
+        "tag": "p",
+        "fontSize": 16,
+        "fontWeight": "400",
+        "fontFamily": "Roboto Flex",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(116, 124, 134)",
+        "textAlign": "start",
+        "brCount": 1,
+        "w": 335,
+        "x": 20
+      },
+      {
+        "text": "Zur Startseite",
+        "tag": "a",
+        "fontSize": 18,
+        "fontWeight": "500",
+        "fontFamily": "Roboto Flex",
+        "lineHeight": "27px",
+        "letterSpacing": "normal",
+        "color": "rgb(255, 255, 255)",
+        "textAlign": "start",
+        "brCount": 0,
+        "w": 157.6,
+        "x": 20
+      },
+      {
+        "text": "404",
+        "tag": "span",
+        "fontSize": 199.875,
+        "fontWeight": "600",
+        "fontFamily": "Nunito Sans",
+        "lineHeight": "199.875px",
+        "letterSpacing": "-5.99625px",
+        "color": "rgb(255, 255, 255)",
+        "textAlign": "start",
+        "brCount": 0,
+        "w": 341.8,
+        "x": 20
+      }
+    ],
+    "images": [
+      {
+        "src": "rosenberger-404-building.webp",
+        "alt": "",
+        "x": 0,
+        "w": 375,
+        "h": 300,
+        "natW": 1440,
+        "natH": 530,
+        "widthPct": 100,
+        "objectFit": "cover",
+        "fullBleed": true
+      }
+    ]
+  }
+}

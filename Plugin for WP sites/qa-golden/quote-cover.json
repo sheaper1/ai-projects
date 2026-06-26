@@ -1,0 +1,72 @@
+{
+  "slug": "quote-cover",
+  "url": "https://rosenberger.digirelation.dev/ueber-mich/",
+  "sel": ".quote-cover",
+  "savedAt": "(stamp-after)",
+  "desktop": {
+    "texts": [
+      {
+        "text": "Ihr Immobilienmakler in Vorarlberg",
+        "tag": "p",
+        "fontSize": 96,
+        "fontWeight": "400",
+        "fontFamily": "Nunito Sans",
+        "lineHeight": "115.2px",
+        "letterSpacing": "-2.88px",
+        "color": "rgb(255, 255, 255)",
+        "textAlign": "center",
+        "brCount": 1,
+        "w": 929.2,
+        "x": 255.4
+      }
+    ],
+    "images": [
+      {
+        "src": "rosenberger-quote-cover-scaled.jpg",
+        "alt": "",
+        "x": 0,
+        "w": 1440,
+        "h": 573,
+        "natW": 2560,
+        "natH": 1920,
+        "widthPct": 100,
+        "objectFit": "cover",
+        "fullBleed": true
+      }
+    ],
+    "controls": []
+  },
+  "heroDrift": {},
+  "mobile": {
+    "texts": [
+      {
+        "text": "Ihr Immobilienmakler in Vorarlberg",
+        "tag": "p",
+        "fontSize": 40,
+        "fontWeight": "400",
+        "fontFamily": "Nunito Sans",
+        "lineHeight": "48px",
+        "letterSpacing": "-1.2px",
+        "color": "rgb(255, 255, 255)",
+        "textAlign": "center",
+        "brCount": 1,
+        "w": 375,
+        "x": 0
+      }
+    ],
+    "images": [
+      {
+        "src": "rosenberger-quote-cover-scaled.jpg",
+        "alt": "",
+        "x": 0,
+        "w": 375,
+        "h": 416,
+        "natW": 2560,
+        "natH": 1920,
+        "widthPct": 100,
+        "objectFit": "cover",
+        "fullBleed": true
+      }
+    ]
+  }
+}

@@ -17,6 +17,7 @@ const val = ( n, d ) => { const i = args.indexOf( `--${ n }` ); return i >= 0 &&
 if ( ! url ) { console.error( 'Укажи URL' ); process.exit( 1 ); }
 const width = parseInt( val( 'width', '1440' ), 10 );
 const jsonOut = val( 'json', null );
+const sel = val( 'sel', null );          // скоуп замера на одну секцию (CSS-селектор)
 const isMobile = width <= 480;
 
 const browser = await puppeteer.launch( { headless: 'new', args: [ '--no-sandbox' ] } );
@@ -34,13 +35,17 @@ await page.evaluate( async () => {
 } );
 await new Promise( ( r ) => setTimeout( r, 700 ) );
 
-const data = await page.evaluate( ( vw ) => {
+const data = await page.evaluate( ( vw, scopeSel ) => {
 	const norm = ( s ) => ( s || '' ).replace( /\s+/g, ' ' ).trim();
 	const round = ( n ) => Math.round( n * 10 ) / 10;
 
+	// Корень замера: вся страница или одна секция (для секционного гейта).
+	const root = scopeSel ? document.querySelector( scopeSel ) : document;
+	if ( ! root ) return { url: location.href, vw, scope: scopeSel, missing: true, texts: [], images: [], controls: [] };
+
 	const texts = [];
 	const seen = new Set();
-	document.querySelectorAll( 'h1,h2,h3,h4,h5,h6,p,span,a,li,blockquote,figcaption,button,label' ).forEach( ( el ) => {
+	root.querySelectorAll( 'h1,h2,h3,h4,h5,h6,p,span,a,li,blockquote,figcaption,button,label' ).forEach( ( el ) => {
 		const r = el.getBoundingClientRect();
 		if ( r.width === 0 || r.height === 0 ) return;          // невидимое
 		// Полный textContent (а не только прямой текст): иначе заголовок с
@@ -77,7 +82,7 @@ const data = await page.evaluate( ( vw ) => {
 	} );
 
 	const images = [];
-	document.querySelectorAll( 'img' ).forEach( ( el ) => {
+	root.querySelectorAll( 'img' ).forEach( ( el ) => {
 		const r = el.getBoundingClientRect();
 		if ( r.width === 0 ) return;
 		const cs = getComputedStyle( el );
@@ -95,7 +100,7 @@ const data = await page.evaluate( ( vw ) => {
 	// Контролы каруселей/слайдеров: ловим скрытую пагинацию/стрелки (частый дефект
 	// «отзывы не листаются»). Числа/скриншот этого не дают — нужен DOM.
 	const controls = [];
-	document.querySelectorAll( '[class*="dots"],[class*="pagination"],[class*="arrow"],[class*="__nav"],[class*="prev"],[class*="next"]' ).forEach( ( el ) => {
+	root.querySelectorAll( '[class*="dots"],[class*="pagination"],[class*="arrow"],[class*="__nav"],[class*="prev"],[class*="next"]' ).forEach( ( el ) => {
 		const cs = getComputedStyle( el ); const r = el.getBoundingClientRect();
 		controls.push( {
 			cls: ( typeof el.className === 'string' ? el.className : '' ).slice( 0, 50 ),
@@ -105,8 +110,10 @@ const data = await page.evaluate( ( vw ) => {
 		} );
 	} );
 
-	return { url: location.href, vw, docHeight: document.body.scrollHeight, texts, images, controls };
-}, width );
+	return { url: location.href, vw, scope: scopeSel || null, docHeight: document.body.scrollHeight, texts, images, controls };
+}, width, sel );
+
+if ( data.missing ) { console.error( `\n⚠ Селектор не найден на странице: ${ sel }` ); }
 
 await browser.close();
 

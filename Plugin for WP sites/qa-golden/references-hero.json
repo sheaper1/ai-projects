@@ -1,0 +1,74 @@
+{
+  "slug": "references-hero",
+  "url": "https://rosenberger.digirelation.dev/references/",
+  "sel": ".references-hero",
+  "savedAt": "(stamp-after)",
+  "desktop": {
+    "texts": [
+      {
+        "text": "ErfolgreicheImmobilientransaktionen",
+        "tag": "h1",
+        "fontSize": 56,
+        "fontWeight": "400",
+        "fontFamily": "Nunito Sans",
+        "lineHeight": "56px",
+        "letterSpacing": "-1.68px",
+        "color": "rgb(20, 35, 53)",
+        "textAlign": "center",
+        "brCount": 1,
+        "w": 581.4,
+        "x": 429.3
+      }
+    ],
+    "images": [
+      {
+        "src": "hero-banner.webp",
+        "alt": "",
+        "x": 0,
+        "w": 1440,
+        "h": 373,
+        "natW": 1920,
+        "natH": 1280,
+        "widthPct": 100,
+        "objectFit": "cover",
+        "fullBleed": true
+      }
+    ],
+    "controls": []
+  },
+  "heroDrift": {
+    "ErfolgreicheImmobilientransaktionen": 5.1
+  },
+  "mobile": {
+    "texts": [
+      {
+        "text": "ErfolgreicheImmobilientransaktionen",
+        "tag": "h1",
+        "fontSize": 26.3223,
+        "fontWeight": "400",
+        "fontFamily": "Nunito Sans",
+        "lineHeight": "26.3223px",
+        "letterSpacing": "-0.96px",
+        "color": "rgb(20, 35, 53)",
+        "textAlign": "center",
+        "brCount": 1,
+        "w": 269.4,
+        "x": 52.8
+      }
+    ],
+    "images": [
+      {
+        "src": "hero-banner.webp",
+        "alt": "",
+        "x": 0,
+        "w": 375,
+        "h": 341,
+        "natW": 1920,
+        "natH": 1280,
+        "widthPct": 100,
+        "objectFit": "cover",
+        "fullBleed": true
+      }
+    ]
+  }
+}
