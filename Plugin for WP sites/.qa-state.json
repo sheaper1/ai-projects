@@ -208,5 +208,15 @@
     "hash": "d0462fcdf1742d15",
     "passedAt": "2026-06-26",
     "page": "alle-immobilien"
+  },
+  "error-404": {
+    "hash": "368e1fd787416028",
+    "passedAt": "2026-06-26",
+    "page": "404"
+  },
+  "references-hero": {
+    "hash": "1638c36270ce7ab9",
+    "passedAt": "2026-06-26",
+    "page": "references"
   }
 }
