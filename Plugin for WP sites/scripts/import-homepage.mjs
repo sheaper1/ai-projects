@@ -76,24 +76,25 @@ const heroBg = await ensureMedia(
 	'webp'
 );
 
+// Карточки регионов на главной — обновлённые фото (slug -v2), исходники в media/home.
 const regionFeldkirch = await ensureMedia(
-	'region-feldkirch',
-	localBuf( resolve( root, '.figma-tmp/region-feldkirch.webp' ) ),
+	'region-feldkirch-v2',
+	localBuf( resolve( root, 'projects/rosenberger/media/home/region-feldkirch.webp' ) ),
 	'webp'
 );
 const regionBludenz = await ensureMedia(
-	'region-bludenz',
-	localBuf( resolve( root, '.figma-tmp/region-bludenz.webp' ) ),
+	'region-bludenz-v2',
+	localBuf( resolve( root, 'projects/rosenberger/media/home/region-bludenz.webp' ) ),
 	'webp'
 );
 const regionDornbirn = await ensureMedia(
-	'region-dornbirn',
-	localBuf( resolve( root, '.figma-tmp/region-dornbirn.webp' ) ),
+	'region-dornbirn-v2',
+	localBuf( resolve( root, 'projects/rosenberger/media/home/region-dornbirn.webp' ) ),
 	'webp'
 );
 const regionBregenz = await ensureMedia(
-	'region-bregenz',
-	localBuf( resolve( root, 'projects/rosenberger/media/regions/hero-bregenz.webp' ) ),
+	'region-bregenz-v2',
+	localBuf( resolve( root, 'projects/rosenberger/media/home/region-bregenz.webp' ) ),
 	'webp'
 );
 
@@ -129,7 +130,11 @@ const iconHidden  = await getMedia( 'rosenberger-icon-hidden' );
 const card1       = await getMedia( 'rosenberger-card-1' );
 const card2       = await getMedia( 'rosenberger-card-2' );
 const card3       = await getMedia( 'rosenberger-card-3' );
-const aboutBg     = await getMedia( 'rosenberger-about-bg' );
+const aboutBg     = await ensureMedia(
+	'rosenberger-about-bg-v2',
+	localBuf( resolve( root, 'projects/rosenberger/media/home/about-bg.webp' ) ),
+	'webp'
+);
 const referralImg = await ensureMedia(
 	'rosenberger-referral',
 	localBuf( resolve( root, 'projects/rosenberger/media/home/referral.webp' ) ),

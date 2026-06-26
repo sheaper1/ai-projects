@@ -109,7 +109,7 @@ function content( city, media ) {
 		],
 	} ) } /-->`;
 
-	const aboutBg = media[ 'rosenberger-about-bg' ] || {};
+	const aboutBg = media[ 'rosenberger-about-bg-v2' ] || media[ 'rosenberger-about-bg' ] || {};
 	const about = `<!-- wp:library/about ${ j( {
 		titleMain: 'Darauf können<br>Sie sich verlassen',
 		text: 'Ich war selbst Käufer und habe erlebt, wie zäh und unehrlich der Ablauf sein kann. Genau das mache ich anders.',
@@ -170,6 +170,11 @@ async function main() {
 	const introFile = path.join( root, 'projects/rosenberger/media/regions/intro.webp' );
 	if ( fs.existsSync( introFile ) ) {
 		media[ 'rosenberger-region-intro' ] = await uploadMedia( 'rosenberger-region-intro', introFile );
+	}
+	// Обновлённое фото маклера для секции «Über mich» — slug -v2, исходник в media/home.
+	const aboutFileV2 = path.join( root, 'projects/rosenberger/media/home/about-bg.webp' );
+	if ( fs.existsSync( aboutFileV2 ) ) {
+		media[ 'rosenberger-about-bg-v2' ] = await uploadMedia( 'rosenberger-about-bg-v2', aboutFileV2 );
 	}
 
 	for ( const city of CITIES ) {
