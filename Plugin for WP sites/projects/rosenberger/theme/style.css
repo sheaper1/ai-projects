@@ -31,7 +31,11 @@ main.wp-block-group { margin-block-start: 0 !important; }
 	padding: 24px var(--wp--custom--layout--gutter);
 	color: var(--wp--preset--color--on-dark);
 	align-items: center;
-	transition: height var(--wp--custom--transition--base), padding var(--wp--custom--transition--base), background-color var(--wp--custom--transition--base), box-shadow var(--wp--custom--transition--base);
+	transition: height var(--wp--custom--transition--base), padding var(--wp--custom--transition--base), background-color var(--wp--custom--transition--base), box-shadow var(--wp--custom--transition--base), transform var(--wp--custom--transition--base);
+}
+/* Авто-скрытие при скролле вниз (класс ставит header.js); вверх — возвращается. */
+.site-header.is-hidden {
+	transform: translateY(-100%);
 }
 .site-header a {
 	color: var(--wp--preset--color--on-dark);

@@ -30,6 +30,15 @@ if ( $is_ref ) {
 $cards = array();
 foreach ( $stats as $s ) {
 	$value = get_post_meta( $post_id, $s['key'], true );
+	// Этаж из Propstack приходит словом («2. Obergeschoss») — сокращаем как в макете
+	// (Figma «2. OG»): Obergeschoss→OG, Untergeschoss→UG, Erdgeschoss→EG, Dachgeschoss→DG.
+	if ( 'property_floor' === $s['key'] && '' !== $value ) {
+		$value = str_replace(
+			array( 'Obergeschoss', 'Untergeschoss', 'Erdgeschoss', 'Dachgeschoss', 'Obergeschoß', 'Untergeschoß' ),
+			array( 'OG', 'UG', 'EG', 'DG', 'OG', 'UG' ),
+			$value
+		);
+	}
 	if ( $is_ref ) {
 		// Референс: только заполненные показатели.
 		if ( '' === $value ) {

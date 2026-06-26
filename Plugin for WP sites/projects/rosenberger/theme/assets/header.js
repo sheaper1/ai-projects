@@ -7,8 +7,22 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 	if ( ! header || ! toggle || ! menu || ! close ) return;
 
+	var lastY = window.scrollY;
+
 	function updateHeader() {
-		header.classList.toggle( 'is-scrolled', ! hasHero || window.scrollY > 24 );
+		var y = window.scrollY;
+		header.classList.toggle( 'is-scrolled', ! hasHero || y > 24 );
+		// Авто-скрытие: вниз — прячем, вверх — показываем. У самого верха и при
+		// открытом меню — всегда видна (порог 96px, чтобы не дёргалась на мелочи).
+		var menuOpen = menu.classList.contains( 'is-open' );
+		if ( menuOpen || y <= 96 ) {
+			header.classList.remove( 'is-hidden' );
+		} else if ( y > lastY + 4 ) {
+			header.classList.add( 'is-hidden' );      // скролл вниз
+		} else if ( y < lastY - 4 ) {
+			header.classList.remove( 'is-hidden' );    // скролл вверх
+		}
+		lastY = y;
 	}
 
 	function openMenu() {

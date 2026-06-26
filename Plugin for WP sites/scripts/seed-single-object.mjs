@@ -65,6 +65,7 @@ Sonstiges
 Die monatlichen Betriebskosten sind unten aufgeführt. Eine Provisionsteilung sowie der Energieausweis liegen vor und werden im persönlichen Gespräch erläutert.`;
 
 const META = {
+	property_heading: 'Helle 4-Zimmer-Wohnung mit Bergblick<br>in Dornbirn',   // <br> как в Figma (2 строки)
 	property_object_nr: 'RB-2048',
 	property_address: 'Höchsterstraße 24, 6850 Dornbirn · Vorarlberg, Österreich',
 	property_object_type: 'Eigentumswohnung',
