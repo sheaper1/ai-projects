@@ -3,6 +3,17 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-26 — **home: закрыты 2 оставшихся блока (testimonials, region-grid).** Главная
+  была пройдена на 9/11; добил остаток. **testimonials**: нашёл реальный дефект, проморгнутый
+  в начале сессии — заголовок дублировал курсивную строку («…gearbeitet haben / die mit mir
+  gearbeitet haben»), потому что home-сидер клал всю фразу в `heading`, а дефолтный `headingItalic`
+  добавлял её ещё раз. Фикс: сидер → `heading:"Das sagen Menschen,"` + `headingItalic:"die mit mir
+  gearbeitet haben"` (= дефолты блока = Figma), ре-сид. **region-grid**: сверил с нодой 2009:2718 —
+  2×2 сетка регионов, стеклянные pill-кнопки, заголовок с italic Vorarlberg, subtext с `<br>` —
+  совпадает. Оба → `qa-state pass`. Замечен отдельный минорный дефект testimonials на 4 страницах
+  (verkaufen/vermieten/bewertung/all-immobilien): `heading:"…,<br>"` + render `<br>` = двойной
+  перенос — починю при QA тех страниц.
+
 - [Claude] 2026-06-26 — **Block-first QA: группа /tippgeber/ (мульти-агент, seeder-first).** Ноды
   выверены по сидеру (без угадывания) — фиксы по делу. Все 4 блока → `qa-state pass`:
   • **tipper-types** — агент починил картинки 640→672px + gap 64→16; verify pass.

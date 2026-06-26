@@ -182,7 +182,7 @@ const pageContent = [
 
 	`<!-- wp:library/about {"backgroundId":${ id( aboutBg ) },"backgroundUrl":"${ u( aboutBg ) }"} /-->`,
 
-	`<!-- wp:library/testimonials {"heading":"Das sagen Menschen, die mit mir gearbeitet haben"} /-->`,
+	`<!-- wp:library/testimonials {"heading":"Das sagen Menschen,","headingItalic":"die mit mir gearbeitet haben"} /-->`,
 
 	`<!-- wp:library/region-grid {"align":"full","heading":"Vor Ort in ganz","headingItalic":"Vorarlberg","subtext":"Ich kenne die Lagen, die Preise und die Besonderheiten vor Ort,\\nvon Feldkirch bis Bregenz.","regions":[${ [
 		[ regionFeldkirch, 'Feldkirch',  '/objekte-ort/feldkirch/' ],

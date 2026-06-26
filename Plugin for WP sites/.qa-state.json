@@ -60,9 +60,9 @@
     "page": "immobilienbewertung"
   },
   "testimonials": {
-    "hash": "b1a99e07b0d5057a",
-    "passedAt": "2026-06-25",
-    "page": "immobilienbewertung"
+    "hash": "855eb260320ade98",
+    "passedAt": "2026-06-26",
+    "page": "home"
   },
   "promise-list": {
     "hash": "2fa94d6e58b7025b",
@@ -103,5 +103,10 @@
     "hash": "121e81fb8d406d99",
     "passedAt": "2026-06-26",
     "page": "tippgeber"
+  },
+  "region-grid": {
+    "hash": "e4c6a710e3015313",
+    "passedAt": "2026-06-26",
+    "page": "home"
   }
 }
