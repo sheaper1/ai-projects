@@ -7,7 +7,7 @@ export const slug = 'ueber-mich';
 
 // Figma CDN URLs действительны 7 дней с момента get_design_context.
 export const media = {
-	bioPortrait:    { slug: 'rosenberger-bio-portrait',       remote: 'https://www.figma.com/api/mcp/asset/4db22e32-2c0a-40cf-84dd-a904e15c6e8e', ext: 'png' },
+	bioPortrait:    { slug: 'rosenberger-bio-portrait-v2',    ext: 'webp' },
 	founderPhoto:   { slug: 'rosenberger-founder-photo',      remote: 'https://www.figma.com/api/mcp/asset/952ad1e2-2a49-4f29-87c8-2d2ca910be6c', ext: 'png' },
 	quoteCover:     { slug: 'rosenberger-quote-cover',        remote: 'https://www.figma.com/api/mcp/asset/ac5e6cac-485b-433f-8a34-5cec385657c0', ext: 'png' },
 	ctaBg:          { slug: 'rosenberger-consultation-bg' },
