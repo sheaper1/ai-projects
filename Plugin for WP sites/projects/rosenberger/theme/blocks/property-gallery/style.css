@@ -86,6 +86,11 @@
 }
 .property-gallery__slide.is-active { opacity: 1; transform: scale(1); }
 
+/* Единственное изображение объекта: карусели нет (RbCarousel требует ≥2 слайда),
+ * поэтому центрируем слайд и показываем его как активный — без приглушения и масштаба. */
+.property-gallery__track:has(.property-gallery__slide:only-child) { justify-content: center; }
+.property-gallery__slide:only-child { opacity: 1; transform: scale(1); }
+
 .property-gallery__dots {
 	display: flex;
 	gap: 16px;

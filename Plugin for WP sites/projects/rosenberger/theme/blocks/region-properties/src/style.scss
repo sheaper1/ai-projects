@@ -60,7 +60,7 @@
 	box-sizing: border-box;
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) 658px;
-	background: var(--wp--preset--color--surface);
+	background: color-mix(in srgb, var(--wp--preset--color--surface) 50%, var(--wp--preset--color--base));
 	text-decoration: none;
 	color: inherit;
 }
@@ -89,6 +89,7 @@
 	font-size: var(--wp--preset--font-size--r-16);
 	font-weight: 300;
 	line-height: 1.5;
+	letter-spacing: -0.01em;
 	color: var(--wp--preset--color--muted);
 }
 
@@ -105,7 +106,7 @@
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: -0.03em;
-	color: var(--wp--preset--color--muted);
+	color: color-mix(in srgb, var(--wp--preset--color--muted) 50%, transparent);
 	margin-bottom: var(--wp--preset--spacing--r-8);
 }
 
@@ -113,6 +114,8 @@
 	margin: 0;
 	font-family: var(--wp--preset--font-family--body);
 	font-size: var(--wp--preset--font-size--r-16);
+	line-height: 1.5;
+	letter-spacing: -0.01em;
 	color: var(--wp--preset--color--contrast);
 }
 
@@ -226,6 +229,14 @@
 	.rp-card__image {
 		order: -1;
 		aspect-ratio: 16 / 10;
+	}
+
+	.rp-card__body {
+		padding: var(--wp--preset--spacing--r-24);
+	}
+
+	.rp-card__meta {
+		gap: var(--wp--preset--spacing--r-16) var(--wp--preset--spacing--r-24);
 	}
 
 	.rp-arrow--prev { left: var(--wp--preset--spacing--r-8); }

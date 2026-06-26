@@ -47,33 +47,32 @@
 	transform: translateY(-50%);
 	width: 48px;
 	height: 48px;
-	border: none;
-	border-radius: var(--wp--custom--radius--pill);
-	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--on-dark);
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(20.9px);
+	-webkit-backdrop-filter: blur(20.9px);
 	cursor: pointer;
 	display: grid;
 	place-items: center;
-	box-shadow: 0 2px 10px rgba(20, 35, 53, 0.12);
 	transition: background var(--wp--custom--transition--fast);
 }
 .property-hero__nav::before {
 	content: "";
 	width: 10px;
 	height: 10px;
-	border-top: 2px solid var(--wp--preset--color--contrast);
-	border-right: 2px solid var(--wp--preset--color--contrast);
+	border-top: 2px solid var(--wp--preset--color--on-dark);
+	border-right: 2px solid var(--wp--preset--color--on-dark);
 }
 .property-hero__nav--prev { left: 16px; }
 .property-hero__nav--prev::before { transform: rotate(-135deg); margin-left: 4px; }
 .property-hero__nav--next { right: 16px; }
 .property-hero__nav--next::before { transform: rotate(45deg); margin-right: 4px; }
-.property-hero__nav:hover { background: var(--wp--preset--color--surface); }
+.property-hero__nav:hover { background: rgba(255, 255, 255, 0.35); }
 
 .property-hero__dots {
 	position: absolute;
-	left: 50%;
-	bottom: 40px;
-	transform: translateX(-50%);
+	left: 64px;
+	bottom: 48px;
 	display: flex;
 	gap: 8px;
 	align-items: center;

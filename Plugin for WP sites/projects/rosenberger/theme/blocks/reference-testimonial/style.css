@@ -2,7 +2,7 @@
 
 .reference-testimonial {
 	background: var(--wp--preset--color--base);
-	padding-block: var(--wp--preset--spacing--r-64);
+	padding-block: var(--wp--custom--layout--section-space);
 }
 
 .reference-testimonial .reference-testimonial__inner {
@@ -42,7 +42,7 @@
 	display: block;
 	width: 32px;
 	height: 32px;
-	color: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--placeholder);
 }
 
 .reference-testimonial .reference-testimonial__quote {
@@ -65,6 +65,7 @@
 .reference-testimonial .reference-testimonial__name {
 	font-family: var(--wp--preset--font-family--heading);
 	font-size: var(--wp--preset--font-size--r-24);
+	font-weight: 400;
 	line-height: 1.28;
 	color: var(--wp--preset--color--contrast);
 }

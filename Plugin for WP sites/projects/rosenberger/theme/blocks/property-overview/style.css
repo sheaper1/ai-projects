@@ -44,11 +44,12 @@
 .property-overview__desc > :last-child { margin-bottom: 0; }
 .property-overview__desc h3,
 .property-overview__desc h4 {
-	margin: var(--wp--preset--spacing--r-24) 0 var(--wp--preset--spacing--r-8);
+	margin: 0 0 var(--wp--preset--spacing--r-16);
 	font-family: var(--wp--preset--font-family--body);
-	font-weight: 600;
-	font-size: var(--wp--preset--font-size--r-18);
-	line-height: 1.4;
+	font-weight: 400;
+	font-size: var(--wp--preset--font-size--r-24);
+	line-height: 1.5;
+	letter-spacing: -0.03em;
 	color: var(--wp--preset--color--contrast);
 }
 .property-overview__desc p { margin: 0 0 var(--wp--preset--spacing--r-16); }
@@ -138,7 +139,7 @@
 	justify-content: center;
 	white-space: nowrap;
 	height: 48px;
-	padding-inline: 20px;
+	padding-inline: 24px;
 	border-radius: var(--wp--custom--radius--pill);
 	font-family: var(--wp--preset--font-family--body);
 	font-weight: 500;

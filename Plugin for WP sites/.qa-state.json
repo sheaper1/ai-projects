@@ -118,5 +118,15 @@
     "hash": "5ad0dc5de44ad0d1",
     "passedAt": "2026-06-26",
     "page": "immobilienbewertung"
+  },
+  "property-overview": {
+    "hash": "07b74275764a5905",
+    "passedAt": "2026-06-26",
+    "page": "single-property"
+  },
+  "region-services": {
+    "hash": "661cc462ba82d073",
+    "passedAt": "2026-06-26",
+    "page": "region"
   }
 }

@@ -33,6 +33,12 @@ const URL = A.url || 'https://rosenberger.digirelation.dev/'
 const SECTIONS = A.sections || []
 if (!SECTIONS.length) { log('Нет секций в args.sections — нечего проверять.'); return { error: 'no sections' } }
 
+// URL-на-секцию: каждая секция может жить на своей странице (CPT single, архив…).
+// Деплой один (все блоки в теме), но шоты/замеры — по странице секции.
+const urlOf = (s) => s.url || URL
+const pageKey = (u) => (String(u).replace(/[?#].*$/, '').replace(/\/+$/, '').split('/').pop() || 'home')
+const numbers = (s) => `.visual/qa-${pageKey(urlOf(s))}`   // -1440.json / -375.json
+
 // Папка артефактов блока (одна на секцию, before/after внутри).
 const dir = (s) => `.visual/qa/${s.slug}`
 
@@ -62,13 +68,13 @@ Figma через ToolSearch (get_design_context, get_screenshot, get_metadata). 
 const fixPrompt = (s) => `${RULES}
 
 Ты QA-чинишь ОДНУ секцию: ${s.slug}. ${s.hint || ''}
-Live ${URL} · селектор ${s.sel} · Figma desktop ${s.node}${s.mnode ? ' · mobile ' + s.mnode : ''}.
+Live ${urlOf(s)} · селектор ${s.sel} · Figma desktop ${s.node}${s.mnode ? ' · mobile ' + s.mnode : ''}.
 Папка артефактов: ${dir(s)}/ — сначала создай: mkdir -p "${dir(s)}".
 Папка блока (правь ТОЛЬКО её): projects/rosenberger/theme/blocks/${s.slug}/ (SCSS/render.php/block.json дефолты).
 
 ШАГ 0 — НАЛОЖЕНИЕ ДО ФИКСА (обязательно, до любых правок кода):
   - дизайн: get_screenshot ${s.node} (maxDimension 1400) → curl -o "${dir(s)}/figma.png" "<url>"
-  - лайв:   node scripts/shot.mjs ${URL} --sel "${s.sel}" --name qa/${s.slug}/before-live
+  - лайв:   node scripts/shot.mjs ${urlOf(s)} --sel "${s.sel}" --name qa/${s.slug}/before-live
   - наложение: node scripts/section-diff.mjs --figma "${dir(s)}/figma.png" --live "${dir(s)}/before-live.png" --out "${dir(s)}/before"
   - сам Read "${dir(s)}/before-overlay.png" — зафиксируй расхождения (это base для defects).
 
@@ -85,12 +91,12 @@ const verifyPrompt = (s) => `${RULES}
 
 Секция ${s.slug} уже ЗАДЕПЛОЕНА. Ты ВРАЖДЕБНЫЙ ревьюер: цель — НАЙТИ изъяны, а не подтвердить.
 НЕ оправдывай дефект («low impact»/«нет токена»/«content-driven» = ЗАПРЕЩЕНО). Сомневаешься → fail.
-Live ${URL} · селектор ${s.sel} · Figma ${s.node}. Числа: .visual/home-after.json (1440), .visual/home-after-375.json (375).
+Live ${urlOf(s)} · селектор ${s.sel} · Figma ${s.node}. Числа: ${numbers(s)}-1440.json (1440), ${numbers(s)}-375.json (375).
 Папка артефактов: ${dir(s)}/ (там уже figma.png и before-*.png от фазы фикса — НЕ трогай их, пиши after-*).
 
 ШАГ 1 — НАЛОЖЕНИЕ ПОСЛЕ (обязательно, и смотри глазами):
   - дизайн уже есть: ${dir(s)}/figma.png (если файла нет — пере-сними: get_screenshot ${s.node} → curl -o "${dir(s)}/figma.png" "<url>").
-  - лайв:   node scripts/shot.mjs ${URL} --sel "${s.sel}" --name qa/${s.slug}/after-live
+  - лайв:   node scripts/shot.mjs ${urlOf(s)} --sel "${s.sel}" --name qa/${s.slug}/after-live
   - наложение: node scripts/section-diff.mjs --figma "${dir(s)}/figma.png" --live "${dir(s)}/after-live.png" --out "${dir(s)}/after"
   - сам Read "${dir(s)}/after-overlay.png" И Read "${dir(s)}/after-live.png" (серое=совпало, пурпур=Figma/зелёный=лайв=сдвиг), не только stdout.
   - сравни с "${dir(s)}/before-overlay.png": стало лучше или дефект остался?
@@ -101,21 +107,25 @@ Live ${URL} · селектор ${s.sel} · Figma ${s.node}. Числа: .visual
 В after верни фактические пути: overlay="${dir(s)}/after-overlay.png", live="${dir(s)}/after-live.png", figma="${dir(s)}/figma.png" (если шаг не дал файл — пустая строка + честно в remaining).
 ЗАПРЕТ: ничего не чини/не деплой. Верни строго по схеме.`
 
+// Уникальные страницы батча (для одного деплоя + замера по каждой).
+const PAGES = [...new Set(SECTIONS.map(urlOf))]
+
 // --- Отчёт о распределении: кто какую секцию взял (видно в /workflows и в возврате) ---
-log(`Распределение работы: ${SECTIONS.length} секций · по 1 fix-агенту и 1 verify-агенту на секцию · артефакты в .visual/qa/<slug>/`)
-SECTIONS.forEach((s, i) => log(`  #${i + 1} ${s.slug} → fix:${s.slug} + verify:${s.slug} · Figma ${s.node}${s.mnode ? '/' + s.mnode : ''} · sel ${s.sel}`))
+log(`Распределение работы: ${SECTIONS.length} секций на ${PAGES.length} стр. · по 1 fix-агенту и 1 verify-агенту на секцию · артефакты в .visual/qa/<slug>/`)
+SECTIONS.forEach((s, i) => log(`  #${i + 1} ${s.slug} → fix:${s.slug} + verify:${s.slug} · ${pageKey(urlOf(s))} · Figma ${s.node}${s.mnode ? '/' + s.mnode : ''} · sel ${s.sel}`))
 
 phase('Fix')
 const fixes = await parallel(SECTIONS.map((s) => () => agent(fixPrompt(s), { label: `fix:${s.slug}`, phase: 'Fix', schema: FIX_SCHEMA })))
 
 phase('Deploy')
+const extractCmds = PAGES.map((u) => `node scripts/qa-extract.mjs ${u} --width 1440 --json .visual/qa-${pageKey(u)}-1440.json\nnode scripts/qa-extract.mjs ${u} --width 375 --json .visual/qa-${pageKey(u)}-375.json`).join('\n')
 const deploy = await agent(
   `Working dir A:\\Projects\\AI project\\Plugin for WP sites. Выполни ПОСЛЕДОВАТЕЛЬНО, верни краткий лог:
 1) npm run build -- --force
 2) npm run check (зелёный? если нет — сообщи и НЕ деплой)
 3) node scripts/deploy-stack.mjs --changed
-4) node scripts/qa-extract.mjs ${URL} --width 1440 --json .visual/home-after.json
-5) node scripts/qa-extract.mjs ${URL} --width 375 --json .visual/home-after-375.json`,
+4) Замер чисел по каждой странице батча (${PAGES.length} стр.):
+${extractCmds}`,
   { label: 'build+deploy', phase: 'Deploy' }
 )
 

@@ -67,7 +67,7 @@
 .property-details__grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	column-gap: var(--wp--preset--spacing--r-64);
+	column-gap: var(--wp--preset--spacing--r-32);
 	row-gap: var(--wp--preset--spacing--r-32);
 	padding: var(--wp--preset--spacing--r-32);
 }

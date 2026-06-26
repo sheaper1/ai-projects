@@ -12,13 +12,14 @@
 	display: grid;
 	grid-template-columns: minmax(0, 649px) minmax(0, 551px);
 	justify-content: start;
-	gap: clamp(3rem, 7vw, 110px);
+	gap: clamp(3rem, 7vw, 92px);
 	align-items: start;
 }
 
 .reference-overview .reference-overview__media {
 	aspect-ratio: 649 / 778;
 	overflow: hidden;
+	border-radius: var(--wp--custom--radius--large);
 	background: var(--wp--preset--color--placeholder);
 }
 
@@ -49,6 +50,7 @@
 	font-size: var(--wp--preset--font-size--r-16);
 	font-weight: 300;
 	line-height: 1.5;
+	letter-spacing: -0.16px;
 	color: var(--wp--preset--color--muted);
 }
 
