@@ -116,22 +116,22 @@ const faqItems = [
 	},
 	{
 		question: 'Wann wird die Provision ausgezahlt?',
-		answer:   'Sobald der Kaufpreis bei mir eingegangen ist, überweise ich Ihren Anteil. Den Zeitpunkt legen wir vorher schriftlich fest.',
+		answer:   'Nach dem rechtskräftigen Kaufvertrag und sobald der Kaufpreis bei mir eingegangen ist. Der genaue Zeitplan steht im Tippgeber-Vertrag.',
 		open:     false,
 	},
 	{
 		question: 'Was sage ich, falls der Eigentümer fragt, woher ich von ihm weiß?',
-		answer:   'Das entscheiden Sie. Ob ich Ihren Namen nenne oder nicht, klären wir vorab. Ich gehe diskret vor.',
+		answer:   'Das müssen Sie ihm nicht erklären. Ich nehme den Kontakt selbst auf. Wenn Sie anonym bleiben möchten, erfährt der Eigentümer nichts über Sie.',
 		open:     false,
 	},
 	{
 		question: 'Was, wenn ich nur vermute, dass jemand verkaufen will?',
-		answer:   'Das reicht vollkommen. Ein Hinweis auf die Situation, die Adresse oder das Viertel – ich kläre das Weitere.',
+		answer:   'Geben Sie mir den Hinweis trotzdem. Im ersten Gespräch mit dem Eigentümer kläre ich, ob ein Verkauf für ihn in Frage kommt.',
 		open:     false,
 	},
 	{
 		question: 'Kann ich mehrere Tipps abgeben?',
-		answer:   'Ja, so viele Sie möchten. Für jeden erfolgreichen Verkauf erhalten Sie 10 % der Provision.',
+		answer:   'Ja. Für jeden Tipp schließen wir einen eigenen Tippgeber-Vertrag, damit klar bleibt, welcher Tipp zu welcher Auszahlung führt.',
 		open:     false,
 	},
 ];

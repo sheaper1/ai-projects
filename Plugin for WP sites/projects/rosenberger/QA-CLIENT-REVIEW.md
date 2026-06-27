@@ -41,10 +41,9 @@
 Метод фикса контента: правка в сидере (`scripts/import-*.mjs` / `seed-*.mjs`) → re-seed.
 
 **НАЙДЕННЫЕ БАГИ (ждут фикса):**
-- 🔴 **verkaufen FAQ:** на сайте ПРОПУЩЕН 4-й вопрос из Figma — «Was, wenn ich es mir
-  anders überlege und doch nicht verkaufe?» (в Figma 5 вопросов, на сайте 4). Ответ в
-  макете свёрнут (нет текста) → написать по смыслу или взять у клиента. Фикс в
-  `scripts/import-immobilie-verkaufen.mjs` (FAQ items) → re-seed.
+- ✅ **verkaufen FAQ:** пропущенный 4-й вопрос «Was, wenn ich es mir anders überlege
+  und doch nicht verkaufe?» добавлен (ответ из драфта клиента). Все 5 вопросов
+  выровнены по драфту. Re-seed, сверено живым HTML (5/5).
 - ✅ Заголовок pain-points Home — перенос `<br>` после «Sie» (S11). Исправлено
   2026-06-27: `wp_kses ['br']` в render + дефолт `Das haben Sie<br>an Maklern`,
   сверено кадром figma↔live. (NB: 5-й пункт «Übergang» имеет текст-дубль 4-го —
@@ -71,7 +70,7 @@
 | S7 | Не у всех кнопок hover-анимация | Home `cards-stack__cta-button` | :hover в блоке | ✅ добавил hover+transition. Детектор: 0 |
 | S8 | Иконки не из Figma | Home pain-points | SVG из Figma → медиа -v2 | ✅ все 5 иконок pain-points экспортированы из Figma (монета-€/телефон-slash/чат/discount/глаз-slash), залиты -v2, пересеяны, сверено на live. Прочие страницы — отдельно при их проходе |
 | S9 | Картинки не из Figma | Home, ueber-mich | — | ✅ не баг: сайт совпадает с НОВЫМ дизайном (Home about + ueber-mich hero = бородатый Alex). Клиент сравнивал со СТАРЫМ вариантом. Подтверждено по новой карте 2126:* |
-| S10 | Ответы FAQ отличаются от Figma | Home, tippgeber, verkaufen, vermieten, bewertung, local | контент FAQ из Figma (сидеры) | 🔄 Home FAQ совпал ✓; verkaufen — ПРОПУЩЕН 1 вопрос (см. ▶ найденные баги); остальные страницы — пройти движком extract+diff |
+| S10 | Ответы FAQ отличаются от Figma | Home, tippgeber, verkaufen, vermieten, bewertung, local | контент FAQ из драфтов клиента (сидеры) | ✅ Перенёс FAQ из драфтов `Новая папка (2)`: Home 4Q, verkaufen 5Q (+пропущенный), tippgeber 5Q (ответы), регионы 4/3/3/3. Сверено живым HTML. Осталось: vermieten/bewertung (в драфтах FAQ нет — взять у клиента) |
 | S11 | «align to heading» (контент не выровнен под заголовок) | verkaufen, vermieten, bewertung, local | выравнивание секций | ⬜ |
 | S12 | Рейтинг «4.5+?» (Google reviews показывает ниже) | Home, ueber-mich | trust-bar / источник рейтинга | ❓ |
 

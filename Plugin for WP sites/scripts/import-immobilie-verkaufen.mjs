@@ -191,17 +191,22 @@ const pageContent = [
 			},
 			{
 				question: 'Wie lange dauert ein Verkauf?',
-				answer:   'Das hängt von Objekt, Preis und Lage ab. Nach dem Erstgespräch gebe ich Ihnen eine realistische Einschätzung. Viele Objekte in Vorarlberg sind innerhalb weniger Wochen verkauft.',
+				answer:   'Das hängt von Objekt, Lage und Preis ab. Eine konkrete Einschätzung für Ihren Fall gebe ich Ihnen schon im Erstgespräch.',
 				open:     false,
 			},
 			{
 				question: 'Kann ich nicht einfach privat verkaufen und die Provision sparen?',
-				answer:   'Können Sie. In der Praxis bindet ein Privatverkauf aber schnell hundert Stunden und mehr, und ein falsch angesetzter Preis kostet oft mehr als die Provision. Ich nehme Ihnen den Aufwand ab und hole den realistisch besten Preis heraus.',
+				answer:   'Können Sie. Rechnen Sie aber mit hundert Stunden und mehr, mit der Prüfung der Interessenten und mit dem Risiko, den Preis falsch anzusetzen. Genau das nehme ich Ihnen ab.',
+				open:     false,
+			},
+			{
+				question: 'Was, wenn ich es mir anders überlege und doch nicht verkaufe?',
+				answer:   'Dann ist das so. Sie entscheiden in Ihrem Tempo, ich setze Sie nicht unter Druck.',
 				open:     false,
 			},
 			{
 				question: 'Wer kommt zu den Besichtigungen?',
-				answer:   'Ich führe die Besichtigungen persönlich und prüfe vorher, wer es ernst meint und finanzieren kann. Sie müssen nicht dabei sein, wenn Sie nicht möchten.',
+				answer:   'Ich prüfe vorab, wer ernsthaftes Interesse hat und finanzieren kann. So bleibt Ihnen der Besichtigungs-Tourismus erspart.',
 				open:     false,
 			},
 		],

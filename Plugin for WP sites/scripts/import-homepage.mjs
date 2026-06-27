@@ -203,7 +203,15 @@ const pageContent = [
 
 	`<!-- wp:library/referral-cta {"imageId":${ id( referralImg ) },"imageUrl":"${ u( referralImg ) }","buttonUrl":"/tippgeber/"} /-->`,
 
-	`<!-- wp:library/faq-section /-->`,
+	`<!-- wp:library/faq-section ${ JSON.stringify( {
+		heading: 'Häufige <em>Fragen</em>',
+		items: [
+			{ question: 'Was kostet Sie die Zusammenarbeit?', answer: 'Die Provision hängt von Objekt und Leistungsumfang ab. Was auf Sie zukommt, bespreche ich offen, bevor Sie sich entscheiden.', open: true },
+			{ question: 'Ich bin noch unentschlossen. Lohnt sich ein Gespräch trotzdem?', answer: 'Ja. Im kostenlosen Erstgespräch klären wir in Ruhe, was für Ihre Situation sinnvoll ist, ohne Verpflichtung.', open: false },
+			{ question: 'Ich suche eine Immobilie in Vorarlberg. Können Sie mir helfen?', answer: 'Ja. Sie sehen meine aktuellen Objekte auf der Seite, und ich melde mich, sobald etwas Passendes für Sie hereinkommt.', open: false },
+			{ question: 'Mit wem habe ich es zu tun?', answer: 'Mit mir, vom ersten Anruf bis zum Schluss, nicht mit wechselnden Mitarbeitern.', open: false },
+		],
+	} ) } /-->`,
 
 	`<!-- wp:library/consultation-cta {"backgroundId":${ id( ctaBg ) },"backgroundUrl":"${ u( ctaBg ) }","buttonUrl":"/kontakt/"} /-->`,
 ].join( '\n\n' );

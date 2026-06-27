@@ -79,10 +79,21 @@ const CITIES = [
 		slug: 'bludenz', name: 'Bludenz',
 		heroSub: 'Ehrlich beraten in Bludenz, ob Sie verkaufen, kaufen oder den Wert Ihrer Immobilie wissen wollen.',
 		intro: null,
+		faq: [
+			{ question: 'Was ist meine Immobilie in Bludenz wert?', answer: 'Das hängt von Lage, Zustand und Größe ab. Ich schaue sie mir vor Ort an und sage Ihnen ehrlich, was realistisch drin ist, nicht die höchste Zahl, sondern die, die zum Markt passt.', open: true },
+			{ question: 'Ist gerade ein guter Zeitpunkt, um in Bludenz zu verkaufen?', answer: 'Die Preise in Bludenz sind stabil, bei Häusern eher leicht steigend. Ob sich der Verkauf für Sie jetzt lohnt, hängt von Ihrer Immobilie und Ihrer Situation ab. Das schauen wir uns gemeinsam an.', open: false },
+			{ question: 'Ich habe ein Grundstück in Bludenz, kann ich das verkaufen?', answer: 'Ja. Bei Bauland in Vorarlberg spielen Widmung und Bebauungsfristen mit. Was für Ihr Grundstück gilt, finde ich für Sie heraus, bevor wir es vermarkten.', open: false },
+			{ question: 'Was kostet mich der Verkauf?', answer: 'Die Provision hängt von Objekt und Aufwand ab. Was auf Sie zukommt, sage ich Ihnen offen, bevor Sie sich entscheiden.', open: false },
+		],
 	},
 	{
 		slug: 'bregenz', name: 'Bregenz',
 		heroSub: 'Ehrlich beraten in Bregenz am Bodensee, ob Sie verkaufen, kaufen oder bewerten lassen.',
+		faq: [
+			{ question: 'Was ist eine Lage mit Seeblick in Bregenz wert?', answer: 'Seenähe und Seeblick sind in Bregenz der stärkste Preistreiber. Wie viel Ihre Lage genau bringt, hängt von der Distanz zum Wasser und von der Aussicht ab. Das schätze ich Ihnen vor Ort ehrlich ein.', open: true },
+			{ question: 'Kommt mein Objekt für Zweitwohnsitz- oder Anlagekäufer in Frage?', answer: 'Als Hauptstadt mit Festspielen und Tourismus hat Bregenz überregionale Nachfrage. Ob Ihr Objekt dafür passt, bespreche ich offen mit Ihnen.', open: false },
+			{ question: 'Zentrum, Vorkloster oder Hanglage am Pfänder, wo liegt der Unterschied?', answer: 'Die Spanne zwischen Seenähe, Stadtlage und Aussichtslage am Pfänder ist groß. Ich bewerte Ihre Immobilie nach ihrer konkreten Lage, nicht nach einem Stadtdurchschnitt.', open: false },
+		],
 		intro: [
 			'Ob Sie verkaufen, kaufen oder wissen wollen, was Ihre Immobilie wert ist, in Bregenz lohnt sich jemand, der die Lagen am See und in der Stadt kennt.',
 			'In Bregenz entscheidet vor allem die Nähe zum Bodensee. Seeblick und seenahe Lagen sind besonders gefragt, und Eigentumswohnungen liegen hier auf dem höchsten Niveau Vorarlbergs. Als Landeshauptstadt mit den Festspielen und viel Tourismus zieht Bregenz auch Zweitwohnsitz- und Anlagekäufer an.',
@@ -92,6 +103,11 @@ const CITIES = [
 	{
 		slug: 'dornbirn', name: 'Dornbirn',
 		heroSub: 'Ehrlich beraten in Dornbirn, der größten Stadt Vorarlbergs, ob Sie verkaufen, kaufen oder bewerten lassen.',
+		faq: [
+			{ question: 'Warum ist Dornbirn der teuerste Markt Vorarlbergs?', answer: 'Wirtschaftskraft, Arbeitsplätze und starker Zuzug treffen auf wenig freien Baugrund. Das gilt besonders für Häuser und Grundstücke. Was das für Ihren Verkauf bedeutet, ordne ich Ihnen ehrlich ein.', open: true },
+			{ question: 'Mein Haus liegt am Hang in Oberdorf. Wirkt sich das auf den Preis aus?', answer: 'Ja, in Dornbirn macht die Lage viel aus, vom Zentrum bis zu den Hanglagen Watzenegg, Kehlegg oder dem ländlichen Ebnit. Ich bewerte nach Ihrer konkreten Lage, nicht nach einem Stadtschnitt.', open: false },
+			{ question: 'Verkauft sich in Dornbirn gerade schnell?', answer: 'Die Nachfrage ist hoch und das Angebot knapp. Wie schnell und zu welchem Preis Ihr Objekt geht, hängt von Lage und Zustand ab. Das schätze ich Ihnen realistisch ein.', open: false },
+		],
 		intro: [
 			'Ob Sie verkaufen, kaufen oder wissen wollen, was Ihre Immobilie wert ist, in Dornbirn lohnt sich jemand, der den Markt der größten Stadt Vorarlbergs kennt.',
 			'Dornbirn ist der teuerste Immobilienmarkt Vorarlbergs, vor allem bei Häusern und Baugrund. Wirtschaftskraft, viele Arbeitsplätze und starker Zuzug treffen auf knappen Baugrund, und das hält die Preise oben. Über Ihr konkretes Objekt sagt ein pauschaler Quadratmeterpreis trotzdem wenig aus.',
@@ -101,6 +117,11 @@ const CITIES = [
 	{
 		slug: 'feldkirch', name: 'Feldkirch',
 		heroSub: 'Ehrlich beraten rund um Feldkirch und die Grenzregion, ob Sie verkaufen, kaufen oder bewerten lassen.',
+		faq: [
+			{ question: 'Was bringt mir die Nähe zu Liechtenstein und der Schweiz beim Verkauf?', answer: 'Viele Käufer in Feldkirch sind Grenzgänger mit guter Kaufkraft. Das erweitert Ihren Käuferkreis. Ich weiß, wie ich Ihre Immobilie für diese Nachfrage richtig positioniere.', open: true },
+			{ question: 'Welcher Stadtteil bringt welchen Preis, Altstadt oder Gisingen, Tosters, Tisis?', answer: 'Die Unterschiede zwischen den Feldkircher Stadtteilen sind groß. Ich bewerte Ihre Immobilie nach ihrer konkreten Lage, nicht nach einem Stadtdurchschnitt.', open: false },
+			{ question: 'Warum steigen in Feldkirch die Preise gerade so stark?', answer: 'Zuzug und die grenznahe Nachfrage treffen auf knappes Angebot, besonders bei Häusern. Ob das für Ihren Verkauf gerade günstig ist, schauen wir uns gemeinsam an.', open: false },
+		],
 		intro: [
 			'Ob Sie verkaufen, kaufen oder wissen wollen, was Ihre Immobilie wert ist, in Feldkirch lohnt sich jemand, der die Stadt und ihre Besonderheiten kennt.',
 			'Feldkirch ist die Stadt der Grenzgänger. Die Nähe zu Liechtenstein und der Schweiz bringt kaufkräftige Käufer und hält die Nachfrage hoch. Gerade hier ziehen die Preise zuletzt stärker an als im übrigen Vorarlberg, vor allem bei Häusern. Wer da mit einem pauschalen Quadratmeterpreis rechnet, liegt schnell daneben.',
@@ -172,7 +193,7 @@ function content( city, media ) {
 		buttonText: 'Alle Objekte ansehen', buttonUrl: '/objekte/', limit: 6,
 	} ) } /-->`;
 
-	const faq = `<!-- wp:library/faq-section ${ j( { heading: `Häufige Fragen zu ${ city.name }` } ) } /-->`;
+	const faq = `<!-- wp:library/faq-section ${ j( { heading: `Häufige Fragen zu ${ city.name }`, items: city.faq || [] } ) } /-->`;
 
 	const cta = `<!-- wp:library/consultation-cta ${ j( {
 		text: 'Persönlich und völlig unverbindlich. Ich verkaufe in ganz Vorarlberg, von Feldkirch über Dornbirn und Bregenz bis Bludenz.',
