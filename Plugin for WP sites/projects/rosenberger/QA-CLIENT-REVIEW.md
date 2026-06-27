@@ -148,8 +148,13 @@
   пользователя → «Alexander Rosenberger» (REST). Закрыл и grid, и single.
 
 ## 11. Local pages (/feldkirch/ /dornbirn/ /bregenz/ /bludenz/) — ОДНО И ТО ЖЕ НА ВСЕХ
-- ⬜ Подзаголовок не как в Figma *(image47, image31)*
-- ⬜ S10 — контент не как в sample *(image29, image24)*
+- ✅ Подзаголовок (region-hero) не как в Figma *(image31)* — вынес уникальные
+  hero-подзаголовки по 4 городам verbatim из Figma. (image47 был НЕ про это —
+  это blog-автор, закрыт в разделе 10.) Попутно: чинил баг REST-меты CPT region
+  (нужен `'custom-fields'` в supports — иначе мета не писалась, см. CHANGELOG).
+- ✅ S10 — intro-контент не как в sample *(image29, image24)* — intro-абзацы
+  Feldkirch/Bregenz/Dornbirn verbatim из Figma. Bludenz в Figma не заполнен →
+  оставлен generic (NB при появлении текста Bludenz — добавить в seed-regions.mjs).
 - ⬜ S11 — align to heading *(image13)*
 - ⬜ Мужчина на фоне *(image48)*
 - ⬜ S6 — кнопка без ссылки *(image8, image38)*

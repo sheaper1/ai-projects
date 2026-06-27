@@ -71,11 +71,42 @@ async function ensureTerm( tax, slug, name ) {
 
 // Обложка hero = Beitragsbild записи (клиент заменит). Демо-фото — реальные
 // панорамы городов из Figma-дизайна (media/regions/hero-<city>.webp).
+// heroSub и intro — verbatim из Figma (узлы 2126:8947/9263/9573/9883), у каждого
+// города свой текст (клиентский QA: «контент/подзаголовок не как в sample»).
+// Bludenz: в Figma intro-абзац не заполнен → оставляем generic (intro: null).
 const CITIES = [
-	{ slug: 'bludenz', name: 'Bludenz' },
-	{ slug: 'bregenz', name: 'Bregenz' },
-	{ slug: 'dornbirn', name: 'Dornbirn' },
-	{ slug: 'feldkirch', name: 'Feldkirch' },
+	{
+		slug: 'bludenz', name: 'Bludenz',
+		heroSub: 'Ehrlich beraten in Bludenz, ob Sie verkaufen, kaufen oder den Wert Ihrer Immobilie wissen wollen.',
+		intro: null,
+	},
+	{
+		slug: 'bregenz', name: 'Bregenz',
+		heroSub: 'Ehrlich beraten in Bregenz am Bodensee, ob Sie verkaufen, kaufen oder bewerten lassen.',
+		intro: [
+			'Ob Sie verkaufen, kaufen oder wissen wollen, was Ihre Immobilie wert ist, in Bregenz lohnt sich jemand, der die Lagen am See und in der Stadt kennt.',
+			'In Bregenz entscheidet vor allem die Nähe zum Bodensee. Seeblick und seenahe Lagen sind besonders gefragt, und Eigentumswohnungen liegen hier auf dem höchsten Niveau Vorarlbergs. Als Landeshauptstadt mit den Festspielen und viel Tourismus zieht Bregenz auch Zweitwohnsitz- und Anlagekäufer an.',
+			'Zwischen der Oberstadt, dem Zentrum am Hafen, den Wohnlagen in Vorkloster und Rieden und den Hanglagen am Pfänder Richtung Fluh macht die Lage den Unterschied. Ich kenne sie und sage Ihnen ehrlich, was realistisch ist, ob beim Verkauf, beim Kauf oder bei der Bewertung.',
+		].join( '\n\n' ),
+	},
+	{
+		slug: 'dornbirn', name: 'Dornbirn',
+		heroSub: 'Ehrlich beraten in Dornbirn, der größten Stadt Vorarlbergs, ob Sie verkaufen, kaufen oder bewerten lassen.',
+		intro: [
+			'Ob Sie verkaufen, kaufen oder wissen wollen, was Ihre Immobilie wert ist, in Dornbirn lohnt sich jemand, der den Markt der größten Stadt Vorarlbergs kennt.',
+			'Dornbirn ist der teuerste Immobilienmarkt Vorarlbergs, vor allem bei Häusern und Baugrund. Wirtschaftskraft, viele Arbeitsplätze und starker Zuzug treffen auf knappen Baugrund, und das hält die Preise oben. Über Ihr konkretes Objekt sagt ein pauschaler Quadratmeterpreis trotzdem wenig aus.',
+			'Zwischen dem Zentrum Markt, Hatlerdorf, Rohrbach, Schoren und Haselstauden und den Hanglagen in Oberdorf mit Watzenegg, Kehlegg und dem ländlichen Ebnit ist die Spanne groß. Ich kenne diese Lagen und sage Ihnen ehrlich, was realistisch ist, ob beim Verkauf, beim Kauf oder bei der Bewertung.',
+		].join( '\n\n' ),
+	},
+	{
+		slug: 'feldkirch', name: 'Feldkirch',
+		heroSub: 'Ehrlich beraten rund um Feldkirch und die Grenzregion, ob Sie verkaufen, kaufen oder bewerten lassen.',
+		intro: [
+			'Ob Sie verkaufen, kaufen oder wissen wollen, was Ihre Immobilie wert ist, in Feldkirch lohnt sich jemand, der die Stadt und ihre Besonderheiten kennt.',
+			'Feldkirch ist die Stadt der Grenzgänger. Die Nähe zu Liechtenstein und der Schweiz bringt kaufkräftige Käufer und hält die Nachfrage hoch. Gerade hier ziehen die Preise zuletzt stärker an als im übrigen Vorarlberg, vor allem bei Häusern. Wer da mit einem pauschalen Quadratmeterpreis rechnet, liegt schnell daneben.',
+			'Zwischen der Altstadt, Gisingen, Tosters, Altenstadt, Tisis, Nofels und Levis liegen beim Preis Welten. Ich kenne diese Lagen und sage Ihnen ehrlich, was realistisch ist, ob beim Verkauf, beim Kauf oder bei der Bewertung.',
+		].join( '\n\n' ),
+	},
 ];
 
 const j = ( o ) => JSON.stringify( o );
@@ -91,7 +122,7 @@ function content( city, media ) {
 	const intro = `<!-- wp:library/split-cta ${ j( {
 		heading: 'Sie suchen einen Immobilienmakler',
 		headingItalic: `in ${ city.name }?`,
-		text: `Ob Sie verkaufen, kaufen oder einfach wissen wollen, was Ihre Immobilie wert ist – Sie wollen jemanden, der den Markt in ${ city.name } wirklich kennt und ehrlich mit Ihnen umgeht. Ich kenne die Lagen vor Ort und sage Ihnen offen, was realistisch ist, beim Verkauf, beim Kauf oder bei der Bewertung – ohne Wunschzahl, die nur den Auftrag bringen soll.`,
+		text: city.intro || `Ob Sie verkaufen, kaufen oder einfach wissen wollen, was Ihre Immobilie wert ist – Sie wollen jemanden, der den Markt in ${ city.name } wirklich kennt und ehrlich mit Ihnen umgeht. Ich kenne die Lagen vor Ort und sage Ihnen offen, was realistisch ist, beim Verkauf, beim Kauf oder bei der Bewertung – ohne Wunschzahl, die nur den Auftrag bringen soll.`,
 		buttonText: 'Kostenlos beraten lassen',
 		buttonUrl: '/kontakt/',
 		imageId: introImg.id || 0,
@@ -194,7 +225,7 @@ async function main() {
 			featured_media: cover,
 			content: content( city, media ),
 			meta: {
-				region_subtitle: `Ehrlich beraten in ${ city.name }, ob Sie verkaufen, kaufen oder den Wert Ihrer Immobilie wissen wollen.`,
+				region_subtitle: city.heroSub,
 				region_button_text: 'Kostenlos beraten lassen',
 				region_button_url: '/kontakt/',
 				region_note: 'Unverbindlich und kostenlos',

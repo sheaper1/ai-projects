@@ -35,7 +35,7 @@ add_action(
 				'has_archive'   => false,
 				'menu_icon'     => 'dashicons-location-alt',
 				'menu_position' => 7,
-				'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ),
+				'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'revisions', 'custom-fields' ),
 				'show_in_rest'  => true,
 				'rewrite'       => array( 'slug' => 'region', 'with_front' => false ),
 			)

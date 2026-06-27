@@ -3,6 +3,13 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-27 — **QA local-регионы: per-city текст из Figma.** Сидер
+  `seed-regions.mjs` был шаблонный (1 текст на 4 города) — клиент: «контент/подзаголовок
+  не как в sample». Вынес уникальные hero-подзаголовки + intro-абзацы из Figma
+  (Feldkirch/Bregenz/Dornbirn; Bludenz в Figma пуст → generic). Попутно нашёл баг:
+  `region_subtitle` (мета) не писалась через REST — CPT region не имел `'custom-fields'`
+  в supports, payload.meta молча терялся, а `region-hero` render-fallback это маскировал.
+  Добавил `'custom-fields'`, redeploy, re-seed; 4 подзаголовка сверены живым HTML.
 - [Claude] 2026-06-27 — **QA батч: kontakt→немецкий + Blog-автор.** (1) Видимая
   форма kontakt была англоязычной (подписи захардкожены в `contact-section/render.php`,
   не в WPForms) → перевёл Name/E-Mail/Telefon/Betreff + плейсхолдеры + cardTitle
