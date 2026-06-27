@@ -8,6 +8,50 @@
 > Статусы: ⬜ не начато · 🔄 в работе · ✅ исправлено+задеплоено · ❓ нужен уточнение
 > · ⏭️ не баг / уже сделано.
 
+---
+
+## ▶ ПРОДОЛЖЕНИЕ (для новой сессии) — читать первым
+
+**Где мы:** прошли системные кластеры. Готово+проверено+задеплоено:
+- ✅ S2 (красное ♥), S3 (overlay шапки mobile/tablet), S4 (подвал не режется на tablet),
+  S5 (кнопки hug-content по центру на mobile), S6 (href кнопок), S7 (hover), S8 (иконки
+  pain-points из Figma).
+- ⏭️ S1 (sticky — задумано), S9 (фото — сайт совпал с НОВЫМ дизайном), S12 (рейтинг 4.5+ —
+  реальные данные Google, нельзя). Соц-ссылки подвала — отложены (нет URL).
+
+**КРИТИЧНО про Figma:** старый вариант дизайна удалён, карта узлов пересобрана →
+новые node-id `2126:*` в `AGENTS.md`. Сверять ТОЛЬКО по ним. `FIGMA_TOKEN` в `.env`
+**истекает 2026-06-28** — если REST даёт 401, попросить обновить токен.
+
+**Быстрый тулкит (использовать вместо медленного MCP):**
+- `npm run figma:extract <id> --text [--grep "?"]` — тексты страницы (S10), кэш.
+- `npm run figma:vs <id> <url> "<sel>" [--mobile]` — Figma↔live в один кадр (визуал, S11).
+- `npm run figma:export <ids>` — батч-картинки. `npm run figma:map` — карта.
+- `npm run qa:buttons` / `qa:overflow` — детекторы (href/hover/размер/overflow).
+Движок S10 проверен: подтверждает совпадения И ловит расхождения (см. найденный баг ниже).
+
+**Дальше по плану (метод — extract+diff текста + figma:vs для глаза, по каждой странице):**
+1. **S10 тексты FAQ** по всем страницам (tippgeber/verkaufen/vermieten/bewertung/local).
+   Уже найдено ↓.
+2. **S11 align to heading** + потерянные `<br>` (напр. заголовок pain-points Home: Figma
+   «…Sie / an Maklern», live «…Sie an / Maklern»).
+3. **Точечные:** references — кнопки «бегущей строкой» (карусель); bewertung — подтверждение
+   после отправки формы + «шагов >4»; kontakt — перевести на немецкий; Blog — автор
+   admin→Alexander; local-страницы (4 одинаковые); legal — проверить.
+Метод фикса контента: правка в сидере (`scripts/import-*.mjs` / `seed-*.mjs`) → re-seed.
+
+**НАЙДЕННЫЕ БАГИ (ждут фикса):**
+- 🔴 **verkaufen FAQ:** на сайте ПРОПУЩЕН 4-й вопрос из Figma — «Was, wenn ich es mir
+  anders überlege und doch nicht verkaufe?» (в Figma 5 вопросов, на сайте 4). Ответ в
+  макете свёрнут (нет текста) → написать по смыслу или взять у клиента. Фикс в
+  `scripts/import-immobilie-verkaufen.mjs` (FAQ items) → re-seed.
+- 🟡 Заголовок pain-points Home — перенос `<br>` не как в Figma (S11).
+
+**Скриншоты клиента** (65 шт.) переэкспортировать из `Rosenberger QA.docx` при нужде:
+`unzip docx → word/media/imageN.png`. Маппинг пункт↔картинка — в секциях ниже.
+
+---
+
 ## 0. Системные дефекты (фикс один раз → закрывает все страницы) — ПРИОРИТЕТ
 
 Эти повторяются почти на каждой странице. Чинить в общем месте (шапка/подвал темы,
@@ -24,7 +68,7 @@
 | S7 | Не у всех кнопок hover-анимация | Home `cards-stack__cta-button` | :hover в блоке | ✅ добавил hover+transition. Детектор: 0 |
 | S8 | Иконки не из Figma | Home pain-points | SVG из Figma → медиа -v2 | ✅ все 5 иконок pain-points экспортированы из Figma (монета-€/телефон-slash/чат/discount/глаз-slash), залиты -v2, пересеяны, сверено на live. Прочие страницы — отдельно при их проходе |
 | S9 | Картинки не из Figma | Home, ueber-mich | — | ✅ не баг: сайт совпадает с НОВЫМ дизайном (Home about + ueber-mich hero = бородатый Alex). Клиент сравнивал со СТАРЫМ вариантом. Подтверждено по новой карте 2126:* |
-| S10 | Ответы FAQ отличаются от Figma | Home, tippgeber, verkaufen, vermieten, bewertung, local | контент FAQ из Figma | ⬜ |
+| S10 | Ответы FAQ отличаются от Figma | Home, tippgeber, verkaufen, vermieten, bewertung, local | контент FAQ из Figma (сидеры) | 🔄 Home FAQ совпал ✓; verkaufen — ПРОПУЩЕН 1 вопрос (см. ▶ найденные баги); остальные страницы — пройти движком extract+diff |
 | S11 | «align to heading» (контент не выровнен под заголовок) | verkaufen, vermieten, bewertung, local | выравнивание секций | ⬜ |
 | S12 | Рейтинг «4.5+?» (Google reviews показывает ниже) | Home, ueber-mich | trust-bar / источник рейтинга | ❓ |
 
