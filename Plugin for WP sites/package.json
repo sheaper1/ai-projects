@@ -18,6 +18,7 @@
 		"figma:map": "node scripts/figma-map.mjs",
 		"figma:extract": "node scripts/figma-extract.mjs",
 		"figma:export": "node scripts/figma-export.mjs",
+		"figma:vs": "node scripts/figma-vs-live.mjs",
 		"check": "node scripts/check.mjs",
 		"qa:buttons": "node scripts/qa-buttons.mjs",
 		"qa:overflow": "node scripts/qa-overflow.mjs",
