@@ -6,7 +6,7 @@ $a = wp_parse_args( $attributes ?? array(), array(
 	'headingItalic' => '',
 	'headingRest'   => '',
 	'lead'          => '',
-	'cardTitle'     => 'Contact Information',
+	'cardTitle'     => 'Kontaktinformationen',
 	'formId'        => 0,
 	'lat'           => 47.2466,
 	'lng'           => 9.5851,
@@ -85,21 +85,21 @@ $has_form = $form_id && function_exists( 'wpforms' ) && ! empty( $field_map );
 			>
 				<div class="cs-field">
 					<label class="cs-field__label" for="cs-name">Name</label>
-					<input class="cs-field__input" id="cs-name" type="text" data-cs-field="name" placeholder="Enter your name" required />
+					<input class="cs-field__input" id="cs-name" type="text" data-cs-field="name" placeholder="Ihr Name" required />
 				</div>
 				<div class="cs-field">
-					<label class="cs-field__label" for="cs-email">Email</label>
-					<input class="cs-field__input" id="cs-email" type="email" data-cs-field="email" placeholder="Enter your Email" required />
+					<label class="cs-field__label" for="cs-email">E-Mail</label>
+					<input class="cs-field__input" id="cs-email" type="email" data-cs-field="email" placeholder="Ihre E-Mail-Adresse" required />
 				</div>
 				<div class="cs-field">
-					<label class="cs-field__label" for="cs-phone">Phone</label>
+					<label class="cs-field__label" for="cs-phone">Telefon</label>
 					<div class="cs-field__phone">
 						<span class="cs-field__flag" aria-hidden="true">🇦🇹<svg width="8" height="5" viewBox="0 0 8 5" fill="none"><path d="M1 1l3 3 3-3" stroke="#142335" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-						<input class="cs-field__input cs-field__input--phone" id="cs-phone" type="tel" data-cs-field="phone" placeholder="+ 12 00 123 45 67" />
+						<input class="cs-field__input cs-field__input--phone" id="cs-phone" type="tel" data-cs-field="phone" placeholder="+43 660 1234567" />
 					</div>
 				</div>
 				<div class="cs-field">
-					<label class="cs-field__label" for="cs-subject">Subject of the request</label>
+					<label class="cs-field__label" for="cs-subject">Betreff der Anfrage</label>
 					<div class="cs-field__select">
 						<select class="cs-field__input" id="cs-subject" data-cs-field="subject">
 							<?php foreach ( $choices as $opt ) : ?>

@@ -137,11 +137,15 @@
 - ⬜ S5 — mobile (и single reference): размер кнопок
 
 ## 9. kontakt
-- ⬜ Перевести на немецкий *(image55)*
+- ✅ Перевести на немецкий *(image55)* — подписи были захардкожены в
+  `contact-section/render.php` (Name/E-Mail/Telefon/Betreff + плейсхолдеры),
+  dropdown через `setup-contact-form.mjs`, cardTitle «Kontaktinformationen».
+  Задеплоено, сверено живым HTML. (NB: в карточке «Email:» можно → «E-Mail:».)
 - ❓ «Is that expected functionality» — уточнить *(image19)*
 
 ## 10. Blog
-- ⬜ Сменить автора admin → Alexander (в т.ч. в single post) *(image20)*
+- ✅ Сменить автора admin → Alexander *(image20, image47)* — display_name
+  пользователя → «Alexander Rosenberger» (REST). Закрыл и grid, и single.
 
 ## 11. Local pages (/feldkirch/ /dornbirn/ /bregenz/ /bludenz/) — ОДНО И ТО ЖЕ НА ВСЕХ
 - ⬜ Подзаголовок не как в Figma *(image47, image31)*

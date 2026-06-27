@@ -29,24 +29,27 @@ const sleep = ( ms ) => new Promise( ( r ) => setTimeout( r, ms ) );
 const SNIPPET = 'Library: contact-form setup (temporary)';
 
 const phpCode = `
-$existing = get_posts( array( 'post_type' => 'wpforms', 'name' => 'kontakt', 'post_status' => 'publish', 'numberposts' => 1 ) );
-if ( ! empty( $existing ) ) { update_option( 'rosenberger_contact_form_ready', (int) $existing[0]->ID ); return; }
 $office = get_option( 'admin_email' );
 if ( function_exists( 'rosenberger_contact' ) ) {
 	$fe = rosenberger_contact( 'form_email' ); $em = rosenberger_contact( 'email' );
 	if ( $fe ) { $office = $fe; } elseif ( $em ) { $office = $em; }
 }
-$post_id = wp_insert_post( array( 'post_type' => 'wpforms', 'post_title' => 'Kontakt', 'post_name' => 'kontakt', 'post_status' => 'publish', 'post_content' => '' ) );
+$existing = get_posts( array( 'post_type' => 'wpforms', 'name' => 'kontakt', 'post_status' => 'publish', 'numberposts' => 1 ) );
+if ( ! empty( $existing ) ) {
+	$post_id = (int) $existing[0]->ID; // переиспользуем — поля ниже перезапишутся (перевод на DE)
+} else {
+	$post_id = wp_insert_post( array( 'post_type' => 'wpforms', 'post_title' => 'Kontakt', 'post_name' => 'kontakt', 'post_status' => 'publish', 'post_content' => '' ) );
+}
 if ( is_wp_error( $post_id ) || ! $post_id ) { return; }
 $form_data = array(
 	'id' => $post_id,
 	'field_id' => 6,
 	'fields' => array(
-		1 => array( 'id' => 1, 'type' => 'name', 'label' => 'Name', 'format' => 'simple', 'required' => '1', 'size' => 'large', 'placeholder' => 'Enter your name' ),
-		2 => array( 'id' => 2, 'type' => 'email', 'label' => 'Email', 'required' => '1', 'size' => 'large', 'placeholder' => 'Enter your Email' ),
-		3 => array( 'id' => 3, 'type' => 'phone', 'label' => 'Phone', 'format' => 'smart', 'size' => 'large', 'placeholder' => '+ 12 00 123 45 67' ),
-		4 => array( 'id' => 4, 'type' => 'select', 'label' => 'Subject of the request', 'size' => 'large', 'choices' => array(
-			1 => array( 'label' => 'Real estate sales' ),
+		1 => array( 'id' => 1, 'type' => 'name', 'label' => 'Name', 'format' => 'simple', 'required' => '1', 'size' => 'large', 'placeholder' => 'Ihr Name' ),
+		2 => array( 'id' => 2, 'type' => 'email', 'label' => 'E-Mail', 'required' => '1', 'size' => 'large', 'placeholder' => 'Ihre E-Mail-Adresse' ),
+		3 => array( 'id' => 3, 'type' => 'phone', 'label' => 'Telefon', 'format' => 'smart', 'size' => 'large', 'placeholder' => '+43 660 1234567' ),
+		4 => array( 'id' => 4, 'type' => 'select', 'label' => 'Betreff der Anfrage', 'size' => 'large', 'choices' => array(
+			1 => array( 'label' => 'Immobilienverkauf' ),
 			2 => array( 'label' => 'Immobilienbewertung' ),
 			3 => array( 'label' => 'Vermietung' ),
 			4 => array( 'label' => 'Sonstiges' ),

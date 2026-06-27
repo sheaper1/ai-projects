@@ -3,6 +3,13 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-27 — **QA батч: kontakt→немецкий + Blog-автор.** (1) Видимая
+  форма kontakt была англоязычной (подписи захардкожены в `contact-section/render.php`,
+  не в WPForms) → перевёл Name/E-Mail/Telefon/Betreff + плейсхолдеры + cardTitle
+  «Kontaktinformationen»; dropdown-варианты («Immobilienverkauf») — через
+  `setup-contact-form.mjs` (сделал идемпотентным с перезаписью полей). (2) Автор
+  блога `admin`→`Alexander Rosenberger` (display_name пользователя через REST).
+  Деплой+re-seed, сверено живым HTML и кадром.
 - [Claude] 2026-06-27 — **QA S11: перенос заголовка pain-points (Home).** Figma даёт
   перенос после «Sie» (`Das haben Sie` / `an Maklern sicher satt`), на live уезжал
   после «an». Пустил `<br>` в `titleMain` блока pain-points (`wp_kses ['br']`) +

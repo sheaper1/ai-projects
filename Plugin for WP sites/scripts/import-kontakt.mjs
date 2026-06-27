@@ -30,7 +30,7 @@ const pageContent = `<!-- wp:library/contact-section ${ JSON.stringify( {
 	headingItalic: 'Jetzt Kontakt',
 	headingRest:   ' aufnehmen',
 	lead:          'Schreiben Sie uns kurz, worum es geht. Wir melden uns schnell zurück <br>und besprechen gemeinsam den besten nächsten Schritt für Ihr Vorhaben.',
-	cardTitle:     'Contact Information',
+	cardTitle:     'Kontaktinformationen',
 	formId:        0,
 	lat:           47.2466,
 	lng:           9.5851,
