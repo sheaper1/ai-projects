@@ -45,7 +45,10 @@
   anders überlege und doch nicht verkaufe?» (в Figma 5 вопросов, на сайте 4). Ответ в
   макете свёрнут (нет текста) → написать по смыслу или взять у клиента. Фикс в
   `scripts/import-immobilie-verkaufen.mjs` (FAQ items) → re-seed.
-- 🟡 Заголовок pain-points Home — перенос `<br>` не как в Figma (S11).
+- ✅ Заголовок pain-points Home — перенос `<br>` после «Sie» (S11). Исправлено
+  2026-06-27: `wp_kses ['br']` в render + дефолт `Das haben Sie<br>an Maklern`,
+  сверено кадром figma↔live. (NB: 5-й пункт «Übergang» имеет текст-дубль 4-го —
+  возможный контент-баг, ждёт подтверждения клиента.)
 
 **Скриншоты клиента** (65 шт.) переэкспортировать из `Rosenberger QA.docx` при нужде:
 `unzip docx → word/media/imageN.png`. Маппинг пункт↔картинка — в секциях ниже.

@@ -3,6 +3,11 @@
 Человекочитаемый журнал работы параллельно с git. **Каждый ИИ дописывает строку
 после завершённой задачи** (перед `git push`). Новые записи — сверху.
 
+- [Claude] 2026-06-27 — **QA S11: перенос заголовка pain-points (Home).** Figma даёт
+  перенос после «Sie» (`Das haben Sie` / `an Maklern sicher satt`), на live уезжал
+  после «an». Пустил `<br>` в `titleMain` блока pain-points (`wp_kses ['br']`) +
+  дефолт `Das haben Sie<br>an Maklern`. Сборка/деплой, сверено кадром figma↔live
+  (`.visual/cmp-painpoints-before/after.png`) — совпало.
 - [Claude] 2026-06-26 — **QA-сессия + дешёвый гейт.** Закрыто 6 секций (contact-section,
   thank-you, quote-cover, property-catalog, error-404, references-hero → 44/50 pass) через
   мультиагентный qa-page-parallel + ручная добивка контентных дефектов (реальные контакты

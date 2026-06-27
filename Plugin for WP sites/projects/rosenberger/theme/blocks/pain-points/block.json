@@ -10,7 +10,7 @@
 	"textdomain": "library",
 	"supports": { "html": false, "align": [ "full" ], "multiple": false },
 	"attributes": {
-		"titleMain": { "type": "string", "default": "Das haben Sie an Maklern" },
+		"titleMain": { "type": "string", "default": "Das haben Sie<br>an Maklern" },
 		"titleAccent": { "type": "string", "default": "sicher satt" },
 		"items": { "type": "array", "default": [
 			{ "title": "Preisversprechen, die nicht halten", "text": "Ein hoher Wunschpreis bringt dem Makler den Auftrag. Danach steht das Inserat monatelang und der Preis wird Stück für Stück gesenkt.", "iconUrl": "", "iconId": 0 },

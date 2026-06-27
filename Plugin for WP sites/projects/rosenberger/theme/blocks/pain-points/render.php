@@ -4,7 +4,7 @@ $items = isset( $attributes['items'] ) && is_array( $attributes['items'] ) ? $at
 ?>
 <section <?php echo get_block_wrapper_attributes(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="pain-points__inner">
-		<h2 class="pain-points__heading"><?php echo esc_html( $attributes['titleMain'] ?? '' ); ?> <em><?php echo esc_html( $attributes['titleAccent'] ?? '' ); ?></em></h2>
+		<h2 class="pain-points__heading"><?php echo wp_kses( $attributes['titleMain'] ?? '', array( 'br' => array() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <em><?php echo esc_html( $attributes['titleAccent'] ?? '' ); ?></em></h2>
 		<div class="pain-points__list">
 			<?php foreach ( $items as $item ) : ?>
 				<article class="pain-points__item">
