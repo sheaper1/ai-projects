@@ -122,11 +122,14 @@ const iconValet      = await getMedia( 'rosenberger-card-icon-valet' );
 const iconHouse      = await getMedia( 'rosenberger-card-icon-house' );
 
 const badge       = await getMedia( 'rosenberger-google-rating' );
-const iconPrice   = await getMedia( 'rosenberger-icon-price' );
-const iconCb      = await getMedia( 'rosenberger-icon-callback' );
-const iconPress   = await getMedia( 'rosenberger-icon-pressure' );
-const iconComm    = await getMedia( 'rosenberger-icon-commission' );
-const iconHidden  = await getMedia( 'rosenberger-icon-hidden' );
+// Иконки pain-points — точные SVG из Figma (клиентский QA S8: прежние были не из
+// макета). Slug -v2 + ensureMedia, чтобы залить заменённые ассеты.
+const ic = ( slug, file ) => ensureMedia( slug, localBuf( resolve( root, 'projects/rosenberger/media/icons/' + file ) ), 'svg' );
+const iconPrice   = await ic( 'rosenberger-icon-price-v2',      'price-v2.svg' );
+const iconCb      = await ic( 'rosenberger-icon-callback-v2',   'callback-v2.svg' );
+const iconPress   = await ic( 'rosenberger-icon-pressure-v2',   'pressure-v2.svg' );
+const iconComm    = await ic( 'rosenberger-icon-commission-v2', 'commission-v2.svg' );
+const iconHidden  = await ic( 'rosenberger-icon-hidden-v2',     'hidden-v2.svg' );
 const card1       = await getMedia( 'rosenberger-card-1' );
 const card2       = await getMedia( 'rosenberger-card-2' );
 const card3       = await getMedia( 'rosenberger-card-3' );

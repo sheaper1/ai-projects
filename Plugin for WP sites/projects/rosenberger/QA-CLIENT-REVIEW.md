@@ -22,7 +22,7 @@
 | S5 | Размер кнопок на mobile (везде) | ВСЕ страницы | общий override в style.css | ✅ Figma-mobile: кнопки 217–305px hug-content по центру (не full-width). 6 блоков растягивали (about/process-steps/referral-cta/consultation-cta/split-cta/sold-showcase) → `fit-content`+flex+`margin:auto`. Детектор (ширина+центр): 0 |
 | S6 | Кнопки без ссылок / «no connection» | Home, feldkirch | сидеры: проставить href | ✅ Home (3 карточки→сервис-стр., CTA/about/process→kontakt/ueber-mich) + regions process-steps→kontakt. Детектор: 0 |
 | S7 | Не у всех кнопок hover-анимация | Home `cards-stack__cta-button` | :hover в блоке | ✅ добавил hover+transition. Детектор: 0 |
-| S8 | Иконки не из Figma | Home (и др.) | заменить на SVG из Figma (svg-icons-rule) | ⬜ |
+| S8 | Иконки не из Figma | Home pain-points | SVG из Figma → медиа -v2 | ✅ все 5 иконок pain-points экспортированы из Figma (монета-€/телефон-slash/чат/discount/глаз-slash), залиты -v2, пересеяны, сверено на live. Прочие страницы — отдельно при их проходе |
 | S9 | Картинки не из Figma | Home, ueber-mich (и др.) | заменить ассеты (figma-image-diff) | ⬜ |
 | S10 | Ответы FAQ отличаются от Figma | Home, tippgeber, verkaufen, vermieten, bewertung, local | контент FAQ из Figma | ⬜ |
 | S11 | «align to heading» (контент не выровнен под заголовок) | verkaufen, vermieten, bewertung, local | выравнивание секций | ⬜ |
@@ -161,6 +161,17 @@
 - *Урок (в МОЙ QA):* добавил **детектор горизонтального оверфлоу** по всем
   страницам × вьюпортам — ловит «cut/обрезано» сам и показывает виновный элемент.
   Это закрывает целый класс, который раньше утекал к клиенту.
+
+**Отчёт 5 — S8 иконки pain-points (Home):**
+- *Что понял:* мой QA вообще не сверял ИДЕНТИЧНОСТЬ ассетов с Figma. Экспортировал
+  5 иконок из Figma (`download_assets` svg → `figma-icon.mjs` чистка), отрендерил и
+  сравнил с текущими: ≥2 явно другие (€ вместо монеты, телефон-стрелка вместо
+  перечёркнутого), текущие локальные SVG вообще не рендерились (битые). Заменил все 5.
+  Иконки сидятся через `getMedia(slug)` — чтобы залить новые, нужен slug `-v2` +
+  `ensureMedia` (как с фото регионов).
+- *Урок (в МОЙ QA):* нужен **детектор идентичности иконок** (рендер ассета сайта vs
+  Figma-нода). Полноценно — это сравнение по Figma-node-map (есть в AGENTS.md).
+  Приём «download_assets → figma-icon.mjs → render → сравнить» зафиксирован.
 
 ## Журнал исправлений
 <!-- сюда пишу по мере работы: дата — что починил — где — как проверил -->
