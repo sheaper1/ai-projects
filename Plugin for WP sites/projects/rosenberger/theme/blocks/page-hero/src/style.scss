@@ -96,7 +96,9 @@
 
 @media (max-width: 781px) {
 	.page-hero__content {
-		padding: 48px var(--wp--custom--layout--gutter) 32px;
+		/* Резервируем высоту фикс-шапки (84px на mobile) + зазор, иначе шапка
+		   наезжает на первую строку заголовка hero (клиентский QA). */
+		padding: calc(84px + var(--wp--preset--spacing--r-24)) var(--wp--custom--layout--gutter) 32px;
 	}
 
 	.page-hero__heading {

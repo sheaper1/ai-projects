@@ -484,6 +484,8 @@ body.site-menu-open { overflow: hidden; }
 	color: var(--wp--preset--color--surface-muted) !important;
 	box-sizing: border-box;
 }
+/* Литеральное красное сердце в копирайте (контентный акцент, не токен темы). */
+.site-footer__heart { color: #e0245e; }
 
 /* ===== Глобальные стили кнопок (из дизайна Figma) ===== */
 
