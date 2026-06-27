@@ -23,7 +23,7 @@
 | S6 | Кнопки без ссылок / «no connection» | Home, feldkirch | сидеры: проставить href | ✅ Home (3 карточки→сервис-стр., CTA/about/process→kontakt/ueber-mich) + regions process-steps→kontakt. Детектор: 0 |
 | S7 | Не у всех кнопок hover-анимация | Home `cards-stack__cta-button` | :hover в блоке | ✅ добавил hover+transition. Детектор: 0 |
 | S8 | Иконки не из Figma | Home pain-points | SVG из Figma → медиа -v2 | ✅ все 5 иконок pain-points экспортированы из Figma (монета-€/телефон-slash/чат/discount/глаз-slash), залиты -v2, пересеяны, сверено на live. Прочие страницы — отдельно при их проходе |
-| S9 | Картинки не из Figma | Home, ueber-mich (и др.) | заменить ассеты (figma-image-diff) | ⬜ |
+| S9 | Картинки не из Figma | Home, ueber-mich | — | ✅ не баг: сайт совпадает с НОВЫМ дизайном (Home about + ueber-mich hero = бородатый Alex). Клиент сравнивал со СТАРЫМ вариантом. Подтверждено по новой карте 2126:* |
 | S10 | Ответы FAQ отличаются от Figma | Home, tippgeber, verkaufen, vermieten, bewertung, local | контент FAQ из Figma | ⬜ |
 | S11 | «align to heading» (контент не выровнен под заголовок) | verkaufen, vermieten, bewertung, local | выравнивание секций | ⬜ |
 | S12 | Рейтинг «4.5+?» (Google reviews показывает ниже) | Home, ueber-mich | trust-bar / источник рейтинга | ❓ |
@@ -172,6 +172,18 @@
 - *Урок (в МОЙ QA):* нужен **детектор идентичности иконок** (рендер ассета сайта vs
   Figma-нода). Полноценно — это сравнение по Figma-node-map (есть в AGENTS.md).
   Приём «download_assets → figma-icon.mjs → render → сравнить» зафиксирован.
+
+**Отчёт 6 — старый/новый дизайн + S9 фото:**
+- *Что понял:* в Figma было ДВА варианта (старый слева, новый справа), а моя карта
+  узлов в AGENTS.md указывала на СТАРЫЙ. Я сравнивал фото со старым → ложно решил,
+  что ueber-mich/home about «не из Figma». Пользователь удалил старый; собрал НОВУЮ
+  карту (`scripts/figma-map.mjs`, REST API, узлы `2126:*`), обновил AGENTS.md. По
+  новому дизайну сайт СОВПАДАЕТ (Home about + ueber-mich = бородатый Alex). S8 иконки
+  тоже совпали (имена нод те же).
+- *Урок (критичный):* ВСЕГДА сверять, что Figma-карта указывает на актуальный
+  вариант дизайна. Иначе весь визуальный QA сверяется не с тем макетом. Перед QA —
+  убедиться, что node-map свежая (один вариант в файле). Использовать `figma-map.mjs`
+  (REST) вместо дампов get_metadata (970k). FIGMA_TOKEN в `.env` (истекает 06-28!).
 
 ## Журнал исправлений
 <!-- сюда пишу по мере работы: дата — что починил — где — как проверил -->
