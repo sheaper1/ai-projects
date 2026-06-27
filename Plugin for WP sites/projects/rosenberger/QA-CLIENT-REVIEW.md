@@ -18,7 +18,7 @@
 | S1 | Шапка не sticky / «висит всегда» | все | header.js | ⏭️ поведение «вниз прячется/вверх появляется» — задумано (подтв. владелец 2026-06-27); код корректен, на деплое убедиться, что свежий header.js на live |
 | S2 | Подвал: red heart + соц-ссылки | все | footer part темы | 🔄 сердце сделал красным; соц-ссылки ОТЛОЖЕНЫ — URL'ов нет, оставляю иконки без ссылок |
 | S3 | На mobile шапка наезжает на hero (overlay) | tippgeber, verkaufen, vermieten, bewertung | `page-hero` mobile padding-top | ✅ задеплоено+проверено (mobile 390 / 768). local: `region-hero` уже резервировал — overlay не было |
-| S4 | На tablet шапка/подвал не оптимизированы; подвал обрезан | все | header/footer @media tablet | ⬜ |
+| S4 | На tablet шапка/подвал не оптимизированы; подвал обрезан | все | footer @media 783–1023 | ✅ подвал: в 783–1023px nav переносится под info (был overflow 4-й колонки + гор.скролл). Шапка-tablet: НЕ воспроизводится даже с длинным CTA (togRight<vw) — уже ок. Детектор `qa-overflow.mjs`. Доп: карусели verkaufen/feldkirch дают +30px на 1280/1024 — кандидаты на потом |
 | S5 | Размер кнопок на mobile (везде) | ВСЕ страницы | общий override в style.css | ✅ Figma-mobile: кнопки 217–305px hug-content по центру (не full-width). 6 блоков растягивали (about/process-steps/referral-cta/consultation-cta/split-cta/sold-showcase) → `fit-content`+flex+`margin:auto`. Детектор (ширина+центр): 0 |
 | S6 | Кнопки без ссылок / «no connection» | Home, feldkirch | сидеры: проставить href | ✅ Home (3 карточки→сервис-стр., CTA/about/process→kontakt/ueber-mich) + regions process-steps→kontakt. Детектор: 0 |
 | S7 | Не у всех кнопок hover-анимация | Home `cards-stack__cta-button` | :hover в блоке | ✅ добавил hover+transition. Детектор: 0 |
@@ -151,6 +151,17 @@
   а не глазом; (3) `fit-content`+`display:flex`+`margin-inline:auto` центрирует в
   любом контексте (и flex, и block-родитель).
 
+**Отчёт 4 — S4 tablet шапка/подвал:**
+- *Что понял:* «footer cut» = горизонтальный оверфлоу — `footer__body` (info+nav
+  ≈936px) не влезал в 783–960px, 4-я колонка резалась + появлялся гор.скролл.
+  Числовой visual-qa этот класс не видел вообще. Шапка-tablet оказалась уже ок
+  (проверил даже с длинным CTA — MENÜ не режется). Детектор `qa-overflow.mjs` сам
+  нашёл ещё 2 оверфлоу на каруселях (verkaufen/feldkirch), которых не было в
+  клиентском QA.
+- *Урок (в МОЙ QA):* добавил **детектор горизонтального оверфлоу** по всем
+  страницам × вьюпортам — ловит «cut/обрезано» сам и показывает виновный элемент.
+  Это закрывает целый класс, который раньше утекал к клиенту.
+
 ## Журнал исправлений
 <!-- сюда пишу по мере работы: дата — что починил — где — как проверил -->
 - 2026-06-27 — Завёл трекер, разобрал весь клиентский QA (текст + 65 скринов из docx).
@@ -164,3 +175,7 @@
   на mobile). S6: проставил URL кнопкам в `import-homepage.mjs` (cards/about/
   process) и `seed-regions.mjs` (process→kontakt). S7: hover+transition в
   `cards-stack` scss. Собрано, задеплоено, пересеяны Home+регионы, детектор → 0.
+- 2026-06-27 — S5: общий mobile-override кнопок (`fit-content`+flex+`margin:auto`)
+  → hug-content по центру; детектор ширины/центра → 0.
+- 2026-06-27 — S4: подвал в 783–1023px nav под info (`flex-wrap`); overflow → 0.
+  Шапка-tablet уже ок. Добавлен детектор `qa-overflow.mjs`.

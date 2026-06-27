@@ -829,6 +829,19 @@ body.site-menu-open { overflow: hidden; }
 	.site-footer__credit { text-align: left; }
 }
 
+/* ===== Tablet: подвал не обрезается по ширине (клиентский QA S4) =====
+   В 783–1023px info+nav рядом (~936px) не влезали → 4-я колонка резалась и
+   появлялся горизонтальный скролл. Переносим nav под info на всю ширину. */
+@media (min-width: 783px) and (max-width: 1023px) {
+	.site-footer__body { flex-wrap: wrap; }
+	.site-footer__info { width: 100%; }
+	.site-footer__nav {
+		width: 100%;
+		justify-content: flex-start;
+		gap: var(--wp--preset--spacing--r-48);
+	}
+}
+
 /* ===== Mobile: CTA-кнопки не во всю ширину (клиентский QA S5) =====
    В Figma-mobile кнопки облегают текст (217–305px) и центрируются, а не
    растягиваются на всю колонку. Часть блоков форсила width:100% / align-self:
