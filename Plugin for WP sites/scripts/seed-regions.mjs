@@ -126,7 +126,7 @@ function content( city, media ) {
 		],
 	} ) } /-->`;
 
-	const process = `<!-- wp:library/process-steps /-->`;
+	const process = `<!-- wp:library/process-steps {"buttonUrl":"/kontakt/"} /-->`;
 
 	const sold = `<!-- wp:library/region-properties ${ j( {
 		source: 'reference', headingItalic: 'Verkauft', heading: ' in {city} und Umgebung',

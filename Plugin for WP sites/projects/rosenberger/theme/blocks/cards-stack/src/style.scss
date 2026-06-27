@@ -211,6 +211,11 @@
 		font-size: var(--wp--preset--font-size--r-18);
 		font-weight: 500;
 		text-decoration: none;
+		transition: background-color var(--wp--custom--transition--base), opacity var(--wp--custom--transition--base);
+	}
+	.cards-stack__cta-button:hover,
+	.cards-stack__cta-button:focus-visible {
+		background: color-mix(in srgb, var(--wp--preset--color--contrast) 88%, var(--wp--preset--color--base));
 	}
 
 	// --- Контрол редактора ---

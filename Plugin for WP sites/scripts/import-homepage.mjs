@@ -174,18 +174,18 @@ const pageContent = [
 		[ 'Übergang', 'Was der Verkauf kostet und was darin enthalten ist, bleibt bis zum Schluss vage.', iconHidden ],
 	].map( ( [ title, text, icon ] ) => JSON.stringify( { title, text, iconId: id( icon ), iconUrl: u( icon ) } ) ).join( ',' ) }]} /-->`,
 
-	`<!-- wp:library/cards-stack {"cards":[${ [
-		[ 'Immobilie verkaufen', 'Von der Bewertung über die Vermarktung bis zur Übergabe übernehme ich den ganzen Verkauf für Sie.', card1, iconEvaluation ],
-		[ 'Immobilienbewertung', 'Sie erfahren realistisch, was Ihre Immobilie wert ist, ohne überzogene Versprechen und ohne Verpflichtung.', card2, iconValet ],
-		[ 'Immobilie vermieten', 'Sie bekommen sorgfältig ausgewählte Mieter, und ich kümmere mich um Bonität, Vertrag und Übergabe.', card3, iconHouse ],
-	].map( ( [ title, text, img, icon ] ) => JSON.stringify( {
+	`<!-- wp:library/cards-stack {"ctaUrl":"/kontakt/","cards":[${ [
+		[ 'Immobilie verkaufen', 'Von der Bewertung über die Vermarktung bis zur Übergabe übernehme ich den ganzen Verkauf für Sie.', card1, iconEvaluation, '/immobilie-verkaufen/' ],
+		[ 'Immobilienbewertung', 'Sie erfahren realistisch, was Ihre Immobilie wert ist, ohne überzogene Versprechen und ohne Verpflichtung.', card2, iconValet, '/immobilienbewertung/' ],
+		[ 'Immobilie vermieten', 'Sie bekommen sorgfältig ausgewählte Mieter, und ich kümmere mich um Bonität, Vertrag und Übergabe.', card3, iconHouse, '/immobilie-vermieten/' ],
+	].map( ( [ title, text, img, icon, url ] ) => JSON.stringify( {
 		title, text,
-		buttonText: 'Erfahren Sie mehr', buttonUrl: '#',
+		buttonText: 'Erfahren Sie mehr', buttonUrl: url,
 		imageId: id( img ), imageUrl: u( img ),
 		mobileIconId: id( icon ), mobileIconUrl: u( icon ),
 	} ) ).join( ',' ) }]} /-->`,
 
-	`<!-- wp:library/about {"backgroundId":${ id( aboutBg ) },"backgroundUrl":"${ u( aboutBg ) }"} /-->`,
+	`<!-- wp:library/about {"backgroundId":${ id( aboutBg ) },"backgroundUrl":"${ u( aboutBg ) }","buttonUrl":"/ueber-mich/"} /-->`,
 
 	`<!-- wp:library/testimonials {"heading":"Das sagen Menschen,","headingItalic":"die mit mir gearbeitet haben"} /-->`,
 
@@ -196,7 +196,7 @@ const pageContent = [
 		[ regionBregenz,   'Bregenz',    '/objekte-ort/bregenz/'   ],
 	].map( ( [ m, label, url ] ) => JSON.stringify( { mediaId: id( m ), mediaUrl: u( m ), label, url } ) ).join( ',' ) }]} /-->`,
 
-	`<!-- wp:library/process-steps /-->`,
+	`<!-- wp:library/process-steps {"buttonUrl":"/kontakt/"} /-->`,
 
 	`<!-- wp:library/referral-cta {"imageId":${ id( referralImg ) },"imageUrl":"${ u( referralImg ) }","buttonUrl":"/tippgeber/"} /-->`,
 
