@@ -96,17 +96,24 @@ for ( const url of targets ) {
 		// --- Mobile проход: высота кнопок ---
 		await page.setViewport( { width: 390, height: 844 } );
 		await page.reload( { waitUntil: 'networkidle2', timeout: 45000 } );
+		const VW = 390;
 		const mob = await page.evaluate( ( sel ) => {
 			const out = {};
 			document.querySelectorAll( sel ).forEach( ( el, i ) => {
 				const r = el.getBoundingClientRect();
-				if ( r.width > 0 && r.height > 0 ) out[ i ] = Math.round( r.height );
+				if ( r.width > 0 && r.height > 0 ) out[ i ] = { h: Math.round( r.height ), w: Math.round( r.width ) };
 			} );
 			return out;
 		}, BTN_SEL );
 		for ( const b of entry.buttons ) {
-			b.hM = mob[ b.idx ] ?? null;
-			b.S5_badMobile = b.hM != null && ( b.hM < MOBILE_MIN || b.hM > MOBILE_MAX );
+			b.hM = mob[ b.idx ]?.h ?? null;
+			b.wM = mob[ b.idx ]?.w ?? null;
+			const badH = b.hM != null && ( b.hM < MOBILE_MIN || b.hM > MOBILE_MAX );
+			// Figma-mobile: кнопки 217–305px (hug-content), НЕ во всю ширину.
+			// Флагуем «растянута» при ширине ≥ 90% вьюпорта.
+			const badW = b.wM != null && b.wM >= VW * 0.9;
+			b.S5_badMobile = badH || badW;
+			b.S5_reason = badH ? `h=${ b.hM }` : ( badW ? `w=${ b.wM } (full-width)` : '' );
 		}
 	} catch ( e ) {
 		entry.errors.push( String( e.message || e ) );
@@ -133,7 +140,7 @@ for ( const e of clean ) {
 	console.error( `\n● ${ e.url } (кнопок ${ e.buttons.length }):` );
 	noHref.forEach( ( b ) => console.error( `   S6 нет href: "${ b.text }" [${ b.cls }]` ) );
 	noHover.forEach( ( b ) => console.error( `   S7 нет hover: "${ b.text }" [${ b.cls }]` ) );
-	badMob.forEach( ( b ) => console.error( `   S5 mobile h=${ b.hM }px: "${ b.text }" [${ b.cls }]` ) );
+	badMob.forEach( ( b ) => console.error( `   S5 mobile ${ b.S5_reason }: "${ b.text }" [${ b.cls }]` ) );
 	total += noHref.length + noHover.length + badMob.length;
 }
 console.error( `\nИТОГО дефектов кнопок: ${ total }` );

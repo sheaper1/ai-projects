@@ -19,7 +19,7 @@
 | S2 | Подвал: red heart + соц-ссылки | все | footer part темы | 🔄 сердце сделал красным; соц-ссылки ОТЛОЖЕНЫ — URL'ов нет, оставляю иконки без ссылок |
 | S3 | На mobile шапка наезжает на hero (overlay) | tippgeber, verkaufen, vermieten, bewertung | `page-hero` mobile padding-top | ✅ задеплоено+проверено (mobile 390 / 768). local: `region-hero` уже резервировал — overlay не было |
 | S4 | На tablet шапка/подвал не оптимизированы; подвал обрезан | все | header/footer @media tablet | ⬜ |
-| S5 | Размер кнопок на mobile (везде) | ВСЕ страницы | mobile-ширина кнопок | 🔄 высота ОК (детектор: 0); реальный дефект — кнопка во всю ширину на mobile (image33). Нужен таргет-ширина из Figma-mobile / решение |
+| S5 | Размер кнопок на mobile (везде) | ВСЕ страницы | общий override в style.css | ✅ Figma-mobile: кнопки 217–305px hug-content по центру (не full-width). 6 блоков растягивали (about/process-steps/referral-cta/consultation-cta/split-cta/sold-showcase) → `fit-content`+flex+`margin:auto`. Детектор (ширина+центр): 0 |
 | S6 | Кнопки без ссылок / «no connection» | Home, feldkirch | сидеры: проставить href | ✅ Home (3 карточки→сервис-стр., CTA/about/process→kontakt/ueber-mich) + regions process-steps→kontakt. Детектор: 0 |
 | S7 | Не у всех кнопок hover-анимация | Home `cards-stack__cta-button` | :hover в блоке | ✅ добавил hover+transition. Детектор: 0 |
 | S8 | Иконки не из Figma | Home (и др.) | заменить на SVG из Figma (svg-icons-rule) | ⬜ |
@@ -138,6 +138,18 @@
   не только высоту, но и **ширину** кнопок на mobile — добавить чек «кнопка ≈
   ширина вьюпорта = подозрение на растянутость»; (3) `href="#"` = «нет связи»,
   флагать как дефект.
+
+**Отчёт 3 — S5 ширина/центр кнопок на mobile:**
+- *Что понял:* высоты были ок — дефект был в ширине (full-width 358px). Сверил с
+  Figma-mobile (фрейм 375): кнопки 217–305px, hug-content, центр. Добавил в детектор
+  **чек ширины** → он сам нашёл 18 растянутых кнопок в 6 блоках. После фикса —
+  внезапно 2 блока остались выровнены влево (width:auto ≠ центр): родитель не flex,
+  `margin-inline:auto` на inline-элементе не центрирует. Добавил **чек центрирования**
+  (|left−right|<4px) — поймал это, иначе бы «починил» вслепую.
+- *Урок (в МОЙ QA):* (1) для кнопок проверять и ВЫСОТУ, и ШИРИНУ, и ЦЕНТРОВКУ —
+  «не full-width» недостаточно; (2) ширину кнопки на mobile брать из Figma-mobile,
+  а не глазом; (3) `fit-content`+`display:flex`+`margin-inline:auto` центрирует в
+  любом контексте (и flex, и block-родитель).
 
 ## Журнал исправлений
 <!-- сюда пишу по мере работы: дата — что починил — где — как проверил -->

@@ -829,6 +829,27 @@ body.site-menu-open { overflow: hidden; }
 	.site-footer__credit { text-align: left; }
 }
 
+/* ===== Mobile: CTA-кнопки не во всю ширину (клиентский QA S5) =====
+   В Figma-mobile кнопки облегают текст (217–305px) и центрируются, а не
+   растягиваются на всю колонку. Часть блоков форсила width:100% / align-self:
+   stretch — здесь общий override на 6 затронутых блоков. */
+@media (max-width: 782px) {
+	.about__button,
+	.process-steps__button,
+	.referral-cta__button,
+	.consultation-cta__button,
+	.split-cta__button,
+	.sold-showcase__button {
+		width: fit-content !important;
+		max-width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		align-self: center;
+		margin-inline: auto;
+	}
+}
+
 /* ==========================================================================
    Блог (core-посты): общие карточка / мета / бейдж — для blog-grid,
    article-related (карточки) и blog-hero / article-header (мета, featured).
